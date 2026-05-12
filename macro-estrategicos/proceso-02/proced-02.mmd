@@ -1,0 +1,13 @@
+graph TD
+    subgraph Subgerente_Karla
+        A(( )) --> B[Conciliar Factura de SUNAT vs Reporte Interno]
+        B --> C{¿Datos Correctos?}
+        C -- No --> D[Solicitar Anulación/Nota de Crédito al Contador]
+        D --> B
+        C -- Sí --> E[Registrar Factura en Control de Cobranzas Excel]
+        E --> F[Enviar Factura al Cliente via Correo/WhatsApp]
+        F --> G(( ))
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#f9f,stroke:#333,stroke-width:4px

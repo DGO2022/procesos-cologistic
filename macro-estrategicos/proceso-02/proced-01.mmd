@@ -1,0 +1,18 @@
+graph TD
+    subgraph Subgerente_Karla
+        A(( )) --> B[Enviar Liquidación Aprobada al Contador]
+    end
+
+    subgraph Contador_Externo
+        B --> C[Ingresar al Portal SUNAT con Clave SOL]
+        C --> D[Digitar Concepto y Monto en Dólares]
+        D --> E[Generar y Descargar Factura PDF]
+    end
+
+    subgraph Subgerente_Karla
+        E --> F[Recibir Factura para Validación Final]
+        F --> G(( ))
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#f9f,stroke:#333,stroke-width:4px
