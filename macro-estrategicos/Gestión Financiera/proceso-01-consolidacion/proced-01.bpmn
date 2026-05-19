@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1ksue5u" targetNamespace="http://bpmn.io/schema/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ksue5u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
   <bpmn:collaboration id="Collaboration_1">
     <bpmn:participant id="Participant_1" name="Proceso de Consolidación" processRef="Process_0vf1lkj" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0vf1lkj" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1">
-      <bpmn:lane id="Lane_Analista" name="Analista de Inventarios (Angel)">
+      <bpmn:lane id="Lane_Analista" name="Analista de Inventarios">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_B</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_C</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_D</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_E</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_Subgerente" name="Subgerente (Karla)">
+      <bpmn:lane id="Lane_Subgerente" name="Subgerente">
         <bpmn:flowNodeRef>Activity_F</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_I</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_Cliente" name="Cliente (Bimbo/Saga)">
+      <bpmn:lane id="Lane_Cliente" name="Cliente">
         <bpmn:flowNodeRef>Gateway_G</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_H</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    
     <bpmn:startEvent id="StartEvent_1" name="Inicio">
       <bpmn:outgoing>Flow_A_B</bpmn:outgoing>
     </bpmn:startEvent>
@@ -58,7 +57,6 @@
     <bpmn:endEvent id="Event_I" name="Fin">
       <bpmn:incoming>Flow_H_I</bpmn:incoming>
     </bpmn:endEvent>
-
     <bpmn:sequenceFlow id="Flow_A_B" sourceRef="StartEvent_1" targetRef="Activity_B" />
     <bpmn:sequenceFlow id="Flow_B_C" sourceRef="Activity_B" targetRef="Activity_C" />
     <bpmn:sequenceFlow id="Flow_C_D" sourceRef="Activity_C" targetRef="Activity_D" />
@@ -69,22 +67,23 @@
     <bpmn:sequenceFlow id="Flow_G_H" name="Sí" sourceRef="Gateway_G" targetRef="Activity_H" />
     <bpmn:sequenceFlow id="Flow_H_I" sourceRef="Activity_H" targetRef="Event_I" />
   </bpmn:process>
-  
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
       <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="Participant_1" isHorizontal="true">
-        <dc:Bounds x="120" y="80" width="1330" height="420" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_Analista_di" bpmnElement="Lane_Analista" isHorizontal="true">
-        <dc:Bounds x="150" y="80" width="1300" height="180" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_Subgerente_di" bpmnElement="Lane_Subgerente" isHorizontal="true">
-        <dc:Bounds x="150" y="260" width="1300" height="120" />
+        <dc:Bounds x="120" y="80" width="1240" height="420" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_Cliente_di" bpmnElement="Lane_Cliente" isHorizontal="true">
-        <dc:Bounds x="150" y="380" width="1300" height="120" />
+        <dc:Bounds x="150" y="380" width="1210" height="120" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-
+      <bpmndi:BPMNShape id="Lane_Subgerente_di" bpmnElement="Lane_Subgerente" isHorizontal="true">
+        <dc:Bounds x="150" y="260" width="1210" height="120" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Analista_di" bpmnElement="Lane_Analista" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="1210" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="200" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -105,14 +104,19 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_G_di" bpmnElement="Gateway_G" isMarkerVisible="true">
         <dc:Bounds x="1050" y="415" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1031" y="386" width="88" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_H_di" bpmnElement="Activity_H">
         <dc:Bounds x="1150" y="400" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_I_di" bpmnElement="Event_I">
         <dc:Bounds x="1300" y="302" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1312" y="343" width="16" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNEdge id="Flow_A_B_di" bpmnElement="Flow_A_B">
         <di:waypoint x="236" y="170" />
         <di:waypoint x="300" y="170" />
