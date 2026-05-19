@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ksue5u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_1" name="Proceso de Emisión" processRef="Process_0vf1lkj" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0vf1lkj" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Subgerente" name="Subgerente">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_B</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_C</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_D</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_E</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_F</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_G</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Inicio">
+      <bpmn:outgoing>Flow_A_B</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_B" name="Conciliar Factura de SUNAT vs Reporte Interno">
+      <bpmn:incoming>Flow_A_B</bpmn:incoming>
+      <bpmn:incoming>Flow_D_B</bpmn:incoming>
+      <bpmn:outgoing>Flow_B_C</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_C" name="¿Datos Correctos?">
+      <bpmn:incoming>Flow_B_C</bpmn:incoming>
+      <bpmn:outgoing>Flow_C_D</bpmn:outgoing>
+      <bpmn:outgoing>Flow_C_E</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Activity_D" name="Solicitar Anulación/Nota de Crédito al Contador">
+      <bpmn:incoming>Flow_C_D</bpmn:incoming>
+      <bpmn:outgoing>Flow_D_B</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_E" name="Registrar Factura en Control de Cobranzas Excel">
+      <bpmn:incoming>Flow_C_E</bpmn:incoming>
+      <bpmn:outgoing>Flow_E_F</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_F" name="Enviar Factura al Cliente via Correo/WhatsApp">
+      <bpmn:incoming>Flow_E_F</bpmn:incoming>
+      <bpmn:outgoing>Flow_F_G</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_G" name="Fin">
+      <bpmn:incoming>Flow_F_G</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_A_B" sourceRef="StartEvent_1" targetRef="Activity_B" />
+    <bpmn:sequenceFlow id="Flow_B_C" sourceRef="Activity_B" targetRef="Gateway_C" />
+    <bpmn:sequenceFlow id="Flow_C_D" name="No" sourceRef="Gateway_C" targetRef="Activity_D" />
+    <bpmn:sequenceFlow id="Flow_D_B" sourceRef="Activity_D" targetRef="Activity_B" />
+    <bpmn:sequenceFlow id="Flow_C_E" name="Sí" sourceRef="Gateway_C" targetRef="Activity_E" />
+    <bpmn:sequenceFlow id="Flow_E_F" sourceRef="Activity_E" targetRef="Activity_F" />
+    <bpmn:sequenceFlow id="Flow_F_G" sourceRef="Activity_F" targetRef="Event_G" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="Participant_1" isHorizontal="true">
+        <dc:Bounds x="120" y="80" width="950" height="240" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerente_di" bpmnElement="Lane_Subgerente" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="920" height="240" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="200" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="255" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_B_di" bpmnElement="Activity_B">
+        <dc:Bounds x="290" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_C_di" bpmnElement="Gateway_C" isMarkerVisible="true">
+        <dc:Bounds x="440" y="205" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="421" y="262" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_D_di" bpmnElement="Activity_D">
+        <dc:Bounds x="415" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_E_di" bpmnElement="Activity_E">
+        <dc:Bounds x="590" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_F_di" bpmnElement="Activity_F">
+        <dc:Bounds x="740" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_G_di" bpmnElement="Event_G">
+        <dc:Bounds x="890" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="900" y="255" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_A_B_di" bpmnElement="Flow_A_B">
+        <di:waypoint x="236" y="230" />
+        <di:waypoint x="290" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_B_C_di" bpmnElement="Flow_B_C">
+        <di:waypoint x="390" y="230" />
+        <di:waypoint x="440" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_C_D_di" bpmnElement="Flow_C_D">
+        <di:waypoint x="465" y="205" />
+        <di:waypoint x="465" y="180" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="473" y="190" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_D_B_di" bpmnElement="Flow_D_B">
+        <di:waypoint x="415" y="140" />
+        <di:waypoint x="340" y="140" />
+        <di:waypoint x="340" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_C_E_di" bpmnElement="Flow_C_E">
+        <di:waypoint x="490" y="230" />
+        <di:waypoint x="590" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="534" y="212" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_E_F_di" bpmnElement="Flow_E_F">
+        <di:waypoint x="690" y="230" />
+        <di:waypoint x="740" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_F_G_di" bpmnElement="Flow_F_G">
+        <di:waypoint x="840" y="230" />
+        <di:waypoint x="890" y="230" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
