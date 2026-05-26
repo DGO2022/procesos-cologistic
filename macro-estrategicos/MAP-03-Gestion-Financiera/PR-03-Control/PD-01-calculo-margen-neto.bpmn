@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ksue5u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
   <bpmn:collaboration id="Collaboration_1">
-    <bpmn:participant id="Participant_1" name="Procedimieto de Monitoreo de Margen Operativo y Utilidad" processRef="Process_0vf1lkj" />
+    <bpmn:participant id="Participant_1" name="Procedimiento de Monitoreo de Margen Operativo y Utilidad" processRef="Process_0vf1lkj" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0vf1lkj" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1">
