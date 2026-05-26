@@ -34,7 +34,7 @@
   #5 & #6 & #7 \\
   \midrule
   \textbf{Meta anualizada} & \textbf{Frecuencia de reporte} & \textbf{Fecha de actualización} \\
-  #8 & #9 & 19/06/25 \\
+  #8 & #9 & 26-05-2026 \\
   \bottomrule
   \end{tabularx}
   \vspace{1.5em}
@@ -76,7 +76,7 @@
 Asegurar la liquidación mensual de rentas y servicios especiales, en dólares, garantizando el margen de utilidad entre el costo de alquiler pagado al dueño y el cobro al cliente corporativo.
 
 \section{Alcance}
-Este procedimiento aplica desde la recopilación manual de movimientos y guías de servicio operativo, pasando por la facturación, y finaliza con la entrega de estados financieros y de utilidad a la Gerencia General. Involucra a la Subgerencia, Jefatura de Operaciones/Analista de Inventarios y al Contador externo.
+Este procedimiento aplica desde la recopilación manual de movimientos y guías de servicio operativo, pasando por la facturación, y finaliza con la entrega de estados financieros y de utilidad a la Gerencia General. Involucra a la Subgerencia, Jefatura de Operaciones/Analista de Inventarios y al Contador.
 
 \section{Base Legal}
 \begin{enumerate}
@@ -133,7 +133,7 @@ Este procedimiento aplica desde la recopilación manual de movimientos y guías 
 % ------------------------------------------
 \section{Liquidación de Servicios Logísticos}
 % ------------------------------------------
-\textbf{Líder:} Subgerente (Karla Pettrozi)
+\textbf{Líder:} Subgerente
 
 \textbf{Participantes:}
 \begin{itemize}
@@ -181,7 +181,7 @@ El subgerente identifica los metros cuadrados ocupados según el contrato, multi
 % ------------------------------------------
 \section{Emisión Manual de Factura Electrónica}
 % ------------------------------------------
-\textbf{Líder:} Subgerente (Karla Pettrozi)
+\textbf{Líder:} Subgerente
 
 \textbf{Participantes:}
 \begin{itemize}
@@ -205,7 +205,7 @@ Formalizar la generación, validación y envío de la factura electrónica a SUN
 % ------------------------------------------
 \section{Procedimiento de Validación y Envío de Comprobante}
 % ------------------------------------------
-\textbf{Líder:} Subgerente (Karla Pettrozi)
+\textbf{Líder:} Subgerente
 
 \textbf{Participantes:}
 \begin{itemize}
@@ -228,7 +228,7 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 % ------------------------------------------
 \section{Procedimiento de Monitoreo de Margen Operativo y Utilidad}
 % ------------------------------------------
-\textbf{Líder:} Subgerente (Karla Pettrozi)
+\textbf{Líder:} Subgerente
 
 \textbf{Participantes:}
 \begin{itemize}
@@ -252,7 +252,7 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 % ------------------------------------------
 \section{Procedimiento de Conciliación Bancaria y Gestión de Divisas}
 % ------------------------------------------
-\textbf{Líder:} Subgerente (Karla Pettrozi)
+\textbf{Líder:} Subgerente
 
 \textbf{Participantes:}
 \begin{itemize}
@@ -276,28 +276,20 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 % ==========================================
 \chapter{Matriz de Indicadores}
 % ==========================================
+\newpage
 
-\fichaIndicador{1. Mezclado}{Precisión en el mezclado}{Medir el porcentaje de mezclas realizadas con cantidades exactas de ingredientes según receta}{(Nº de mezclas correctas / Nº total de mezclas realizadas) $\times$ 100}{AP-001}{Jefe de Producción}{Supervisor de Mezclado}{98\%}{Mensual}
 
-\fichaIndicador{2. Amasado y pesado}{Precisión en el peso de masa}{Controlar que el peso de las porciones de masa esté dentro del margen permitido}{(Nº de porciones con peso correcto / Nº total de porciones verificadas) $\times$ 100}{AP-002}{Jefe de producción}{Supervisor de Amasado y Pesado}{90\%}{Mensual}
+\fichaIndicador{1. Liquidación de Servicios Logísticos (3PL)}{Tasa de exactitud en liquidación de servicios variables}{Medir la precisión de los cálculos manuales de servicios (reempaque, ingresos/salidas) frente a los movimientos reales}{(Número de liquidaciones aprobadas sin observaciones / Total de liquidaciones enviadas al cliente) $\times$ 100}{AP-FIN-001}{Subgerente}{Analista de Inventarios}{95\%}{Mensual}
 
-\fichaIndicador{3. Formado}{Tiempo promedio de autorización}{Medir el porcentaje de piezas formadas que cumplen con los estándares de tamaño y forma}{(Nº de piezas correctas / Nº total de piezas formadas) $\times$ 100}{AP-003}{Jefe de Producción}{Supervisor del área de formado}{100\%}{Mensual}
+\fichaIndicador{2. Liquidación de Arrendamiento Fijo}{Índice de cumplimiento de facturación de m$^2$}{Asegurar que se liquide el 100\% de las áreas ocupadas según los contratos notariales vigentes}{(Total de m$^2$ liquidados en el mes / Total de m$^2$ ocupados bajo contrato) $\times$ 100}{AP-FIN-002}{Subgerente}{Subgerente}{100\%}{Mensual}
 
-\fichaIndicador{4. Limpieza del molde}{Eficiencia en limpieza y engrasado}{Verificar el cumplimiento del protocolo de limpieza y engrasado antes del uso del molde}{(Nº de moldes correctamente engrasados y limpios / Nº total de moldes utilizados) $\times$ 100}{AP-004}{Supervisor de Calidad}{Encargado de limpieza y preparación de moldes}{100\%}{Mensual}
+\fichaIndicador{3. Emisión Manual de Factura Electrónica (SUNAT)}{Tiempo promedio de emisión de comprobantes (Lead Time)}{Monitorear la eficiencia del contador en la generación manual de facturas tras recibir la liquidación}{Sumatoria de (Fecha de emisión de factura - Fecha de recepción de liquidación aprobada) / Total de facturas emitidas}{AP-FIN-003}{Subgerente}{Contador}{$\le$ 48 horas}{Mensual}
 
-\fichaIndicador{5. Bañado}{Cobertura uniforme}{Medir el porcentaje de productos bañados correctamente según los estándares de calidad}{(Nº de productos con bañado uniforme / Nº total de productos bañados) $\times$ 100}{AP-005}{Supervisor de Producción}{Supervisor de Producción}{100\%}{Mensual}
+\fichaIndicador{4. Validación y Envío de Comprobantes}{Porcentaje de facturas con errores de digitación}{Reducir la emisión de notas de crédito por errores manuales en el portal de la SUNAT}{(Número de facturas anuladas o rectificadas / Total de facturas emitidas en el mes) $\times$ 100}{AP-FIN-004}{Subgerente}{Subgerente}{$< 2\%$}{Mensual}
 
-\fichaIndicador{6. Fermentado}{Control de fermentación}{Medir el porcentaje de productos que cumplen con el tiempo y condiciones óptimas de levado}{(Nº de productos bien fermentados / Nº total de productos fermentados) $\times$ 100}{AP-006}{Jefe de Producción}{Encargado del fermentado}{100\%}{Mensual}
+\fichaIndicador{5. Monitoreo de Margen Operativo y Utilidad}{Margen de utilidad neta por nave industrial}{Evaluar la rentabilidad real tras deducir el costo del alquiler base (\$2/m$^2$) y los gastos de soporte}{(Ingresos totales por nave en USD - Costos operativos totales en USD) / Ingresos totales por nave en USD $\times$ 100}{AP-FIN-005}{Gerencia General}{Subgerente}{$> 25\%$}{Trimestral}
 
-\fichaIndicador{7. Horneado}{Producto horneado óptimo}{Evaluar el porcentaje de productos horneados con el punto exacto de cocción y sin defectos}{(Nº de productos correctamente horneados / Nº total de productos horneados) $\times$ 100}{AP-007}{Jefe de Producción}{Encargado del horno}{100\%}{Mensual}
-
-\fichaIndicador{8. Enfriado}{Tiempo de enfriado}{Medir el tiempo promedio en que los productos alcanzan la temperatura óptima para su almacenamiento y consumo.}{(Nº de productos enfriados en el tiempo objetivo / Nº total de productos enfriados) $\times$ 100}{AP-008}{Jefe de Producción}{Supervisor de Enfriado}{100\%}{Mensual}
-
-\fichaIndicador{9. Corte}{Precisión en el corte}{Medir el porcentaje de cortes realizados con precisión según las medidas establecidas en la orden de producción.}{(Nº de cortes precisos / Nº total de cortes realizados) $\times$ 100}{AP-002}{Jefe de Producción}{Encargado de Corte}{100\%}{Mensual}
-
-\fichaIndicador{10. Empaquetado}{Eficiencia en el empaquetado}{Medir el porcentaje de productos empaquetados correctamente y de acuerdo con los estándares establecidos.}{(Nº de productos empaquetados correctamente / Nº total de productos empaquetados) $\times$ 100}{AP-010}{Jefe de Producción}{Supervisor de Empaque}{100\%}{Mensual}
-
-\fichaIndicador{11. Etiquetado}{Etiquetado de productos terminados}{Medir el porcentaje de productos etiquetados correctamente, con información legible y conforme a los estándares de presentación establecidos.}{(N° de productos etiquetados correctamente / N° total de productos etiquetados) $\times$ 100}{AP-004}{Jefe de Producción}{Encargado de etiquetado}{100\%}{Mensual}
+\fichaIndicador{6. Conciliación Bancaria y Gestión de Divisas}{Eficacia de recaudación mensual en dólares}{Medir el nivel de cobranza efectiva frente al total facturado en moneda extranjera}{(Monto total recaudado en USD en el mes / Monto total facturado en USD en el mes) $\times$ 100}{AP-FIN-006}{Subgerente}{Contador}{90\%}{Mensual}
 
 \newpage
 
