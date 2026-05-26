@@ -1,0 +1,811 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{multirow}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\textbf{\textsc{wUniversidad Peruana Unión}} \textbf{\textsc{~Facultad
+de Ingeniería y Arquitectura~}}
+
+\textbf{\textsc{E.P. de Ingeniería de Sistemas~}}
+
+\includegraphics[width=4.3391in,height=2.4375in]{media/image1.png}
+
+\textbf{\textsc{Plan de negocio Eco Logistic SAC}}
+
+\textbf{\textsc{Curso:}}
+
+\begin{quote}
+Gobierno de Tecnologías de Información
+\end{quote}
+
+\textbf{\textsc{Docente:}}
+
+\textsc{Mg Lennin Henry Centurión Julca}
+
+\textbf{\textsc{Estudiante:}}
+
+Jhack Quispe Mamani
+
+Alvaro Kenji Cuti Magaño
+
+Abel Is-boset Guevara Huasco
+
+Javier Kevin Tello Rivas
+
+David Edison Guerra Ordoñez
+
+Daniel Hernana Calderón Camacho
+
+Richard Josef Yanqui Inocente
+
+Sebastian Chinchay Collachagua
+
+Joshua Jurguen Alfonzo Javier
+
+3. Situación de la empresa ☺
+
+3.1. Descripción de la empresa ☺
+
+3.2. Misión ☺
+
+3.3. Visión ☺
+
+3.4. Alineamientos estratégicos (Mapa estratégico) ☺
+
+3.5. Estructura organizacional ☺
+
+3.6. Enfoque de procesos (Política de calidad) ☺
+
+3.7. Modelo de Negocio ☺
+
+3.8. Cadena de Valor ☺
+
+4. Situación actual del proceso a analizar ☺
+
+4.1. Matriz Producto/ y servicios
+
+4.2. Matriz Inventario de procesos
+
+4.3. Matriz SIPOC del mapa de procesos (Nivel 0 y Nivel 1)
+
+4.4. Mapa de proceso (Nivel 0 y Nivel 1)
+
+\textbf{3. Situación de la empresa}
+
+\textbf{3.1. Descripción de la empresa}
+
+Eco Logistic SAC es una empresa peruana con 15 años de trayectoria en el
+sector de almacenamiento y logística, bajo la dirección estratégica de
+Óscar Neira. La organización se distingue por un modelo de negocio dual
+que combina el arrendamiento de espacios industriales con servicios
+especializados de operación logística, lo que le permite adaptarse a
+diferentes necesidades del mercado y generar valor agregado a sus
+clientes.
+
+En cuanto a su modelo de negocio, la empresa desarrolla sus actividades
+bajo dos modalidades principales. Por un lado, se enfoca en el
+subarrendamiento de espacios, identificando grandes locales industriales
+estratégicos que son alquilados en su totalidad para posteriormente ser
+subarrendados por partes a distintos clientes mediante contratos de
+largo plazo, generalmente entre 3 a 5 años. Por otro lado, Eco Logistic
+SAC opera como un operador logístico integral, gestionando directamente
+la mercadería de sus clientes. Este servicio incluye procesos como la
+recepción, almacenamiento, control de inventarios, picking, embalaje,
+reempaque y despacho de productos. Un ejemplo representativo de esta
+operación es la gestión de la campaña de panetones para la empresa
+Bimbo, donde se movilizan aproximadamente 5,000 paletas mensuales
+durante el periodo de junio a diciembre. Respecto a su infraestructura,
+la empresa cuenta con una sede de aproximadamente 40,000 metros
+cuadrados ubicada en el Callao. Este espacio, que anteriormente
+funcionaba como una fábrica de cables, fue incorporado a sus operaciones
+tras el periodo de la pandemia. El local dispone de áreas destinadas al
+almacenamiento con racks, zonas de despacho y espacios administrativos,
+lo que permite una operación logística a gran escala.
+
+En relación con su cartera de clientes, Eco Logistic SAC ha logrado
+consolidar alianzas con importantes empresas corporativas,
+principalmente del sector de alimentos y bebidas, tales como Bimbo,
+Pepsi, Backus, Cola Real (Añaños) y La Calera, además de distribuidoras
+de productos reconocidos. Asimismo, ha trabajado con empresas de otros
+sectores como Industrias San Miguel (ISM) y compañías de plásticos, e
+incluso ha brindado servicios específicos como el almacenamiento de
+unidades vehiculares (Crocotaxis), lo que evidencia su capacidad de
+adaptación a diferentes tipos de requerimientos logísticos.
+
+No obstante, la empresa enfrenta actualmente un importante desafío en el
+ámbito tecnológico. Su sistema anterior, denominado NDS, se encuentra
+inactivo y obsoleto, ya que fue desarrollado sin documentación ni
+soporte técnico adecuado. Como consecuencia, la organización ha tenido
+que retornar temporalmente a procesos manuales, registrando la
+información en papel para luego transcribirla a Excel o sistemas
+básicos, lo que genera problemas significativos en la trazabilidad y
+ubicabilidad de los productos, así como un mayor riesgo de errores
+operativos.
+
+En cuanto a su visión estratégica, Eco Logistic SAC tiene como objetivo
+principal la profesionalización de sus servicios logísticos. Entre sus
+proyectos futuros destaca la intención de convertirse en un terminal de
+almacenamiento aduanero, con capacidad para gestionar entre 600 y 700
+contenedores bajo la supervisión de la Superintendencia Nacional de
+Aduanas y de Administración Tributaria (SUNAT). Asimismo, la empresa
+proyecta expandir su modelo de negocio hacia el mercado internacional,
+específicamente en Estados Unidos, aprovechando las oportunidades
+económicas y la escala de dicho mercado.
+
+Finalmente, es importante señalar que la empresa opera dentro de un
+contexto complejo en términos de seguridad, debido a la alta incidencia
+de delincuencia en la zona del Callao. Por esta razón, mantiene una
+política de bajo perfil, evitando la colocación de letreros externos en
+sus instalaciones. Complementariamente, cuenta con medidas de seguridad
+como personal armado y sistemas de videovigilancia, con el fin de
+proteger tanto la mercadería de sus clientes como la integridad de su
+personal.
+
+\textbf{3.2. Misión:}
+
+``Brindar soluciones logísticas integrales mediante servicios de
+almacenamiento, gestión de inventarios y despacho, apoyados en el uso de
+tecnología, con el fin de garantizar eficiencia, seguridad y
+trazabilidad, generando valor para nuestros clientes.''
+
+\textbf{3.3. Visión:}
+
+``Ser una empresa logística líder a nivel nacional con proyección
+internacional, reconocida por su eficiencia operativa, uso de tecnología
+avanzada y capacidad para gestionar terminales de almacenamiento bajo
+estándares de calidad y seguridad.''
+
+\textbf{3.4. Alineamientos estratégicos}
+
+El plan estratégico de Cologistic S.A.C. para el presente periodo se
+enfoca en la consolidación de su infraestructura logística y la
+modernización de su gestión operativa. Dado que el modelo de negocio se
+basa en el arrendamiento de grandes extensiones y servicios de valor
+agregado para corporaciones de alto volumen, los objetivos están
+orientados a maximizar la rentabilidad del metro cuadrado y garantizar
+una trazabilidad impecable.
+
+Esta planificación estratégica busca la transición de una gestión manual
+basada en hojas de cálculo hacia una operación automatizada y segura,
+alineando la capacidad física instalada en el Callao con las demandas de
+clientes de alta exigencia como Bimbo o ISM
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1170}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1277}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0374}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0396}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0432}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0351}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0370}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0368}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1912}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\multirow{2}{=}{\textbf{Objetivo Estratégico}} &
+\multirow{2}{=}{\textbf{Indicadores}} &
+\multirow{2}{=}{\textbf{Responsable}} &
+\multicolumn{12}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4355} + 22\tabcolsep}}{%
+\textbf{Cronograma}} & \multirow{2}{=}{\textbf{Presupuesto}} \\
+& & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
+\textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
+& \textbf{oct} & \textbf{nov} & \textbf{dic} \\
+Mejorar la rentabilidad de la empresa & Rentabilidad sobre Ventas & Jefe
+de Comercialización & X & X & X & X & X & X & X & X & X & X & X & X &
+8000 \\
+Reducción de costos Operativos & Costo Operativo por Unidad Producida
+(COUP) & Junta Administrativa & X & & & & & & X & & & & & & 3000 \\
+Creación de nuevos productos para abarcar mayor parte en el mercad &
+Participación de nuevos productos en ventas totales & Junta
+Administrativa & & & & & X & X & & & & & X & X & 2500 \\
+Aumento de la visibilidad en linea y captación de nuevos clientes &
+Porcentaje de conversión digital & Junta Administrativa & & & & & & X &
+& & & & & X & 2000 \\
+Implementar un sistema de monitoreo de calidad. & Porcentaje de
+productos con defectos detectados en control de calidad & Ing. de
+Calidad (contratar) & X & & & & & & & & & & & & 2000 \\
+Expansión de flota comercial. para llegar a mas clientes & Índice de
+cumplimiento de entregas & Jefe de Comercialización & & X & & & X & & &
+X & & & X & & 3000 \\
+Mejorar la gestión de materia prima. & Tasa de desperdicio de insumos &
+Jefe de Almacenamiento & X & X & X & X & X & X & X & X & X & X & X & X &
+1000 \\
+Establecer alianzas estratégicas para evitar dependencia de contratos
+gubernamentales. & Nivel de concentración de compras & Junta
+Administrativa & X & & & & & & & & & & & & 800 \\
+Capacitar al personal & Rentabilidad semanal & Jefe de cada Área & X & &
+& X & & & X & & & X & & & 2500 \\
+& & &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0727} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0738} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0783} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0712} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0684} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0710} + 2\tabcolsep}}{%
+} & \textbf{24800} \\
+& & &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0727} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0738} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0783} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0712} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0684} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0710} + 2\tabcolsep}}{%
+} & \textbf{Total} \\
+\end{longtable}
+}
+
+\textbf{3.5. Estructura organizacional}
+
+La estructura organizacional de Cologistic S.A.C. se presenta de forma
+jerárquica y funcional, distribuida en tres niveles: estratégico,
+operativo y de ejecución. En el nivel estratégico se ubican la Gerencia
+General, la Subgerencia y la Gerencia de Contabilidad, responsables de
+la dirección global, la administración financiera y la toma de
+decisiones clave. El nivel operativo está conformado por la Jefatura de
+Operaciones, el Analista de Inventario y la Jefatura de Ventas, quienes
+coordinan el control de la trazabilidad y los procesos centrales de la
+empresa. Finalmente, en el nivel de ejecución se encuentran los
+encargados que realizan las actividades logísticas específicas como la
+supervisión de despachos y picking, la operación técnica de estiba, así
+como la seguridad armada y control de accesos en garita, permitiendo una
+gestión segura, eficiente y alineada con los estándares de sus clientes
+corporativos.
+
+\includegraphics[width=5.90625in,height=4.46875in]{media/image7.png}
+
+\textbf{3.6. Enfoque de procesos}
+
+En Cologistic S.A.C., la gestión organizacional se fundamenta en un
+enfoque sistémico orientado a la prestación de servicios logísticos
+integrales y arrendamiento de espacios a nivel corporativo (B2B).
+Entendemos que la confiabilidad de nuestra cadena de suministro no
+depende de acciones aisladas, sino de un flujo continuo y altamente
+controlado que garantiza la trazabilidad, desde la recepción en nuestros
+patios de maniobras hasta el despacho final.
+
+Nuestra arquitectura de procesos se clasifica en tres niveles para
+garantizar una operación fluida e ininterrumpida:
+
+\begin{itemize}
+\item
+  Procesos Estratégicos: Orientan la expansión y sostenibilidad del
+  negocio. Incluyen la negociación inmobiliaria para la adquisición de
+  nuevas locaciones, la planificación financiera (gestión de contratos
+  en dólares) y la gestión comercial B2B.
+\item
+  Procesos Operativos (Misionales): Constituyen el \emph{core} del
+  negocio e incluyen la Recepción y Despacho, la Gestión de Inventarios,
+  y los Servicios Logísticos Adicionales (reempaque, repaletizado y
+  \emph{picking}).
+\item
+  Procesos de Soporte: Garantizan la continuidad operativa. Abarcan la
+  Gestión de Seguridad (auditorías EPP, personal armado y control de
+  plagas) , la Gestión de TI (implementación y mantenimiento de sistemas
+  WMS/ERP) y el mantenimiento de infraestructura y maquinaria pesada.
+\end{itemize}
+
+Política de Calidad y Seguridad Logística Cologistic S.A.C. se
+compromete a brindar soluciones de almacenamiento y gestión logística
+confiables, seguras y adaptables a las necesidades de nuestros clientes
+corporativos y estacionales. Nuestros pilares son:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Seguridad e Integridad de la Carga: Garantizamos la protección total
+  de la mercadería frente a la intemperie y riesgos externos mediante
+  infraestructura adecuada y un estricto protocolo de seguridad privada
+  ininterrumpida.
+\item
+  Trazabilidad y Transparencia: Nos comprometemos a mantener una
+  co-gestión estrecha con nuestros clientes, asegurando la exactitud de
+  los inventarios mediante auditorías físicas recurrentes y reportes
+  transparentes de movimientos en tiempo real.
+\item
+  Prevención y Cumplimiento Normativo: Mantenemos un entorno de trabajo
+  seguro auditando rigurosamente el uso de EPP, exigiendo el SCTR para
+  todo el personal operativo, y aplicando controles sanitarios estrictos
+  para el resguardo de áreas de alimentos
+\end{enumerate}
+
+\textbf{3.7. Modelo de Negocio}
+
+El modelo de negocio de la empresa Cologistic S.A.C., está enfocada en
+ofrecer servicio de arrendamiento y logística de materias primas.
+
+\textbf{3.7.1. Segmento de Clientes} El negocio está enfocado en el
+modelo corporativo (B2B), atendiendo a grandes y medianas empresas
+corporativas que manejan altos volúmenes de mercadería y requieren
+espacios significativos para almacenar.
+
+\begin{itemize}
+\item
+  Clientes corporativos de arrendamiento: Empresas como ISM, La Calera,
+  distribuidoras de galletas (Doña Pepa) y empresas productoras de
+  plásticos, las cuales buscan arrendar grandes extensiones de terreno
+  (de 10,000 hasta 40,000 m²) mediante contratos a largo plazo (de 2 a 5
+  años).
+\item
+  Clientes estacionales o "campañeros": Corporaciones como Bimbo, que
+  requieren servicios de almacenamiento y gestión de operadores
+  logísticos enfocados en temporadas de alta demanda (como la campaña
+  navideña para panetones, de junio a diciembre). También incluye el
+  almacenamiento de su área de \emph{merchandising} (material de
+  marketing, folletos, góndolas).
+\end{itemize}
+
+\textbf{3.7.2. Propuesta de Valor} La empresa brinda soluciones de
+almacenamiento a gran escala con flexibilidades que otros no ofrecen,
+compitiendo en precio y nivel de personalización:
+
+\begin{itemize}
+\item
+  Espacios seguros y resguardados: Provisión de instalaciones techadas o
+  adaptadas para salvaguardar la mercadería de los clientes frente a la
+  intemperie (lluvia, sol, salitre del mar).
+\item
+  Precios competitivos (Costos menores): Competir con gigantes del
+  sector (como Ransa, Inupesa o Sabar) ofreciendo un costo menor de
+  alquiler por metro cuadrado (arrendando a \$5 o \$8, en lugar de
+  precios más altos).
+\item
+  Operador logístico integral: Para ciertos clientes estratégicos (como
+  Bimbo), no solo ofrecen el espacio, sino que brindan una gestión
+  logística automatizada y tercerizada que involucra: recepción,
+  picking, administración de ubicaciones, control de trazabilidad,
+  reempaque, repaletizado y emisión de despachos.
+\end{itemize}
+
+\textbf{3.7.3. Canales de Distribución} Dado el nivel corporativo del
+servicio, la adquisición de clientes y espacios se hace por canales
+físicos y directos:
+
+\begin{itemize}
+\item
+  Venta y negociación B2B directa: La gerencia se encarga de ubicar
+  locaciones y terrenos abandonados, negociar la gestión con los dueños
+  directos y, posteriormente, buscar clientes corporativos a quienes
+  ofrecer el espacio en alquiler.
+\item
+  Contratos físicos y notariales: El canal de cierre comercial es
+  estrictamente documentado "mano a mano" y legalizado en notarías,
+  donde se comprueban los títulos y la autorización de subarrendamiento.
+\item
+  Perfil bajo: Por medidas de seguridad ante la criminalidad, la
+  captación y trato con el cliente se realiza sin intermediarios
+  públicos ni letreros o logotipos en las fachadas de sus instalaciones.
+\end{itemize}
+
+\textbf{3.7.4. Relación con los Clientes} La relación está enmarcada en
+la confiabilidad, formalidad y el modelo de servicio contratado:
+
+\begin{itemize}
+\item
+  Relación de Independencia: Para los clientes de puro alquiler
+  (terceros), la relación se basa en otorgar el espacio y dejar que el
+  cliente administre su propia logística de manera independiente (como
+  si fuera un departamento).
+\item
+  Relación Estrecha y Colaborativa (Co-gestión): Para clientes en los
+  que fungen de operador logístico, la relación es intensa. Se coordinan
+  inventarios semanales o quincenales cruzando información entre la
+  planta del cliente y el almacén logístico, facilitando auditorías
+  físicas y enviando reportes transparentes de "stock" y movimientos
+  para solucionar cualquier anomalía.
+\item
+  Negociaciones en Dólares: Los lazos y los contratos se mantienen
+  estables a través del tiempo mediante el cobro de rentas tasadas
+  enteramente en dólares.
+\end{itemize}
+
+\textbf{3.7.5. Fuentes de Ingresos} El modelo monetario de la
+organización proviene de dos flujos principales vinculados al uso del
+espacio y la manipulación de cargas:
+
+\begin{itemize}
+\item
+  Subarrendamiento de Espacios: Ingresos fuertes generados por el margen
+  de ganancia entre alquilar un terreno a bajo costo (ej. \$2 el m²) y
+  subarrendarlo por bloques de miles de metros cuadrados a los clientes
+  finales (entre \$5 a \$8 el m²).
+\item
+  Tarifas de Almacenaje por Paleta: Cobros escalados según la tarifa
+  acordada al mes (facturación \emph{In-Out}) basados en la cantidad de
+  paletas almacenadas según el tipo de producto.
+\item
+  Servicios Logísticos Adicionales (VAS): Cobros adicionales por
+  trabajos de manipulación física, como el "reencajado" de mercadería
+  (fraccionamiento) y el "repaletizado" (trasladar cajas a paletas de
+  exportación o certificadas).
+\end{itemize}
+
+\textbf{3.7.6. Recursos Clave}
+
+\begin{itemize}
+\item
+  Recursos Físicos: Inmensos terrenos e infraestructura industrial en el
+  Callao (almacenes y patios de maniobras de 10,000 hasta 60,000 m²).
+  Maquinaria pesada como montacargas (stackers), paletas, estocas y
+  barreras para el control de plagas.
+\item
+  Recursos Humanos: Personal certificado y de experiencia. Incluye un
+  jefe de operaciones, un analista de inventarios (Ángel), de 2 a más
+  montacarguistas, 3 operarios (para estiba y \emph{picking}), personal
+  de limpieza y un equipo de 6 a 8 vigilantes armados para cubrir turnos
+  24/7.
+\item
+  Recursos Tecnológicos: Actualmente limitados a computadoras y cámaras
+  de seguridad. Cuentan con la urgencia de contar con un ERP o sistema
+  WMS propio con lectores de código de barras para reemplazar sus
+  operaciones manuales en Excel y el software desfasado "NDS".
+\end{itemize}
+
+\textbf{3.7.7. Actividades Clave}
+
+\begin{itemize}
+\item
+  Negociación Inmobiliaria: Encontrar espacios subutilizados y concretar
+  alquileres matrices con los terratenientes mediante procesos
+  notariales para expandir la oferta de almacenes.
+\item
+  Recepción y Despacho: Registro exhaustivo de guías de remisión,
+  control de lotes, choferes, paletas y cajas en el punto de ingreso,
+  así como la planificación de las rutas de salida según la fecha de
+  vencimiento.
+\item
+  Gestión de Inventario (Trazabilidad): Controlar movimientos internos,
+  aplicar "reempaques" dividiendo paletas, ejecutar transferencias de
+  códigos de una zona a otra, y consolidar reportes de \emph{kardex}
+  (movimientos de ingreso y salida).
+\item
+  Prevención y Seguridad: Auditar el uso de EPP (Equipos de Protección
+  Personal) en los almacenes, asegurar que el personal posea el SCTR
+  (Seguro Complementario de Trabajo de Riesgo) y gestionar medidas
+  contra roedores y palomas en áreas de alimentos.
+\end{itemize}
+
+\textbf{3.7.8. Socios Clave}
+
+\begin{itemize}
+\item
+  Terratenientes y Dueños Inmobiliarios: Familias de alto poder
+  económico y político en el Callao (como la familia Valle Skinner o los
+  Mujica). Ellos son los verdaderos dueños de los terrenos (desde 15,000
+  hasta cientos de miles de m²) a los que la empresa les alquila el área
+  matriz.
+\item
+  Notarías Públicas: Socios legales vitales para registrar y darle
+  validez jurídica a los contratos de arrendamiento ante el estado
+  peruano.
+\item
+  Contador Externo: Profesional que recibe las órdenes y reportes de la
+  empresa para emitir, digitalizar y declarar facturas ante la SUNAT.
+\item
+  Proveedores de Tecnología / Integradores: Desarrolladores de software
+  (como el estudiante contratado originalmente para el sistema web que
+  quedó obsoleto, o el actual equipo universitario) necesarios para
+  construir y modernizar los sistemas operativos.
+\item
+  Empresas de Seguridad Privada: Proveedores externos como Prosegur y
+  personal armado fundamental para la custodia de instalaciones y flujo
+  de efectivo en las zonas alquiladas.
+\end{itemize}
+
+\textbf{3.8. Cadena de Valor:}
+
+La cadena de valor de Eco Logistic SAC se estructura en función de las
+actividades primarias y de apoyo que permiten brindar servicios de
+almacenamiento y operación logística a sus clientes. En primer lugar,
+dentro de las actividades primarias, se encuentra la recepción de
+mercadería, donde se realiza la validación de guías y el registro de los
+productos ingresados; sin embargo, este proceso se lleva a cabo
+actualmente de manera manual, lo que genera demoras y posibles errores
+en el registro de información. Seguidamente, se desarrolla la actividad
+de almacenamiento, que consiste en la ubicación de la mercadería dentro
+de racks y el control del inventario. En esta etapa, la empresa presenta
+limitaciones debido a la falta de un sistema que permita identificar con
+precisión la ubicación de los productos en términos de filas, columnas y
+niveles, afectando la trazabilidad.
+
+Posteriormente, se lleva a cabo la preparación y despacho de pedidos,
+que incluye actividades como el picking, embalaje y salida de
+mercadería. Este proceso también presenta riesgos de error debido a la
+ausencia de automatización en el control de salidas. En cuanto a la
+relación con los clientes, la empresa gestiona la comunicación
+principalmente a través de medios directos como correo electrónico,
+WhatsApp y atención presencial, lo que evidencia una limitada
+digitalización en sus canales. Asimismo, el servicio postventa se basa
+en el envío de reportes en Excel y validaciones presenciales de
+inventario, lo que no permite una visualización en tiempo real por parte
+del cliente.
+
+\includegraphics[width=5.90625in,height=3.51042in]{media/image3.png}
+
+\textbf{4. Situación actual del proceso a analizar}
+
+\textbf{4.1. Matriz Producto/ y servicios}
+
+Los cuadros presentados constituyen herramientas fundamentales dentro de
+la gestión por procesos, al permitir una representación estructurada de
+la relación entre la cadena de valor interna y los diferentes segmentos
+de clientes de la empresa ``Productos UNIDOS''. El primer cuadro
+corresponde a un listado de procesos vinculados a productos y servicios,
+en el cual se identifican claramente los procesos clave (almacenamiento,
+producción y comercialización), los procesos de soporte (gestión de
+calidad, finanzas, recursos humanos, entre otros) y los productos
+entregados al cliente, permitiendo trazar una línea directa entre la
+operación y el resultado. El segundo cuadro, una matriz
+producto--cliente, permite analizar la propuesta de valor desde la
+perspectiva del mercado, segmentando a los clientes en mayoristas y
+minoristas, precisando sus expectativas en términos de precio, calidad,
+personalización y canales de atención, y estableciendo las áreas
+responsables de satisfacer dichas demandas. En conjunto, ambos
+instrumentos permiten fortalecer el alineamiento estratégico entre los
+procesos internos y los requerimientos del entorno externo, bajo un
+enfoque sistémico y orientado a la mejora continua.
+
+\includegraphics[width=5.90522in,height=1.22222in]{media/image4.png}
+
+\includegraphics[width=5.90625in,height=2.03125in]{media/image8.png}
+
+Pegar
+
+4.2. Matriz Inventario de procesos
+
+\includegraphics[width=5.90522in,height=4.34722in]{media/image6.png}
+
+4.3. Matriz SIPOC del mapa de procesos (Nivel 0 y Nivel 1)(DAvid)
+
+NIVEL 0:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1281}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1712}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1511}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1871}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1554}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2072}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} &
+\textbf{Proceso} & \textbf{Productos (Elementos de Salida)} &
+\textbf{Clientes (del Proceso)} \\
+\textbf{Almacenamiento} & Proveedores de materias primas, transportistas
+y área de compras internas & Materias primas
+
+orden de compra & - Recepción de materias primas
+
+- Verificación
+
+- Almacenamiento
+
+- Salida hacia producción & Ingredientes pedidos para el área a
+producción & Área de Producción \\
+\textbf{Producción} & Área de almacenamiento & Ingredientes por
+
+recetas & - Transformación de insumos
+
+- Horneado
+
+- Control de calidad
+
+- Empaque y rotulado & Productos terminados y empacados
+
+listos para su comercialización & Área de Ventas
+
+Área de Logística \\
+\textbf{Comercialización} & Área de producción & Productos terminados &
+- Ventas
+
+- Gestión de pedidos
+
+- Coordinación de entregas & Órdenes de venta cerradas
+
+Productos entregados & Clientes finales \\
+\end{longtable}
+}
+
+NIVEL 1:
+
+Almacenamiento:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1999}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} &
+\textbf{Proceso} & \textbf{Productos (Elementos de Salida)} &
+\textbf{Clientes (del Proceso)} \\
+Proveedores de materias primas, transportistas y área de compras
+internas & Materia prima & - Procesos de recepción prima
+
+- Líder de Proceso: Jefe de almacenamiento & Actualización del
+almacenamiento & Gerente de almacenamiento \\
+Gerente de Almacenamiento & Solicitud de la salida de la materia prima &
+- Revisión de ingredientes
+
+- Separación de ingredientes
+
+- Empaquetado por receta
+
+- Envió de ingredientes
+
+- Registro de ingredientes enviados & Ingredientes solicitados por
+receta & Área de producción \\
+\end{longtable}
+}
+
+Producción:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1999}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} &
+\textbf{Proceso} & \textbf{Productos (Elementos de Salida)} &
+\textbf{Clientes (del Proceso)} \\
+Área de almacén & Materia prima (Ingredientes) & - Gestión de la materia
+para producir masa & Masa lista y porcionada & Área de horneado \\
+Encargado de Horno y cocina & Masa lista y porcionadas & - Fermentación
+
+- Horneado
+
+- Enfriado & Producto: Panes y postres & Área de empaquetado \\
+Área de horneado & Panes y Postres & - Limpiado de producto
+
+- Corte de productos
+
+- Empaquetar productos & Panes y postres empaquetados & Cliente final \\
+\end{longtable}
+}
+
+Comercialización:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1967}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1967}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1967}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2392}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1542}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} &
+\textbf{Proceso} & \textbf{Productos (Elementos de Salida)} &
+\textbf{Clientes (del Proceso)} \\
+Departamento de Producción & Inventario disponible: Productos
+actualizados y listos para ser distribuidos, con control preciso de
+existencias.. & Confirmación y facturación: Verificación del pedido y
+emisión de la factura correspondiente al cliente. & Productos
+correctamente empaquetados y enviados a los clientes según las
+especificaciones del pedido, asegurando que lleguen en buen estado y
+dentro del plazo acordado. & Almacén \\
+Departamento de Almacén & Datos de contacto y direcciones de entrega:
+Información actualizada del cliente para garantizar la correcta entrega
+del pedido. & Preparación y envío de productos: Embalaje y despacho de
+productos según el pedido, asegurando su envío puntual. & Factura o
+recibo de pago: Documento que detalla el monto total, descuentos y
+productos adquiridos, confirmando el pago realizado. & Clientes
+finales \\
+\end{longtable}
+}
+
+4.4. Mapa de proceso (Nivel 0 y Nivel 1)
+
+\includegraphics[width=5.90625in,height=3.28125in]{media/image9.png}
+
+\end{document}
