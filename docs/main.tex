@@ -100,7 +100,7 @@ Este procedimiento aplica desde la recopilación manual de movimientos y guías 
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.95\textwidth]{./images/media/image1.png}
+  \includegraphics[width=0.95\textwidth]{./images/image1.png}
   \caption{Extracto de la Matriz de Procesos Estratégicos}
 \end{figure}
 
@@ -115,7 +115,7 @@ Este procedimiento aplica desde la recopilación manual de movimientos y guías 
   \midrule
   \textit{Analista de Inventarios} & \textit{Reporte de movimientos de inventario} & \textit{Consolidación de Liquidaciones} & \textit{Reporte de liquidación de servicios validado} & \textit{Clientes} \\
   \midrule
-  \textit{Clientes} & \textit{Reporte de liquidación de servicios validado} & \textit{Gestión de Emisión Documental} & \textit{Facturas de servicios emitidas} & \textit{Subgerencia} \\
+  \textit{Clientes} & \textit{Reporte de liquidación de servicios validado} & \textit{Gestión de Emisión Documental} & \textit{Facturas de servicios emitidas} & \textit{Subgerente} \\
   \midrule
   \textit{Contador} & \textit{Facturas de servicios emitidas} & \textit{Control financiero y análisis de rentabilidad utilidad} & \textit{Estados Financieros e Informes de Utilidad} & \textit{Gerencia General} \\
   \bottomrule
@@ -169,12 +169,22 @@ El procedimiento extrae los movimientos del Excel, calcula cargos adicionales y 
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Analista de Inventarios} & \textit{Reporte de movimientos de inventario} & \textit{Liquidación de Servicios Logísticos (3PL)} & \textit{Borrador de liquidación en USD y Visto Bueno} & \textit{Subgerente / Cliente} \\
+  Analista de Inventarios & Reporte de movimientos de inventario & 1. Extraer Reporte de Movimientos del Excel & Base de datos consolidada & Analista de Inventarios \\
+  \midrule
+  Analista de Inventarios & Base de datos consolidada & 2. Calcular Servicios Adicionales: Reempaque/Repaletizado & Cálculo de servicios adicionales & Analista de Inventarios \\
+  \midrule
+  Analista de Inventarios & Cálculo de servicios adicionales & 3. Realizar Prorrateo de Días de Almacenaje & Cálculos prorrateados & Analista de Inventarios \\
+  \midrule
+  Analista de Inventarios & Cálculos prorrateados & 4. Generar Borrador de Liquidación en USD & Borrador de liquidación en USD & Subgerente \\
+  \midrule
+  Subgerente & Borrador de liquidación en USD & 5. Revisar Liquidación y Enviar al Cliente & Liquidación enviada al cliente & Cliente \\
+  \midrule
+  Cliente & Liquidación enviada al cliente & 6. Enviar Visto Bueno de Liquidación & Reporte de liquidación de servicios validado & Subgerente \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -182,9 +192,7 @@ El procedimiento extrae los movimientos del Excel, calcula cargos adicionales y 
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image2.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image3.png}
+  \includegraphics[width=0.9\textwidth]{./images/PD-01-liquidacion-servicios}
   \caption{Diagrama de Actividades con BPMN - Liquidación de Servicios Logísticos}
 \end{figure}
 
@@ -206,12 +214,16 @@ El subgerente identifica los metros cuadrados ocupados según el contrato, multi
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Notaría / Clientes} & \textit{Contratos notariales vigentes} & \textit{Liquidación de Arrendamiento Fijo} & \textit{Consolidado mensual de rentas (USD)} & \textit{Subgerente / Contador} \\
+  Notaría / Subgerente & Contratos notariales vigentes & 1. Identificar m$^2$ Ocupados según Contrato Notarial & Detalle de m$^2$ ocupados & Subgerente \\
+  \midrule
+  Subgerente & Detalle de m$^2$ ocupados & 2. Multiplicar Área por Tarifa Pactada (ej. \$10/m$^2$) & Cálculo de renta & Subgerente \\
+  \midrule
+  Subgerente & Cálculo de renta & 3. Generar Consolidado de Rentas del Mes & Reporte de liquidación de servicios validado & Contador / Cliente \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -219,9 +231,7 @@ El subgerente identifica los metros cuadrados ocupados según el contrato, multi
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image2.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image4.png}
+  \includegraphics[width=0.9\textwidth]{./images/PD-02-consolidacion-rentas}
   \caption{Diagrama de Actividades con BPMN - Liquidación de Arrendamiento Fijo}
 \end{figure}
 
@@ -244,12 +254,20 @@ Formalizar la generación, validación y envío de la factura electrónica a SUN
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Subgerente} & \textit{Liquidación aprobada en USD} & \textit{Emisión Manual de Factura Electrónica} & \textit{Factura electrónica generada (PDF)} & \textit{Contador / Subgerente} \\
+  Clientes / Subgerente & Reporte de liquidación de servicios validado & 1. Enviar Liquidación Aprobada al Contador & Liquidación aprobada recepcionada & Contador \\
+  \midrule
+  Contador & Clave SOL & 2. Ingresar al Portal SUNAT con Clave SOL & Acceso al portal SUNAT & Contador \\
+  \midrule
+  Contador & Liquidación aprobada recepcionada & 3. Digitar Concepto y Monto en Dólares & Datos de factura registrados & Portal SUNAT \\
+  \midrule
+  Portal SUNAT & Datos de factura registrados & 4. Generar y Descargar Factura PDF & Facturas de servicios emitidas & Contador \\
+  \midrule
+  Contador & Facturas de servicios emitidas & 5. Recibir Factura para Validación Final & Factura lista para envío & Subgerente \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -257,9 +275,7 @@ Formalizar la generación, validación y envío de la factura electrónica a SUN
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image5.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image6.png}
+  \includegraphics[width=0.9\textwidth]{./images/PD-01-facturacion-sunat}
   \caption{Diagrama de Actividades con BPMN - Emisión Manual de Factura}
 \end{figure}
 
@@ -281,12 +297,18 @@ El subgerente concilia la factura emitida por SUNAT contra el reporte interno. S
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Contador} & \textit{Factura electrónica emitida} & \textit{Validación y Envío de Comprobantes} & \textit{Factura conciliada, registrada y enviada} & \textit{Cliente / Subgerente} \\
+  Contador & Facturas de servicios emitidas / Reporte interno & 1. Conciliar Factura de SUNAT vs Reporte Interno & Resultado de conciliación & Subgerente \\
+  \midrule
+  Subgerente & Resultado de conciliación (con errores) & 2. Solicitar Anulación/Nota de Crédito al Contador & Solicitud de anulación & Contador \\
+  \midrule
+  Subgerente & Resultado de conciliación (conforme) & 3. Registrar Factura en Control de Cobranzas Excel & Registro en control de cobranzas & Subgerente \\
+  \midrule
+  Subgerente & Registro en control de cobranzas & 4. Enviar Factura al Cliente vía Correo/WhatsApp & Facturas de servicios emitidas & Cliente / Subgerente \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -294,9 +316,7 @@ El subgerente concilia la factura emitida por SUNAT contra el reporte interno. S
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image5.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image7.png}
+  \includegraphics[width=0.9\textwidth]{./images/PD-02-conciliacion-envio-facturas}
   \caption{Diagrama de Actividades con BPMN - Validación y Envío}
 \end{figure}
 
@@ -319,12 +339,20 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Subgerente / Contador} & \textit{Facturas de ingresos y costos operativos} & \textit{Monitoreo de Margen Operativo y Utilidad} & \textit{Informe de rentabilidad y margen neto por nave} & \textit{Gerencia General} \\
+  Contador / Subgerente & Facturas de servicios emitidas & 1. Consolidar Ingresos Totales Mensuales en USD & Consolidado de ingresos & Subgerente \\
+  \midrule
+  Familias Propietarias & Consolidado de ingresos, Costo de alquiler base & 2. Deducir Costo de Alquiler Base a Familias Propietarias & Ingresos netos post-alquiler & Subgerente \\
+  \midrule
+  Subgerente & Ingresos netos post-alquiler, Costos de soporte & 3. Restar Costos de Soporte: Seguridad Armada, Limpieza & Utilidad operativa & Subgerente \\
+  \midrule
+  Subgerente & Utilidad operativa & 4. Calcular Margen Neto por Nave Industrial & Cálculo de margen neto & Subgerente \\
+  \midrule
+  Subgerente & Cálculo de margen neto & 5. Analizar Informe de Rentabilidad Mensual & Informes de Utilidad & Gerencia General \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -332,9 +360,7 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image8.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image10}
+  \includegraphics[width=0.9\textwidth]{./images/PD-01-calculo-margen-neto}
   \caption{Diagrama de Actividades con BPMN - Monitoreo de Margen}
 \end{figure}
 
@@ -357,12 +383,18 @@ El subgerente verifica los abonos de los clientes en la cuenta en dólares y los
 \vspace{1em}
 \begin{center}
   \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
   \toprule
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  \textit{Clientes / Bancos} & \textit{Estado de cuenta y abonos en dólares} & \textit{Conciliación Bancaria y Gestión de Divisas} & \textit{Asiento contable realizado y reporte de flujo de caja} & \textit{Contador / Subgerente} \\
+  Clientes / Bancos & Abonos de clientes en dólares & 1. Verificar Abonos en la Cuenta de Dólares & Verificación de abonos & Subgerente \\
+  \midrule
+  Subgerente & Verificación de abonos & 2. Notificar Recepción de Pagos al Contador & Notificación de pagos & Contador \\
+  \midrule
+  Contador & Notificación de pagos & 3. Realizar Asiento Contable según Tipo de Cambio & Asientos contables registrados & Contador \\
+  \midrule
+  Contador & Asientos contables registrados & 4. Generar Reporte de Flujo de Caja para Impuestos & Estados Financieros e Informes de Utilidad & Gerencia General \\
   \bottomrule
   \end{tabularx}
 \end{center}
@@ -370,9 +402,7 @@ El subgerente verifica los abonos de los clientes en la cuenta en dólares y los
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/media/image8.png}
-  \vspace{0.5em}
-  \includegraphics[width=0.9\textwidth]{./images/media/image12}
+  \includegraphics[width=0.9\textwidth]{./images/PD-02-registro-abonos-impuestos}
   \caption{Diagrama de Actividades con BPMN - Conciliación y Divisas}
 \end{figure}
 
