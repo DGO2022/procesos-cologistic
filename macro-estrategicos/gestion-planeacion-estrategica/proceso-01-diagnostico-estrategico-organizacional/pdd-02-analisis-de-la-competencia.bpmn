@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_AnalisisCompetencia" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_AnalisisCompetencia">
+    <bpmn:participant id="Participant_AnalisisCompetencia" name="1.2.1.2 Análisis de la competencia" processRef="Process_AnalisisCompetencia" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_AnalisisCompetencia" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_AnalisisCompetencia">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_VerificarInformacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_InfoSuficiente</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ElaborarBenchmarking</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DefinirDiferenciadores</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IdentificarCompetidores</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_AdministrativaContabilidad" name="Administrativa y contabilidad">
+        <bpmn:flowNodeRef>Task_RecopilarTarifas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AmpliarBusqueda</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_RevisarDiferenciadores</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_DiferenciadoresAprobados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CorregirAnalisis</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarConclusiones</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Aprobado</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio del análisis competitivo">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_RecopilarTarifas" name="Recopilar tarifas y servicios">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_VerificarInformacion" name="Verificar información obtenida">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_InfoSuficiente" name="¿Información suficiente?">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_ElaborarBenchmarking" name="Elaborar benchmarking">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AmpliarBusqueda" name="Ampliar búsqueda de información">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DefinirDiferenciadores" name="Definir diferenciadores competitivos">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RevisarDiferenciadores" name="Revisar diferenciadores">
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_DiferenciadoresAprobados" name="¿Diferenciadores aprobados?">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_CorregirAnalisis" name="Corregir análisis competitivo">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RegistrarConclusiones" name="Registrar conclusiones para FODA">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_17</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_IdentificarCompetidores" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_IdentificarCompetidores" targetRef="Task_RecopilarTarifas" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_RecopilarTarifas" targetRef="Task_VerificarInformacion" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_VerificarInformacion" targetRef="Gateway_InfoSuficiente" />
+    <bpmn:sequenceFlow id="Flow_05" name="Sí" sourceRef="Gateway_InfoSuficiente" targetRef="Task_ElaborarBenchmarking" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_ElaborarBenchmarking" targetRef="Task_DefinirDiferenciadores" />
+    <bpmn:sequenceFlow id="Flow_07" name="No" sourceRef="Gateway_InfoSuficiente" targetRef="Task_AmpliarBusqueda" />
+    <bpmn:sequenceFlow id="Flow_08" sourceRef="Task_AmpliarBusqueda" targetRef="Task_RecopilarTarifas" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_DefinirDiferenciadores" targetRef="Task_RevisarDiferenciadores" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_RevisarDiferenciadores" targetRef="Gateway_DiferenciadoresAprobados" />
+    <bpmn:sequenceFlow id="Flow_11" name="No" sourceRef="Gateway_DiferenciadoresAprobados" targetRef="Task_CorregirAnalisis" />
+    <bpmn:sequenceFlow id="Flow_13" name="Sí" sourceRef="Gateway_DiferenciadoresAprobados" targetRef="Task_RegistrarConclusiones" />
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="Task_CorregirAnalisis" targetRef="Task_DefinirDiferenciadores" />
+    <bpmn:sequenceFlow id="Flow_17" sourceRef="Task_RegistrarConclusiones" targetRef="EndEvent_Aprobado" />
+    <bpmn:task id="Task_IdentificarCompetidores" name="Identificar competidores">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Aprobado" name="Análisis competitivo aprobado">
+      <bpmn:incoming>Flow_17</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_AnalisisCompetencia">
+    <bpmndi:BPMNPlane id="BPMNPlane_AnalisisCompetencia" bpmnElement="Collaboration_AnalisisCompetencia">
+      <bpmndi:BPMNShape id="Participant_AnalisisCompetencia_di" bpmnElement="Participant_AnalisisCompetencia" isHorizontal="true">
+        <dc:Bounds x="100" y="50" width="1250" height="850" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="130" y="630" width="1220" height="270" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_AdministrativaContabilidad_di" bpmnElement="Lane_AdministrativaContabilidad" isHorizontal="true">
+        <dc:Bounds x="130" y="340" width="1220" height="290" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="130" y="50" width="1220" height="290" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="210" y="130" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RecopilarTarifas_di" bpmnElement="Task_RecopilarTarifas">
+        <dc:Bounds x="250" y="390" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_VerificarInformacion_di" bpmnElement="Task_VerificarInformacion">
+        <dc:Bounds x="560" y="190" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_InfoSuficiente_di" bpmnElement="Gateway_InfoSuficiente" isMarkerVisible="true">
+        <dc:Bounds x="800" y="205" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="793" y="176" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ElaborarBenchmarking_di" bpmnElement="Task_ElaborarBenchmarking">
+        <dc:Bounds x="930" y="190" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AmpliarBusqueda_di" bpmnElement="Task_AmpliarBusqueda">
+        <dc:Bounds x="760" y="390" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirDiferenciadores_di" bpmnElement="Task_DefinirDiferenciadores">
+        <dc:Bounds x="1140" y="190" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarDiferenciadores_di" bpmnElement="Task_RevisarDiferenciadores">
+        <dc:Bounds x="250" y="720" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_DiferenciadoresAprobados_di" bpmnElement="Gateway_DiferenciadoresAprobados" isMarkerVisible="true">
+        <dc:Bounds x="460" y="735" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CorregirAnalisis_di" bpmnElement="Task_CorregirAnalisis">
+        <dc:Bounds x="610" y="680" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarConclusiones_di" bpmnElement="Task_RegistrarConclusiones">
+        <dc:Bounds x="780" y="780" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IdentificarCompetidores_di" bpmnElement="Task_IdentificarCompetidores">
+        <dc:Bounds x="330" y="117" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Aprobado_di" bpmnElement="EndEvent_Aprobado">
+        <dc:Bounds x="1052" y="802" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1042" y="850" width="56" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="246" y="150" />
+        <di:waypoint x="330" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="400" y="197" />
+        <di:waypoint x="400" y="300" />
+        <di:waypoint x="320" y="300" />
+        <di:waypoint x="320" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="390" y="410" />
+        <di:waypoint x="500" y="410" />
+        <di:waypoint x="500" y="230" />
+        <di:waypoint x="560" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="700" y="230" />
+        <di:waypoint x="800" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="850" y="230" />
+        <di:waypoint x="930" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="1070" y="230" />
+        <di:waypoint x="1140" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="825" y="255" />
+        <di:waypoint x="825" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="760" y="430" />
+        <di:waypoint x="390" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="1170" y="270" />
+        <di:waypoint x="1170" y="540" />
+        <di:waypoint x="320" y="540" />
+        <di:waypoint x="320" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="390" y="760" />
+        <di:waypoint x="460" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="485" y="735" />
+        <di:waypoint x="485" y="690" />
+        <di:waypoint x="610" y="690" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="532" y="703" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13_di" bpmnElement="Flow_13">
+        <di:waypoint x="510" y="760" />
+        <di:waypoint x="590" y="760" />
+        <di:waypoint x="590" y="820" />
+        <di:waypoint x="780" y="820" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="664" y="793" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14_di" bpmnElement="Flow_14">
+        <di:waypoint x="750" y="720" />
+        <di:waypoint x="1210" y="720" />
+        <di:waypoint x="1210" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17_di" bpmnElement="Flow_17">
+        <di:waypoint x="920" y="818" />
+        <di:waypoint x="1052" y="818" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

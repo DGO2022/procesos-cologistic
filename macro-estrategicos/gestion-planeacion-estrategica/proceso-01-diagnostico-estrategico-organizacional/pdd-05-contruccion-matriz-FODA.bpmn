@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_ConstruccionMatrizFODA" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_ConstruccionMatrizFODA">
+    <bpmn:participant id="Participant_ConstruccionMatrizFODA" name="1.2.1.5 Construcción de la matriz FODA" processRef="Process_ConstruccionMatrizFODA" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ConstruccionMatrizFODA" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_ConstruccionMatrizFODA">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>Task_ConsolidarInsumos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ClasificarHallazgos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PriorizarFactores</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EnviarFODA</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CorregirMatriz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarFODA</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0no9vyw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ComiteGerencial" name="Comité gerencial">
+        <bpmn:flowNodeRef>Task_RevisarMatriz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_FODAConsistente</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_ValidarMatriz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_FODAAprobado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AprobarFormalmente</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:task id="Task_ConsolidarInsumos" name="Consolidar insumos previos">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ClasificarHallazgos" name="Clasificar hallazgos FODA">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PriorizarFactores" name="Priorizar factores estratégicos">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EnviarFODA" name="Enviar FODA para revisión">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RevisarMatriz" name="Revisar matriz FODA">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_FODAConsistente" name="¿FODA consistente?">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_ValidarMatriz" name="Validar matriz FODA">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_FODAAprobado" name="¿FODA aprobado?">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_AprobarFormalmente" name="Aprobar formalmente FODA">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_ConsolidarInsumos" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_ConsolidarInsumos" targetRef="Task_ClasificarHallazgos" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_ClasificarHallazgos" targetRef="Task_PriorizarFactores" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_PriorizarFactores" targetRef="Task_EnviarFODA" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_EnviarFODA" targetRef="Task_RevisarMatriz" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_RevisarMatriz" targetRef="Gateway_FODAConsistente" />
+    <bpmn:sequenceFlow id="Flow_07" name="No" sourceRef="Gateway_FODAConsistente" targetRef="Task_CorregirMatriz" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_CorregirMatriz" targetRef="Task_ClasificarHallazgos" />
+    <bpmn:sequenceFlow id="Flow_10" name="Sí" sourceRef="Gateway_FODAConsistente" targetRef="Task_ValidarMatriz" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_ValidarMatriz" targetRef="Gateway_FODAAprobado" />
+    <bpmn:sequenceFlow id="Flow_12" name="Sí" sourceRef="Gateway_FODAAprobado" targetRef="Task_AprobarFormalmente" />
+    <bpmn:sequenceFlow id="Flow_14" name="No" sourceRef="Gateway_FODAAprobado" targetRef="Task_CorregirMatriz" />
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="Task_AprobarFormalmente" targetRef="Task_RegistrarFODA" />
+    <bpmn:task id="Task_CorregirMatriz" name="Corregir matriz FODA">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RegistrarFODA" name="Registrar FODA aprobado">
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_0059ceh</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_0no9vyw" name="Matriz FODA aprobada">
+      <bpmn:incoming>Flow_0059ceh</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0059ceh" sourceRef="Task_RegistrarFODA" targetRef="Event_0no9vyw" />
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio de construcción del FODA">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ConstruccionMatrizFODA">
+    <bpmndi:BPMNPlane id="BPMNPlane_ConstruccionMatrizFODA" bpmnElement="Collaboration_ConstruccionMatrizFODA">
+      <bpmndi:BPMNShape id="Participant_ConstruccionMatrizFODA_di" bpmnElement="Participant_ConstruccionMatrizFODA" isHorizontal="true">
+        <dc:Bounds x="100" y="50" width="1200" height="850" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="130" y="630" width="1170" height="270" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ComiteGerencial_di" bpmnElement="Lane_ComiteGerencial" isHorizontal="true">
+        <dc:Bounds x="130" y="380" width="1170" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="130" y="50" width="1170" height="330" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConsolidarInsumos_di" bpmnElement="Task_ConsolidarInsumos">
+        <dc:Bounds x="290" y="105" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ClasificarHallazgos_di" bpmnElement="Task_ClasificarHallazgos">
+        <dc:Bounds x="490" y="105" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PriorizarFactores_di" bpmnElement="Task_PriorizarFactores">
+        <dc:Bounds x="690" y="105" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EnviarFODA_di" bpmnElement="Task_EnviarFODA">
+        <dc:Bounds x="890" y="105" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarMatriz_di" bpmnElement="Task_RevisarMatriz">
+        <dc:Bounds x="190" y="475" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_FODAConsistente_di" bpmnElement="Gateway_FODAConsistente" isMarkerVisible="true">
+        <dc:Bounds x="390" y="490" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="379" y="546" width="62" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ValidarMatriz_di" bpmnElement="Task_ValidarMatriz">
+        <dc:Bounds x="190" y="740" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_FODAAprobado_di" bpmnElement="Gateway_FODAAprobado" isMarkerVisible="true">
+        <dc:Bounds x="390" y="755" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="360" y="810" width="120" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AprobarFormalmente_di" bpmnElement="Task_AprobarFormalmente">
+        <dc:Bounds x="560" y="740" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CorregirMatriz_di" bpmnElement="Task_CorregirMatriz">
+        <dc:Bounds x="490" y="280" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarFODA_di" bpmnElement="Task_RegistrarFODA">
+        <dc:Bounds x="830" y="280" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0no9vyw_di" bpmnElement="Event_0no9vyw">
+        <dc:Bounds x="1102" y="302" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1088" y="345" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="200" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="175" y="167" width="80" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="236" y="141" />
+        <di:waypoint x="290" y="141" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="420" y="145" />
+        <di:waypoint x="490" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="620" y="145" />
+        <di:waypoint x="690" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="820" y="145" />
+        <di:waypoint x="890" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="955" y="185" />
+        <di:waypoint x="955" y="250" />
+        <di:waypoint x="255" y="250" />
+        <di:waypoint x="255" y="475" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="320" y="515" />
+        <di:waypoint x="390" y="515" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="415" y="490" />
+        <di:waypoint x="415" y="320" />
+        <di:waypoint x="490" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="383" y="443" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="555" y="280" />
+        <di:waypoint x="555" y="185" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="565" y="250" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="440" y="515" />
+        <di:waypoint x="470" y="515" />
+        <di:waypoint x="470" y="600" />
+        <di:waypoint x="255" y="600" />
+        <di:waypoint x="255" y="740" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="480" y="523" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="320" y="780" />
+        <di:waypoint x="390" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="440" y="780" />
+        <di:waypoint x="560" y="780" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="490" y="755" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14_di" bpmnElement="Flow_14">
+        <di:waypoint x="415" y="755" />
+        <di:waypoint x="415" y="670" />
+        <di:waypoint x="755" y="670" />
+        <di:waypoint x="755" y="320" />
+        <di:waypoint x="620" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="683" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="690" y="780" />
+        <di:waypoint x="895" y="780" />
+        <di:waypoint x="895" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0059ceh_di" bpmnElement="Flow_0059ceh">
+        <di:waypoint x="960" y="320" />
+        <di:waypoint x="1102" y="320" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

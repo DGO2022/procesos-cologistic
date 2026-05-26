@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1_2_2_2" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1_2_2_2">
+    <bpmn:participant id="Participant_1_2_2_2" name="1.2.2.2 Definición de objetivos estratégicos" processRef="Process_1_2_2_2" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1_2_2_2" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1_2_2_2">
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_PriorizarObjetivos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Aprobados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AprobarObjetivos</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ComiteGeneral" name="Comité general">
+        <bpmn:flowNodeRef>Task_RevisarAlineacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Alineados</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Aprobado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RevisarFODA</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_FormularObjetivos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DefinirTecnologicos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DefinirComerciales</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DefinirCertificacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EnviarRevision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AjustarObjetivos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarObjetivos</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio de definición de objetivos">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_Aprobado" name="Objetivos estratégicos aprobados">
+      <bpmn:incoming>Flow_19</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_RevisarFODA" name="Revisar FODA aprobado">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_FormularObjetivos" name="Formular objetivos estratégicos">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DefinirTecnologicos" name="Definir objetivos tecnológicos">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DefinirComerciales" name="Definir objetivos comerciales">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DefinirCertificacion" name="Definir metas de certificación">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EnviarRevision" name="Enviar objetivos para revisión">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RevisarAlineacion" name="Revisar alineación estratégica">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_Alineados" name="¿Objetivos alineados?">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_AjustarObjetivos" name="Ajustar objetivos estratégicos">
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PriorizarObjetivos" name="Priorizar objetivos estratégicos">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_Aprobados" name="¿Objetivos aprobados?">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_AprobarObjetivos" name="Aprobar objetivos estratégicos">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_18</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RegistrarObjetivos" name="Registrar objetivos aprobados">
+      <bpmn:incoming>Flow_18</bpmn:incoming>
+      <bpmn:outgoing>Flow_19</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_RevisarFODA" />
+    <bpmn:sequenceFlow id="Flow_19" sourceRef="Task_RegistrarObjetivos" targetRef="EndEvent_Aprobado" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_RevisarFODA" targetRef="Task_FormularObjetivos" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_FormularObjetivos" targetRef="Task_DefinirTecnologicos" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_DefinirTecnologicos" targetRef="Task_DefinirComerciales" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_DefinirComerciales" targetRef="Task_DefinirCertificacion" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_DefinirCertificacion" targetRef="Task_EnviarRevision" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_AjustarObjetivos" targetRef="Task_EnviarRevision" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_EnviarRevision" targetRef="Task_RevisarAlineacion" />
+    <bpmn:sequenceFlow id="Flow_08" sourceRef="Task_RevisarAlineacion" targetRef="Gateway_Alineados" />
+    <bpmn:sequenceFlow id="Flow_09" name="No" sourceRef="Gateway_Alineados" targetRef="Task_AjustarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_11" name="Sí" sourceRef="Gateway_Alineados" targetRef="Task_PriorizarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_15" name="No" sourceRef="Gateway_Aprobados" targetRef="Task_AjustarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_PriorizarObjetivos" targetRef="Gateway_Aprobados" />
+    <bpmn:sequenceFlow id="Flow_13" name="Sí" sourceRef="Gateway_Aprobados" targetRef="Task_AprobarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="Task_AprobarObjetivos" targetRef="Task_RegistrarObjetivos" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1_2_2_2">
+    <bpmndi:BPMNPlane id="BPMNPlane_1_2_2_2" bpmnElement="Collaboration_1_2_2_2">
+      <bpmndi:BPMNShape id="Participant_1_2_2_2_di" bpmnElement="Participant_1_2_2_2" isHorizontal="true">
+        <dc:Bounds x="85" y="5" width="1740" height="760" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="115" y="515" width="1710" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ComiteGeneral_di" bpmnElement="Lane_ComiteGeneral" isHorizontal="true">
+        <dc:Bounds x="115" y="255" width="1710" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="115" y="5" width="1710" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="195" y="77" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="184" y="120" width="62" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Aprobado_di" bpmnElement="EndEvent_Aprobado">
+        <dc:Bounds x="1685" y="77" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1680" y="120" width="60" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarFODA_di" bpmnElement="Task_RevisarFODA">
+        <dc:Bounds x="285" y="57" width="120" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_FormularObjetivos_di" bpmnElement="Task_FormularObjetivos">
+        <dc:Bounds x="455" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirTecnologicos_di" bpmnElement="Task_DefinirTecnologicos">
+        <dc:Bounds x="625" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirComerciales_di" bpmnElement="Task_DefinirComerciales">
+        <dc:Bounds x="795" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirCertificacion_di" bpmnElement="Task_DefinirCertificacion">
+        <dc:Bounds x="975" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EnviarRevision_di" bpmnElement="Task_EnviarRevision">
+        <dc:Bounds x="1155" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarAlineacion_di" bpmnElement="Task_RevisarAlineacion">
+        <dc:Bounds x="165" y="335" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_Alineados_di" bpmnElement="Gateway_Alineados" isMarkerVisible="true">
+        <dc:Bounds x="355" y="347" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="358" y="305" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AjustarObjetivos_di" bpmnElement="Task_AjustarObjetivos">
+        <dc:Bounds x="1305" y="150" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PriorizarObjetivos_di" bpmnElement="Task_PriorizarObjetivos">
+        <dc:Bounds x="165" y="605" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_Aprobados_di" bpmnElement="Gateway_Aprobados" isMarkerVisible="true">
+        <dc:Bounds x="355" y="617" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="356" y="675" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AprobarObjetivos_di" bpmnElement="Task_AprobarObjetivos">
+        <dc:Bounds x="525" y="605" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarObjetivos_di" bpmnElement="Task_RegistrarObjetivos">
+        <dc:Bounds x="1505" y="57" width="125" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="231" y="95" />
+        <di:waypoint x="285" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19_di" bpmnElement="Flow_19">
+        <di:waypoint x="1630" y="95" />
+        <di:waypoint x="1685" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="405" y="95" />
+        <di:waypoint x="455" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="580" y="95" />
+        <di:waypoint x="625" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="750" y="95" />
+        <di:waypoint x="795" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="920" y="95" />
+        <di:waypoint x="975" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="1100" y="95" />
+        <di:waypoint x="1155" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1367" y="150" />
+        <di:waypoint x="1367" y="95" />
+        <di:waypoint x="1280" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="1217" y="132" />
+        <di:waypoint x="1217" y="295" />
+        <di:waypoint x="227" y="295" />
+        <di:waypoint x="227" y="335" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="290" y="372" />
+        <di:waypoint x="355" y="372" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="405" y="372" />
+        <di:waypoint x="1265" y="372" />
+        <di:waypoint x="1265" y="188" />
+        <di:waypoint x="1305" y="188" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="787" y="350" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="380" y="397" />
+        <di:waypoint x="380" y="475" />
+        <di:waypoint x="227" y="475" />
+        <di:waypoint x="227" y="605" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="350" y="435" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="380" y="617" />
+        <di:waypoint x="380" y="565" />
+        <di:waypoint x="1367" y="565" />
+        <di:waypoint x="1367" y="225" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="438" y="545" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="290" y="642" />
+        <di:waypoint x="355" y="642" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13_di" bpmnElement="Flow_13">
+        <di:waypoint x="405" y="642" />
+        <di:waypoint x="525" y="642" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="460" y="620" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18_di" bpmnElement="Flow_18">
+        <di:waypoint x="650" y="642" />
+        <di:waypoint x="1567" y="642" />
+        <di:waypoint x="1567" y="132" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

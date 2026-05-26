@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1_2_3_1" targetNamespace="http://bpmn.io/schema/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1_2_3_1">
+    <bpmn:participant id="Participant_1_2_3_1" name="1.2.3.1 Elaboración del mapa estratégico" processRef="Process_1_2_3_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1_2_3_1" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1_2_3_1">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>Task_DefinirPerspectivasBSC</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ClasificarObjetivos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UbicarObjetivosMapa</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RelacionarObjetivos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EnviarMapaRevision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CorregirObservaciones</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarMapaAprobado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_MapaAprobado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ComiteGerencial" name="Comité gerencial">
+        <bpmn:flowNodeRef>Task_VerificarCoherencia</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_MapaCoherente</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_AprobarMapa</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:task id="Task_DefinirPerspectivasBSC" name="Define perspectivas del BSC">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ClasificarObjetivos" name="Clasifica objetivos estratégicos">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_UbicarObjetivosMapa" name="Ubicar objetivos en el mapa">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RelacionarObjetivos" name="Relaciona objetivos causa-efecto">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EnviarMapaRevision" name="Envía mapa para revisión">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_VerificarCoherencia" name="Verifica coherencia del mapa">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_MapaCoherente" name="¿Mapa estratégico coherente?">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_CorregirObservaciones" name="Corrige observaciones del mapa">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AprobarMapa" name="Aprueba mapa estratégico">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RegistrarMapaAprobado" name="Registra mapa estratégico aprobado">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_DefinirPerspectivasBSC" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_DefinirPerspectivasBSC" targetRef="Task_ClasificarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_ClasificarObjetivos" targetRef="Task_UbicarObjetivosMapa" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_UbicarObjetivosMapa" targetRef="Task_RelacionarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_RelacionarObjetivos" targetRef="Task_EnviarMapaRevision" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_EnviarMapaRevision" targetRef="Task_VerificarCoherencia" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_VerificarCoherencia" targetRef="Gateway_MapaCoherente" />
+    <bpmn:sequenceFlow id="Flow_08" name="No" sourceRef="Gateway_MapaCoherente" targetRef="Task_CorregirObservaciones" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_CorregirObservaciones" targetRef="Task_RelacionarObjetivos" />
+    <bpmn:sequenceFlow id="Flow_10" name="Sí" sourceRef="Gateway_MapaCoherente" targetRef="Task_AprobarMapa" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_AprobarMapa" targetRef="Task_RegistrarMapaAprobado" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_RegistrarMapaAprobado" targetRef="EndEvent_MapaAprobado" />
+    <bpmn:endEvent id="EndEvent_MapaAprobado" name="Mapa estratégico aprobado">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio de elaboración del mapa estratégico">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1_2_3_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1_2_3_1" bpmnElement="Collaboration_1_2_3_1">
+      <bpmndi:BPMNShape id="Participant_1_2_3_1_di" bpmnElement="Participant_1_2_3_1" isHorizontal="true">
+        <dc:Bounds x="50" y="30" width="1580" height="720" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="80" y="450" width="1550" height="300" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ComiteGerencial_di" bpmnElement="Lane_ComiteGerencial" isHorizontal="true">
+        <dc:Bounds x="80" y="240" width="1550" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="80" y="30" width="1550" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_DefinirPerspectivasBSC_di" bpmnElement="Task_DefinirPerspectivasBSC">
+        <dc:Bounds x="220" y="85" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ClasificarObjetivos_di" bpmnElement="Task_ClasificarObjetivos">
+        <dc:Bounds x="365" y="85" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_UbicarObjetivosMapa_di" bpmnElement="Task_UbicarObjetivosMapa">
+        <dc:Bounds x="510" y="85" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RelacionarObjetivos_di" bpmnElement="Task_RelacionarObjetivos">
+        <dc:Bounds x="655" y="85" width="105" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EnviarMapaRevision_di" bpmnElement="Task_EnviarMapaRevision">
+        <dc:Bounds x="800" y="85" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_VerificarCoherencia_di" bpmnElement="Task_VerificarCoherencia">
+        <dc:Bounds x="925" y="295" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_MapaCoherente_di" bpmnElement="Gateway_MapaCoherente" isMarkerVisible="true">
+        <dc:Bounds x="1070" y="300" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1102" y="350" width="56" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CorregirObservaciones_di" bpmnElement="Task_CorregirObservaciones">
+        <dc:Bounds x="1190" y="85" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AprobarMapa_di" bpmnElement="Task_AprobarMapa">
+        <dc:Bounds x="1145" y="585" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarMapaAprobado_di" bpmnElement="Task_RegistrarMapaAprobado">
+        <dc:Bounds x="1410" y="145" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_MapaAprobado_di" bpmnElement="EndEvent_MapaAprobado">
+        <dc:Bounds x="1540" y="156" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1516" y="206" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="145" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="121" y="136" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="180" y="123" />
+        <di:waypoint x="201" y="123" />
+        <di:waypoint x="201" y="106" />
+        <di:waypoint x="220" y="106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="315" y="118" />
+        <di:waypoint x="365" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="460" y="118" />
+        <di:waypoint x="510" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="605" y="118" />
+        <di:waypoint x="655" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="760" y="118" />
+        <di:waypoint x="800" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="848" y="150" />
+        <di:waypoint x="848" y="328" />
+        <di:waypoint x="925" y="328" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="1020" y="328" />
+        <di:waypoint x="1070" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="1095" y="300" />
+        <di:waypoint x="1095" y="118" />
+        <di:waypoint x="1190" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1105" y="250" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="1238" y="85" />
+        <di:waypoint x="1238" y="55" />
+        <di:waypoint x="708" y="55" />
+        <di:waypoint x="708" y="85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1095" y="350" />
+        <di:waypoint x="1095" y="618" />
+        <di:waypoint x="1145" y="618" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1105" y="455" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1240" y="618" />
+        <di:waypoint x="1325" y="618" />
+        <di:waypoint x="1325" y="178" />
+        <di:waypoint x="1410" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1505" y="175" />
+        <di:waypoint x="1540" y="175" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

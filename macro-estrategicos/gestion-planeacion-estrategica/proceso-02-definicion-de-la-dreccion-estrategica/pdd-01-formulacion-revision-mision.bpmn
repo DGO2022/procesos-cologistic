@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_FormulacionRevisionMisionVision" targetNamespace="http://bpmn.io/schema/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_FormulacionRevisionMisionVision">
+    <bpmn:participant id="Participant_FormulacionRevisionMisionVision" name="1.2.2.1 Formulación o revisión de la misión y visión" processRef="Process_FormulacionRevisionMisionVision" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_FormulacionRevisionMisionVision" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_FormulacionRevisionMisionVision">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RevisarMisionVigente</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RedactarNuevaMision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_FormularVisionLargoPlazo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EnviarPropuestaLideres</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarMisionVision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AjustarMisionVision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Aprobadas</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ComiteGerencial" name="Comité general">
+        <bpmn:flowNodeRef>Task_EvaluarPropuestaEstrategica</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_PropuestaConforme</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SocializarMisionVision</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_AprobarMedianteActa</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_MisionVisionAprobadas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ValidarMisionVision</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio de revisión estratégica">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_RevisarMisionVigente" name="Revisar misión vigente">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RedactarNuevaMision" name="Redactar nueva misión">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_FormularVisionLargoPlazo" name="Formular visión de largo plazo">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EnviarPropuestaLideres" name="Enviar propuesta a líderes">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EvaluarPropuestaEstrategica" name="Evaluar propuesta estratégica">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_PropuestaConforme" name="¿Propuesta conforme?">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_RegistrarMisionVision" name="Registrar misión y visión aprobadas">
+      <bpmn:incoming>Flow_17</bpmn:incoming>
+      <bpmn:outgoing>Flow_18</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_RevisarMisionVigente" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_RevisarMisionVigente" targetRef="Task_RedactarNuevaMision" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_RedactarNuevaMision" targetRef="Task_FormularVisionLargoPlazo" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_FormularVisionLargoPlazo" targetRef="Task_EnviarPropuestaLideres" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_EnviarPropuestaLideres" targetRef="Task_SocializarMisionVision" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_SocializarMisionVision" targetRef="Task_EvaluarPropuestaEstrategica" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_EvaluarPropuestaEstrategica" targetRef="Gateway_PropuestaConforme" />
+    <bpmn:sequenceFlow id="Flow_08" name="No" sourceRef="Gateway_PropuestaConforme" targetRef="Task_AjustarMisionVision" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_AjustarMisionVision" targetRef="Task_EnviarPropuestaLideres" />
+    <bpmn:sequenceFlow id="Flow_10" name="Sí" sourceRef="Gateway_PropuestaConforme" targetRef="Task_ValidarMisionVision" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_ValidarMisionVision" targetRef="Gateway_MisionVisionAprobadas" />
+    <bpmn:sequenceFlow id="Flow_12" name="Sí" sourceRef="Gateway_MisionVisionAprobadas" targetRef="Task_AprobarMedianteActa" />
+    <bpmn:sequenceFlow id="Flow_15" name="No" sourceRef="Gateway_MisionVisionAprobadas" targetRef="Task_AjustarMisionVision" />
+    <bpmn:sequenceFlow id="Flow_17" sourceRef="Task_AprobarMedianteActa" targetRef="Task_RegistrarMisionVision" />
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="Task_RegistrarMisionVision" targetRef="EndEvent_Aprobadas" />
+    <bpmn:task id="Task_SocializarMisionVision" name="Socializar misión y visión">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AjustarMisionVision" name="Ajustar misión y visión">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Aprobadas" name="Misión y visión aprobadas">
+      <bpmn:incoming>Flow_18</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_AprobarMedianteActa" name="Aprobar mediante acta">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_17</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_MisionVisionAprobadas" name="¿Misión y visión aprobadas?">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_ValidarMisionVision" name="Validar misión y visión">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:task>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_FormulacionRevisionMisionVision">
+    <bpmndi:BPMNPlane id="BPMNPlane_FormulacionRevisionMisionVision" bpmnElement="Collaboration_FormulacionRevisionMisionVision">
+      <bpmndi:BPMNShape id="Participant_FormulacionRevisionMisionVision_di" bpmnElement="Participant_FormulacionRevisionMisionVision" isHorizontal="true">
+        <dc:Bounds x="100" y="50" width="1500" height="760" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="130" y="560" width="1470" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ComiteGerencial_di" bpmnElement="Lane_ComiteGerencial" isHorizontal="true">
+        <dc:Bounds x="130" y="300" width="1470" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="130" y="50" width="1470" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="210" y="120" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="165" width="130" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarMisionVigente_di" bpmnElement="Task_RevisarMisionVigente">
+        <dc:Bounds x="300" y="95" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RedactarNuevaMision_di" bpmnElement="Task_RedactarNuevaMision">
+        <dc:Bounds x="490" y="95" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_FormularVisionLargoPlazo_di" bpmnElement="Task_FormularVisionLargoPlazo">
+        <dc:Bounds x="680" y="95" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EnviarPropuestaLideres_di" bpmnElement="Task_EnviarPropuestaLideres">
+        <dc:Bounds x="870" y="95" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EvaluarPropuestaEstrategica_di" bpmnElement="Task_EvaluarPropuestaEstrategica">
+        <dc:Bounds x="340" y="390" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_PropuestaConforme_di" bpmnElement="Gateway_PropuestaConforme" isMarkerVisible="true">
+        <dc:Bounds x="530" y="405" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="485" y="365" width="150" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarMisionVision_di" bpmnElement="Task_RegistrarMisionVision">
+        <dc:Bounds x="1230" y="95" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SocializarMisionVision_di" bpmnElement="Task_SocializarMisionVision">
+        <dc:Bounds x="177" y="390" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AjustarMisionVision_di" bpmnElement="Task_AjustarMisionVision">
+        <dc:Bounds x="1050" y="180" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Aprobadas_di" bpmnElement="EndEvent_Aprobadas">
+        <dc:Bounds x="1430" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1417" y="159" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AprobarMedianteActa_di" bpmnElement="Task_AprobarMedianteActa">
+        <dc:Bounds x="627" y="650" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_MisionVisionAprobadas_di" bpmnElement="Gateway_MisionVisionAprobadas" isMarkerVisible="true">
+        <dc:Bounds x="405" y="665" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="393" y="720" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ValidarMisionVision_di" bpmnElement="Task_ValidarMisionVision">
+        <dc:Bounds x="207" y="650" width="125" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="246" y="138" />
+        <di:waypoint x="300" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="425" y="135" />
+        <di:waypoint x="490" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="615" y="135" />
+        <di:waypoint x="680" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="805" y="135" />
+        <di:waypoint x="870" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="932" y="175" />
+        <di:waypoint x="932" y="220" />
+        <di:waypoint x="239" y="220" />
+        <di:waypoint x="239" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="302" y="430" />
+        <di:waypoint x="340" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="465" y="430" />
+        <di:waypoint x="530" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="580" y="430" />
+        <di:waypoint x="1112" y="430" />
+        <di:waypoint x="1112" y="260" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="643" y="445" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="1112" y="180" />
+        <di:waypoint x="1112" y="135" />
+        <di:waypoint x="995" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="555" y="455" />
+        <di:waypoint x="555" y="520" />
+        <di:waypoint x="269" y="520" />
+        <di:waypoint x="269" y="650" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="525" y="489" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="332" y="690" />
+        <di:waypoint x="405" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="455" y="690" />
+        <di:waypoint x="627" y="690" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="524" y="665" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="430" y="665" />
+        <di:waypoint x="430" y="620" />
+        <di:waypoint x="1230" y="620" />
+        <di:waypoint x="1230" y="220" />
+        <di:waypoint x="1175" y="220" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="472" y="600" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17_di" bpmnElement="Flow_17">
+        <di:waypoint x="752" y="690" />
+        <di:waypoint x="1292" y="690" />
+        <di:waypoint x="1292" y="175" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18_di" bpmnElement="Flow_18">
+        <di:waypoint x="1355" y="133" />
+        <di:waypoint x="1430" y="133" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
