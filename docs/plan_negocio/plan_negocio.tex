@@ -1,11 +1,8 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\documentclass[
-]{article}
-\usepackage{xcolor}
+\documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -17,15 +14,54 @@
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
+
+% Custom modern typography and page layout
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Color palette definition
+\definecolor{DeepNavy}{HTML}{1A365D}
+\definecolor{SlateBlue}{HTML}{2B6CB0}
+\definecolor{Charcoal}{HTML}{2D3748}
+\definecolor{LightGray}{HTML}{F7FAFC}
+\definecolor{TableLine}{HTML}{CBD5E0}
+\definecolor{AccentGold}{HTML}{D69E2E}
+
+% Modern section styling
+\titleformat{\section}
+  {\color{DeepNavy}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}[{\color{DeepNavy}\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\color{SlateBlue}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{Charcoal}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Adjust section numbering and TOC depth
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Headers and Footers configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{Charcoal}\small\itshape Plan de Negocio}
+\fancyhead[R]{\color{Charcoal}\small Eco Logistic S.A.C.}
+\fancyfoot[C]{\color{Charcoal}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Keep other pandoc package configurations for compatibility
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+
 \makeatletter
 \@ifundefined{KOMAClassName}{% if non-KOMA class
   \IfFileExists{parskip.sty}{%
@@ -36,19 +72,20 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
 \usepackage{multirow}
 \usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
 \makeatother
-% Allow footnotes in longtable head/foot
+
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
+
 \makeatletter
 \newsavebox\pandoc@box
 \newcommand*\pandocbounded[1]{% scales image to fit in text height/width
@@ -60,9 +97,9 @@
   \else\usebox{\pandoc@box}%
   \fi%
 }
-% Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -78,76 +115,79 @@
 
 \begin{document}
 
-\textbf{\textsc{wUniversidad Peruana Unión}} \textbf{\textsc{~Facultad
-de Ingeniería y Arquitectura~}}
+% Portada Corporativa Premium
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  
+  \vspace*{0.5cm}
+  {\scshape\Large\bfseries UNIVERSIDAD PERUANA UNIÓN \par}
+  {\scshape\large Facultad de Ingeniería y Arquitectura \par}
+  {\scshape\normalsize Escuela Profesional de Ingeniería de Sistemas \par}
+  
+  \vspace{0.8cm}
+  \includegraphics[width=3.2in,keepaspectratio]{media/image1.png}
+  \vspace{0.8cm}
+  
+  {\color{DeepNavy}\hrule height 2pt}
+  \vspace{0.4cm}
+  {\Huge\bfseries PLAN DE NEGOCIO \par}
+  \vspace{0.4cm}
+  {\color{AccentGold}\hrule height 1pt}
+  \vspace{0.4cm}
+  {\Large\bfseries ``Eco Logistic S.A.C.'' \par}
+  \vspace{0.4cm}
+  {\color{DeepNavy}\hrule height 2pt}
+  
+  \vspace{0.8cm}
+  
+  \begin{minipage}[t]{0.55\textwidth}
+    \begin{flushleft} \large
+      \textbf{Integrantes:}\\
+      \smallskip
+      \small
+      Jhack Quispe Mamani\\
+      Alvaro Kenji Cuti Magaño\\
+      Abel Is-boset Guevara Huasco\\
+      Javier Kevin Tello Rivas\\
+      David Edison Guerra Ordoñez\\
+      Daniel Hernana Calderón Camacho\\
+      Richard Josef Yanqui Inocente\\
+      Sebastian Chinchay Collachagua\\
+      Joshua Jurguen Alfonzo Javier
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.35\textwidth}
+    \begin{flushright} \large
+      \textbf{Curso:}\\
+      \smallskip
+      \small Gobierno de TI\\
+      \vspace{0.4cm}
+      \textbf{Docente:}\\
+      \smallskip
+      \small Mg. Lennin H. Centurión J.
+    \end{flushright}
+  \end{minipage}
+  
+  \vfill
+  
+  {\large Lima --- Perú \par}
+  {\large 2025 \par}
+\end{titlepage}
 
-\textbf{\textsc{E.P. de Ingeniería de Sistemas~}}
+\newpage
+\pagenumbering{roman}
+\thispagestyle{plain}
+\tableofcontents
+\newpage
 
-\includegraphics[width=4.3391in,height=2.4375in]{media/image1.png}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
-\textbf{\textsc{Plan de negocio Eco Logistic SAC}}
+\section{Situación de la empresa}
 
-\textbf{\textsc{Curso:}}
-
-\begin{quote}
-Gobierno de Tecnologías de Información
-\end{quote}
-
-\textbf{\textsc{Docente:}}
-
-\textsc{Mg Lennin Henry Centurión Julca}
-
-\textbf{\textsc{Estudiante:}}
-
-Jhack Quispe Mamani
-
-Alvaro Kenji Cuti Magaño
-
-Abel Is-boset Guevara Huasco
-
-Javier Kevin Tello Rivas
-
-David Edison Guerra Ordoñez
-
-Daniel Hernana Calderón Camacho
-
-Richard Josef Yanqui Inocente
-
-Sebastian Chinchay Collachagua
-
-Joshua Jurguen Alfonzo Javier
-
-3. Situación de la empresa
-
-3.1. Descripción de la empresa
-
-3.2. Misión
-
-3.3. Visión
-
-3.4. Alineamientos estratégicos (Mapa estratégico)
-
-3.5. Estructura organizacional
-
-3.6. Enfoque de procesos (Política de calidad)
-
-3.7. Modelo de Negocio
-
-3.8. Cadena de Valor
-
-4. Situación actual del proceso a analizar
-
-4.1. Matriz Producto/ y servicios
-
-4.2. Matriz Inventario de procesos
-
-4.3. Matriz SIPOC del mapa de procesos (Nivel 0 y Nivel 1)
-
-4.4. Mapa de proceso (Nivel 0 y Nivel 1)
-
-\textbf{3. Situación de la empresa}
-
-\textbf{3.1. Descripción de la empresa}
+\subsection{Descripción de la empresa}
 
 Eco Logistic SAC es una empresa peruana con 15 años de trayectoria en el
 sector de almacenamiento y logística, bajo la dirección estratégica de
@@ -216,21 +256,21 @@ como personal armado y sistemas de videovigilancia, con el fin de
 proteger tanto la mercadería de sus clientes como la integridad de su
 personal.
 
-\textbf{3.2. Misión:}
+\subsection{Misión}
 
 ``Brindar soluciones logísticas integrales mediante servicios de
 almacenamiento, gestión de inventarios y despacho, apoyados en el uso de
 tecnología, con el fin de garantizar eficiencia, seguridad y
 trazabilidad, generando valor para nuestros clientes.''
 
-\textbf{3.3. Visión:}
+\subsection{Visión}
 
 ``Ser una empresa logística líder a nivel nacional con proyección
 internacional, reconocida por su eficiencia operativa, uso de tecnología
 avanzada y capacidad para gestionar terminales de almacenamiento bajo
 estándares de calidad y seguridad.''
 
-\textbf{3.4. Alineamientos estratégicos}
+\subsection{Alineamientos estratégicos}
 
 El plan estratégico de Cologistic S.A.C. para el presente periodo se
 enfoca en la consolidación de su infraestructura logística y la
@@ -267,11 +307,13 @@ clientes de alta exigencia como Bimbo o ISM
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
+\rowcolor{LightGray}
 \multirow{2}{=}{\textbf{Objetivo Estratégico}} &
 \multirow{2}{=}{\textbf{Indicadores}} &
 \multirow{2}{=}{\textbf{Responsable}} &
 \multicolumn{12}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4355} + 22\tabcolsep}}{%
 \textbf{Cronograma}} & \multirow{2}{=}{\textbf{Presupuesto}} \\
+\rowcolor{LightGray}
 & & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
 \textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
 & \textbf{oct} & \textbf{nov} & \textbf{dic} \\
@@ -329,7 +371,7 @@ Capacitar al personal & Rentabilidad semanal & Jefe de cada Área & X & &
 \end{longtable}
 }
 
-\textbf{3.5. Estructura organizacional}
+\subsection{Estructura organizacional}
 
 La estructura organizacional de Cologistic S.A.C. se presenta de forma
 jerárquica y funcional, distribuida en tres niveles: estratégico,
@@ -346,9 +388,11 @@ como la seguridad armada y control de accesos en garita, permitiendo una
 gestión segura, eficiente y alineada con los estándares de sus clientes
 corporativos.
 
-\includegraphics[width=5.90625in,height=4.46875in]{media/image7.png}
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90625in,height=4.46875in]{media/image7.png}}
+\end{center}
 
-\textbf{3.6. Enfoque de procesos}
+\subsection{Enfoque de procesos}
 
 En Cologistic S.A.C., la gestión organizacional se fundamenta en un
 enfoque sistémico orientado a la prestación de servicios logísticos
@@ -363,52 +407,53 @@ garantizar una operación fluida e ininterrumpida:
 
 \begin{itemize}
 \item
-  Procesos Estratégicos: Orientan la expansión y sostenibilidad del
+  \textbf{Procesos Estratégicos}: Orientan la expansión y sostenibilidad del
   negocio. Incluyen la negociación inmobiliaria para la adquisición de
   nuevas locaciones, la planificación financiera (gestión de contratos
   en dólares) y la gestión comercial B2B.
 \item
-  Procesos Operativos (Misionales): Constituyen el \emph{core} del
+  \textbf{Procesos Operativos (Misionales)}: Constituyen el \emph{core} del
   negocio e incluyen la Recepción y Despacho, la Gestión de Inventarios,
   y los Servicios Logísticos Adicionales (reempaque, repaletizado y
   \emph{picking}).
 \item
-  Procesos de Soporte: Garantizan la continuidad operativa. Abarcan la
+  \textbf{Procesos de Soporte}: Garantizan la continuidad operativa. Abarcan la
   Gestión de Seguridad (auditorías EPP, personal armado y control de
-  plagas) , la Gestión de TI (implementación y mantenimiento de sistemas
+  plagas), la Gestión de TI (implementación y mantenimiento de sistemas
   WMS/ERP) y el mantenimiento de infraestructura y maquinaria pesada.
 \end{itemize}
 
-Política de Calidad y Seguridad Logística Cologistic S.A.C. se
-compromete a brindar soluciones de almacenamiento y gestión logística
+\subsubsection{Política de Calidad y Seguridad Logística}
+
+Cologistic S.A.C. se compromete a brindar soluciones de almacenamiento y gestión logística
 confiables, seguras y adaptables a las necesidades de nuestros clientes
 corporativos y estacionales. Nuestros pilares son:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Seguridad e Integridad de la Carga: Garantizamos la protección total
+  \textbf{Seguridad e Integridad de la Carga}: Garantizamos la protección total
   de la mercadería frente a la intemperie y riesgos externos mediante
   infraestructura adecuada y un estricto protocolo de seguridad privada
   ininterrumpida.
 \item
-  Trazabilidad y Transparencia: Nos comprometemos a mantener una
+  \textbf{Trazabilidad y Transparencia}: Nos comprometemos a mantener una
   co-gestión estrecha con nuestros clientes, asegurando la exactitud de
   los inventarios mediante auditorías físicas recurrentes y reportes
   transparentes de movimientos en tiempo real.
 \item
-  Prevención y Cumplimiento Normativo: Mantenemos un entorno de trabajo
+  \textbf{Prevención y Cumplimiento Normativo}: Mantenemos un entorno de trabajo
   seguro auditando rigurosamente el uso de EPP, exigiendo el SCTR para
   todo el personal operativo, y aplicando controles sanitarios estrictos
-  para el resguardo de áreas de alimentos
+  para el resguardo de áreas de alimentos.
 \end{enumerate}
 
-\textbf{3.7. Modelo de Negocio}
+\subsection{Modelo de Negocio}
 
 El modelo de negocio de la empresa Cologistic S.A.C., está enfocada en
 ofrecer servicio de arrendamiento y logística de materias primas.
 
-\textbf{3.7.1. Segmento de Clientes} El negocio está enfocado en el
+\subsubsection{Segmento de Clientes} El negocio está enfocado en el
 modelo corporativo (B2B), atendiendo a grandes y medianas empresas
 corporativas que manejan altos volúmenes de mercadería y requieren
 espacios significativos para almacenar.
@@ -429,7 +474,7 @@ espacios significativos para almacenar.
   marketing, folletos, góndolas).
 \end{itemize}
 
-\textbf{3.7.2. Propuesta de Valor} La empresa brinda soluciones de
+\subsubsection{Propuesta de Valor} La empresa brinda soluciones de
 almacenamiento a gran escala con flexibilidades que otros no ofrecen,
 compitiendo en precio y nivel de personalización:
 
@@ -451,7 +496,7 @@ compitiendo en precio y nivel de personalización:
   reempaque, repaletizado y emisión de despachos.
 \end{itemize}
 
-\textbf{3.7.3. Canales de Distribución} Dado el nivel corporativo del
+\subsubsection{Canales de Distribución} Dado el nivel corporativo del
 servicio, la adquisición de clientes y espacios se hace por canales
 físicos y directos:
 
@@ -471,7 +516,7 @@ físicos y directos:
   públicos ni letreros o logotipos en las fachadas de sus instalaciones.
 \end{itemize}
 
-\textbf{3.7.4. Relación con los Clientes} La relación está enmarcada en
+\subsubsection{Relación con los Clientes} La relación está enmarcada en
 la confiabilidad, formalidad y el modelo de servicio contratado:
 
 \begin{itemize}
@@ -493,7 +538,7 @@ la confiabilidad, formalidad y el modelo de servicio contratado:
   enteramente en dólares.
 \end{itemize}
 
-\textbf{3.7.5. Fuentes de Ingresos} El modelo monetario de la
+\subsubsection{Fuentes de Ingresos} El modelo monetario de la
 organización proviene de dos flujos principales vinculados al uso del
 espacio y la manipulación de cargas:
 
@@ -514,7 +559,7 @@ espacio y la manipulación de cargas:
   exportación o certificadas).
 \end{itemize}
 
-\textbf{3.7.6. Recursos Clave}
+\subsubsection{Recursos Clave}
 
 \begin{itemize}
 \item
@@ -535,7 +580,7 @@ espacio y la manipulación de cargas:
   operaciones manuales en Excel y el software desfasado "NDS".
 \end{itemize}
 
-\textbf{3.7.7. Actividades Clave}
+\subsubsection{Actividades Clave}
 
 \begin{itemize}
 \item
@@ -559,7 +604,7 @@ espacio y la manipulación de cargas:
   contra roedores y palomas en áreas de alimentos.
 \end{itemize}
 
-\textbf{3.7.8. Socios Clave}
+\subsubsection{Socios Clave}
 
 \begin{itemize}
 \item
@@ -585,8 +630,7 @@ espacio y la manipulación de cargas:
   personal armado fundamental para la custodia de instalaciones y flujo
   de efectivo en las zonas alquiladas.
 \end{itemize}
-
-\textbf{3.8. Cadena de Valor:}
+\subsection{Cadena de Valor}
 
 La cadena de valor de Eco Logistic SAC se estructura en función de las
 actividades primarias y de apoyo que permiten brindar servicios de
@@ -614,11 +658,13 @@ en el envío de reportes en Excel y validaciones presenciales de
 inventario, lo que no permite una visualización en tiempo real por parte
 del cliente.
 
-\includegraphics[width=5.90625in,height=3.51042in]{media/image3.png}
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90625in,height=3.51042in]{media/image3.png}}
+\end{center}
 
-\textbf{4. Situación actual del proceso a analizar}
+\section{Situación actual del proceso a analizar}
 
-\textbf{4.1. Matriz Producto/ y servicios}
+\subsection{Matriz de Productos y Servicios}
 
 Los cuadros presentados constituyen herramientas fundamentales dentro de
 la gestión por procesos, al permitir una representación estructurada de
@@ -639,18 +685,21 @@ instrumentos permiten fortalecer el alineamiento estratégico entre los
 procesos internos y los requerimientos del entorno externo, bajo un
 enfoque sistémico y orientado a la mejora continua.
 
-\includegraphics[width=5.90522in,height=1.22222in]{media/image4.png}
-\includegraphics[width=5.90625in,height=2.03125in]{media/image8.png}
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90522in,height=1.22222in]{media/image4.png}}
+  \vspace{0.3cm}
+  \pandocbounded{\includegraphics[width=5.90625in,height=2.03125in]{media/image8.png}}
+\end{center}
 
-Pegar
+\subsection{Matriz de Inventario de Procesos}
 
-4.2. Matriz Inventario de procesos
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90522in,height=4.34722in]{media/image6.png}}
+\end{center}
 
-\includegraphics[width=5.90522in,height=4.34722in]{media/image6.png}
+\subsection{Matriz SIPOC del Mapa de Procesos (Nivel 0 y Nivel 1)}
 
-4.3. Matriz SIPOC del mapa de procesos (Nivel 0 y Nivel 1)(DAvid)
-
-NIVEL 0:
+\subsubsection{Nivel 0}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -702,9 +751,9 @@ Productos entregados & Clientes finales \\
 \end{longtable}
 }
 
-NIVEL 1:
+\subsubsection{Nivel 1}
 
-Almacenamiento:
+\paragraph{Almacenamiento:}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -739,7 +788,7 @@ receta & Área de producción \\
 \end{longtable}
 }
 
-Producción:
+\paragraph{Producción:}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -770,7 +819,7 @@ Encargado de Horno y cocina & Masa lista y porcionadas & - Fermentación
 \end{longtable}
 }
 
-Comercialización:
+\paragraph{Comercialización:}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -803,8 +852,10 @@ finales \\
 \end{longtable}
 }
 
-4.4. Mapa de proceso (Nivel 0 y Nivel 1)
+\subsection{Mapa de Proceso (Nivel 0 y Nivel 1)}
 
-\includegraphics[width=5.90625in,height=3.28125in]{media/image9.png}
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90625in,height=3.28125in]{media/image9.png}}
+\end{center}
 
 \end{document}

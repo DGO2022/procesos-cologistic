@@ -1,11 +1,8 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\documentclass[
-]{article}
-\usepackage{xcolor}
+\documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -17,15 +14,54 @@
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
+
+% Custom modern typography and page layout
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Color palette definition
+\definecolor{DeepNavy}{HTML}{1A365D}
+\definecolor{SlateBlue}{HTML}{2B6CB0}
+\definecolor{Charcoal}{HTML}{2D3748}
+\definecolor{LightGray}{HTML}{F7FAFC}
+\definecolor{TableLine}{HTML}{CBD5E0}
+\definecolor{AccentGold}{HTML}{D69E2E}
+
+% Modern section styling
+\titleformat{\section}
+  {\color{DeepNavy}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}[{\color{DeepNavy}\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\color{SlateBlue}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{Charcoal}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Adjust section numbering and TOC depth
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Headers and Footers configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{Charcoal}\small\itshape Plan de Negocio y Tecnologías de la Información}
+\fancyhead[R]{\color{Charcoal}\small Eco Logistic S.A.C.}
+\fancyfoot[C]{\color{Charcoal}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Keep other pandoc package configurations for compatibility
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+
 \makeatletter
 \@ifundefined{KOMAClassName}{% if non-KOMA class
   \IfFileExists{parskip.sty}{%
@@ -36,19 +72,20 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
 \usepackage{multirow}
 \usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
 \makeatother
-% Allow footnotes in longtable head/foot
+
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
+
 \makeatletter
 \newsavebox\pandoc@box
 \newcommand*\pandocbounded[1]{% scales image to fit in text height/width
@@ -60,9 +97,9 @@
   \else\usebox{\pandoc@box}%
   \fi%
 }
-% Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -78,54 +115,74 @@
 
 \begin{document}
 
-\textbf{\textbar UNIVERSIDAD PERUANA UNIÓN}
+% Portada Corporativa Premium
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  
+  \vspace*{0.5cm}
+  {\scshape\Large\bfseries UNIVERSIDAD PERUANA UNIÓN \par}
+  {\scshape\large Facultad de Ingeniería y Arquitectura \par}
+  {\scshape\normalsize Escuela Profesional de Ingeniería de Sistemas \par}
+  
+  \vspace{1.0cm}
+  \includegraphics[width=2.2in,height=1.85in,keepaspectratio]{media/image1.png}
+  \vspace{1.0cm}
+  
+  {\color{DeepNavy}\hrule height 2pt}
+  \vspace{0.4cm}
+  {\Huge\bfseries PLAN DE NEGOCIO Y TECNOLOGÍAS DE LA INFORMACIÓN \par}
+  \vspace{0.4cm}
+  {\color{AccentGold}\hrule height 1pt}
+  \vspace{0.4cm}
+  {\Large\bfseries ``Proyecto de Automatización para Eco Logistic S.A.C.'' \par}
+  \vspace{0.4cm}
+  {\color{DeepNavy}\hrule height 2pt}
+  
+  \vspace{1.2cm}
+  
+  \begin{minipage}[t]{0.55\textwidth}
+    \begin{flushleft} \large
+      \textbf{Integrantes:}\\
+      \smallskip
+      \small
+      Jhack Ernesto Quispe Mamani\\
+      Abel Is-Boset Guevara Huasco\\
+      Javier Kevin Tello Rivas\\
+      Richard Joseft Yanqui Inocente\\
+      Alvaro Kenji Cuti Magaño\\
+      David Guerra Ordoñez\\
+      Joshua Alfonzo Javier\\
+      Sebastían Chinchay Collachagua
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.35\textwidth}
+    \begin{flushright} \large
+      \textbf{Curso:}\\
+      \smallskip
+      \small Gobierno de TI
+    \end{flushright}
+  \end{minipage}
+  
+  \vfill
+  
+  {\large Lima --- Perú \par}
+  {\large 2025 \par}
+\end{titlepage}
 
-\textbf{FACULTAD DE INGENIERÍA Y ARQUITECTURA}
+\newpage
+\pagenumbering{roman}
+\thispagestyle{plain}
+\tableofcontents
+\newpage
 
-\includegraphics[width=2.3368in,height=1.96176in]{media/image1.png}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
-\textbf{E.P. INGENIERÍA DE SISTEMAS}
+\section{Situación de la empresa}
 
-\textbf{Título del proyecto:}
-
-\textbf{``Proyecto de Automatización de una''}
-
-\textbf{Integrantes:}
-
-\textbf{Jhack Ernesto Quispe Mamani}\\
-\textbf{Abel Is-Boset Guevara Huasco}\\
-\textbf{Javier Kevin Tello Rivas}\\
-\textbf{Richard Joseft Yanqui Inocente}\\
-\textbf{Alvaro Kenji Cuti Magaño}\\
-\textbf{David Guerra Ordoñez}\\
-\textbf{Joshua Alfonzo Javier}\\
-\textbf{Sebastían Chinchay Collachagua}
-
-\textbf{Lima -- Perú}
-
-\textbf{2025}
-
-\textbf{Índice}
-
-3. Situación de la empresa
-
-3.1. Descripción de la empresa
-
-3.2. Misión
-
-3.3. Visión
-
-3.4. Alineamientos estratégicos (Mapa estrategíco)
-
-3.5. Estructura organizacional
-
-3.6. Enfoque de procesos (Politica de calidad)
-
-3.7. Modelo de Negocio
-
-3. Situación de la empresa
-
-3.1. Descripción de la empresa
+\subsection{Descripción de la empresa}
 
 La infraestructura tecnológica de Eco Logistic S.A.C. es actualmente
 básica y está orientada principalmente a soportar las operaciones
@@ -150,21 +207,21 @@ y plataformas tecnológicas robustas. Esta situación genera una alta
 dependencia de procesos manuales y herramientas básicas, lo que impacta
 en la eficiencia operativa y en la trazabilidad de la información.
 
-3.2. Misión:
+\subsection{Misión}
 
 Brindar soluciones logísticas integrales mediante servicios de
 almacenamiento, gestión de inventarios y despacho, apoyados en el uso de
 tecnología, con el fin de garantizar eficiencia, seguridad y
 trazabilidad, generando valor para nuestros clientes.
 
-3.3. Visión:
+\subsection{Visión}
 
 Ser una empresa logística líder a nivel nacional con proyección
 internacional, reconocida por su eficiencia operativa, uso de tecnología
 avanzada y capacidad para gestionar terminales de almacenamiento bajo
 estándares de calidad y seguridad.
 
-3.4. Alineamientos estratégicos
+\subsection{Alineamientos estratégicos}
 
 El plan de acción presentado corresponde a la ejecución anual de los
 objetivos estratégicos de Eco Logistic SAC, estructurado bajo un enfoque
@@ -209,12 +266,14 @@ sostenibilidad de la organización.
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
+\rowcolor{LightGray}
 \multirow{2}{=}{\centering\arraybackslash \textbf{Objetivo Estratégico}}
 & \multirow{2}{=}{\centering\arraybackslash \textbf{Indicadores}} &
 \multirow{2}{=}{\centering\arraybackslash \textbf{Responsable}} &
 \multicolumn{12}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4858} + 22\tabcolsep}}{%
 \textbf{Cronograma}} &
 \multirow{2}{=}{\centering\arraybackslash \textbf{Presupuesto}} \\
+\rowcolor{LightGray}
 & & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
 \textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
 & \textbf{oct} & \textbf{nov} & \textbf{dic} \\
@@ -300,7 +359,7 @@ Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\
 \end{longtable}
 }
 
-3.5. Estructura organizacional:
+\subsection{Estructura organizacional}
 
 La estructura organizacional de Cologistic S.A.C. se presenta de forma
 jerárquica y funcional, distribuida en tres niveles: estratégico,
@@ -321,9 +380,11 @@ como la seguridad armada y control de accesos en garita, permitiendo una
 gestión segura, eficiente y alineada con los estándares de sus clientes
 corporativos.
 
-\includegraphics[width=5.90625in,height=3.91667in]{media/image3.png}
+\begin{center}
+  \pandocbounded{\includegraphics[width=5.90625in,height=3.91667in]{media/image3.png}}
+\end{center}
 
-3.6. Enfoque de procesos
+\subsection{Enfoque de procesos}
 
 En Cologistic S.A.C., la gestión organizacional se fundamenta en un
 enfoque sistémico orientado a la prestación de servicios logísticos
@@ -338,44 +399,45 @@ garantizar una operación fluida e ininterrumpida:
 
 \begin{itemize}
 \item
-  Procesos Estratégicos: Orientan la expansión y sostenibilidad del
+  \textbf{Procesos Estratégicos}: Orientan la expansión y sostenibilidad del
   negocio. Incluyen la negociación inmobiliaria para la adquisición de
   nuevas locaciones, la planificación financiera (gestión de contratos
   en dólares) y la gestión comercial B2B.
 \item
-  Procesos Operativos (Misionales): Constituyen el \emph{core} del
+  \textbf{Procesos Operativos (Misionales)}: Constituyen el \emph{core} del
   negocio e incluyen la Recepción y Despacho, la Gestión de Inventarios,
   y los Servicios Logísticos Adicionales (reempaque, repaletizado y
   \emph{picking}).
 \item
-  Procesos de Soporte: Garantizan la continuidad operativa. Abarcan la
+  \textbf{Procesos de Soporte}: Garantizan la continuidad operativa. Abarcan la
   Gestión de Seguridad (auditorías EPP, personal armado y control de
-  plagas) , la Gestión de TI (implementación y mantenimiento de sistemas
+  plagas), la Gestión de TI (implementación y mantenimiento de sistemas
   WMS/ERP) y el mantenimiento de infraestructura y maquinaria pesada.
-\item
-  Política de Calidad y Seguridad Logística Cologistic S.A.C. se
-  compromete a brindar soluciones de almacenamiento y gestión logística
-  confiables, seguras y adaptables a las necesidades de nuestros
-  clientes corporativos y estacionales. Nuestros pilares son:
 \end{itemize}
+
+\subsubsection{Política de Calidad y Seguridad Logística}
+
+Cologistic S.A.C. se compromete a brindar soluciones de almacenamiento y gestión logística
+confiables, seguras y adaptables a las necesidades de nuestros
+clientes corporativos y estacionales. Nuestros pilares son:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Seguridad e Integridad de la Carga: Garantizamos la protección total
+  \textbf{Seguridad e Integridad de la Carga}: Garantizamos la protección total
   de la mercadería frente a la intemperie y riesgos externos mediante
   infraestructura adecuada y un estricto protocolo de seguridad privada
   ininterrumpida.
 \item
-  Trazabilidad y Transparencia: Nos comprometemos a mantener una
+  \textbf{Trazabilidad y Transparencia}: Nos comprometemos a mantener una
   co-gestión estrecha con nuestros clientes, asegurando la exactitud de
   los inventarios mediante auditorías físicas recurrentes y reportes
   transparentes de movimientos en tiempo real.
 \item
-  Prevención y Cumplimiento Normativo: Mantenemos un entorno de trabajo
+  \textbf{Prevención y Cumplimiento Normativo}: Mantenemos un entorno de trabajo
   seguro auditando rigurosamente el uso de EPP, exigiendo el SCTR para
   todo el personal operativo, y aplicando controles sanitarios estrictos
-  para el resguardo de áreas de alimentos
+  para el resguardo de áreas de alimentos.
 \end{enumerate}
 
 \end{document}
