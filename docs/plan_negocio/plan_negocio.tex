@@ -22,6 +22,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{pdflscape}
 
 % Color palette definition
 \definecolor{DeepNavy}{HTML}{1A365D}
@@ -285,6 +286,11 @@ basada en hojas de cálculo hacia una operación automatizada y segura,
 alineando la capacidad física instalada en el Callao con las demandas de
 clientes de alta exigencia como Bimbo o ISM
 
+\begin{landscape}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.6}
+\arrayrulecolor{TableLine}
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1170}}
@@ -307,41 +313,45 @@ clientes de alta exigencia como Bimbo o ISM
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\rowcolor{LightGray}
-\multirow{2}{=}{\textbf{Objetivo Estratégico}} &
-\multirow{2}{=}{\textbf{Indicadores}} &
-\multirow{2}{=}{\textbf{Responsable}} &
+\rowcolor{DeepNavy}
+\multirow{2}{=}{\textbf{\textcolor{white}{Objetivo Estratégico}}} &
+\multirow{2}{=}{\textbf{\textcolor{white}{Indicadores}}} &
+\multirow{2}{=}{\textbf{\textcolor{white}{Responsable}}} &
 \multicolumn{12}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4355} + 22\tabcolsep}}{%
-\textbf{Cronograma}} & \multirow{2}{=}{\textbf{Presupuesto}} \\
-\rowcolor{LightGray}
-& & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
-\textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
-& \textbf{oct} & \textbf{nov} & \textbf{dic} \\
+\textbf{\textcolor{white}{Cronograma}}} & \multirow{2}{=}{\textbf{\textcolor{white}{Presupuesto}}} \\
+\rowcolor{DeepNavy}
+& & & \textbf{\textcolor{white}{ene}} & \textbf{\textcolor{white}{feb}} & \textbf{\textcolor{white}{mar}} & \textbf{\textcolor{white}{abr}} &
+\textbf{\textcolor{white}{may}} & \textbf{\textcolor{white}{jun}} & \textbf{\textcolor{white}{jul}} & \textbf{\textcolor{white}{ago}} & \textbf{\textcolor{white}{set}}
+& \textbf{\textcolor{white}{oct}} & \textbf{\textcolor{white}{nov}} & \textbf{\textcolor{white}{dic}} \\ \hline
 Mejorar la rentabilidad de la empresa & Rentabilidad sobre Ventas & Jefe
 de Comercialización & X & X & X & X & X & X & X & X & X & X & X & X &
-8000 \\
+8000 \\ \hline
+\rowcolor{LightGray}
 Reducción de costos Operativos & Costo Operativo por Unidad Producida
-(COUP) & Junta Administrativa & X & & & & & & X & & & & & & 3000 \\
+(COUP) & Junta Administrativa & X & & & & & & X & & & & & & 3000 \\ \hline
 Creación de nuevos productos para abarcar mayor parte en el mercad &
 Participación de nuevos productos en ventas totales & Junta
-Administrativa & & & & & X & X & & & & & X & X & 2500 \\
+Administrativa & & & & & X & X & & & & & X & X & 2500 \\ \hline
+\rowcolor{LightGray}
 Aumento de la visibilidad en linea y captación de nuevos clientes &
 Porcentaje de conversión digital & Junta Administrativa & & & & & & X &
-& & & & & X & 2000 \\
+& & & & & X & 2000 \\ \hline
 Implementar un sistema de monitoreo de calidad. & Porcentaje de
 productos con defectos detectados en control de calidad & Ing. de
-Calidad (contratar) & X & & & & & & & & & & & & 2000 \\
+Calidad (contratar) & X & & & & & & & & & & & & 2000 \\ \hline
+\rowcolor{LightGray}
 Expansión de flota comercial. para llegar a mas clientes & Índice de
 cumplimiento de entregas & Jefe de Comercialización & & X & & & X & & &
-X & & & X & & 3000 \\
+X & & & X & & 3000 \\ \hline
 Mejorar la gestión de materia prima. & Tasa de desperdicio de insumos &
 Jefe de Almacenamiento & X & X & X & X & X & X & X & X & X & X & X & X &
-1000 \\
+1000 \\ \hline
+\rowcolor{LightGray}
 Establecer alianzas estratégicas para evitar dependencia de contratos
 gubernamentales. & Nivel de concentración de compras & Junta
-Administrativa & X & & & & & & & & & & & & 800 \\
+Administrativa & X & & & & & & & & & & & & 800 \\ \hline
 Capacitar al personal & Rentabilidad semanal & Jefe de cada Área & X & &
-& X & & & X & & & X & & & 2500 \\
+& X & & & X & & & X & & & 2500 \\ \hline
 & & &
 \multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0727} + 2\tabcolsep}}{%
 } &
@@ -354,7 +364,7 @@ Capacitar al personal & Rentabilidad semanal & Jefe de cada Área & X & &
 \multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0684} + 2\tabcolsep}}{%
 } &
 \multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0710} + 2\tabcolsep}}{%
-} & \textbf{24800} \\
+} & \textbf{24800} \\ \hline
 & & &
 \multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0727} + 2\tabcolsep}}{%
 } &
@@ -370,6 +380,7 @@ Capacitar al personal & Rentabilidad semanal & Jefe de cada Área & X & &
 } & \textbf{Total} \\
 \end{longtable}
 }
+\end{landscape}
 
 \subsection{Estructura organizacional}
 

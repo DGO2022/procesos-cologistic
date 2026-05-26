@@ -22,6 +22,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{pdflscape}
 
 % Color palette definition
 \definecolor{DeepNavy}{HTML}{1A365D}
@@ -244,6 +245,11 @@ adecuada asignación de recursos tecnológicos y financieros, y facilitar
 la toma de decisiones orientadas a fortalecer la competitividad y
 sostenibilidad de la organización.
 
+\begin{landscape}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.6}
+\arrayrulecolor{TableLine}
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.2055}}
@@ -266,20 +272,21 @@ sostenibilidad de la organización.
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\rowcolor{LightGray}
-\multirow{2}{=}{\centering\arraybackslash \textbf{Objetivo Estratégico}}
-& \multirow{2}{=}{\centering\arraybackslash \textbf{Indicadores}} &
-\multirow{2}{=}{\centering\arraybackslash \textbf{Responsable}} &
+\rowcolor{DeepNavy}
+\multirow{2}{=}{\centering\arraybackslash \textcolor{white}{\textbf{Objetivo Estratégico}}}
+& \multirow{2}{=}{\centering\arraybackslash \textcolor{white}{\textbf{Indicadores}}} &
+\multirow{2}{=}{\centering\arraybackslash \textcolor{white}{\textbf{Responsable}}} &
 \multicolumn{12}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4858} + 22\tabcolsep}}{%
-\textbf{Cronograma}} &
-\multirow{2}{=}{\centering\arraybackslash \textbf{Presupuesto}} \\
-\rowcolor{LightGray}
-& & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
-\textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
-& \textbf{oct} & \textbf{nov} & \textbf{dic} \\
+\textcolor{white}{\textbf{Cronograma}}} &
+\multirow{2}{=}{\centering\arraybackslash \textcolor{white}{\textbf{Presupuesto}}} \\
+\rowcolor{DeepNavy}
+& & & \textcolor{white}{\textbf{ene}} & \textcolor{white}{\textbf{feb}} & \textcolor{white}{\textbf{mar}} & \textcolor{white}{\textbf{abr}} &
+\textcolor{white}{\textbf{may}} & \textcolor{white}{\textbf{jun}} & \textcolor{white}{\textbf{jul}} & \textcolor{white}{\textbf{ago}} & \textcolor{white}{\textbf{set}}
+& \textcolor{white}{\textbf{oct}} & \textcolor{white}{\textbf{nov}} & \textcolor{white}{\textbf{dic}} \\ \hline
 Realizar gastos controlados para OPTIMIZAR costos en la Implementación
 de Soluciones WMS/ERP en la Nube & Rentabilidad sobre Ventas & Jefa de
-ventas & X & X & X & & & & & & & & & & \$ 8,500.00 \\
+ventas & X & X & X & & & & & & & & & & \$ 8,500.00 \\ \hline
+\rowcolor{LightGray}
 \multirow{2}{=}{\centering\arraybackslash INVERTIR en la infraestructura
 TI y conectividad para reducir limitaciones operativas y aumentar la
 escalabilidad} & \multirow{2}{=}{\centering\arraybackslash Nivel de
@@ -298,38 +305,43 @@ escalabilidad (capacidad instalada vs uso)} &
 \multirow{2}{=}{\centering\arraybackslash } &
 \multirow{2}{=}{\centering\arraybackslash } &
 \multirow{2}{=}{\centering\arraybackslash \$ 1,550.00} \\
- \\
+\rowcolor{LightGray}
+ & & & & & & & & & & & & & & & \\ \hline
 REDUCIR costos operativos mediante la adopción de tecnologías de
 automatización & Reducción de costos operativos en porcentaje & Gerente
-General / Contable & & & & X & X & X & & & & & & & \$ 15,000.00 \\
+General / Contable & & & & X & X & X & & & & & & & \$ 15,000.00 \\ \hline
+\rowcolor{LightGray}
 Ofrecer servicios logísticos personalizados y rápidos usando tecnologías
-de automatización & Tiempo de respuesta al cliente; N° de clientes con
+de automatización & Time de respuesta al cliente; N° de clientes con
 trazabilidad en tiempo real & Jefa de ventas & & & & & X & X & X & & & &
-& & \$ 5,000.00 \\
+& & \$ 5,000.00 \\ \hline
 Garantizar la seguridad de la información y cumplimiento con las
 normativas de protección de datos personales & N° de incidentes de
 seguridad; cumplimiento Ley N°29733 (\%) & Analista de inventario & & &
-& & & X & X & X & & & & & \$ 3,000.00 \\
+& & & X & X & X & & & & & \$ 3,000.00 \\ \hline
+\rowcolor{LightGray}
 Optimizar los procesos logísticos y mejorar la gestión de inventarios
 mediante la implementación de WMS/ERP & \% de exactitud de inventario;
 N° de transacciones registradas digitalmente & Jefe de operaciones & & &
-X & X & X & X & X & & & & & & \$ 10,000.00 \\
+X & X & X & X & X & & & & & & \$ 10,000.00 \\ \hline
 Implementar un sistema de gestión de residuos electrónicos y disposición
 de equipos en desuso & N° de equipos dados de baja correctamente;
 cumplimiento normativo RAEE (\%) & Jefe de Comercialización & & & & & &
-& & X & X & & & & \$ 1,000.00 \\
+& & X & X & & & & \$ 1,000.00 \\ \hline
+\rowcolor{LightGray}
 Capacitar al personal en nuevas tecnologías para mejorar la adaptación a
 la automatización y la digitalización & N° de empleados capacitados; \%
 de reducción de errores operativos post-capacitación & Socia /
-Subgerente & & & & & X & X & & & & & & & \$ 6,000.00 \\
+Subgerente & & & & & X & X & & & & & & & \$ 6,000.00 \\ \hline
 Establecer un plan de soporte y mantenimiento preventivo para nuevas
 soluciones tecnológicas & N° de mantenimientos realizados; tiempo medio
 de resolución de incidencias (horas) & Jefe de supervisión & & & & & & &
-& & X & X & X & X & \$ 3,600.00 \\
+& & X & X & X & X & \$ 3,600.00 \\ \hline
+\rowcolor{LightGray}
 Fomentar la cultura de innovación y mejora continua a través de
 capacitación y gestión del cambio & N° de iniciativas de mejora
 propuestas por el equipo; índice de adopción tecnológica (\%) & Socia /
-Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\
+Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\ \hline
 & & &
 \multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0805} + 2\tabcolsep}}{%
 } &
@@ -342,7 +354,7 @@ Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\
 \multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0806} + 2\tabcolsep}}{%
 } &
 \multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0817} + 2\tabcolsep}}{%
-} & \textbf{\$ 56,450.00} \\
+} & \textbf{\$ 56,450.00} \\ \hline
 & & &
 \multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0805} + 2\tabcolsep}}{%
 } &
@@ -358,6 +370,7 @@ Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\
 } & \textbf{Total} \\
 \end{longtable}
 }
+\end{landscape}
 
 \subsection{Estructura organizacional}
 
