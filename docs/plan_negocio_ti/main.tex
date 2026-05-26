@@ -1,0 +1,381 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{multirow}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\textbf{\textbar UNIVERSIDAD PERUANA UNIÓN}
+
+\textbf{FACULTAD DE INGENIERÍA Y ARQUITECTURA}
+
+\includegraphics[width=2.3368in,height=1.96176in]{media/image1.png}
+
+\textbf{E.P. INGENIERÍA DE SISTEMAS}
+
+\textbf{Título del proyecto:}
+
+\textbf{``Proyecto de Automatización de una''}
+
+\textbf{Integrantes:}
+
+\textbf{Jhack Ernesto Quispe Mamani}\\
+\textbf{Abel Is-Boset Guevara Huasco}\\
+\textbf{Javier Kevin Tello Rivas}\\
+\textbf{Richard Joseft Yanqui Inocente}\\
+\textbf{Alvaro Kenji Cuti Magaño}\\
+\textbf{David Guerra Ordoñez}\\
+\textbf{Joshua Alfonzo Javier}\\
+\textbf{Sebastían Chinchay Collachagua}
+
+\textbf{Lima -- Perú}
+
+\textbf{2025}
+
+\textbf{Índice}
+
+3. Situación de la empresa
+
+3.1. Descripción de la empresa
+
+3.2. Misión
+
+3.3. Visión
+
+3.4. Alineamientos estratégicos (Mapa estrategíco)
+
+3.5. Estructura organizacional
+
+3.6. Enfoque de procesos (Politica de calidad)
+
+3.7. Modelo de Negocio
+
+3. Situación de la empresa
+
+3.1. Descripción de la empresa
+
+La infraestructura tecnológica de Eco Logistic S.A.C. es actualmente
+básica y está orientada principalmente a soportar las operaciones
+administrativas y de comunicación interna. La organización cuenta con un
+acceso a internet centralizado mediante un router, el cual permite la
+conectividad de los equipos disponibles dentro de las instalaciones. En
+cuanto al equipamiento, dispone de tres computadoras destinadas a
+actividades administrativas y operativas, así como una impresora
+utilizada para la gestión documental. La comunicación interna y
+coordinación operativa se realiza principalmente a través de la
+aplicación de mensajería WhatsApp, lo que evidencia la ausencia de
+sistemas corporativos integrados de comunicación y gestión. Respecto a
+la seguridad, la empresa cuenta con un sistema de videovigilancia
+compuesto por 16 cámaras distribuidas en puntos estratégicos de la
+infraestructura, las cuales son monitoreadas mediante un televisor que
+permite la visualización en tiempo real. Este sistema contribuye al
+control de accesos y a la protección de los activos físicos y la
+mercadería almacenada. No obstante, la infraestructura de TI presenta
+limitaciones significativas en términos de escalabilidad, integración y
+automatización de procesos, debido a la falta de sistemas especializados
+y plataformas tecnológicas robustas. Esta situación genera una alta
+dependencia de procesos manuales y herramientas básicas, lo que impacta
+en la eficiencia operativa y en la trazabilidad de la información.
+
+3.2. Misión:
+
+Brindar soluciones logísticas integrales mediante servicios de
+almacenamiento, gestión de inventarios y despacho, apoyados en el uso de
+tecnología, con el fin de garantizar eficiencia, seguridad y
+trazabilidad, generando valor para nuestros clientes.
+
+3.3. Visión:
+
+Ser una empresa logística líder a nivel nacional con proyección
+internacional, reconocida por su eficiencia operativa, uso de tecnología
+avanzada y capacidad para gestionar terminales de almacenamiento bajo
+estándares de calidad y seguridad.
+
+3.4. Alineamientos estratégicos
+
+El plan de acción presentado corresponde a la ejecución anual de los
+objetivos estratégicos de Eco Logistic SAC, estructurado bajo un enfoque
+de mejora continua y alineado al Cuadro de Mando Integral. Cada objetivo
+cuenta con indicadores de seguimiento, responsables designados, un
+cronograma mensual y un presupuesto estimado, lo que permite una gestión
+organizada, controlada y medible. Entre los objetivos más relevantes se
+encuentran la realización de gastos controlados para optimizar costos en
+la implementación de soluciones, la inversión en infraestructura de
+tecnologías de la información y conectividad para reducir limitaciones
+operativas y aumentar la escalabilidad, y la reducción de costos
+operativos mediante la adopción de tecnologías de automatización. Estos
+objetivos responden directamente a la necesidad de modernización
+tecnológica de la empresa, así como a la mejora de la eficiencia en sus
+procesos logísticos. El plan establece acciones distribuidas a lo largo
+del año, priorizando los meses de mayor impacto operativo, y contempla
+un presupuesto total de S/ 77,900. Esta planificación permite alinear
+los procesos internos con los resultados esperados, asegurar una
+adecuada asignación de recursos tecnológicos y financieros, y facilitar
+la toma de decisiones orientadas a fortalecer la competitividad y
+sostenibilidad de la organización.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.2055}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.1243}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0881}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0397}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0407}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0409}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0401}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0410}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0405}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0409}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0398}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0399}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0406}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0409}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0409}}
+  >{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0963}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\multirow{2}{=}{\centering\arraybackslash \textbf{Objetivo Estratégico}}
+& \multirow{2}{=}{\centering\arraybackslash \textbf{Indicadores}} &
+\multirow{2}{=}{\centering\arraybackslash \textbf{Responsable}} &
+\multicolumn{12}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.4858} + 22\tabcolsep}}{%
+\textbf{Cronograma}} &
+\multirow{2}{=}{\centering\arraybackslash \textbf{Presupuesto}} \\
+& & & \textbf{ene} & \textbf{feb} & \textbf{mar} & \textbf{abr} &
+\textbf{may} & \textbf{jun} & \textbf{jul} & \textbf{ago} & \textbf{set}
+& \textbf{oct} & \textbf{nov} & \textbf{dic} \\
+Realizar gastos controlados para OPTIMIZAR costos en la Implementación
+de Soluciones WMS/ERP en la Nube & Rentabilidad sobre Ventas & Jefa de
+ventas & X & X & X & & & & & & & & & & \$ 8,500.00 \\
+\multirow{2}{=}{\centering\arraybackslash INVERTIR en la infraestructura
+TI y conectividad para reducir limitaciones operativas y aumentar la
+escalabilidad} & \multirow{2}{=}{\centering\arraybackslash Nivel de
+escalabilidad (capacidad instalada vs uso)} &
+\multirow{2}{=}{\centering\arraybackslash Gerente general} &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash X} &
+\multirow{2}{=}{\centering\arraybackslash X} &
+\multirow{2}{=}{\centering\arraybackslash X} &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash } &
+\multirow{2}{=}{\centering\arraybackslash \$ 1,550.00} \\
+ \\
+REDUCIR costos operativos mediante la adopción de tecnologías de
+automatización & Reducción de costos operativos en porcentaje & Gerente
+General / Contable & & & & X & X & X & & & & & & & \$ 15,000.00 \\
+Ofrecer servicios logísticos personalizados y rápidos usando tecnologías
+de automatización & Tiempo de respuesta al cliente; N° de clientes con
+trazabilidad en tiempo real & Jefa de ventas & & & & & X & X & X & & & &
+& & \$ 5,000.00 \\
+Garantizar la seguridad de la información y cumplimiento con las
+normativas de protección de datos personales & N° de incidentes de
+seguridad; cumplimiento Ley N°29733 (\%) & Analista de inventario & & &
+& & & X & X & X & & & & & \$ 3,000.00 \\
+Optimizar los procesos logísticos y mejorar la gestión de inventarios
+mediante la implementación de WMS/ERP & \% de exactitud de inventario;
+N° de transacciones registradas digitalmente & Jefe de operaciones & & &
+X & X & X & X & X & & & & & & \$ 10,000.00 \\
+Implementar un sistema de gestión de residuos electrónicos y disposición
+de equipos en desuso & N° de equipos dados de baja correctamente;
+cumplimiento normativo RAEE (\%) & Jefe de Comercialización & & & & & &
+& & X & X & & & & \$ 1,000.00 \\
+Capacitar al personal en nuevas tecnologías para mejorar la adaptación a
+la automatización y la digitalización & N° de empleados capacitados; \%
+de reducción de errores operativos post-capacitación & Socia /
+Subgerente & & & & & X & X & & & & & & & \$ 6,000.00 \\
+Establecer un plan de soporte y mantenimiento preventivo para nuevas
+soluciones tecnológicas & N° de mantenimientos realizados; tiempo medio
+de resolución de incidencias (horas) & Jefe de supervisión & & & & & & &
+& & X & X & X & X & \$ 3,600.00 \\
+Fomentar la cultura de innovación y mejora continua a través de
+capacitación y gestión del cambio & N° de iniciativas de mejora
+propuestas por el equipo; índice de adopción tecnológica (\%) & Socia /
+Subgerente & & & & & & & & & & X & X & X & \$ 2,800.00 \\
+& & &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0805} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0809} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0815} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0807} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0806} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0817} + 2\tabcolsep}}{%
+} & \textbf{\$ 56,450.00} \\
+& & &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0805} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0809} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0815} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0807} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0806} + 2\tabcolsep}}{%
+} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 30\tabcolsep) * \real{0.0817} + 2\tabcolsep}}{%
+} & \textbf{Total} \\
+\end{longtable}
+}
+
+3.5. Estructura organizacional:
+
+La estructura organizacional de Cologistic S.A.C. se presenta de forma
+jerárquica y funcional, distribuida en tres niveles: estratégico,
+operativo y de ejecución. Cabe señalar que, debido a que el área de
+Tecnologías de la Información cuenta únicamente con un ingeniero
+responsable, el presente análisis se centra exclusivamente en el
+organigrama del negocio, sin considerar una desagregación estructural
+del área de TI. En el nivel estratégico se ubican la Gerencia General,
+la Subgerencia y la Gerencia de Contabilidad, responsables de la
+dirección global, la administración financiera y la toma de decisiones
+clave. El nivel operativo está conformado por la Jefatura de
+Operaciones, el Analista de Inventario y la Jefatura de Ventas, quienes
+coordinan el control de la trazabilidad y los procesos centrales de la
+empresa. Finalmente, en el nivel de ejecución se encuentran los
+encargados que realizan las actividades logísticas específicas como la
+supervisión de despachos y picking, la operación técnica de estiba, así
+como la seguridad armada y control de accesos en garita, permitiendo una
+gestión segura, eficiente y alineada con los estándares de sus clientes
+corporativos.
+
+\includegraphics[width=5.90625in,height=3.91667in]{media/image3.png}
+
+3.6. Enfoque de procesos
+
+En Cologistic S.A.C., la gestión organizacional se fundamenta en un
+enfoque sistémico orientado a la prestación de servicios logísticos
+integrales y arrendamiento de espacios a nivel corporativo (B2B).
+Entendemos que la confiabilidad de nuestra cadena de suministro no
+depende de acciones aisladas, sino de un flujo continuo y altamente
+controlado que garantiza la trazabilidad, desde la recepción en nuestros
+patios de maniobras hasta el despacho final.
+
+Nuestra arquitectura de procesos se clasifica en tres niveles para
+garantizar una operación fluida e ininterrumpida:
+
+\begin{itemize}
+\item
+  Procesos Estratégicos: Orientan la expansión y sostenibilidad del
+  negocio. Incluyen la negociación inmobiliaria para la adquisición de
+  nuevas locaciones, la planificación financiera (gestión de contratos
+  en dólares) y la gestión comercial B2B.
+\item
+  Procesos Operativos (Misionales): Constituyen el \emph{core} del
+  negocio e incluyen la Recepción y Despacho, la Gestión de Inventarios,
+  y los Servicios Logísticos Adicionales (reempaque, repaletizado y
+  \emph{picking}).
+\item
+  Procesos de Soporte: Garantizan la continuidad operativa. Abarcan la
+  Gestión de Seguridad (auditorías EPP, personal armado y control de
+  plagas) , la Gestión de TI (implementación y mantenimiento de sistemas
+  WMS/ERP) y el mantenimiento de infraestructura y maquinaria pesada.
+\item
+  Política de Calidad y Seguridad Logística Cologistic S.A.C. se
+  compromete a brindar soluciones de almacenamiento y gestión logística
+  confiables, seguras y adaptables a las necesidades de nuestros
+  clientes corporativos y estacionales. Nuestros pilares son:
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Seguridad e Integridad de la Carga: Garantizamos la protección total
+  de la mercadería frente a la intemperie y riesgos externos mediante
+  infraestructura adecuada y un estricto protocolo de seguridad privada
+  ininterrumpida.
+\item
+  Trazabilidad y Transparencia: Nos comprometemos a mantener una
+  co-gestión estrecha con nuestros clientes, asegurando la exactitud de
+  los inventarios mediante auditorías físicas recurrentes y reportes
+  transparentes de movimientos en tiempo real.
+\item
+  Prevención y Cumplimiento Normativo: Mantenemos un entorno de trabajo
+  seguro auditando rigurosamente el uso de EPP, exigiendo el SCTR para
+  todo el personal operativo, y aplicando controles sanitarios estrictos
+  para el resguardo de áreas de alimentos
+\end{enumerate}
+
+\end{document}
