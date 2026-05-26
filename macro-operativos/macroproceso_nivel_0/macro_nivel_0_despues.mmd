@@ -1,0 +1,23 @@
+graph LR
+    %% Entorno Futuro - Con TI
+    subgraph Macroproceso_Operativo_TO_BE [P01. GESTIÓN DE OPERACIONES LOGÍSTICAS - OPTIMIZADO]
+        direction LR
+        P1_TI[1. Planificación y Recepción Digital]
+        P2_TI[2. Gestión de Almacenamiento WMS]
+        P3_TI[3. Despacho Verificado]
+
+        P1_TI -->|Escaneo de códigos y auto-registro| P2_TI
+        P2_TI -->|Ubicabilidad exacta en tiempo real| P3_TI
+    end
+
+    %% Aportes de la Estrategia TI
+    WMS[(WMS / ERP en la Nube)] -.->|Centralización de datos| P1_TI
+    WMS -.->|Trazabilidad Total| P2_TI
+    WMS -.->|Validación de Pedidos| P3_TI
+
+    Entrada_TI([Llegada de Mercadería]) --> P1_TI
+    P3_TI --> Salida_TI([Entrega Confiable al Cliente])
+
+    %% Estilo
+    style Macroproceso_Operativo_TO_BE fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style WMS fill:#e3f2fd,stroke:#1565c0,stroke-width:2px

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_macro_despues" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_macro_despues">
+    <bpmn:participant id="Participant_MacroOptimizado" name="P01. GESTIÓN DE OPERACIONES LOGÍSTICAS - OPTIMIZADO" processRef="Process_macro_despues" />
+    <bpmn:participant id="Participant_WMS" name="WMS / ERP en la Nube" />
+    <bpmn:messageFlow id="MsgFlow_WMS_P1" name="Centralización de datos" sourceRef="Participant_WMS" targetRef="Task_P1_RecepcionDigital" />
+    <bpmn:messageFlow id="MsgFlow_WMS_P2" name="Trazabilidad Total" sourceRef="Participant_WMS" targetRef="Task_P2_AlmacenamientoWMS" />
+    <bpmn:messageFlow id="MsgFlow_WMS_P3" name="Validación de Pedidos" sourceRef="Participant_WMS" targetRef="Task_P3_DespachoVerificado" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_macro_despues" isExecutable="true">
+    <bpmn:startEvent id="Start_LlegadaMercaderia" name="Llegada de Mercadería">
+      <bpmn:outgoing>Flow_Start_P1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_P1_RecepcionDigital" name="1. Planificación y Recepción Digital">
+      <bpmn:incoming>Flow_Start_P1</bpmn:incoming>
+      <bpmn:outgoing>Flow_P1_P2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_P2_AlmacenamientoWMS" name="2. Gestión de Almacenamiento WMS">
+      <bpmn:incoming>Flow_P1_P2</bpmn:incoming>
+      <bpmn:outgoing>Flow_P2_P3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_P3_DespachoVerificado" name="3. Despacho Verificado">
+      <bpmn:incoming>Flow_P2_P3</bpmn:incoming>
+      <bpmn:outgoing>Flow_P3_End</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_EntregaConfiable" name="Entrega Confiable al Cliente">
+      <bpmn:incoming>Flow_P3_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Start_P1" sourceRef="Start_LlegadaMercaderia" targetRef="Task_P1_RecepcionDigital" />
+    <bpmn:sequenceFlow id="Flow_P1_P2" name="Escaneo de códigos y auto-registro" sourceRef="Task_P1_RecepcionDigital" targetRef="Task_P2_AlmacenamientoWMS" />
+    <bpmn:sequenceFlow id="Flow_P2_P3" name="Ubicabilidad exacta en tiempo real" sourceRef="Task_P2_AlmacenamientoWMS" targetRef="Task_P3_DespachoVerificado" />
+    <bpmn:sequenceFlow id="Flow_P3_End" sourceRef="Task_P3_DespachoVerificado" targetRef="End_EntregaConfiable" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_macro_despues">
+    <bpmndi:BPMNPlane id="BPMNPlane_macro_despues" bpmnElement="Collaboration_macro_despues">
+      <bpmndi:BPMNShape id="Participant_MacroOptimizado_di" bpmnElement="Participant_MacroOptimizado" isHorizontal="true">
+        <dc:Bounds x="90" y="50" width="910" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_LlegadaMercaderia_di" bpmnElement="Start_LlegadaMercaderia">
+        <dc:Bounds x="180" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="185" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_P1_RecepcionDigital_di" bpmnElement="Task_P1_RecepcionDigital">
+        <dc:Bounds x="270" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_P2_AlmacenamientoWMS_di" bpmnElement="Task_P2_AlmacenamientoWMS">
+        <dc:Bounds x="480" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_P3_DespachoVerificado_di" bpmnElement="Task_P3_DespachoVerificado">
+        <dc:Bounds x="690" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_EntregaConfiable_di" bpmnElement="End_EntregaConfiable">
+        <dc:Bounds x="890" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="866" y="185" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_Start_P1_di" bpmnElement="Flow_Start_P1">
+        <di:waypoint x="216" y="160" />
+        <di:waypoint x="270" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_P1_P2_di" bpmnElement="Flow_P1_P2">
+        <di:waypoint x="370" y="160" />
+        <di:waypoint x="480" y="160" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="378" y="130" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_P2_P3_di" bpmnElement="Flow_P2_P3">
+        <di:waypoint x="580" y="160" />
+        <di:waypoint x="690" y="160" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="588" y="130" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_P3_End_di" bpmnElement="Flow_P3_End">
+        <di:waypoint x="790" y="160" />
+        <di:waypoint x="890" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_WMS_di" bpmnElement="Participant_WMS" isHorizontal="true">
+        <dc:Bounds x="120" y="280" width="880" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MsgFlow_WMS_P1_di" bpmnElement="MsgFlow_WMS_P1">
+        <di:waypoint x="320" y="280" />
+        <di:waypoint x="320" y="200" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="328" y="235" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MsgFlow_WMS_P2_di" bpmnElement="MsgFlow_WMS_P2">
+        <di:waypoint x="530" y="280" />
+        <di:waypoint x="530" y="200" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="538" y="235" width="66" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MsgFlow_WMS_P3_di" bpmnElement="MsgFlow_WMS_P3">
+        <di:waypoint x="740" y="280" />
+        <di:waypoint x="740" y="200" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="748" y="235" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
