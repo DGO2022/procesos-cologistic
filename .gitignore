@@ -1,1 +1,22 @@
+# --- Sistemas Operativos ---
+.DS_Store
 .DStore
+Thumbs.db
+
+# --- Archivos Temporales y Auxiliares de LaTeX ---
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdfsync
+*.alg
+*.acr
+*.acn
+
+# --- Archivos de respaldo de editores ---
+*.bak
+*.sav
+*~
