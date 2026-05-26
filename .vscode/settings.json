@@ -4,6 +4,7 @@
   // --- HIGIENE PROFESIONAL DEL PROYECTO ---
   // Limpiar automáticamente todos los archivos auxiliares temporales al terminar de compilar con éxito
   "latex-workshop.latex.clean.enabled": true,
+  
   // Archivos auxiliares que se van a eliminar para mantener limpio tu proyecto
   "latex-workshop.latex.clean.fileTypes": [
     "*.aux",
@@ -16,57 +17,5 @@
     "*.nav",
     "*.snm",
     "*.vrb"
-  ],
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "**/CVS": true,
-    "**/.ruby-lsp": true,
-    "[!m]*/**": true,
-    "m[!a]*/**": true,
-    "ma[!c]*/**": true,
-    "mac[!r]*/**": true,
-    "macr[!o]*/**": true,
-    "macro[!-]*/**": true,
-    "macro-[!e]*/**": true,
-    "macro-e[!s]*/**": true,
-    "macro-es[!t]*/**": true,
-    "macro-est[!r]*/**": true,
-    "macro-estr[!a]*/**": true,
-    "macro-estra[!t]*/**": true,
-    "macro-estrat[!e]*/**": true,
-    "macro-estrate[!g]*/**": true,
-    "macro-estrateg[!i]*/**": true,
-    "macro-estrategi[!c]*/**": true,
-    "macro-estrategic[!o]*/**": true,
-    "macro-estrategico[!s]*/**": true,
-    "macro-estrategicos/[!M]*/**": true,
-    "macro-estrategicos/M[!A]*/**": true,
-    "macro-estrategicos/MA[!P]*/**": true,
-    "macro-estrategicos/MAP[!-]*/**": true,
-    "macro-estrategicos/MAP-[!0]*/**": true,
-    "macro-estrategicos/MAP-0[!3]*/**": true,
-    "macro-estrategicos/MAP-03[!-]*/**": true,
-    "macro-estrategicos/MAP-03-[!G]*/**": true,
-    "macro-estrategicos/MAP-03-G[!e]*/**": true,
-    "macro-estrategicos/MAP-03-Ge[!s]*/**": true,
-    "macro-estrategicos/MAP-03-Ges[!t]*/**": true,
-    "macro-estrategicos/MAP-03-Gest[!i]*/**": true,
-    "macro-estrategicos/MAP-03-Gesti[!o]*/**": true,
-    "macro-estrategicos/MAP-03-Gestio[!n]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion[!-]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-[!F]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-F[!i]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Fi[!n]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Fin[!a]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Fina[!n]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Finan[!c]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Financ[!i]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Financi[!e]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Financie[!r]*/**": true,
-    "macro-estrategicos/MAP-03-Gestion-Financier[!a]*/**": true
-  }
+  ]
 }
