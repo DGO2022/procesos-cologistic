@@ -2,20 +2,7 @@
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "latex-cologistic:latest",
   // --- HIGIENE PROFESIONAL DEL PROYECTO ---
-  // Limpiar automáticamente todos los archivos auxiliares temporales al terminar de compilar con éxito
-  "latex-workshop.latex.clean.enabled": true,
-  
-  // Archivos auxiliares que se van a eliminar para mantener limpio tu proyecto
-  "latex-workshop.latex.clean.fileTypes": [
-    "*.aux",
-    "*.log",
-    "*.toc",
-    "*.out",
-    "*.fls",
-    "*.fdb_latexmk",
-    "*.synctex.gz",
-    "*.nav",
-    "*.snm",
-    "*.vrb"
-  ]
+  // No necesitamos borrar a la fuerza los archivos temporales porque
+  // nativamente los enviamos a la carpeta oculta tmp/ en nuestro latexmkrc.
+  "latex-workshop.latex.clean.enabled": false
 }
