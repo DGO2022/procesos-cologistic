@@ -11,7 +11,7 @@
         <bpmn:flowNodeRef>Activity_F</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_G</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_Contador" name="Contador Externo">
+      <bpmn:lane id="Lane_Contador" name="Contador">
         <bpmn:flowNodeRef>Activity_C</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_D</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_E</bpmn:flowNodeRef>
