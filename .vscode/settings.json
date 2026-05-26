@@ -1,12 +1,19 @@
 {
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "latex-cologistic:latest",
+  // --- PREVENIR LAG EN EL EDITOR (USANDO DOCKER) ---
+  // Desactivamos kpsewhich local en el host, ya que LaTeX no está instalado 
+  // en tu Mac y causa timeouts/retrasos molestos al buscar paquetes.
+  "latex-workshop.kpsewhich.enabled": false,
+  "latex-workshop.kpsewhich.class.enabled": false,
+  "latex-workshop.kpsewhich.bibtex.enabled": false,
   // --- HIGIENE PROFESIONAL DEL PROYECTO ---
   // No necesitamos borrar a la fuerza los archivos temporales porque
   // nativamente los enviamos a la carpeta oculta tmp/ en nuestro latexmkrc.
   "latex-workshop.latex.clean.enabled": false,
   "latex-workshop.latex.auxDir": "%DIR%/tmp",
   "files.exclude": {
+    "**/*.synctex.gz": true,
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
