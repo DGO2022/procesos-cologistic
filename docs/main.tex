@@ -104,6 +104,27 @@ Este procedimiento aplica desde la recopilación manual de movimientos y guías 
   \caption{Extracto de la Matriz de Procesos Estratégicos}
 \end{figure}
 
+\vspace{1.5em}
+
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Analista de Inventarios} & \textit{Reporte de movimientos de inventario} & \textit{Consolidación de Liquidaciones} & \textit{Reporte de liquidación de servicios validado} & \textit{Clientes} \\
+  \midrule
+  \textit{Clientes} & \textit{Reporte de liquidación de servicios validado} & \textit{Gestión de Emisión Documental} & \textit{Facturas de servicios emitidas} & \textit{Subgerencia} \\
+  \midrule
+  \textit{Contador} & \textit{Facturas de servicios emitidas} & \textit{Control financiero y análisis de rentabilidad utilidad} & \textit{Estados Financieros e Informes de Utilidad} & \textit{Gerencia General} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+
+\vspace{7em}
+
+
 \begin{center}
   \small
   \begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.18\textwidth}XXp{0.25\textwidth}}
@@ -145,6 +166,20 @@ Este procedimiento aplica desde la recopilación manual de movimientos y guías 
 \textbf{Descripción del Procedimiento:} \\
 El procedimiento extrae los movimientos del Excel, calcula cargos adicionales y prorratea los días de almacenaje. Con esos datos el analista genera un borrador de liquidación en USD, que el subgerente revisa y envía al cliente. El cliente aprueba o rechaza el reporte; si lo rechaza, el proceso vuelve a iniciar. Con la aprobación final, el subgerente emite el visto bueno y el proceso concluye.
 
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Analista de Inventarios} & \textit{Reporte de movimientos de inventario} & \textit{Liquidación de Servicios Logísticos (3PL)} & \textit{Borrador de liquidación en USD y Visto Bueno} & \textit{Subgerente / Cliente} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{./images/media/image2.png}
@@ -167,6 +202,20 @@ El procedimiento extrae los movimientos del Excel, calcula cargos adicionales y 
 
 \textbf{Descripción del Procedimiento:} \\
 El subgerente identifica los metros cuadrados ocupados según el contrato, multiplica esa área por la tarifa pactada para calcular la renta y genera el consolidado mensual de rentas, finalizando el proceso.
+
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Notaría / Clientes} & \textit{Contratos notariales vigentes} & \textit{Liquidación de Arrendamiento Fijo} & \textit{Consolidado mensual de rentas (USD)} & \textit{Subgerente / Contador} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
 
 \begin{figure}[h!]
   \centering
@@ -192,6 +241,20 @@ El subgerente identifica los metros cuadrados ocupados según el contrato, multi
 \textbf{Descripción del Procedimiento:} \\
 Formalizar la generación, validación y envío de la factura electrónica a SUNAT de forma manual, asegurando la trazabilidad y el control de los pasos críticos por parte del Subgerente y el Contador.
 
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Subgerente} & \textit{Liquidación aprobada en USD} & \textit{Emisión Manual de Factura Electrónica} & \textit{Factura electrónica generada (PDF)} & \textit{Contador / Subgerente} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{./images/media/image5.png}
@@ -213,7 +276,21 @@ Formalizar la generación, validación y envío de la factura electrónica a SUN
 \end{itemize}
 
 \textbf{Descripción del Procedimiento:} \\
-Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los dueños) para determinar la rentabilidad. Se genera el informe final para la toma de decisiones estratégicas.
+El subgerente concilia la factura emitida por SUNAT contra el reporte interno. Si los datos son correctos, la registra en el control de cobranzas en Excel y la envía al cliente por correo o WhatsApp. En caso contrario, solicita una nota de crédito o anulación al contador.
+
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Contador} & \textit{Factura electrónica emitida} & \textit{Validación y Envío de Comprobantes} & \textit{Factura conciliada, registrada y enviada} & \textit{Cliente / Subgerente} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
 
 \begin{figure}[h!]
   \centering
@@ -239,6 +316,20 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 \textbf{Descripción del Procedimiento:} \\
 Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los dueños) para determinar la rentabilidad. Se genera el informe final para la toma de decisiones estratégicas.
 
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Subgerente / Contador} & \textit{Facturas de ingresos y costos operativos} & \textit{Monitoreo de Margen Operativo y Utilidad} & \textit{Informe de rentabilidad y margen neto por nave} & \textit{Gerencia General} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{./images/media/image8.png}
@@ -261,7 +352,21 @@ Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los d
 \end{itemize}
 
 \textbf{Descripción del Procedimiento:} \\
-Se cruzan los ingresos facturados contra los costos fijos (alquiler base a los dueños) para determinar la rentabilidad. Se genera el informe final para la toma de decisiones estratégicas.
+El subgerente verifica los abonos de los clientes en la cuenta en dólares y los notifica al contador. El contador realiza el asiento contable según el tipo de cambio y genera el reporte de flujo de caja para impuestos.
+
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
+  \midrule
+  \textit{Clientes / Bancos} & \textit{Estado de cuenta y abonos en dólares} & \textit{Conciliación Bancaria y Gestión de Divisas} & \textit{Asiento contable realizado y reporte de flujo de caja} & \textit{Contador / Subgerente} \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
 
 \begin{figure}[h!]
   \centering
