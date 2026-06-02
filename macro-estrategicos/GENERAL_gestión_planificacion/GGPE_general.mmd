@@ -1,0 +1,67 @@
+flowchart LR
+    %% Estilos estrictos de Nomenclatura BPMN
+    classDef event fill:#fff,stroke:#333,stroke-width:3px,shape:circle;
+    classDef task fill:#f4fafe,stroke:#2b5c8f,stroke-width:2px,rx:8px,ry:8px,color:#000;
+    classDef data fill:#fff2cc,stroke:#d6b656,stroke-width:2px,shape:note,color:#000;
+    classDef lane fill:#ffffff,stroke:#000,stroke-width:2px;
+
+    subgraph Pool [Pool: Gestión de Planeación Estratégica del Negocio - AS IS]
+        direction TB
+
+        %% CARRIL 1: ALTA DIRECCIÓN (Toman todas las decisiones empíricamente)
+        subgraph Lane1 [Carril: Alta Dirección - Gerencia General y Subgerencia]
+            direction LR
+            
+            Start((Inicio)):::event
+            
+            T1(1.2.1 Diagnóstico estratégico organizacional):::task
+            T2(1.2.2 Definición de la dirección estratégica):::task
+            T3(1.2.3 Formulación de plan estratégico):::task
+            T5(1.2.5 Seguimiento, control y revisión estratégica):::task
+            
+            EndEvent((Fin)):::event
+
+            %% Documentos / Objetos de Datos generados por la Gerencia
+            DO1[/Matriz FODA del negocio/]:::data
+            DO2[/Misión, Visión y Portafolio/]:::data
+            DO3[/Plan Estratégico y BSC Manual/]:::data
+            DO5[/Actas de revisión gerencial/]:::data
+        end
+
+        %% CARRIL 2: ÁREAS OPERATIVAS (Solo reciben órdenes y reportan datos manuales)
+        subgraph Lane2 [Carril: Áreas Operativas - Jefaturas, Analista y Personal]
+            direction LR
+            
+            T4(1.2.4 Comunicación y alineamiento organizacional):::task
+            
+            DO4[/Fichas de alineamiento firmadas/]:::data
+            DO_Reportes[/Reportes operativos manuales/]:::data
+        end
+
+    end
+
+    %% ================= FLUJOS DE SECUENCIA (Líneas continuas BPMN) =================
+    Start --> T1
+    T1 --> T2
+    T2 --> T3
+    T3 -->|Baja la información| T4
+    T4 -->|Sube para revisión| T5
+    T5 --> EndEvent
+
+    %% ================= ASOCIACIONES DE DATOS (Líneas punteadas BPMN) =================
+    %% La salida de uno es la entrada del siguiente (Fiel al SIPOC)
+    T1 -.->|Genera| DO1
+    DO1 -.->|Entra a| T2
+    
+    T2 -.->|Genera| DO2
+    DO2 -.->|Entra a| T3
+    
+    T3 -.->|Genera| DO3
+    DO3 -.->|Entra a| T4
+    
+    T4 -.->|Genera| DO4
+    DO4 -.->|Entra a| T5
+    
+    %% Ingreso de datos externos hacia la tarea de control
+    DO_Reportes -.->|Entra a| T5
+    T5 -.->|Genera| DO5

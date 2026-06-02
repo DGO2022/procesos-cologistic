@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_GGPE" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_GGPE">
+    <bpmn:participant id="Participant_GGPE" name="Gestión de Planeación Estratégica del Negocio - AS IS" processRef="Process_GGPE" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GGPE" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_GGPE">
+      <bpmn:lane id="Lane_AltaDireccion" name="Alta Dirección">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_AreasOperativas" name="Áreas Operativas">
+        <bpmn:flowNodeRef>Activity_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Inicio">
+      <bpmn:outgoing>Flow_Start_T1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_T1" name="1.2.1 Diagnóstico estratégico organizacional">
+      <bpmn:incoming>Flow_Start_T1</bpmn:incoming>
+      <bpmn:outgoing>Flow_T1_T2</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_DO1">
+        <bpmn:targetRef>DataObjectReference_DO1</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Activity_T2" name="1.2.2 Definición de la dirección estratégica">
+      <bpmn:incoming>Flow_T1_T2</bpmn:incoming>
+      <bpmn:outgoing>Flow_T2_T3</bpmn:outgoing>
+      <bpmn:property id="Property_T2" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_DO1">
+        <bpmn:sourceRef>DataObjectReference_DO1</bpmn:sourceRef>
+        <bpmn:targetRef>Property_T2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_DO2">
+        <bpmn:targetRef>DataObjectReference_DO2</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Activity_T3" name="1.2.3 Formulación de plan estratégico">
+      <bpmn:incoming>Flow_T2_T3</bpmn:incoming>
+      <bpmn:outgoing>Flow_T3_T4</bpmn:outgoing>
+      <bpmn:property id="Property_T3" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_DO2">
+        <bpmn:sourceRef>DataObjectReference_DO2</bpmn:sourceRef>
+        <bpmn:targetRef>Property_T3</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_DO3">
+        <bpmn:targetRef>DataObjectReference_DO3</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Activity_T4" name="1.2.4 Comunicación y alineamiento organizacional">
+      <bpmn:incoming>Flow_T3_T4</bpmn:incoming>
+      <bpmn:outgoing>Flow_T4_T5</bpmn:outgoing>
+      <bpmn:property id="Property_T4" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_DO3">
+        <bpmn:sourceRef>DataObjectReference_DO3</bpmn:sourceRef>
+        <bpmn:targetRef>Property_T4</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_DO4">
+        <bpmn:targetRef>DataObjectReference_DO4</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Activity_T5" name="1.2.5 Seguimiento, control y revisión estratégica">
+      <bpmn:incoming>Flow_T4_T5</bpmn:incoming>
+      <bpmn:outgoing>Flow_T5_End</bpmn:outgoing>
+      <bpmn:property id="Property_T5" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_DO4">
+        <bpmn:sourceRef>DataObjectReference_DO4</bpmn:sourceRef>
+        <bpmn:targetRef>Property_T5</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_DO_Reportes">
+        <bpmn:sourceRef>DataObjectReference_DO_Reportes</bpmn:sourceRef>
+        <bpmn:targetRef>Property_T5</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_DO5">
+        <bpmn:targetRef>DataObjectReference_DO5</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_1" name="Fin">
+      <bpmn:incoming>Flow_T5_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Start_T1" sourceRef="StartEvent_1" targetRef="Activity_T1" />
+    <bpmn:sequenceFlow id="Flow_T1_T2" sourceRef="Activity_T1" targetRef="Activity_T2" />
+    <bpmn:sequenceFlow id="Flow_T2_T3" sourceRef="Activity_T2" targetRef="Activity_T3" />
+    <bpmn:sequenceFlow id="Flow_T3_T4" sourceRef="Activity_T3" targetRef="Activity_T4" />
+    <bpmn:sequenceFlow id="Flow_T4_T5" sourceRef="Activity_T4" targetRef="Activity_T5" />
+    <bpmn:sequenceFlow id="Flow_T5_End" sourceRef="Activity_T5" targetRef="EndEvent_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO1" name="Matriz FODA del negocio" dataObjectRef="DataObject_DO1" />
+    <bpmn:dataObject id="DataObject_DO1" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO2" name="Misión, Visión y Portafolio" dataObjectRef="DataObject_DO2" />
+    <bpmn:dataObject id="DataObject_DO2" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO_Reportes" name="Reportes operativos manuales" dataObjectRef="DataObject_DO_Reportes" />
+    <bpmn:dataObject id="DataObject_DO_Reportes" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO3" name="Plan Estratégico y BSC Manual" dataObjectRef="DataObject_DO3" />
+    <bpmn:dataObject id="DataObject_DO3" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO4" name="Fichas de alineamiento firmadas" dataObjectRef="DataObject_DO4" />
+    <bpmn:dataObject id="DataObject_DO4" />
+    <bpmn:dataObjectReference id="DataObjectReference_DO5" name="Actas de revisión gerencial" dataObjectRef="DataObject_DO5" />
+    <bpmn:dataObject id="DataObject_DO5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_GGPE">
+      <bpmndi:BPMNShape id="Participant_GGPE_di" bpmnElement="Participant_GGPE" isHorizontal="true">
+        <dc:Bounds x="120" y="80" width="1080" height="380" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_AreasOperativas_di" bpmnElement="Lane_AreasOperativas" isHorizontal="true">
+        <dc:Bounds x="150" y="310" width="1050" height="150" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_AltaDireccion_di" bpmnElement="Lane_AltaDireccion" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="1050" height="230" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="200" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_T1_di" bpmnElement="Activity_T1">
+        <dc:Bounds x="290" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_T2_di" bpmnElement="Activity_T2">
+        <dc:Bounds x="450" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_T3_di" bpmnElement="Activity_T3">
+        <dc:Bounds x="610" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_T4_di" bpmnElement="Activity_T4">
+        <dc:Bounds x="770" y="340" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_T5_di" bpmnElement="Activity_T5">
+        <dc:Bounds x="930" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1">
+        <dc:Bounds x="1090" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO1_di" bpmnElement="DataObjectReference_DO1">
+        <dc:Bounds x="322" y="245" width="36" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO2_di" bpmnElement="DataObjectReference_DO2">
+        <dc:Bounds x="482" y="245" width="36" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO_Reportes_di" bpmnElement="DataObjectReference_DO_Reportes">
+        <dc:Bounds x="962" y="355" width="36" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO3_di" bpmnElement="DataObjectReference_DO3">
+        <dc:Bounds x="642" y="245" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="619" y="316" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO4_di" bpmnElement="DataObjectReference_DO4">
+        <dc:Bounds x="802" y="195" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="788" y="145" width="63" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_DO5_di" bpmnElement="DataObjectReference_DO5">
+        <dc:Bounds x="1032" y="235" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1008" y="285" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_Start_T1_di" bpmnElement="Flow_Start_T1">
+        <di:waypoint x="236" y="170" />
+        <di:waypoint x="290" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T1_T2_di" bpmnElement="Flow_T1_T2">
+        <di:waypoint x="390" y="170" />
+        <di:waypoint x="450" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T2_T3_di" bpmnElement="Flow_T2_T3">
+        <di:waypoint x="550" y="170" />
+        <di:waypoint x="610" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T3_T4_di" bpmnElement="Flow_T3_T4">
+        <di:waypoint x="710" y="170" />
+        <di:waypoint x="740" y="170" />
+        <di:waypoint x="740" y="380" />
+        <di:waypoint x="770" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T4_T5_di" bpmnElement="Flow_T4_T5">
+        <di:waypoint x="870" y="380" />
+        <di:waypoint x="900" y="380" />
+        <di:waypoint x="900" y="170" />
+        <di:waypoint x="930" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T5_End_di" bpmnElement="Flow_T5_End">
+        <di:waypoint x="1030" y="170" />
+        <di:waypoint x="1090" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_DO1_di" bpmnElement="DataOutputAssociation_DO1">
+        <di:waypoint x="340" y="210" />
+        <di:waypoint x="340" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_DO1_di" bpmnElement="DataInputAssociation_DO1">
+        <di:waypoint x="358" y="270" />
+        <di:waypoint x="420" y="270" />
+        <di:waypoint x="450" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_DO2_di" bpmnElement="DataOutputAssociation_DO2">
+        <di:waypoint x="500" y="210" />
+        <di:waypoint x="500" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_DO2_di" bpmnElement="DataInputAssociation_DO2">
+        <di:waypoint x="518" y="270" />
+        <di:waypoint x="580" y="270" />
+        <di:waypoint x="610" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_DO3_di" bpmnElement="DataOutputAssociation_DO3">
+        <di:waypoint x="660" y="210" />
+        <di:waypoint x="660" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_DO3_di" bpmnElement="DataInputAssociation_DO3">
+        <di:waypoint x="660" y="295" />
+        <di:waypoint x="660" y="410" />
+        <di:waypoint x="770" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_DO4_di" bpmnElement="DataOutputAssociation_DO4">
+        <di:waypoint x="820" y="340" />
+        <di:waypoint x="820" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_DO4_di" bpmnElement="DataInputAssociation_DO4">
+        <di:waypoint x="838" y="220" />
+        <di:waypoint x="900" y="220" />
+        <di:waypoint x="930" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_DO_Reportes_di" bpmnElement="DataInputAssociation_DO_Reportes">
+        <di:waypoint x="980" y="355" />
+        <di:waypoint x="980" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_DO5_di" bpmnElement="DataOutputAssociation_DO5">
+        <di:waypoint x="1011" y="210" />
+        <di:waypoint x="1032" y="237" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
