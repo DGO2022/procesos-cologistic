@@ -1,5 +1,5 @@
 graph LR
-    %% Entorno Futuro - Con TI
+    %% Entorno Futuro - Con TI Optimizada
     subgraph Macroproceso_Operativo_TO_BE [P01. GESTIÓN DE OPERACIONES LOGÍSTICAS - OPTIMIZADO]
         direction LR
         P1_TI[1. Planificación y Recepción Digital]
@@ -10,10 +10,19 @@ graph LR
         P2_TI -->|Ubicabilidad exacta en tiempo real| P3_TI
     end
 
-    %% Aportes de la Estrategia TI
-    WMS[(WMS / ERP en la Nube)] -.->|Centralización de datos| P1_TI
-    WMS -.->|Trazabilidad Total| P2_TI
-    WMS -.->|Validación de Pedidos| P3_TI
+    %% Estrategia de TI Actualizada según requerimiento
+    subgraph Estrategia_TI [Estrategia de TI: WMS Microservicios + Machine Learning]
+        WMS[[WMS Transaccional Propio - Microservicios]]
+        ML[[Modelo Predictivo ML - Dashboard Inteligente]]
+    end
+
+    %% Aportes de la Estrategia TI y Flujo de Datos
+    WMS -.->|Registro y Seguimiento Centralizado| P1_TI
+    WMS -.->|Trazabilidad y Ubicabilidad Total| P2_TI
+    WMS -.->|Validación y Reducción de Reclamos| P3_TI
+
+    ML -.->|Pronóstico de Saturación Estacional| P1_TI
+    ML -.->|Optimización Predictiva de Espacios| P2_TI
 
     Entrada_TI([Llegada de Mercadería]) --> P1_TI
     P3_TI --> Salida_TI([Entrega Confiable al Cliente])
@@ -21,3 +30,4 @@ graph LR
     %% Estilo
     style Macroproceso_Operativo_TO_BE fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style WMS fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style ML fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
