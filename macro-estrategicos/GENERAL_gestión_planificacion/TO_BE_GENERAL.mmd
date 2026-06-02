@@ -1,0 +1,74 @@
+flowchart LR
+    %% ================= ESTILOS BPMN ESTRICTOS =================
+    classDef event fill:#fff,stroke:#333,stroke-width:3px,shape:circle;
+    classDef task fill:#d4e1f9,stroke:#2b5c8f,stroke-width:2px,rx:8px,ry:8px,color:#000;
+    classDef data fill:#fff2cc,stroke:#d6b656,stroke-width:2px,shape:note,color:#000;
+    classDef lane fill:#ffffff,stroke:#000,stroke-width:2px;
+
+    subgraph Pool [Pool: Gestión de Planeación Estratégica de TI - TO BE]
+        direction TB
+
+        %% CARRIL 1: ALTA DIRECCIÓN (Solo proveen estrategia base y aprueban)
+        subgraph Lane1 [Carril: Comité Gerencial y Gerente General]
+            direction LR
+            Start((Inicio)):::event
+            DO_PlanNegocio[/Plan Estratégico del Negocio/]:::data
+            EndEvent((Fin)):::event
+        end
+
+        %% CARRIL 2: EQUIPO DE TI (Los nuevos líderes absolutos del proceso)
+        subgraph Lane2 [Carril: Jefatura de TI, PMO y Área de Gobierno TI]
+            direction LR
+            
+            T1(1.2.1 Diagnóstico estratégico organizacional de TI):::task
+            T2(1.2.2 Definición de la dirección estratégica de TI):::task
+            T3(1.2.3 Formulación de plan estratégico):::task
+            T4(1.2.4 Comunicación y alineamiento organizacional):::task
+            T5(1.2.5 Seguimiento, control y revisión estratégica):::task
+
+            %% Documentos / Objetos de Datos generados por TI
+            DO1[/Matriz FODA TI y Diagnóstico de Capacidades/]:::data
+            DO2[/Objetivos TI y Portafolio priorizado/]:::data
+            DO3[/PETI formalizado y BSC de TI/]:::data
+            DO5[/Reportes de KPIs TI y Actas de mejora/]:::data
+        end
+
+        %% CARRIL 3: USUARIOS DE NEGOCIO (Proveen fallas, se capacitan y usan el sistema)
+        subgraph Lane3 [Carril: Subgerencia y Jefaturas Operativas - Almacén, Despacho, Recepción]
+            direction LR
+            
+            DO_Infra[/Reporte de fallas y estado actual de sistemas/]:::data
+            DO4[/Fichas de alineamiento TI firmadas por usuarios/]:::data
+            DO_Datos[/Datos operativos generados por el uso del WMS/]:::data
+        end
+    end
+
+    %% ================= FLUJOS DE SECUENCIA (Líneas continuas) =================
+    Start --> T1
+    T1 --> T2
+    T2 --> T3
+    T3 -->|El PETI se envía para aprobación gerencial| T4
+    T4 -->|Despliegue del cambio hacia operarios| T5
+    T5 --> EndEvent
+
+    %% ================= ASOCIACIONES DE DATOS (Líneas punteadas - Entradas y Salidas) =================
+    %% Entradas iniciales (Proveedores S -> Entradas I)
+    DO_PlanNegocio -.->|Provee objetivos corporativos| T1
+    DO_Infra -.->|Provee brechas actuales| T1
+
+    %% Trazabilidad exacta del SIPOC (Salida O -> Entrada I del siguiente)
+    T1 -.->|Genera| DO1
+    DO1 -.->|Ingresa a| T2
+
+    T2 -.->|Genera| DO2
+    DO2 -.->|Ingresa a| T3
+
+    T3 -.->|Genera| DO3
+    DO3 -.->|Guía la difusión en| T4
+
+    T4 -.->|Involucra a Jefaturas Operativas| DO4
+    DO4 -.->|Establece las métricas para| T5
+
+    %% Datos que alimentan el control final y salidas a Gerencia
+    DO_Datos -.->|Se cargan en BSC Designer| T5
+    T5 -.->|Sube para revisión de valor| DO5
