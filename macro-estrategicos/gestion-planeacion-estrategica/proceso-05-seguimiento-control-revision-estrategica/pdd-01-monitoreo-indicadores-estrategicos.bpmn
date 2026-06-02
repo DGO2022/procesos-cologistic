@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1_2_5_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1_2_5_1">
+    <bpmn:participant id="Participant_1_2_5_1" name="1.2.5.1 Monitoreo de indicadores estratégicos" processRef="Process_1_2_5_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1_2_5_1" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1_2_5_1">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_ResultadosRegistrados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RecolectarDatosKPIs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CalcularCompararKPIs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_DesviacionesSignificativas</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IdentificarDesviaciones</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ElaborarReporteKPIs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RegistrarResultadosBSC</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Gerente" name="Gerente">
+        <bpmn:flowNodeRef>Task_RecibirReporteKPIs</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio del monitoreo de indicadores">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_ResultadosRegistrados" name="Resultados registrados en BSC">
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_RecolectarDatosKPIs" name="Recolecta datos de KPIs">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CalcularCompararKPIs" name="Calcula y compara KPIs">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_DesviacionesSignificativas" name="¿Existen desviaciones significativas?">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_IdentificarDesviaciones" name="Identifica desviaciones">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ElaborarReporteKPIs" name="Elabora reporte de KPIs">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RecibirReporteKPIs" name="Recibe reporte de KPIs">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RegistrarResultadosBSC" name="Registra resultados en BSC">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_RecolectarDatosKPIs" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_RecolectarDatosKPIs" targetRef="Task_CalcularCompararKPIs" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_CalcularCompararKPIs" targetRef="Gateway_DesviacionesSignificativas" />
+    <bpmn:sequenceFlow id="Flow_04" name="Sí" sourceRef="Gateway_DesviacionesSignificativas" targetRef="Task_IdentificarDesviaciones" />
+    <bpmn:sequenceFlow id="Flow_05" name="No" sourceRef="Gateway_DesviacionesSignificativas" targetRef="Task_ElaborarReporteKPIs" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_IdentificarDesviaciones" targetRef="Task_ElaborarReporteKPIs" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_ElaborarReporteKPIs" targetRef="Task_RecibirReporteKPIs" />
+    <bpmn:sequenceFlow id="Flow_08" sourceRef="Task_RecibirReporteKPIs" targetRef="Task_RegistrarResultadosBSC" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_RegistrarResultadosBSC" targetRef="EndEvent_ResultadosRegistrados" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1_2_5_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1_2_5_1" bpmnElement="Collaboration_1_2_5_1">
+      <bpmndi:BPMNShape id="Participant_1_2_5_1_di" bpmnElement="Participant_1_2_5_1" isHorizontal="true">
+        <dc:Bounds x="40" y="0" width="1450" height="410" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Gerente_di" bpmnElement="Lane_Gerente" isHorizontal="true">
+        <dc:Bounds x="70" y="230" width="1420" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="70" y="0" width="1420" height="230" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="130" y="85" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_ResultadosRegistrados_di" bpmnElement="EndEvent_ResultadosRegistrados">
+        <dc:Bounds x="1340" y="137" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RecolectarDatosKPIs_di" bpmnElement="Task_RecolectarDatosKPIs">
+        <dc:Bounds x="220" y="60" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CalcularCompararKPIs_di" bpmnElement="Task_CalcularCompararKPIs">
+        <dc:Bounds x="365" y="60" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_DesviacionesSignificativas_di" bpmnElement="Gateway_DesviacionesSignificativas" isMarkerVisible="true">
+        <dc:Bounds x="510" y="68" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="505" y="20" width="69" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IdentificarDesviaciones_di" bpmnElement="Task_IdentificarDesviaciones">
+        <dc:Bounds x="655" y="60" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ElaborarReporteKPIs_di" bpmnElement="Task_ElaborarReporteKPIs">
+        <dc:Bounds x="915" y="140" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RecibirReporteKPIs_di" bpmnElement="Task_RecibirReporteKPIs">
+        <dc:Bounds x="1055" y="275" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RegistrarResultadosBSC_di" bpmnElement="Task_RegistrarResultadosBSC">
+        <dc:Bounds x="1180" y="120" width="95" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="166" y="103" />
+        <di:waypoint x="220" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="315" y="93" />
+        <di:waypoint x="365" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="460" y="93" />
+        <di:waypoint x="510" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="560" y="93" />
+        <di:waypoint x="655" y="93" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="600" y="70" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="535" y="118" />
+        <di:waypoint x="535" y="172" />
+        <di:waypoint x="915" y="172" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="540" y="130" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="750" y="93" />
+        <di:waypoint x="960" y="93" />
+        <di:waypoint x="960" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="1010" y="172" />
+        <di:waypoint x="1030" y="172" />
+        <di:waypoint x="1030" y="307" />
+        <di:waypoint x="1055" y="307" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="1150" y="307" />
+        <di:waypoint x="1165" y="307" />
+        <di:waypoint x="1165" y="152" />
+        <di:waypoint x="1180" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="1275" y="152" />
+        <di:waypoint x="1340" y="155" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

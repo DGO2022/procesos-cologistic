@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  id="Definitions_1_2_2_3"
+  targetNamespace="http://bpmn.io/schema/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+
+  <bpmn:collaboration id="Collaboration_1_2_2_3">
+    <bpmn:participant
+      id="Participant_1_2_2_3"
+      name="1.2.2.3 Definición de la propuesta de valor"
+      processRef="Process_1_2_2_3" />
+  </bpmn:collaboration>
+
+  <bpmn:process id="Process_1_2_2_3" isExecutable="false">
+
+    <bpmn:laneSet id="LaneSet_1_2_2_3">
+
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IdentificarAtributos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DisenarPropuesta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DocumentarPropuesta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Documentada</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+      <bpmn:lane id="Lane_AdministrativaContabilidad" name="Administrativa y contabilidad">
+        <bpmn:flowNodeRef>Task_DefinirPoliticaPrecios</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+      <bpmn:lane id="Lane_Gerente" name="Gerente">
+        <bpmn:flowNodeRef>Task_RevisarPropuesta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_PropuestaAprobada</bpmn:flowNodeRef>
+      </bpmn:lane>
+
+    </bpmn:laneSet>
+
+    <!-- EVENTOS -->
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio de propuesta de valor">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <bpmn:endEvent id="EndEvent_Documentada" name="Propuesta de valor documentada">
+      <bpmn:incoming>Flow_09</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ACTIVIDADES -->
+    <bpmn:task id="Task_IdentificarAtributos" name="Identificar atributos diferenciadores">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_DisenarPropuesta" name="Diseñar propuesta de valor">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_DefinirPoliticaPrecios" name="Definir política de precios y gestión del riesgo">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:task id="Task_RevisarPropuesta" name="Revisar propuesta de valor">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+
+    <bpmn:exclusiveGateway id="Gateway_PropuestaAprobada" name="¿Propuesta de valor aprobada?">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:task id="Task_DocumentarPropuesta" name="Documentar propuesta de valor">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_09</bpmn:outgoing>
+    </bpmn:task>
+
+    <!-- FLUJOS -->
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_IdentificarAtributos" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_IdentificarAtributos" targetRef="Task_DisenarPropuesta" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_DisenarPropuesta" targetRef="Task_DefinirPoliticaPrecios" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_DefinirPoliticaPrecios" targetRef="Task_RevisarPropuesta" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_RevisarPropuesta" targetRef="Gateway_PropuestaAprobada" />
+    <bpmn:sequenceFlow id="Flow_06" name="No" sourceRef="Gateway_PropuestaAprobada" targetRef="Task_DisenarPropuesta" />
+    <bpmn:sequenceFlow id="Flow_08" name="Sí" sourceRef="Gateway_PropuestaAprobada" targetRef="Task_DocumentarPropuesta" />
+    <bpmn:sequenceFlow id="Flow_09" sourceRef="Task_DocumentarPropuesta" targetRef="EndEvent_Documentada" />
+
+  </bpmn:process>
+
+  <!-- DIAGRAMA VISUAL -->
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1_2_2_3">
+    <bpmndi:BPMNPlane id="BPMNPlane_1_2_2_3" bpmnElement="Collaboration_1_2_2_3">
+
+      <!-- POOL -->
+      <bpmndi:BPMNShape id="Participant_1_2_2_3_di" bpmnElement="Participant_1_2_2_3" isHorizontal="true">
+        <dc:Bounds x="60" y="40" width="1280" height="880" />
+      </bpmndi:BPMNShape>
+
+      <!-- CARRILES -->
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="90" y="40" width="1250" height="330" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Lane_AdministrativaContabilidad_di" bpmnElement="Lane_AdministrativaContabilidad" isHorizontal="true">
+        <dc:Bounds x="90" y="370" width="1250" height="290" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Lane_Gerente_di" bpmnElement="Lane_Gerente" isHorizontal="true">
+        <dc:Bounds x="90" y="660" width="1250" height="260" />
+      </bpmndi:BPMNShape>
+
+      <!-- NODOS SUBGERENCIA -->
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="190" y="180" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="145" y="125" width="130" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_IdentificarAtributos_di" bpmnElement="Task_IdentificarAtributos">
+        <dc:Bounds x="340" y="155" width="135" height="85" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_DisenarPropuesta_di" bpmnElement="Task_DisenarPropuesta">
+        <dc:Bounds x="550" y="155" width="135" height="85" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_DocumentarPropuesta_di" bpmnElement="Task_DocumentarPropuesta">
+        <dc:Bounds x="930" y="155" width="135" height="85" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="EndEvent_Documentada_di" bpmnElement="EndEvent_Documentada">
+        <dc:Bounds x="1170" y="180" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1125" y="225" width="135" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+
+      <!-- NODO ADMINISTRATIVA -->
+      <bpmndi:BPMNShape id="Task_DefinirPoliticaPrecios_di" bpmnElement="Task_DefinirPoliticaPrecios">
+        <dc:Bounds x="150" y="465" width="135" height="90" />
+      </bpmndi:BPMNShape>
+
+      <!-- NODOS GERENTE -->
+      <bpmndi:BPMNShape id="Task_RevisarPropuesta_di" bpmnElement="Task_RevisarPropuesta">
+        <dc:Bounds x="150" y="760" width="135" height="85" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Gateway_PropuestaAprobada_di" bpmnElement="Gateway_PropuestaAprobada" isMarkerVisible="true">
+        <dc:Bounds x="350" y="775" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="310" y="830" width="140" height="35" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+
+      <!-- CONECTORES VISUALES -->
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="226" y="198" />
+        <di:waypoint x="340" y="198" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="475" y="198" />
+        <di:waypoint x="550" y="198" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="618" y="240" />
+        <di:waypoint x="618" y="355" />
+        <di:waypoint x="218" y="355" />
+        <di:waypoint x="218" y="465" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="218" y="555" />
+        <di:waypoint x="218" y="760" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="285" y="803" />
+        <di:waypoint x="350" y="800" />
+      </bpmndi:BPMNEdge>
+
+      <!-- NO: retorna a diseñar propuesta de valor -->
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="375" y="775" />
+        <di:waypoint x="375" y="450" />
+        <di:waypoint x="770" y="450" />
+        <di:waypoint x="770" y="198" />
+        <di:waypoint x="685" y="198" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="400" y="725" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+
+      <!-- SÍ: va a documentar propuesta de valor -->
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="400" y="800" />
+        <di:waypoint x="995" y="800" />
+        <di:waypoint x="995" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="470" y="805" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_09_di" bpmnElement="Flow_09">
+        <di:waypoint x="1065" y="198" />
+        <di:waypoint x="1170" y="198" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</bpmn:definitions>

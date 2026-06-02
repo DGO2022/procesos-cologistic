@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_DiagnosticoInternoCapacidades" targetNamespace="http://bpmn.io/schema/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_DiagnosticoInternoCapacidades">
+    <bpmn:participant id="Participant_DiagnosticoInternoCapacidades" name="1.2.1.3 Diagnóstico interno de capacidades" processRef="Process_DiagnosticoInternoCapacidades" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_DiagnosticoInternoCapacidades" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_DiagnosticoInternoCapacidades">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RevisarEstructura</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AnalizarDesempeno</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ConsolidarDiagnostico</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_JefeAlmacen" name="Jefe de almacen">
+        <bpmn:flowNodeRef>Task_LevantarInfraestructura</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EvaluarMadurezTecnologica</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GerenciaGeneral" name="Gerencia general">
+        <bpmn:flowNodeRef>Task_RevisarDiagnostico</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_DiagnosticoCompleto</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ComplementarInformacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AprobarDiagnostico</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_DiagnosticoAprobado</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio del diagnóstico interno">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_LevantarInfraestructura" name="Levantar información de infraestructura">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EvaluarMadurezTecnologica" name="Evaluar madurez tecnológica">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RevisarEstructura" name="Revisar estructura organizacional">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AnalizarDesempeno" name="Analizar desempeño de servicios">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ConsolidarDiagnostico" name="Consolidar diagnóstico interno">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RevisarDiagnostico" name="Revisar diagnóstico interno">
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_DiagnosticoCompleto" name="¿Diagnóstico completo?">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+      <bpmn:outgoing>Flow_08</bpmn:outgoing>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_ComplementarInformacion" name="Complementar información faltante">
+      <bpmn:incoming>Flow_08</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_AprobarDiagnostico" name="Aprobar diagnóstico interno">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_LevantarInfraestructura" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_LevantarInfraestructura" targetRef="Task_EvaluarMadurezTecnologica" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_EvaluarMadurezTecnologica" targetRef="Task_RevisarEstructura" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_RevisarEstructura" targetRef="Task_AnalizarDesempeno" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_AnalizarDesempeno" targetRef="Task_ConsolidarDiagnostico" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_ConsolidarDiagnostico" targetRef="Task_RevisarDiagnostico" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_RevisarDiagnostico" targetRef="Gateway_DiagnosticoCompleto" />
+    <bpmn:sequenceFlow id="Flow_08" name="No" sourceRef="Gateway_DiagnosticoCompleto" targetRef="Task_ComplementarInformacion" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_ComplementarInformacion" targetRef="Task_ConsolidarDiagnostico" />
+    <bpmn:sequenceFlow id="Flow_11" name="Sí" sourceRef="Gateway_DiagnosticoCompleto" targetRef="Task_AprobarDiagnostico" />
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="Task_AprobarDiagnostico" targetRef="EndEvent_DiagnosticoAprobado" />
+    <bpmn:endEvent id="EndEvent_DiagnosticoAprobado" name="Diagnóstico interno aprobado">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_DiagnosticoInternoCapacidades">
+    <bpmndi:BPMNPlane id="BPMNPlane_DiagnosticoInternoCapacidades" bpmnElement="Collaboration_DiagnosticoInternoCapacidades">
+      <bpmndi:BPMNShape id="Participant_DiagnosticoInternoCapacidades_di" bpmnElement="Participant_DiagnosticoInternoCapacidades" isHorizontal="true">
+        <dc:Bounds x="100" y="50" width="1150" height="850" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GerenciaGeneral_di" bpmnElement="Lane_GerenciaGeneral" isHorizontal="true">
+        <dc:Bounds x="130" y="630" width="1120" height="270" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_JefeAlmacen_di" bpmnElement="Lane_JefeAlmacen" isHorizontal="true">
+        <dc:Bounds x="130" y="350" width="1120" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="130" y="50" width="1120" height="300" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="250" y="120" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="70" width="120" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_LevantarInfraestructura_di" bpmnElement="Task_LevantarInfraestructura">
+        <dc:Bounds x="200" y="400" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EvaluarMadurezTecnologica_di" bpmnElement="Task_EvaluarMadurezTecnologica">
+        <dc:Bounds x="430" y="400" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarEstructura_di" bpmnElement="Task_RevisarEstructura">
+        <dc:Bounds x="430" y="170" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AnalizarDesempeno_di" bpmnElement="Task_AnalizarDesempeno">
+        <dc:Bounds x="660" y="170" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConsolidarDiagnostico_di" bpmnElement="Task_ConsolidarDiagnostico">
+        <dc:Bounds x="890" y="170" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarDiagnostico_di" bpmnElement="Task_RevisarDiagnostico">
+        <dc:Bounds x="200" y="730" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_DiagnosticoCompleto_di" bpmnElement="Gateway_DiagnosticoCompleto" isMarkerVisible="true">
+        <dc:Bounds x="440" y="745" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="395" y="800" width="150" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ComplementarInformacion_di" bpmnElement="Task_ComplementarInformacion">
+        <dc:Bounds x="540" y="650" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AprobarDiagnostico_di" bpmnElement="Task_AprobarDiagnostico">
+        <dc:Bounds x="780" y="730" width="150" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_DiagnosticoAprobado_di" bpmnElement="EndEvent_DiagnosticoAprobado">
+        <dc:Bounds x="1030" y="757" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1008" y="802" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="268" y="156" />
+        <di:waypoint x="268" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="350" y="442" />
+        <di:waypoint x="430" y="442" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="505" y="400" />
+        <di:waypoint x="505" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="580" y="212" />
+        <di:waypoint x="660" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="810" y="212" />
+        <di:waypoint x="890" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="965" y="255" />
+        <di:waypoint x="965" y="570" />
+        <di:waypoint x="275" y="570" />
+        <di:waypoint x="275" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="350" y="772" />
+        <di:waypoint x="440" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_di" bpmnElement="Flow_08">
+        <di:waypoint x="465" y="745" />
+        <di:waypoint x="465" y="692" />
+        <di:waypoint x="540" y="692" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="470" y="710" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="690" y="692" />
+        <di:waypoint x="1100" y="692" />
+        <di:waypoint x="1100" y="212" />
+        <di:waypoint x="1040" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="490" y="770" />
+        <di:waypoint x="780" y="772" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="610" y="748" width="20" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13_di" bpmnElement="Flow_13">
+        <di:waypoint x="930" y="774" />
+        <di:waypoint x="1030" y="774" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

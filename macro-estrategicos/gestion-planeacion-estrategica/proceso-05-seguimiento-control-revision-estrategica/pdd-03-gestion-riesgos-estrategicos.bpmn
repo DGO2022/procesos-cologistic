@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1_2_5_3" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1_2_5_3">
+    <bpmn:participant id="Participant_1_2_5_3" name="1.2.5.3 Gestión de riesgos estratégicos" processRef="Process_1_2_5_3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1_2_5_3" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1_2_5_3">
+      <bpmn:lane id="Lane_Subgerencia" name="Subgerencia">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_RegistroActualizado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IdentificarRiesgos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EvaluarProbabilidadImpacto</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_RiesgoAltaCriticidad</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ActualizarRegistro</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Gerente" name="Gerente">
+        <bpmn:flowNodeRef>Task_FormularPlanContingencia</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio gestión de riesgos">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_RegistroActualizado" name="Registro de riesgos actualizado">
+      <bpmn:incoming>Flow_07</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_IdentificarRiesgos" name="Identificar riesgos estratégicos activos">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EvaluarProbabilidadImpacto" name="Evaluar probabilidad e impacto">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_RiesgoAltaCriticidad" name="¿Riesgo de alta criticidad?">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_04</bpmn:outgoing>
+      <bpmn:outgoing>Flow_05</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_FormularPlanContingencia" name="Formular el plan de contingencia">
+      <bpmn:incoming>Flow_05</bpmn:incoming>
+      <bpmn:outgoing>Flow_06</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ActualizarRegistro" name="Actualizar registro de riesgos estratégicos">
+      <bpmn:incoming>Flow_04</bpmn:incoming>
+      <bpmn:incoming>Flow_06</bpmn:incoming>
+      <bpmn:outgoing>Flow_07</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_IdentificarRiesgos" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_IdentificarRiesgos" targetRef="Task_EvaluarProbabilidadImpacto" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_EvaluarProbabilidadImpacto" targetRef="Gateway_RiesgoAltaCriticidad" />
+    <bpmn:sequenceFlow id="Flow_04" name="No" sourceRef="Gateway_RiesgoAltaCriticidad" targetRef="Task_ActualizarRegistro" />
+    <bpmn:sequenceFlow id="Flow_05" name="Sí" sourceRef="Gateway_RiesgoAltaCriticidad" targetRef="Task_FormularPlanContingencia" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_FormularPlanContingencia" targetRef="Task_ActualizarRegistro" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_ActualizarRegistro" targetRef="EndEvent_RegistroActualizado" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1_2_5_3">
+    <bpmndi:BPMNPlane id="BPMNPlane_1_2_5_3" bpmnElement="Collaboration_1_2_5_3">
+      <bpmndi:BPMNShape id="Participant_1_2_5_3_di" bpmnElement="Participant_1_2_5_3" isHorizontal="true">
+        <dc:Bounds x="40" y="-10" width="1100" height="450" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Gerente_di" bpmnElement="Lane_Gerente" isHorizontal="true">
+        <dc:Bounds x="70" y="240" width="1070" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Subgerencia_di" bpmnElement="Lane_Subgerencia" isHorizontal="true">
+        <dc:Bounds x="70" y="-10" width="1070" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="125" y="80" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_RegistroActualizado_di" bpmnElement="EndEvent_RegistroActualizado">
+        <dc:Bounds x="1015" y="88" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IdentificarRiesgos_di" bpmnElement="Task_IdentificarRiesgos">
+        <dc:Bounds x="215" y="55" width="110" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EvaluarProbabilidadImpacto_di" bpmnElement="Task_EvaluarProbabilidadImpacto">
+        <dc:Bounds x="370" y="55" width="110" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_RiesgoAltaCriticidad_di" bpmnElement="Gateway_RiesgoAltaCriticidad" isMarkerVisible="true">
+        <dc:Bounds x="525" y="65" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="571" y="106" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_FormularPlanContingencia_di" bpmnElement="Task_FormularPlanContingencia">
+        <dc:Bounds x="470" y="310" width="120" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ActualizarRegistro_di" bpmnElement="Task_ActualizarRegistro">
+        <dc:Bounds x="835" y="70" width="120" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="161" y="98" />
+        <di:waypoint x="215" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="325" y="90" />
+        <di:waypoint x="370" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="480" y="90" />
+        <di:waypoint x="525" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="550" y="65" />
+        <di:waypoint x="550" y="40" />
+        <di:waypoint x="895" y="40" />
+        <di:waypoint x="895" y="70" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="700" y="18" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="550" y="115" />
+        <di:waypoint x="550" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="560" y="210" width="25" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="590" y="348" />
+        <di:waypoint x="700" y="348" />
+        <di:waypoint x="700" y="108" />
+        <di:waypoint x="835" y="108" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="955" y="108" />
+        <di:waypoint x="1015" y="106" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
