@@ -13,13 +13,13 @@
   "latex-workshop.latex.clean.enabled": false,
   "latex-workshop.latex.auxDir": "%DIR%/tmp",
   "files.exclude": {
-    "**/*.synctex.gz": true,
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/CVS": true,
-    "**/.ruby-lsp": true
+    "**/.ruby-lsp": true,
+    "**/*.synctex.gz": true
   }
 }
