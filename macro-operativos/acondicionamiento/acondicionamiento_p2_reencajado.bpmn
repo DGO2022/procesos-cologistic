@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
-                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
-                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
-                  id="Definitions_1"
-                  targetNamespace="http://bpmn.io/schema/bpmn"
-                  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0"
-                  exporter="Camunda Modeler"
-                  exporterVersion="5.22.0"
-                  modeler:executionPlatform="Camunda Cloud"
-                  modeler:executionPlatformVersion="8.9.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0">
   <bpmn:collaboration id="Collaboration_1">
     <bpmn:participant id="Participant_1" name="Procedimiento Reencajado" processRef="Process_Acondicionamiento_Reencajado" />
   </bpmn:collaboration>
@@ -24,7 +14,6 @@ Elementos BPMN representados:
   - Evento de fin (End Event)
   - Pools/Lanes: Cliente, Auxiliar de almacén
 Nota: procedimiento análogo al Repaletizado, conforme a la descripción del Analista de inventarios ("son similares"). Enteramente físico, sin soporte en el sistema; el reporte final se hace manual y alimenta a Facturación.</bpmn:documentation>
-
     <bpmn:laneSet id="LaneSet_1">
       <bpmn:lane id="Lane_Cliente" name="Cliente">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -37,26 +26,21 @@ Nota: procedimiento análogo al Repaletizado, conforme a la descripción del Ana
         <bpmn:flowNodeRef>EndEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-
     <bpmn:startEvent id="StartEvent_1" name="Inicio: solicitud de reencajado">
       <bpmn:outgoing>Flow_1</bpmn:outgoing>
     </bpmn:startEvent>
-
     <bpmn:task id="Task_1" name="Solicitar reencajado por código">
       <bpmn:incoming>Flow_1</bpmn:incoming>
       <bpmn:outgoing>Flow_2</bpmn:outgoing>
     </bpmn:task>
-
     <bpmn:task id="Task_2" name="Indicar caja destino">
       <bpmn:incoming>Flow_2</bpmn:incoming>
       <bpmn:outgoing>Flow_3</bpmn:outgoing>
     </bpmn:task>
-
     <bpmn:task id="Task_3" name="Trasladar mercadería a la nueva caja">
       <bpmn:incoming>Flow_3</bpmn:incoming>
       <bpmn:outgoing>Flow_4</bpmn:outgoing>
     </bpmn:task>
-
     <bpmn:task id="Task_4" name="Elaborar reporte manual: código, descripción, cantidad y tarifa">
       <bpmn:incoming>Flow_4</bpmn:incoming>
       <bpmn:outgoing>Flow_5</bpmn:outgoing>
@@ -64,74 +48,58 @@ Nota: procedimiento análogo al Repaletizado, conforme a la descripción del Ana
         <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-
     <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte manual de reencajado (sin soporte en el sistema)" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
-
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_5</bpmn:incoming>
     </bpmn:endEvent>
-
     <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1" />
     <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="Task_2" />
     <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_2" targetRef="Task_3" />
     <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_3" targetRef="Task_4" />
     <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_4" targetRef="EndEvent_1" />
-
   </bpmn:process>
-
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
       <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="Participant_1" isHorizontal="true">
-        <dc:Bounds x="130" y="80" width="1030" height="400" />
-      </bpmndi:BPMNShape>
-      <!-- Layout for Lane -->
-      <bpmndi:BPMNShape id="Lane_Cliente_di" bpmnElement="Lane_Cliente" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="1000" height="200" />
+        <dc:Bounds x="130" y="80" width="890" height="400" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_Auxiliar_Almacen_di" bpmnElement="Lane_Auxiliar_Almacen" isHorizontal="true">
-        <dc:Bounds x="160" y="280" width="1000" height="200" />
+        <dc:Bounds x="160" y="280" width="860" height="200" />
       </bpmndi:BPMNShape>
-      
-      <!-- Nodes layout -->
+      <bpmndi:BPMNShape id="Lane_Cliente_di" bpmnElement="Lane_Cliente" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="860" height="200" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="212" y="152" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="189" y="195" width="83" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="Task_1_di" bpmnElement="Task_1">
         <dc:Bounds x="320" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="Task_2_di" bpmnElement="Task_2">
         <dc:Bounds x="480" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="Task_3_di" bpmnElement="Task_3">
         <dc:Bounds x="640" y="340" width="100" height="80" />
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="Task_4_di" bpmnElement="Task_4">
         <dc:Bounds x="800" y="340" width="100" height="80" />
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="DataObjectReference_1_di" bpmnElement="DataObjectReference_1">
         <dc:Bounds x="832" y="130" width="36" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="816" y="187" width="69" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-
       <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1">
         <dc:Bounds x="962" y="362" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="972" y="405" width="16" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-
-      <!-- Edges Layout -->
       <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
         <di:waypoint x="248" y="170" />
         <di:waypoint x="320" y="170" />

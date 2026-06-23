@@ -106,26 +106,6 @@ El presente manual cubre los macroprocesos operativos (misionales) de \textbf{Ge
 
 \section{Diagrama General de Procesos}
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./images/mapa_procesos_nivel_0_cologistic.png}
-  \caption{Mapa de Procesos Nivel 0 — Cadena de valor de Co Logistic SAC (procesos estratégicos, misionales y de apoyo)}
-\end{figure}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./images/mapa_procesos_nivel_1_gestion_almacen.png}
-  \caption{Mapa de Procesos Nivel 1 — Macroproceso Gestión de almacén}
-\end{figure}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./images/mapa_procesos_nivel_1_arrendamiento.png}
-  \caption{Mapa de Procesos Nivel 1 — Macroproceso Arrendamiento de espacios}
-\end{figure}
-
-\vspace{1.5em}
-
 % --- Tabla SIPOC General: Procesos Misionales / Operativos ---
 \subsection*{SIPOC General — Procesos Misionales / Operativos}
 \begin{center}
@@ -148,6 +128,16 @@ El presente manual cubre los macroprocesos operativos (misionales) de \textbf{Ge
   \end{tabularx}
 \end{center}
 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel0.png}
+  \caption{Mapa de Procesos Nivel 0 — Cadena de valor de Co Logistic SAC (procesos estratégicos, misionales y de apoyo)}
+\end{figure}
+
+
+
+
 \vspace{2em}
 
 % --- Tabla SIPOC General: Procesos de Apoyo ---
@@ -167,6 +157,31 @@ El presente manual cubre los macroprocesos operativos (misionales) de \textbf{Ge
 \end{center}
 
 \vspace{2em}
+
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel1.png}
+  \caption{Mapa de Procesos Nivel 1 — Macroproceso Gestión de almacén}
+\end{figure}
+
+
+
+
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel1.png}
+  \caption{Mapa de Procesos Nivel 1 — Macroproceso Arrendamiento de espacios}
+\end{figure}
+
+\vspace{1.5em}
+
+
+
+
 
 \noindent\textit{Nota: los procesos estratégicos (Gestión de Planeación Estratégica, Gestión de Expansión Estratégica, Gestión Financiera) se excluyen del presente manual, al ser desarrollados por otro equipo de trabajo dentro del proyecto integrador.}
 
@@ -246,11 +261,13 @@ El procedimiento inicia cuando el cliente envía la guía de remisión (correo e
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_recepcion_p1_registro_pedido_ingreso.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Registro de pedido de ingreso.png}
   \caption{Diagrama de Actividades con BPMN - Registro de pedido de ingreso}
 \end{figure}
 
 \newpage
+
+
 
 % ------------------------------------------
 \section{Verificación y conformidad (Recepción)}
@@ -290,11 +307,13 @@ El procedimiento inicia cuando el Auxiliar de almacén recibe el pedido de ingre
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_recepcion_p2_verificacion_conformidad.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Recepción de mercadería.png}
   \caption{Diagrama de Actividades con BPMN - Verificación y conformidad (Recepción)}
 \end{figure}
 
 \newpage
+
+
 
 % ------------------------------------------
 \section{Registro de pedido de salida}
@@ -341,7 +360,7 @@ El procedimiento es estructuralmente similar al de Registro de pedido de ingreso
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_despacho_p1_registro_pedido_salida.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Despacho de mercadería.png}
   \caption{Diagrama de Actividades con BPMN - Registro de pedido de salida}
 \end{figure}
 
@@ -385,11 +404,14 @@ Procedimiento idéntico en estructura a la Verificación y conformidad de Recepc
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_despacho_p2_verificacion_conformidad.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Verificación y conformidad.png}
   \caption{Diagrama de Actividades con BPMN - Verificación y conformidad (Despacho)}
 \end{figure}
 
 \newpage
+
+
+
 
 % ------------------------------------------
 \section{Transferencia de ubicación}
@@ -428,7 +450,7 @@ Procedimiento de sistema que permite mover un código de una ubicación origen a
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_almacenamiento_p1_transferencia_ubicacion.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Transferencia ubicación.png}
   \caption{Diagrama de Actividades con BPMN - Transferencia de ubicación}
 \end{figure}
 
@@ -472,7 +494,7 @@ Procedimiento aplicado cuando la composición física de una paleta no coincide 
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_almacenamiento_p2_reempaque.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Reempaque.png}
   \caption{Diagrama de Actividades con BPMN - Reempaque}
 \end{figure}
 
@@ -502,7 +524,7 @@ Servicio opcional solicitado comercialmente por el cliente, mediante el cual la 
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
   \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  Cliente & Solicitud de repaletizado por código & 1. Solicitar repaletizado & Solicitud registrada & Auxiliar de almacén \\
+  Cliente & Solicitud de repaletizado por código & 1. Solicitar repaletizado por codigo & Solicitud registrada & Auxiliar de almacén \\
   \midrule
   Cliente & Solicitud registrada & 2. Proveer paleta destino (estándar de exportación, fumigada o certificada, si aplica) & Solicitud registrada; paleta destino disponible & Auxiliar de almacén \\
   \midrule
@@ -516,7 +538,7 @@ Servicio opcional solicitado comercialmente por el cliente, mediante el cual la 
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_acondicionamiento_p1_repaletizado.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Repaletizado.png}
   \caption{Diagrama de Actividades con BPMN - Repaletizado}
 \end{figure}
 
@@ -546,7 +568,7 @@ Servicio opcional solicitado comercialmente por el cliente, similar en su estruc
   \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
   \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
   \midrule
-  Cliente & Solicitud de reencajado por código & 1. Solicitar reencajado & Solicitud registrada & Auxiliar de almacén \\
+  Cliente & Solicitud de reencajado por código & 1. Solicitar reencajado por codigo & Solicitud registrada & Auxiliar de almacén \\
   \midrule
   Cliente & Solicitud registrada & 2. Indicar caja destino & Solicitud registrada; caja destino disponible & Auxiliar de almacén \\
   \midrule
@@ -560,7 +582,7 @@ Servicio opcional solicitado comercialmente por el cliente, similar en su estruc
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_acondicionamiento_p2_reencajado.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Reencajado.png}
   \caption{Diagrama de Actividades con BPMN - Reencajado}
 \end{figure}
 
@@ -606,7 +628,7 @@ Proceso de apoyo, desacoplado del flujo operativo de despacho, ejecutado al cier
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{./images/bpmn_facturacion_liquidacion_mensual.png}
+  \includegraphics[width=0.9\textwidth]{./imagenes/Facturación.png}
   \caption{Diagrama de Actividades con BPMN - Liquidación mensual in-out y servicios}
 \end{figure}
 
