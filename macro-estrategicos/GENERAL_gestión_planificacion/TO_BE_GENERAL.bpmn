@@ -9,14 +9,14 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_JefaturaTI" name="Jefatura de TI, PMO y Área de Gobierno TI">
+      <bpmn:lane id="Lane_JefaturaTI" name="Jefatura de TI y Área de Gobierno TI">
         <bpmn:flowNodeRef>Activity_T1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_T2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_T3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_T4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_T5</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_JefaturasOperativas" name="Subgerencia y Jefaturas Operativas - Almacén, Despacho, Recepción" />
+      <bpmn:lane id="Lane_JefaturasOperativas" name="Subgerencia y Jefaturas Operativas - Almacén" />
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Inicio">
       <bpmn:outgoing>Flow_Start_T1</bpmn:outgoing>
@@ -121,16 +121,16 @@
         <dc:Bounds x="120" y="80" width="1080" height="530" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_ComiteGerencial_di" bpmnElement="Lane_ComiteGerencial" isHorizontal="true">
-        <dc:Bounds x="150" y="80" width="1050" height="150" />
+      <bpmndi:BPMNShape id="Lane_JefaturasOperativas_di" bpmnElement="Lane_JefaturasOperativas" isHorizontal="true">
+        <dc:Bounds x="150" y="460" width="1050" height="150" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_JefaturaTI_di" bpmnElement="Lane_JefaturaTI" isHorizontal="true">
         <dc:Bounds x="150" y="230" width="1050" height="230" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_JefaturasOperativas_di" bpmnElement="Lane_JefaturasOperativas" isHorizontal="true">
-        <dc:Bounds x="150" y="460" width="1050" height="150" />
+      <bpmndi:BPMNShape id="Lane_ComiteGerencial_di" bpmnElement="Lane_ComiteGerencial" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="1050" height="150" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
