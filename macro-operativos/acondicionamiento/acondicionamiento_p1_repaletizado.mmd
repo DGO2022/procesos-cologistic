@@ -1,0 +1,52 @@
+%% Co Logistic SAC — Proceso: Acondicionamiento de mercadería (opcional)
+%% Procedimiento 1: Repaletizado
+%% Fuente: 4-Repaletizado-Reencajado.txt
+%% Elementos BPMN representados:
+%%   - Evento de inicio (Start Event)
+%%   - Tareas (Task)
+%%   - Artefacto de datos / Data Object (reporte manual de repaletizado)
+%%   - Evento de fin (End Event)
+%%   - Pools/Lanes: Cliente, Auxiliar de almacén
+%% Nota: procedimiento enteramente físico, sin paso de sistema (la propia
+%%       fuente dice "esos procesos son físicos, no son de sistema"); el
+%%       reporte final se hace manual y alimenta a Facturación, no al
+%%       reporte de movimientos de Almacenamiento.
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_CLIENTE["Lane: Cliente"]
+        direction LR
+        Inicio(("Inicio: solicitud
+        de repaletizado")):::startEnd
+        T1["Solicitar repaletizado
+        por código"]:::task
+        T2["Proveer paleta estándar
+        de exportación, fumigada
+        o certificada (si aplica)"]:::variant
+    end
+
+    subgraph LANE_AUX["Lane: Auxiliar de almacén"]
+        direction LR
+        T3["Trasladar mercadería
+        caja por caja
+        a la nueva paleta"]:::task
+        T4["Elaborar reporte manual:
+        código, descripción, cantidad,
+        paletas y tarifa"]:::task
+        Fin(("Fin")):::startEnd
+    end
+
+    Doc1[/"Reporte manual de repaletizado
+    (sin soporte en el sistema)"/]:::artifact
+
+    Inicio --> T1
+    T1 --> T2
+    T2 --> T3
+    T3 --> T4
+    T4 -.- Doc1
+    T4 --> Fin

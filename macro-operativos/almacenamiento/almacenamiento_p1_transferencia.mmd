@@ -1,0 +1,53 @@
+%% Co Logistic SAC — Proceso: Almacenamiento
+%% Procedimiento 1: Transferencia de ubicación
+%% Fuente: 5-Flujos-otros.txt (fragmento "en las transferencias... código A
+%%         de la ubicación C a la D...")
+%% Elementos BPMN representados:
+%%   - Evento de inicio (Start Event)
+%%   - Tareas (Task)
+%%   - Compuerta exclusiva (Exclusive Gateway / XOR) todo vs. una fecha
+%%   - Artefacto de datos / Data Object (reporte de movimientos)
+%%   - Evento de fin (End Event)
+%%   - Lane: Analista de inventarios (procedimiento de sistema, sin
+%%     intervención física narrada en la fuente)
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_ANALISTA["Lane: Analista de inventarios"]
+        direction LR
+        Inicio(("Inicio: necesidad
+        de mover un código")):::startEnd
+        T1["Ingresar código a transferir"]:::task
+        T2["Consultar fechas de
+        vencimiento disponibles
+        del código"]:::task
+        G1{"¿Transferir todo
+        o una fecha?"}:::gateway
+        T3["Seleccionar todas
+        las fechas del código"]:::task
+        T4["Seleccionar una fecha
+        de vencimiento específica"]:::variant
+        T5["Indicar ubicación
+        origen y destino"]:::task
+        T6["Ejecutar transferencia"]:::task
+        Fin(("Fin")):::startEnd
+    end
+
+    Doc1[/"Reporte de movimientos
+    (artefacto de datos)"/]:::artifact
+
+    Inicio --> T1
+    T1 --> T2
+    T2 --> G1
+    G1 -->|"todo"| T3
+    G1 -->|"una fecha"| T4
+    T3 --> T5
+    T4 --> T5
+    T5 --> T6
+    T6 -.- Doc1
+    T6 --> Fin

@@ -1,0 +1,96 @@
+%% Co Logistic SAC — Proceso: Despacho de mercadería
+%% Procedimiento 1: Registro de pedido de salida (con lógica FEFO)
+%% Fuente: 2-Despacho.txt, 6-Merchandising.txt, 7-GuiaCliente-Despacho.txt,
+%%         11-Explicacion_de_reporte-detalle.txt
+%% Elementos BPMN representados:
+%%   - Evento de inicio (Start Event)
+%%   - Tareas (Task)
+%%   - Compuerta exclusiva (Exclusive Gateway / XOR) de unidad comercial
+%%   - Artefactos de datos / Data Objects (guía de remisión, zona/stock por lote)
+%%   - Pools/Lanes: Cliente, Analista de inventarios
+%% Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega
+%%       la consulta de zona, stock y lote/FV (FEFO) propia del despacho.
+%% Nota de nomenclatura: la actividad del Auxiliar de almacén se nombra
+%%       "Realizar picking", término técnico estándar del sector logístico
+%%       para localizar y extraer mercadería de su ubicación. La transcripción
+%%       2-Despacho.txt describe esta actividad operativamente (zona, ubicación,
+%%       stock) sin usar la palabra; el término "picking" sí aparece explícito
+%%       en Explicacion-puestos-areas-empresa.txt al describir el rol del
+%%       Auxiliar de almacén ("hacen el picking").
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_CLIENTE["Lane: Cliente"]
+        direction LR
+        Inicio(("Inicio")):::startEnd
+        T1["Enviar guía de remisión
+        (correo, físico o WhatsApp)"]:::task
+    end
+
+    subgraph LANE_AUX["Lane: Auxiliar de almacén"]
+        direction LR
+        T2b["Realizar picking:
+        localizar y extraer mercadería
+        según zona, ubicación y stock"]:::task
+    end
+
+    subgraph LANE_ANALISTA["Lane: Analista de inventarios"]
+        direction LR
+        T2["Registrar pedido de salida:
+        código y cantidad por línea
+        (registro uno por uno)"]:::task
+        T3["Consultar zona y stock
+        del código recepcionado"]:::task
+        G2{"¿Varias fechas
+        de vencimiento?"}:::gateway
+        T4["Seleccionar lote y FV
+        según FEFO y pedido del cliente"]:::variant
+        G1{"¿Unidad comercial
+        del código?"}:::gateway
+        T5["Registrar pallet, factor
+        y suma de cajas
+        (cajas = pallets × factor)"]:::task
+        T6["Registrar merchandising
+        por unidad, sin pallet/factor
+        (opcional)"]:::variant
+        T7["Firmar pedido de salida
+        (analista, chofer, almacén)"]:::task
+        EndP1(("Fin Procedimiento 1
+        (continúa en P2: Verificación)")):::startEnd
+    end
+
+    Doc1[/"Guía de remisión
+    (artefacto de datos)"/]:::artifact
+    Doc2[/"Zona, stock y lote/FV
+    del código (artefacto de datos)"/]:::artifact
+    Nota1["Nota: el analista registra en sistema
+    cuando el auxiliar le devuelve
+    la constatación física"]:::artifact
+    Nota2["Nota: si la guía trae varias líneas,
+    cada código se registra
+    uno por uno"]:::artifact
+
+    Inicio --> T1
+    T1 --> T2b
+    T1 -.- Doc1
+    T2b --> T2
+    T2 -.- Nota1
+    T2 -.- Nota2
+    T2 -.- Doc1
+    T2 --> T3
+    T3 -.- Doc2
+    T3 --> G2
+    G2 -->|"sí"| T4
+    T4 -.- Doc2
+    G2 -->|"no"| G1
+    T4 --> G1
+    G1 -->|"caja"| T5
+    G1 -->|"unidad"| T6
+    T5 --> T7
+    T6 --> T7
+    T7 --> EndP1
