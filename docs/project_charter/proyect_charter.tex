@@ -1,0 +1,452 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+
+% Custom modern typography and page layout
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{soul}
+
+% Color palette definition
+\definecolor{DeepNavy}{HTML}{1A365D}
+\definecolor{SlateBlue}{HTML}{2B6CB0}
+\definecolor{Charcoal}{HTML}{2D3748}
+\definecolor{LightGray}{HTML}{F7FAFC}
+\definecolor{TableLine}{HTML}{CBD5E0}
+\definecolor{AccentGold}{HTML}{D69E2E}
+
+% Modern section styling
+\titleformat{\section}
+  {\color{DeepNavy}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}[{\color{DeepNavy}\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\color{SlateBlue}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{Charcoal}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Headers and Footers configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{Charcoal}\small\itshape Acta de Constitución del Proyecto --- Project Charter}
+\fancyhead[R]{\color{Charcoal}\small CoLogistic S.A.C.}
+\fancyfoot[C]{\color{Charcoal}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Keep other pandoc package configurations for compatibility
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{multirow}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+% Portada Corporativa Premium
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  
+  \vspace*{0.5cm}
+  {\scshape\Large\bfseries UNIVERSIDAD PERUANA UNIÓN \par}
+  {\scshape\large Facultad de Ingeniería y Arquitectura \par}
+  {\scshape\normalsize Escuela Profesional de Ingeniería de Sistemas \par}
+  
+  \vspace{0.8cm}
+  \includegraphics[width=2.2in,height=1.85in,keepaspectratio]{media/image1.png}
+  \vspace{0.8cm}
+  
+  {\color{DeepNavy}\hrule height 2pt}
+  \vspace{0.4cm}
+  {\Huge\bfseries ACTA DE CONSTITUCIÓN DEL PROYECTO \par}
+  \vspace{0.2cm}
+  {\Large\bfseries (PROJECT CHARTER) \par}
+  \vspace{0.4cm}
+  {\color{AccentGold}\hrule height 1pt}
+  \vspace{0.4cm}
+  {\large\bfseries ``Sistema de Gestión de Almacenes (WMS) basado en Microservicios con Machine Learning para el Pronóstico de Capacidad Estacional para la empresa CO LOGISTIC S.A.C.'' \par}
+  \vspace{0.4cm}
+  {\color{DeepNavy}\hrule height 2pt}
+  
+  \vspace{1.0cm}
+  
+  \begin{minipage}[t]{0.55\textwidth}
+    \begin{flushleft} \large
+      \textbf{Integrantes:}\\
+      \smallskip
+      \small
+      Jhack Ernesto Quispe Mamani\\
+      Abel Is-Boset Guevara Huasco\\
+      Javier Kevin Tello Rivas\\
+      Alvaro Kenji Cuti Magaño\\
+      Richard Joseft Yanqui Inocente\\
+      David Guerra Ordoñez\\
+      Sebastian Chinchay Collachagua\\
+      Joshua Alfonzo Javier\\
+      Daniel Calderon
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth}
+    \begin{flushright} \large
+      \textbf{Curso:}\\
+      \smallskip
+      \small Gobierno de TI \\
+      \vspace{0.4cm}
+      \textbf{Escuela:} \\
+      \small Ingeniería de Sistemas \\
+      \vspace{0.4cm}
+      \textbf{Ciclo:} \small 9no \\
+      \vspace{0.4cm}
+      \textbf{Versión:} \small 1.0
+    \end{flushright}
+  \end{minipage}
+  
+  \vfill
+  
+  {\large Lima --- Perú \par}
+  {\large 2026 \par}
+\end{titlepage}
+
+\newpage
+\pagenumbering{roman}
+\thispagestyle{plain}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Control de Versiones}
+
+Para mantener un seguimiento estructurado de la documentación del proyecto, se ha establecido la siguiente bitácora de control de versiones del Project Charter:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{0.12\linewidth}
+  >{\raggedright\arraybackslash}p{0.20\linewidth}
+  >{\raggedright\arraybackslash}p{0.20\linewidth}
+  >{\raggedright\arraybackslash}p{0.20\linewidth}
+  >{\centering\arraybackslash}p{0.12\linewidth}
+  >{\raggedright\arraybackslash}p{0.16\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Versión}} & \textcolor{white}{\textbf{Hecha por}} & \textcolor{white}{\textbf{Revisada por}} & \textcolor{white}{\textbf{Aprobada por}} & \textcolor{white}{\textbf{Fecha}} & \textcolor{white}{\textbf{Motivo}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+1.0 & Abel Guevara y David Guerra & Joshua Alfonzo & Jhack Quispe & 12.05.2026 & Obligatorio \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Fase de Inicio: Project Charter}
+
+El presente documento constituye el Acta de Constitución del Proyecto (Project Charter), sirviendo como marco formal para autorizar el desarrollo del Sistema de Gestión de Almacenes (WMS) para CO LOGISTIC S.A.C. y definir sus objetivos, alcance, recursos, roles y riesgos principales.
+
+\subsection{Datos Identificatorios del Proyecto}
+\begin{itemize}[label=\textbullet]
+  \item \textbf{Razón Social del Cliente:} CO LOGISTIC S.A.C. (Empresa de servicios logísticos, almacenamiento y distribución).
+  \item \textbf{Contacto del Cliente:} Gerencia de Operaciones y Logística.
+  \item \textbf{Razón Social del Consultor:} Equipo de Proyecto --- Escuela Profesional de Ingeniería de Sistemas, Universidad Peruana Unión (UPeU).
+  \item \textbf{Contacto del Consultor:} Comité de Desarrollo y Gobierno del Proyecto.
+\end{itemize}
+
+\subsection{Bases Legales y Normativas}
+Para garantizar los estándares técnicos, de seguridad y la confidencialidad en el tratamiento de la información, se consideran los siguientes marcos normativos y regulatorios:
+\begin{itemize}[label=\textbullet]
+  \item \textbf{Estándar IEEE 29148:} Adoptado como directriz formal para la Ingeniería de Requisitos y la correcta especificación de requerimientos de software (SRS).
+  \item \textbf{Norma ISO/IEC 27001:} Aplicada para garantizar políticas de seguridad de la información, control de accesos al sistema, privilegios de usuarios y cifrado de credenciales de los clientes.
+  \item \textbf{Código de Ética ACM:} Garantizando la estricta confidencialidad en el tratamiento de los datos logísticos de los clientes de CO LOGISTIC S.A.C. (tales como Bimbo u otros socios corporativos).
+\end{itemize}
+
+---
+
+\section{Objetivos del Project Charter}
+
+\subsection{Objetivo General}
+Implementar un Sistema de Gestión de Almacenes (WMS) bajo una arquitectura de microservicios e integración de Machine Learning para estandarizar los procesos de recepción, almacenamiento y despacho de mercadería, y proyectar de forma inteligente la capacidad operativa y ocupación estacional de la empresa CO LOGISTIC S.A.C. en un periodo estimado de 6 meses.
+
+\subsection{Objetivos Específicos}
+\begin{itemize}[label=\textbullet]
+  \item Desarrollar los módulos transaccionales del almacén (Ingreso, Ubicación y Salida) utilizando el framework \textbf{Spring Boot} para una alta disponibilidad.
+  \item Implementar un modelo de Machine Learning (mediante algoritmos de regresión o análisis de series de tiempo) para pronosticar la ocupación del almacén con base en registros históricos.
+  \item Reducir los errores de descuadre de inventario y mejorar la ubicabilidad de productos mediante validaciones automatizadas y control en tiempo real durante los despachos.
+\end{itemize}
+
+---
+
+\section{Objetivos del Proyecto Tecnológico}
+
+\subsection{Objetivo General del Proyecto}
+Diseñar e implementar un Sistema de Gestión de Almacenes (WMS) desde cero, bajo una arquitectura moderna de microservicios, integrado con un modelo predictivo de Machine Learning (forecasting) para optimizar la logística de inventario, ubicabilidad y despachos de CO LOGISTIC S.A.C.
+
+\subsection{Objetivos Específicos del Proyecto}
+\begin{itemize}[label=\textbullet]
+  \item Desarrollar el núcleo transaccional de logística de inventario (ingresos, ubicaciones, despachos) utilizando Spring Boot en Java.
+  \item Entrenar e integrar un modelo de regresión o clasificación en Python alimentado por los datos históricos transaccionales del WMS para pronosticar la capacidad estacional del almacén.
+  \item Justificar y aplicar el marco de trabajo Scrum para la planificación técnica, la priorización de historias de usuario y la gestión del Product Backlog en Sprints.
+  \item Evaluar el rendimiento, la precisión y seguridad de las consultas generadas y la base de datos de pruebas mediante auditorías SQL.
+\end{itemize}
+
+---
+
+\section{Justificación del Proyecto}
+
+La implementación de este proyecto es fundamental para modernizar el núcleo operativo de CO LOGISTIC S.A.C. Al desarrollar un Sistema de Gestión de Almacenes (WMS) a la medida, la empresa automatizará y estandarizará sus procesos transaccionales (ingresos, ubicaciones y despachos), eliminando errores manuales y generando una base de datos histórica confiable. Sobre esta data, la integración del modelo predictivo de Machine Learning (forecasting) permitirá proyectar la capacidad y ocupación estacional del almacén, brindando a la gerencia una herramienta estratégica para anticipar la disponibilidad de espacios y maximizar la rentabilidad del negocio.
+
+---
+
+\section{Descripción del Beneficiario del Proyecto}
+
+Los beneficiarios directos del proyecto incluyen a la gerencia y el personal operativo de CO LOGISTIC S.A.C., quienes contarán con una herramienta moderna y automatizada que reducirá la carga operativa, eliminará procesos manuales y agilizará la toma de decisiones. Asimismo, los clientes arrendadores de la empresa (como Bimbo) se beneficiarán indirectamente al recibir un servicio logístico de mayor precisión, rapidez, y trazabilidad de sus productos.
+
+---
+
+\section{Origen del Proyecto}
+
+El proyecto de WMS surge ante la necesidad operativa de digitalizar el control logístico, el cual actualmente se realiza de manera empírica o mediante herramientas limitadas como archivos Excel individuales. El problema central radica en que, sin un sistema transaccional robusto, la empresa carece de métricas exactas en tiempo real y de datos históricos estructurados. Esta falta de digitalización impide realizar pronósticos sobre la saturación del almacén en temporadas altas, lo que genera cuellos de botella en la operación logística y limita la capacidad de los gerentes para tomar decisiones estratégicas sobre el arrendamiento futuro de los espacios disponibles.
+
+---
+
+\section{Objetivos del Producto que Generará el Proyecto}
+
+\subsection{Objetivo General del Producto}
+Digitalizar y centralizar la gestión de inventario de CO LOGISTIC S.A.C. mediante un sistema transaccional robusto, y dotar a la gerencia de una herramienta predictiva (basada en Machine Learning) que permita anticipar la capacidad y ocupación estacional del almacén para una mejor toma de decisiones.
+
+---
+
+\section{Alcance del Proyecto}
+
+El proyecto abarcará el ciclo de vida completo del desarrollo de software (diseño, implementación y pruebas). Incluirá la construcción del backend bajo una arquitectura de microservicios (utilizando Spring Boot), el diseño e implementación de la base de datos operacional con permisos completos (CRUD/DML), el desarrollo del frontend web (dashboard y módulos operativos), y la creación de un microservicio en Python dedicado a ejecutar el modelo predictivo de Machine Learning.
+
+No incluirá el desarrollo de módulos ajenos a la logística de almacén (como facturación, contabilidad o recursos humanos), ni abarcará la integración con hardware externo especializado.
+
+---
+
+\section{Identificación de Stakeholders}
+
+Para garantizar una correcta comunicación y alineación de intereses, se han identificado los siguientes stakeholders clave en la organización:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.36\linewidth}
+  >{\centering\arraybackslash}p{0.14\linewidth}
+  >{\centering\arraybackslash}p{0.14\linewidth}
+  >{\centering\arraybackslash}p{0.36\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Stakeholder}} & \textcolor{white}{\textbf{Interno}} & \textcolor{white}{\textbf{Externo}} & \textcolor{white}{\textbf{Nivel de Interés}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Jefe de Operaciones & X & & ALTO \\ \hline
+Clientes del Arrendador (Bimbo) & & X & ALTO \\ \hline
+\rowcolor{LightGray}
+Área de TI & X & & MEDIO \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Componentes del Producto o Servicio del Proyecto}
+
+El producto a entregar consta de cuatro componentes de software perfectamente integrados que estructuran la solución tecnológica global:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.32\linewidth}
+  >{\raggedright\arraybackslash}p{0.68\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Componentes de la Solución}} & \textcolor{white}{\textbf{Descripción Detallada}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Microservicios Core WMS (Backend) & Desarrollados en \textbf{Spring Boot (Java)}. Se encargarán de la gestión transaccional robusta: control de inventario, ubicaciones, usuarios y seguridad corporativa (Spring Security/JWT). \\ \hline
+Microservicio Predictivo (IA/ML) & Servicio desarrollado en Python que procesa el historial de movimientos de ingresos/salidas para generar el pronóstico de capacidad (Forecasting). \\ \hline
+\rowcolor{LightGray}
+Aplicación Web (Frontend) & Interfaz de usuario intuitiva (Dashboard y módulos operativos) para que el Jefe de Operaciones y los montacarguistas gestionen y visualicen el almacén. \\ \hline
+Base de Datos Relacional & Repositorio estructurado (ej. PostgreSQL o MySQL) para almacenar con seguridad el historial de paletas, campañas, usuarios y clientes. \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Entregables del Proyecto}
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.28\linewidth}
+  >{\raggedright\arraybackslash}p{0.24\linewidth}
+  >{\raggedright\arraybackslash}p{0.48\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Entregable}} & \textcolor{white}{\textbf{Evidencia}} & \textcolor{white}{\textbf{Descripción Técnica}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Documento de Requisitos & Documento SRS & Especificación formal de requisitos bajo el estándar IEEE 29148. \\ \hline
+Software WMS Transaccional & Repositorio de código / URL & Sistema funcional desarrollado en Spring Boot (Backend) y Frontend Web. \\ \hline
+\rowcolor{LightGray}
+Módulo de Pronóstico ML & Repositorio / Dashboard & Modelo predictivo integrado que muestra las proyecciones de espacio en el dashboard. \\ \hline
+Manual de Usuario & Documento PDF & Guía práctica de uso orientada al Jefe de Operaciones y operarios de montacargas. \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Cronograma de Actividades del Proyecto}
+
+Para cumplir con el desarrollo en el plazo estimado de 6 meses, se estructuran las siguientes actividades de hito principales:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.40\linewidth}
+  >{\centering\arraybackslash}p{0.30\linewidth}
+  >{\centering\arraybackslash}p{0.30\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Actividad / Fase}} & \textcolor{white}{\textbf{Inicio Estimado}} & \textcolor{white}{\textbf{Término Estimado}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Inicio & Semana 1 & Semana 2 \\ \hline
+Planificación & Semana 3 & Semana 4 \\ \hline
+\rowcolor{LightGray}
+Ejecución & Semana 5 & Semana 20 \\ \hline
+Monitoreo y Control & Semana 5 & Semana 24 \\ \hline
+\rowcolor{LightGray}
+Cierre & Semana 23 & Semana 24 \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Organización del Equipo de Trabajo}
+
+Para garantizar un flujo de trabajo dinámico bajo el marco de Scrum, los **9 integrantes del equipo** se distribuyen de forma coordinada en los siguientes roles y responsabilidades:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.28\linewidth}
+  >{\raggedright\arraybackslash}p{0.26\linewidth}
+  >{\raggedright\arraybackslash}p{0.46\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Rol en el Equipo}} & \textcolor{white}{\textbf{Integrantes}} & \textcolor{white}{\textbf{Funciones Clave}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Desarrolladores Backend \par (Scrum Master) & Abel Guevara \par David Guerra & Encargados de definir la arquitectura, crear las APIs en Spring Boot, implementar la lógica de negocio del WMS y gestionar las iteraciones ágiles (Scrum). \\ \hline
+Desarrolladores Frontend \par (Programador) & Sebastian Chinchay \par Joshua Alfonzo & Encargados de desarrollar la interfaz de usuario, las pantallas operativas y el dashboard web para la gestión del almacén. \\ \hline
+\rowcolor{LightGray}
+Ingenieros de Datos / ML \par (DBA) & Javier Tello \par Alvaro Cuti & Responsables de administrar la base de datos relacional y desarrollar el microservicio en Python para procesar los datos del WMS y aplicar el modelo predictivo (Forecasting). \\ \hline
+Analista / QA \par (Analista y Tester) & Jhack Quispe \par Richard Yanqui \par Daniel Calderon & Responsables de documentar requisitos, validar la calidad del sistema, redactar casos de prueba y asegurar que la entrega cumpla las bases funcionales. \\ \hline
+\end{longtable}
+}
+
+---
+
+\section{Identificación de Riesgos}
+
+Se han evaluado las principales amenazas al éxito del proyecto y la adopción operativa del sistema, mapeándolas según su nivel de probabilidad e impacto:
+
+\vspace{0.3cm}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{TableLine}
+{\def\LTcaptype{none}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{0.45\linewidth}
+  >{\centering\arraybackslash}p{0.09\linewidth}
+  >{\centering\arraybackslash}p{0.09\linewidth}
+  >{\centering\arraybackslash}p{0.09\linewidth}
+  >{\centering\arraybackslash}p{0.09\linewidth}
+  >{\centering\arraybackslash}p{0.18\linewidth}@{}}
+\rowcolor{DeepNavy}
+\textcolor{white}{\textbf{Riesgo Identificado}} & \textcolor{white}{\textbf{Muy B.}} & \textcolor{white}{\textbf{Bajo}} & \textcolor{white}{\textbf{Medio}} & \textcolor{white}{\textbf{Alto}} & \textcolor{white}{\textbf{Muy Alto}} \\ \hline
+\endhead
+\rowcolor{LightGray}
+Retrasos en el desarrollo del software & & & X & & \\ \hline
+Resistencia del personal operativo al nuevo WMS & & & & X & \\ \hline
+\rowcolor{LightGray}
+Errores en inventario por registros manuales previos & & & & X & \\ \hline
+Riesgos de seguridad de la información & & & & X & \\ \hline
+\rowcolor{LightGray}
+Falta de volumen o calidad de datos para la IA/ML & & & X & & \\ \hline
+Ampliación descontrolada del alcance (Scope Creep) & & & X & & \\ \hline
+\end{longtable}
+}
+
+\end{document}
