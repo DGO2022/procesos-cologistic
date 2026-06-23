@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  id="Definitions_1" 
+                  targetNamespace="http://bpmn.io/schema/bpmn" 
+                  exporter="Camunda Modeler" 
+                  exporterVersion="4.0.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Control" name="Control de Acceso a Visitas" processRef="Process_Control" />
+  </bpmn:collaboration>
+  
+  <bpmn:process id="Process_Control" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Visitante" name="Visitante / Conductor">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Doc</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Vigilante" name="Vigilante (Garitero)">
+        <bpmn:flowNodeRef>Task_Validar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Doc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Denegado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Induccion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Jefe" name="Jefe de Operaciones">
+        <bpmn:flowNodeRef>Task_Registro</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Pase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Autorizado</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Analista" name="Analista de Inventarios">
+        <bpmn:flowNodeRef>Task_Receptor</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="StartEvent_1" name="Inicio">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Doc" name="Entregar Documentación y SCTR">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Validar" name="Validación y Seguridad">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_Doc" name="¿Documentación Válida?">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_No</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Si</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="EndEvent_Denegado" name="Ingreso Denegado">
+      <bpmn:incoming>Flow_No</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_Induccion" name="Inducción y entrega EPP">
+      <bpmn:incoming>Flow_Si</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Registro" name="Registro de conductores">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Pase" name="Emitir Pase de ingreso">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Autorizado" name="Ingreso Autorizado">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_Receptor" name="Recepción en planta">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+    </bpmn:task>
+    
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_Doc" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Doc" targetRef="Task_Validar" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_Validar" targetRef="Gateway_Doc" />
+    <bpmn:sequenceFlow id="Flow_No" name="No" sourceRef="Gateway_Doc" targetRef="EndEvent_Denegado" />
+    <bpmn:sequenceFlow id="Flow_Si" name="Sí" sourceRef="Gateway_Doc" targetRef="Task_Induccion" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Induccion" targetRef="Task_Registro" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_Registro" targetRef="Task_Pase" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_Pase" targetRef="EndEvent_Autorizado" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_Pase" targetRef="Task_Receptor" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Control_di" bpmnElement="Participant_Control" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="850" height="600" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Lane_Visitante_di" bpmnElement="Lane_Visitante" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Vigilante_di" bpmnElement="Lane_Vigilante" isHorizontal="true">
+        <dc:Bounds x="190" y="230" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Jefe_di" bpmnElement="Lane_Jefe" isHorizontal="true">
+        <dc:Bounds x="190" y="380" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Analista_di" bpmnElement="Lane_Analista" isHorizontal="true">
+        <dc:Bounds x="190" y="530" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="250" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="180" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Doc_di" bpmnElement="Task_Doc">
+        <dc:Bounds x="350" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Validar_di" bpmnElement="Task_Validar">
+        <dc:Bounds x="350" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Gateway_Doc_di" bpmnElement="Gateway_Doc" isMarkerVisible="true">
+        <dc:Bounds x="500" y="280" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="487" y="243" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="EndEvent_Denegado_di" bpmnElement="EndEvent_Denegado">
+        <dc:Bounds x="507" y="350" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="504" y="393" width="45" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Induccion_di" bpmnElement="Task_Induccion">
+        <dc:Bounds x="600" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Registro_di" bpmnElement="Task_Registro">
+        <dc:Bounds x="600" y="415" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Pase_di" bpmnElement="Task_Pase">
+        <dc:Bounds x="750" y="415" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="EndEvent_Autorizado_di" bpmnElement="EndEvent_Autorizado">
+        <dc:Bounds x="900" y="437" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="892" y="480" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Receptor_di" bpmnElement="Task_Receptor">
+        <dc:Bounds x="750" y="565" width="100" height="80" />
+      </bpmndi:BPMNShape>
+
+      <!-- Connections -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="286" y="155" />
+        <di:waypoint x="350" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="400" y="195" />
+        <di:waypoint x="400" y="265" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="450" y="305" />
+        <di:waypoint x="500" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_No_di" bpmnElement="Flow_No">
+        <di:waypoint x="525" y="330" />
+        <di:waypoint x="525" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="533" y="337" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Si_di" bpmnElement="Flow_Si">
+        <di:waypoint x="550" y="305" />
+        <di:waypoint x="600" y="305" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="570" y="287" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="650" y="345" />
+        <di:waypoint x="650" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="700" y="455" />
+        <di:waypoint x="750" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="850" y="455" />
+        <di:waypoint x="900" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="800" y="495" />
+        <di:waypoint x="800" y="565" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

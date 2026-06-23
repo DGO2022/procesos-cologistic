@@ -586,8 +586,8 @@ Servicio opcional solicitado comercialmente por el cliente, similar en su estruc
   \caption{Diagrama de Actividades con BPMN - Reencajado}
 \end{figure}
 
-\newpage
 
+\newpage
 % ------------------------------------------
 \section{Liquidación mensual in-out y servicios (Facturación)}
 % ------------------------------------------
@@ -632,7 +632,121 @@ Proceso de apoyo, desacoplado del flujo operativo de despacho, ejecutado al cier
   \caption{Diagrama de Actividades con BPMN - Liquidación mensual in-out y servicios}
 \end{figure}
 
+
+
+
+
+
 \newpage
+
+
+% ------------------------------------------
+\section{Seguridad y Vigilancia}
+% ------------------------------------------
+\textbf{Macroproceso:} Procesos de apoyo \quad\textbar\quad \textbf{Proceso:} Control de acceso a las visitas \quad\textbar\quad \textbf{Categoría:} Apoyo
+
+\textbf{Líder:} Jefe de Operaciones 
+
+\textbf{Participantes:}
+\begin{itemize}
+  \item Vigilantes 
+  \item Personal de seguridad armada
+  \item Visitantes 
+  \item Analista de Inventarios 
+\end{itemize}
+
+\textbf{Descripción del Procedimiento:} \\
+El proceso de Control de acceso a las visitas funciona como el primer filtro de seguridad y trazabilidad operativa en el almacén. Su ejecución garantiza el registro formal de los conductores y vehículos, validando previamente datos clave como la guía de remisión del cliente, la placa y el brevete. A la par, previene riesgos laborales mediante una inducción rápida que exige el uso de equipos de protección y establece el tránsito exclusivo por rutas seguras. En conjunto, estas acciones salvaguardan la integridad física de los visitantes y aseguran un flujo logístico estrictamente controlado.
+
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
+  \midrule
+  Visitante / Conductor & Documentación de identidad y Seguro SCTR & 1. Validación y Seguridad: Recepción de documentos y verificación de vigencia de seguros para ingreso. & Visitante validado & Vigilante (Garitero) \\
+  \midrule
+  Vigilante (Garitero) & Visitante validado & 2. Inducción rápida de seguridad: Entrega de EPP e instrucciones de zonas seguras. & Visitante con EPP e instruido & Jefe de Operaciones \\
+  \midrule
+  Jefe de Operaciones & Visitante con EPP e instruido & 3. Registro de conductores y vehículos: Anotación manual de placa, brevete y hora de ingreso. & Pase de ingreso autorizado (Hoja de control) & Analista de Inventarios / Almacén \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./imagenes/control de visitas.png}
+  \caption{Diagrama de Actividades con BPMN - Control de Visitas}
+\end{figure}
+
+\newpage
+
+
+
+
+
+
+
+
+% ------------------------------------------
+\section{Talento Humano}
+% ------------------------------------------
+\textbf{Macroproceso:} Procesos de apoyo \quad\textbar\quad \textbf{Proceso:} Reclutamiento de Personal \quad\textbar\quad \textbf{Categoría:} Apoyo
+
+\textbf{Líder:} Responsable de RR.HH. (en coordinación con la Gerencia General)
+
+\textbf{Participantes:}
+\begin{itemize}
+  \item Jefe de Operaciones 
+  \item Gerente General 
+  \item Candidatos
+  \item Analista de Inventarios 
+\end{itemize}
+
+\textbf{Descripción del Procedimiento:} \\
+Este proceso formaliza la captación de talento mediante la definición técnica de perfiles (MOF) y la selección rigurosa de estibadores. Busca mitigar riesgos legales y operativos asegurando que el personal cuente con seguros SCTR y EPP desde su ingreso. Con ello, se elimina la dependencia del conocimiento empírico, garantizando eficiencia en el manejo de las 5,000 paletas mensuales de la operación. Asegura la escalabilidad organizacional necesaria para soportar la expansión del modelo de negocio.
+
+\vspace{1em}
+\begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
+  \toprule
+  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
+  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
+  \midrule
+  Jefe de Operaciones & Requerimiento de personal (Vacante de estibador) & 1. Definición de perfiles de puesto: Análisis de tareas (picking, estiba) y requisitos legales. & Perfil de puesto aprobado (MOF) & RR.HH. / Gerencia General \\
+  \midrule
+  RR.HH. / Candidatos & Perfil de puesto aprobado (MOF) y CVs/Postulaciones. & 2. Convocatoria y Reclutamiento: Publicación de la vacante y filtro curricular inicial. & Lista de candidatos aptos & Jefe de Operaciones \\
+  \midrule
+  Jefe de Operaciones & Lista de candidatos aptos & 3. Evaluación y selección de estibadores: Entrevistas y pruebas técnicas en almacén. & Candidato seleccionado (Apto) & Gerencia General \\
+  \midrule
+  Gerencia General & Candidato seleccionado (Apto) & 4. Contratación e Inducción: Alta en planilla y asignación de SCTR/EPP. & Personal contratado y asegurado & Área de Operaciones \\
+  \bottomrule
+  \end{tabularx}
+\end{center}
+\vspace{1em}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./imagenes/reclutamiento personal.png}
+  \caption{Diagrama de Actividades con BPMN - Talento Humano}
+\end{figure}
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
 
 % ==========================================
 \chapter{Matriz de Indicadores}
@@ -737,6 +851,30 @@ Proceso de apoyo, desacoplado del flujo operativo de despacho, ejecutado al cier
   {Analista de inventarios}
   {Por definir}
   {Mensual}
+
+
+\fichaIndicador
+  {10. Control de acceso a las visitas}
+  {Cumplimiento de registro e inducción de visitas}
+  {Medir el porcentaje de visitantes y conductores que ingresan con su registro de seguridad y entrega de EPP completados correctamente}
+  {(Visitantes registrados con EPP completo / Total de visitantes en el periodo) × 100}
+  {IND-SEG-01}
+  {Vigilante (Garitero)}
+  {Jefe de Operaciones}
+  {Por definir}
+  {Mensual}
+
+\fichaIndicador
+  {11. Reclutamiento de Personal}
+  {Efectividad en la cobertura de vacantes}
+  {Medir el porcentaje de vacantes de estibadores cubiertas que cumplen estrictamente con el MOF y cuentan con SCTR/EPP asignados}
+  {(Vacantes cubiertas según MOF y con seguros / Total de vacantes solicitadas en el periodo) × 100}
+  {IND-RRHH-01}
+  {Responsable de RR.HH.}
+  {Gerencia General}
+  {Por definir}
+  {Mensual}
+
 
 \newpage
 
@@ -882,6 +1020,42 @@ Reporte consolidado de movimientos (Excel) & Analista de inventarios & Archivo d
 Excel con tarifa aplicada & Contador & Archivo del contador & Elaborado manualmente, sin soporte en el sistema; incluye prorrateo por fecha de corte \\
 \midrule
 Factura al cliente & Contador & Archivo del contador / SUNAT & Emitida conforme a la normativa de comprobantes de pago electrónicos \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2em}
+
+% ------------------------------------------
+\section*{10. Control de acceso a las visitas}
+% ------------------------------------------
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
+\cmidrule{2-4}
+& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
+\midrule
+Documentación de identidad y Seguro SCTR & Vigilante (Garitero) & Garita de seguridad & Verificación física o digital de la vigencia antes de autorizar el ingreso \\
+\midrule
+Pase de ingreso autorizado / Hoja de control & Analista de inventarios & Archivo físico en Almacén & Registro generado tras la validación en garita y conservado para trazabilidad interna \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2em}
+
+% ------------------------------------------
+\section*{11. Reclutamiento de Personal}
+% ------------------------------------------
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
+\cmidrule{2-4}
+& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
+\midrule
+Perfil de puesto aprobado (MOF) & Responsable de RR.HH. & Archivo digital & Documento formal que detalla el análisis de tareas y requisitos legales de la vacante \\
+\midrule
+CVs y lista de candidatos aptos & Jefe de Operaciones & Archivo de RR.HH. / Operaciones & Recopilación de postulaciones filtradas y resultados de las pruebas técnicas en almacén \\
+\midrule
+Contrato laboral, Alta en planilla y SCTR & Gerencia General & Archivo legal del personal & Documentación legal y de seguridad firmada al finalizar la selección, resguardada formalmente \\
 \bottomrule
 \end{tabularx}
 
