@@ -1,0 +1,37 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Cliente ["Cliente"]
+        Start((Inicio))
+        Enviar[1. Enviar guía de remisión]
+    end
+
+    subgraph Auxiliar ["Auxiliar"]
+        Picking[2. Realizar picking de mercadería]
+    end
+
+    subgraph Analista ["Analista"]
+        Registrar1[3. Registrar pedido de salida]
+        Seleccionar[5. Seleccionar lote y FV según FEFO]
+        Registrar2[6. Registrar según unidad comercial]
+        Firmar[7. Firmar pedido de salida]
+        Fin((Fin))
+    end
+    
+    subgraph Almacenamiento ["Almacenamiento"]
+        Consultar[4. Consultar zona y stock del código]
+    end
+
+    %% Secuencia del proceso
+    Start --> Enviar
+    Enviar -->|Guía recibida| Picking
+    Picking -->|Mercadería extraída| Registrar1
+    Registrar1 -->|Pedido con datos de transporte| Consultar
+    Consultar -->|Pedido con zona y stock| Seleccionar
+    Seleccionar -->|Pedido con lote y FV| Registrar2
+    Registrar2 -->|Pedido con cantidades| Firmar
+    Firmar -->|Pedido de salida firmado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff
