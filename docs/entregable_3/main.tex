@@ -154,6 +154,33 @@
   \par\vspace{4pt}%
 }
 
+% Parámetros: {Código}{Nombre}{Objetivo}{Fórmula}{Resp. gestión}{Resp. carga}{Meta}{Frecuencia}
+\newcommand{\fichaIndicador}[8]{%
+  \begin{table}[H]
+  \centering\small
+  \renewcommand{\arraystretch}{1.25}
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}X|}
+  \hline
+  \rowcolor{upeu_mid}
+  \color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+  \rowcolor{gray!10}
+  Código del indicador & #1 \\ \hline
+  Nombre del indicador & #2 \\ \hline
+  \rowcolor{gray!10}
+  Objetivo & #3 \\ \hline
+  Fórmula & #4 \\ \hline
+  \rowcolor{gray!10}
+  Responsable de gestión & #5 \\ \hline
+  Resp.\ de carga y reporte & #6 \\ \hline
+  \rowcolor{gray!10}
+  Meta & #7 \\ \hline
+  Frecuencia de reporte & #8 \\ \hline
+  \end{tabularx}
+  \caption{Ficha de indicador: #2}
+  \end{table}%
+}
+
 % ── Tablas ──────────────────────────────────────────────
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
@@ -489,6 +516,16 @@ Analista & Pedido con cantidades & 4. Firmar pedido de ingreso (analista, chofer
 
 \diagrama{Registro de pedido de ingreso.png}{Diagrama BPMN --- Registro de pedido de ingreso}
 
+\fichaIndicador
+  {IND-REC-01}
+  {Exactitud del registro de ingreso}
+  {Medir el porcentaje de pedidos de ingreso registrados sin necesidad de modificación posterior}
+  {(Pedidos de ingreso aprobados sin observación / Total de pedidos de ingreso del periodo) × 100}
+  {Supervisor}
+  {Analista de inventarios}
+  {Por definir}
+  {Mensual}
+
 \procedimiento{b}{Verificación y conformidad}
 
 \begin{table}[H]
@@ -538,6 +575,16 @@ Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar ped
 \end{table}
 
 \diagrama{Recepción de mercadería.png}{Diagrama BPMN --- Verificación y conformidad (Recepción)}
+
+\fichaIndicador
+  {IND-REC-02}
+  {Tasa de observación en recepción}
+  {Medir la frecuencia de modificaciones por discrepancia entre lo declarado en la guía y lo recibido físicamente}
+  {(Pedidos de ingreso con observación / Total de pedidos de ingreso del periodo) × 100}
+  {Supervisor}
+  {Auxiliar de almacén}
+  {Por definir}
+  {Mensual}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 2: Almacenamiento}
@@ -647,6 +694,16 @@ Analista & Alcance definido; ubicación origen y destino & 4. Ejecutar transfere
 
 \diagrama{Transferencia ubicación.png}{Diagrama BPMN --- Transferencia de ubicación}
 
+\fichaIndicador
+  {IND-ALM-01}
+  {Volumen de transferencias internas}
+  {Medir la cantidad de transferencias de ubicación ejecutadas en el periodo, como indicador de reacomodo del almacén}
+  {Número total de transferencias ejecutadas en el periodo}
+  {Analista de inventarios}
+  {Analista de inventarios}
+  {Por definir}
+  {Mensual}
+
 \procedimiento{b}{Reempaque}
 
 \begin{table}[H]
@@ -696,6 +753,16 @@ Analista & FV registrada & 4. Ejecutar reempaque (dividir paleta en cantidades r
 \end{table}
 
 \diagrama{Reempaque.png}{Diagrama BPMN --- Reempaque}
+
+\fichaIndicador
+  {IND-ALM-02}
+  {Tasa de reempaque sobre recepciones}
+  {Medir la proporción de paletas recepcionadas que requieren reempaque por discrepancia con la guía de remisión}
+  {(Reempaques ejecutados / Total de paletas recepcionadas en el periodo) × 100}
+  {Analista de inventarios}
+  {Auxiliar de almacén}
+  {Por definir}
+  {Mensual}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 3: Acondicionamiento de Mercadería}
@@ -806,6 +873,16 @@ Auxiliar & Mercadería repaletizada & 4. Elaborar reporte manual (código, descr
 
 \diagrama{Repaletizado.png}{Diagrama BPMN --- Repaletizado}
 
+\fichaIndicador
+  {IND-ACO-01}
+  {Volumen de repaletizado facturable}
+  {Medir la cantidad de paletas repaletizadas por tipo de producto en el periodo, como base de facturación del servicio}
+  {Número de paletas repaletizadas por código / tipo de producto en el periodo}
+  {Auxiliar de almacén}
+  {Auxiliar de almacén}
+  {Por definir}
+  {Mensual}
+
 \procedimiento{b}{Reencajado}
 
 \begin{table}[H]
@@ -856,6 +933,16 @@ Auxiliar & Mercadería reencajada & 4. Elaborar reporte manual (código, descrip
 \end{table}
 
 \diagrama{Reencajado.png}{Diagrama BPMN --- Reencajado}
+
+\fichaIndicador
+  {IND-ACO-02}
+  {Volumen de reencajado facturable}
+  {Medir la cantidad de unidades reencajadas por tipo de producto en el periodo, como base de facturación del servicio}
+  {Número de unidades reencajadas por código / tipo de producto en el periodo}
+  {Auxiliar de almacén}
+  {Auxiliar de almacén}
+  {Por definir}
+  {Mensual}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 4: Despacho de Mercadería}
@@ -970,6 +1057,16 @@ Analista & Pedido con cantidades & 7. Firmar pedido de salida (analista, chofer 
 
 \diagrama{Despacho de mercadería.png}{Diagrama BPMN --- Registro de pedido de salida}
 
+\fichaIndicador
+  {IND-DES-01}
+  {Exactitud del registro de salida}
+  {Medir el porcentaje de pedidos de salida registrados conforme a la solicitud del cliente (código, lote y fecha de vencimiento)}
+  {(Pedidos de salida aprobados sin observación / Total de pedidos de salida del periodo) × 100}
+  {Supervisor}
+  {Analista de inventarios}
+  {Por definir}
+  {Mensual}
+
 \procedimiento{b}{Verificación y conformidad}
 
 \begin{table}[H]
@@ -1020,6 +1117,16 @@ Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar el 
 \end{table}
 
 \diagrama{Verificación y conformidad.png}{Diagrama BPMN --- Verificación y conformidad (Despacho)}
+
+\fichaIndicador
+  {IND-DES-02}
+  {Tasa de observación en despacho}
+  {Medir la frecuencia de modificaciones por discrepancia entre el pedido de salida y la mercadería despachada}
+  {(Pedidos de salida con observación / Total de pedidos de salida del periodo) × 100}
+  {Supervisor}
+  {Auxiliar de almacén}
+  {Por definir}
+  {Mensual}
 
 
 % ════════════════════════════════════════════════════
