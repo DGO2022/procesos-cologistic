@@ -1,0 +1,70 @@
+0:00
+Por ejemplo, acá puesto todo, ¿no? Rección y despacho.
+0:05
+Okay. En lo que es este recepción,
+0:10
+proceso inicia cuando se registra la guía enviada. Esa guía nos envía el
+0:14
+cliente, ¿no? Eh, es a través de correo, a través de
+0:19
+lo trae físicamente o a veces lo mandan por WhatsApp. Bueno,
+0:23
+no, pero cosa es que el cliente nos envía esa guía. Sin esa guía nosotros no
+0:26
+podemos registrar nada en el sistema. ¿Por qué? Porque esa guía tiene el
+0:30
+número de guía o la referencia, tiene este todos los datos que voy voy a usar
+0:34
+para el sistema, ¿no? El cliente, la placa, eh y eso se va registrando en el
+0:41
+pedido de ingreso, ¿no? placa, este nombre chóer, brevete,
+0:48
+el usuario de la persona que está haciendo el pedido,
+0:51
+eh la fecha y hora del registro, eh y con lo que es ya de mercadería
+0:57
+misma es código, descripción, lote, fecha de vencimiento, palet, el factor
+1:03
+de la paleta y la y la cantidad de cajas. es una multiplicación, ¿no?
+1:09
+Luego más abajo está la suma de las palas y la suma de cajas, que eso era lo
+1:12
+que faltaba implementar. Y para terminar las firmas, ¿no? Las firmas de del
+1:18
+analista, del chóer y del almacén, ¿no? Esa es la primera parte.
+1:24
+Sí. Este, bueno, de ahí, bueno, el pedido se entrega al almacén y el
+1:29
+almacén ya este te pone las observaciones o si está todo conforme,
+1:34
+¿no? Si hay observaciones se aprueba no más el el pedido, se aprueba y se
+1:40
+registra todo lo que se ha puesto, ¿no? Pero si hay alguna observación se
+1:46
+modifica el pedido. O sea, tiene que haber una opción de modificar el pedido
+1:50
+para que poder este esa observación cambiarla, ¿no? Por ejemplo,
+1:55
+supuestamente en el periodo de ingreso decían un código A cinco paletas por 50,
+2:02
+pero físicamente llegó tres del A y dos del B. Entonces, esa modificación es la
+2:07
+que tengo que hacer. Mm. CL para modificar
+2:13
+este y bueno y esas modificaciones, como te digo, puede ser modificaciones por la
+2:17
+cantidad, por los lotes, por la fecha de cimiento, por la cantidad de cajas.
+2:22
+También el almacenero nos va a colocar ahí la zona y la ubicación, ¿no? Puede
+2:25
+ser zona uno, zona dos, en la I, en la J, en la K, ¿no? Algo así. Y de repente
+2:32
+dice, "¿Sabes qué? La paleta decía este decía 1 por 50, pero físicamente llegado
+2:38
+1 por 40 y 1 por 30, 1 por 10. Entonces, hay que hacer un reempaque. Entonces,
+2:43
+pues en la modificación se hace esos detalles y luego lo mandas a imprimir. O
+2:47
+sea, eso tiene una opción de imprimir esa hoja y cuando se imprime ya se anexa
+2:52
+a la guía física que nos trae y es ahí termina el proceso.

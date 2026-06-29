@@ -1,0 +1,84 @@
+0:02
+Y ahí ya llegamos al al stock, al reporte de stock es uno y el reporte de
+0:06
+movimientos es otro. El reporte de stock es el stock que hay en el momento,
+0:12
+pero también se puede sacar el stock de un código, stock de per el momento, ¿no?
+0:16
+esto de un código, esto de una, no sé, de un lote o de una fecha,
+0:22
+pero en el momento, eh, y el y los movimientos es toda la
+0:27
+trazabilidad que hay de de todo lo que había, por ejemplo, porque es un código
+0:30
+desde que ingresó la primera vez hasta la fecha, todo el ingreso, salida,
+0:34
+reempaque, transferencias, este, despachos, todo lo que haya habido de
+0:39
+ese de ese código tiene que salir en ese reporte. Y todo lo que uno ingresa, todo
+0:43
+lo que uno ingresa, por ejemplo, todo lo que uno ha registrado en el proceso de
+0:46
+recepción y en el proceso de despacho, todo lo que uno ha registrado en el en
+0:50
+el reporte de movimientos tiene que salir ahí el brevete, la placa de chóer,
+0:54
+el usuario, eh la fecha que está haciéndose el pedido, la hora, o sea,
+0:59
+todo lo que se ha registrado y se ha se ha puesto como para hacer registro de
+1:03
+pido de ingreso y el p de salida tiene que salir en el en el en el Excel que se
+1:09
+exporta del de los movimientos Y ya este yo lo voy yo lo ya si el cliente me pide
+1:14
+código, movimientos de un código, ya yo le mando de un código, de varios códigos
+1:18
+oente pide movimientos de una sola placa, ya yo filtro la placa y le mando
+1:21
+toda la todo su movimiento. El cliente me dice que el cliente es el
+1:26
+que solicita el movimiento. Sí, hay veces que veces me solicita
+1:30
+movimientos de tres meses, desde, por ejemplo, el año pasado, desde enero a
+1:35
+febrero, desde enero a abril, creo me pidió movimientos,
+1:38
+esa cosa así, ¿no? va pidiendo movimientos por por fechas.
+1:44
+Y bueno, nosotros estamos entendiendo toda esta todo este caso del negocio.
+1:49
+Entonces, ¿con con qué fines hacen ese movimiento? O sea, de
+1:55
+los movimientos. Ajá.
+1:57
+El movimiento es pasar la trazabilidad, porque a veces, por ejemplo, nosotros
+2:01
+registramos cuando ingresa y todos los movimientos que se hace acá, ¿no? Se
+2:05
+despachó, se movió, se hizo tal y cuando te pide, "Oye, ¿sabes qué? Este, me está
+2:10
+faltando tal, mándame tu movimiento de tal código porque quiero saber cuándo ha
+2:14
+salido o qué días ha salido, ¿no? Por ejemplo, en un código ingresó el primero
+2:18
+de enero, salió el el 10, salió el 20, salió en febrero. Entonces, todas esas
+2:23
+trazabilidades se ve en en el en los movimientos y pues el cliente quiere ver
+2:29
+pues para que vaya comparando sus guías. De repente una guía no la ha registrado
+2:32
+él, de repente una guía se doblete o no la tiene, no cosas así.
+2:38
+Ya. Entonces es para verificar este ciertas anomalías que puedan surgir,
+2:43
+algo así. Claro, o sea, siempre el reporte de movimientos es para verificar
+2:47
+la trazabilidad y ver que todo esté correcto, ¿no?
+2:52
+Otro detalle, porque al final el stock es lo mismo que
+2:57
+el reporte, ¿no? Porque, o sea, más me explico, si el stock a la fecha te dice
+3:01
+que te que tienes 10 unidades de un código, el el movimiento de ese código
+3:06
+ingresos al día todo, te debe cuadrarte esas 10 unidades, No.

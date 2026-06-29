@@ -1,0 +1,51 @@
+%% Co Logistic SAC — Proceso: Recepción de mercadería
+%% Procedimiento 2: Verificación y conformidad
+%% Fuente: 1-Recepcion.txt (fragmento "de ahí, bueno, el pedido se entrega al almacén..."),
+%%         10-Explicacion_de_reporte-adjuntar-a-guia.txt
+%% Elementos BPMN representados:
+%%   - Tarea de recepción (Receive Task, continúa de P1)
+%%   - Tareas (Task)
+%%   - Compuerta exclusiva (Exclusive Gateway / XOR) de conformidad
+%%   - Artefacto de datos / Data Object (pedido + guía engrampados)
+%%   - Evento de fin (End Event)
+%%   - Pools/Lanes: Auxiliar de almacén, Supervisor
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_AUX["Lane: Auxiliar de almacén"]
+        direction LR
+        StartP2(("Recibe pedido
+        de ingreso (de P1)")):::startEnd
+        T1["Verificar mercadería
+        contra pedido de ingreso"]:::task
+    end
+
+    subgraph LANE_SUP["Lane: Supervisor"]
+        direction LR
+        G1{"¿Conforme
+        a la guía?"}:::gateway
+        T2["Aprobar pedido"]:::task
+        T3["Modificar pedido:
+        cantidad, lote, FV,
+        zona/ubicación o reempaque"]:::variant
+        T4["Imprimir y engrampar
+        pedido + guía de remisión"]:::task
+        Fin(("Fin")):::startEnd
+    end
+
+    DocFinal[/"Pedido de ingreso + guía
+    de remisión (archivado)"/]:::artifact
+
+    StartP2 --> T1
+    T1 --> G1
+    G1 -->|"sí"| T2
+    G1 -->|"no"| T3
+    T2 --> T4
+    T3 --> T4
+    T4 -.- DocFinal
+    T4 --> Fin

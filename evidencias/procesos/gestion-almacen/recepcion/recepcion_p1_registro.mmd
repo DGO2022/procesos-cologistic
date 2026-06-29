@@ -1,0 +1,57 @@
+%% Co Logistic SAC — Proceso: Recepción de mercadería
+%% Procedimiento 1: Registro de pedido de ingreso
+%% Fuente: 1-Recepcion.txt, 6-Merchandising.txt, 7-GuiaCliente-Despacho.txt,
+%%         8-Explicacion-paleta.txt, 10-Explicacion_de_reporte-adjuntar-a-guia.txt
+%% Elementos BPMN representados:
+%%   - Evento de inicio (Start Event)
+%%   - Tareas (Task)
+%%   - Compuerta exclusiva (Exclusive Gateway / XOR)
+%%   - Artefacto de datos / Data Object (guía de remisión)
+%%   - Pools/Lanes: Cliente, Analista de inventarios
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_CLIENTE["Lane: Cliente"]
+        direction LR
+        Inicio(("Inicio")):::startEnd
+        T1["Enviar guía de remisión
+        (correo, físico o WhatsApp)"]:::task
+    end
+
+    subgraph LANE_ANALISTA["Lane: Analista de inventarios"]
+        direction LR
+        T2["Registrar pedido de ingreso:
+        datos de transporte
+        (placa, chofer, brevete, usuario, fecha/hora)"]:::task
+        G1{"¿Unidad comercial
+        del código?"}:::gateway
+        T3["Registrar pallet, factor
+        y suma de cajas
+        (cajas = pallets × factor)"]:::task
+        T4["Registrar merchandising
+        por unidad, sin pallet/factor
+        (opcional)"]:::variant
+        T5["Firmar pedido de ingreso
+        (analista, chofer, almacén)"]:::task
+        EndP1(("Fin Procedimiento 1
+        (continúa en P2: Verificación)")):::startEnd
+    end
+
+    Doc1[/"Guía de remisión
+    (artefacto de datos)"/]:::artifact
+
+    Inicio --> T1
+    T1 --> T2
+    T1 -.- Doc1
+    T2 -.- Doc1
+    T2 --> G1
+    G1 -->|"caja"| T3
+    G1 -->|"unidad"| T4
+    T3 --> T5
+    T4 --> T5
+    T5 --> EndP1

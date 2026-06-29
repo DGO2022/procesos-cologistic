@@ -1,0 +1,100 @@
+0:01
+Y más que todo la acción de facturación es el reporte, lo el lo va a exportar
+0:06
+por tipo, ¿no? Porque para Bimbo, por ejemplo, era todo lo que son panetones,
+0:11
+cantidad de paletas, facturo, este costo por paleta, tanto todo lo que son takis
+0:16
+igualito. Entonces lo lo exportaba por tipo y a él le ponía la tarifa, ¿no? del
+0:23
+almacenaje. A ver, como te digo, la facturación,
+0:31
+el la idea de la facturación es el reporte.
+0:37
+el reporte, cuando uno imprime el reporte
+0:40
+e en el reporte este de movimientos,
+0:46
+¿no? Porque la facturación se hace el inout, ¿no? El in tiene un monto, el
+0:52
+outo, el almacenamiento tiene un monto y esos este
+0:59
+se saca en los reportes de movimientos, sacas todos los ingresos que ha habido
+1:04
+del MES. todos los ingresos que habido del mes y
+1:10
+eh si lo puedes seleccionar por tipo mejor,
+1:14
+¿no? Todo el mes del mes de enero todos los ingresos de los panetones y sale el
+1:20
+reporte en Excel de los panetones y eso el señor le le pone ya la tarifa,
+1:27
+¿no? encargado de facturación y pone la tarifa y eso ya él tendrá su
+1:32
+forma que sí, pero no como sabes como te comento, no no hemos hecho ni un
+1:39
+borrador nada lo que es facturación. Yo imagino que el señor al momento de de
+1:47
+exportar el Excel ahí ponía la tarifa y se hace la multiplicación porque también
+1:51
+hay una ahora creo que último hicieron fecha de corte, o sea, todos los
+1:55
+ingresos a la fecha de corte se porratean los días,
+2:01
+¿no? Entonces al porratear los días, esa cantidad de días por la tarifa entre 30
+2:07
+es el monto que le vas a cobrar por esas paletas, ¿no? Entonces, ese tema ya creo
+2:11
+que lo iba a hacer la tiene que hacerlo aparte a mano y solamente exportar los
+2:16
+reportes. Pero si te indica que lo hagas dentro
+2:20
+del de la del sistema, entonces tendría que haber una opción para colocarle
+2:24
+tarifa, pero tienes que evaluar bien porque son
+2:28
+distintos distintos tipos.
+2:34
+E producto, claro, esto porque va a haber algunos,
+2:38
+por ejemplo, que te va a decir, "No, est esta mercadería eh por metro cuadrado y
+2:43
+esta mercadería sí por paleta." Entonces tiene que ver otra opción de tarifa,
+2:47
+¿no? De metro cuadrado, ¿no? Y paleta.
+2:51
+Entonces ese como que más detalle va a haber ahí para el tema de de exportar o
+2:57
+yo creo que él él mencionaba siempre que quería que solamente exportarlo y que
+3:00
+esté listo. Entonces por eso que creo que el chico no no quería hacerlo, no no
+3:04
+sabía cómo hacerlo. Un detalle que ese de la facturación
+3:10
+nunca no interviene en esto de salida de despacho, esa parte no no esa parte es
+3:17
+un proceso de facturación mismo, ¿no? para para el cobro, ¿no? De las tarifas.
+3:23
+Esos cobros hacen antes, después, ¿cómo se
+3:26
+al mes, al mes, contrato todo movimientos al mes. Ajá.
+3:32
+todo lo que ha habido de ahí, de ahí, por ejemplo, también hay
+3:35
+tus servicios adicionales que son repartietizado
+3:40
+e reencajado, eh
+3:46
+representizado, reencajado. Bueno, más que todo esos dos servicios
+3:50
+adicionales que también tiene que el cliente los pide por tipo, ¿no? Cuántos
+3:55
+reencajados ha habido de Paletón, cuántos repetizados ha habido de
+3:59
+Paletón. Entonces, y eso también tenía un
+4:03
+este un costo aparte, pero esos temas, todos esos esos reportes yo lo hacía
+4:09
+aparte un éito, el sistema
+4:12
+no no daba, no te botaba eso.

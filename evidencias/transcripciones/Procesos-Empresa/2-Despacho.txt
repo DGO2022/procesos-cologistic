@@ -1,0 +1,38 @@
+0:01
+Ya, en la parte del despacho eh es casi similar, solo que hay que
+0:06
+agregar algunas cosas, no más. por ejemplo, registrar la guía, porque
+0:10
+también en el periodo de despacho también el cliente manda la guía o la
+0:14
+trae físicamente. Eso este se registra igual en en el
+0:20
+sistema de nosotros, se registra todo lo anterior se registra y pero también acá
+0:25
+hay que darle zona y ubicación o mejor dicho hay que este del código A que
+0:30
+nosotros tenemos ya recepcionado, ¿no? Está en la zona A B, por ejemplo, ¿no?
+0:35
+El código A está en la zona B. esa esa información debe salir en el
+0:40
+periodo de salida, debe decir ahí la zona y el stock que hay de ese código o
+0:45
+o para hacerlo más específico, si el código tiene una fecha de vencimiento y
+0:49
+por ende un lote, entonces de repente hay varias fechas de vencimiento y la
+0:53
+cosa es que tiene que salir específicamente de la que te ha pedido
+0:56
+el cliente y la que yo estoy colocando en el pedido de salida y en y en la
+1:01
+misma hojita debe salir el stock que hay referente al pedido de perdón referente
+1:07
+al lote y a la fecha de vencimiento del código, ¿no?
+1:12
+Eso es lo que se agrega adicional al al P salida. Lo demás es el mismo proceso.
+1:17
+Lo además es lo mismo. Si hay que modificar, se modifica. Si estar bien,
+1:20
+se aprueba y se recepciona igual, ¿no? Se despacha, perdón, el sistema igual.
+1:26
+Yeah.
