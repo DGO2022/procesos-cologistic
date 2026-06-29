@@ -42,8 +42,8 @@
 \usepackage{microtype}
 \usepackage{amsmath}
 \usepackage{ragged2e}
-\usepackage{hyperref}
 \usepackage{tocloft}
+\usepackage{hyperref}
 
 % ── Colores UPeU ──────────x ──────────────────────────────
 \usepackage[table]{xcolor}
@@ -141,7 +141,21 @@
 \newcommand{\diagrama}[3][0.90\linewidth]{%
 \begin{figure}[H]
 \centering
-\includegraphics[width=#1]{#2}
+\IfFileExists{imagenes/#2}{%
+  \includegraphics[width=#1]{#2}%
+}{%
+  \IfFileExists{img/#2}{%
+    \includegraphics[width=#1]{#2}%
+  }{%
+    \fbox{%
+      \begin{minipage}[c][4.5cm][c]{#1}
+      \centering
+      \small Diagrama pendiente: \texttt{#2}\\
+      Subir en \texttt{imagenes/} o \texttt{img/}.
+      \end{minipage}
+    }%
+  }%
+}
 \caption{#3}
 \end{figure}
 }
