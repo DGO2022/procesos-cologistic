@@ -1,0 +1,27 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Visitante ["Visitante"]
+        Start((Inicio))
+        DevolverPase[Acercarse a garita y devolver pase temporal]
+        RecibirDNI[Recibir documento de identidad original]
+        Fin((Fin))
+    end
+
+    subgraph Garita ["Personal de Garita"]
+        Recibir[Recibir el pase y realizar revisión visual rápida]
+        Registrar[Registrar hora exacta de salida en la bitácora]
+        DevolverDNI[Devolver el documento de identidad original]
+    end
+
+    %% Secuencia del proceso
+    Start --> DevolverPase
+    DevolverPase -->|Pase de visitante| Recibir
+    Recibir -->|Conformidad de salida| Registrar
+    Registrar -->|Registro cerrado| DevolverDNI
+    DevolverDNI -->|DNI devuelto| RecibirDNI
+    RecibirDNI --> Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

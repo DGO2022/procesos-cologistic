@@ -1,0 +1,32 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Jefatura ["Área Interna / Jefatura Solicitante"]
+        Start((Inicio))
+        Solicitud[Generar solicitud de personal y perfil del puesto]
+        RecibeTerna[Recibir terna de candidatos viables]
+        Fin((Fin))
+    end
+
+    subgraph RRHH ["Analista de RRHH"]
+        Publicar[Publicar la oferta laboral según el perfil requerido]
+        Filtrar[Filtrar currículums y realizar screening telefónico]
+        Consolidar[Consolidar una terna de candidatos viables]
+    end
+
+    subgraph Mercado ["Candidatos / Mercado"]
+        Enviar[Enviar hojas de vida CVs]
+    end
+
+    %% Secuencia del proceso
+    Start --> Solicitud
+    Solicitud -->|Solicitud de personal| Publicar
+    Publicar -->|Oferta publicada| Enviar
+    Enviar -->|Hojas de vida CVs| Filtrar
+    Filtrar -->|CVs pre-seleccionados| Consolidar
+    Consolidar -->|Terna de candidatos| RecibeTerna
+    RecibeTerna --> Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

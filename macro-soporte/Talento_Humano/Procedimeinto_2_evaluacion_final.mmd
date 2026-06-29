@@ -1,0 +1,34 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Jefatura ["Jefatura Solicitante"]
+        Start((Inicio))
+        EntrevistaJefe[Participar en entrevistas técnicas]
+        Decision[Seleccionar al candidato ideal]
+    end
+
+    subgraph RRHH ["Analista de RRHH"]
+        EntrevistaRRHH[Realizar entrevistas a profundidad]
+        Informar[Informar condiciones de contratación]
+        Contrato[Elaborar contrato y gestionar firma]
+        Fin((Fin))
+    end
+
+    subgraph Candidato ["Candidato Finalista"]
+        Aceptar[Aceptar oferta y entregar documentos de ingreso]
+        Firmar[Firmar contrato de trabajo]
+    end
+
+    %% Secuencia del proceso
+    Start --> EntrevistaRRHH
+    EntrevistaRRHH --> EntrevistaJefe
+    EntrevistaJefe -->|Resultado de evaluación| Decision
+    Decision -->|Candidato seleccionado| Informar
+    Informar -->|Oferta informada| Aceptar
+    Aceptar -->|Documentos de ingreso y Oferta aceptada| Contrato
+    Contrato --> Firmar
+    Firmar -->|Contrato firmado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

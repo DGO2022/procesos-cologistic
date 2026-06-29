@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  id="Definitions_1" 
+                  targetNamespace="http://bpmn.io/schema/bpmn" 
+                  exporter="Camunda Modeler" 
+                  exporterVersion="4.0.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Registro" name="Seguridad: Registro y autorización de ingreso" processRef="Process_Registro" />
+  </bpmn:collaboration>
+  
+  <bpmn:process id="Process_Registro" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Visitante" name="Visitante">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Entregar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RecibirPase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Fin</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Garita" name="Personal de Garita">
+        <bpmn:flowNodeRef>Task_Solicitar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Registrar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EntregarPase</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_AreaInterna" name="Área Interna">
+        <bpmn:flowNodeRef>Task_Autorizar</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Entregar" name="Entregar DNI y datos">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Solicitar" name="Solicitar identificación y motivo">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Autorizar" name="Autorizar el ingreso (Confirmación verbal)">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Registrar" name="Registrar ingreso en bitácora">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_EntregarPase" name="Entregar pase de visitante y retener DNI">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RecibirPase" name="Recibir pase de visitante">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Fin" name="Fin">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+    </bpmn:endEvent>
+    
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Inicio" targetRef="Task_Entregar" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Entregar" targetRef="Task_Solicitar" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_Solicitar" targetRef="Task_Autorizar" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Autorizar" targetRef="Task_Registrar" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_Registrar" targetRef="Task_EntregarPase" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_EntregarPase" targetRef="Task_RecibirPase" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_RecibirPase" targetRef="EndEvent_Fin" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Registro_di" bpmnElement="Participant_Registro" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1200" height="450" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Lane_Visitante_di" bpmnElement="Lane_Visitante" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1170" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Garita_di" bpmnElement="Lane_Garita" isHorizontal="true">
+        <dc:Bounds x="190" y="230" width="1170" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_AreaInterna_di" bpmnElement="Lane_AreaInterna" isHorizontal="true">
+        <dc:Bounds x="190" y="380" width="1170" height="150" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="250" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="180" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Entregar_di" bpmnElement="Task_Entregar">
+        <dc:Bounds x="330" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Solicitar_di" bpmnElement="Task_Solicitar">
+        <dc:Bounds x="480" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Autorizar_di" bpmnElement="Task_Autorizar">
+        <dc:Bounds x="630" y="415" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Registrar_di" bpmnElement="Task_Registrar">
+        <dc:Bounds x="780" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_EntregarPase_di" bpmnElement="Task_EntregarPase">
+        <dc:Bounds x="930" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_RecibirPase_di" bpmnElement="Task_RecibirPase">
+        <dc:Bounds x="1080" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="EndEvent_Fin_di" bpmnElement="EndEvent_Fin">
+        <dc:Bounds x="1230" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1240" y="180" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <!-- Connections -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="286" y="155" />
+        <di:waypoint x="330" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="430" y="155" />
+        <di:waypoint x="455" y="155" />
+        <di:waypoint x="455" y="305" />
+        <di:waypoint x="480" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="580" y="305" />
+        <di:waypoint x="605" y="305" />
+        <di:waypoint x="605" y="455" />
+        <di:waypoint x="630" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="730" y="455" />
+        <di:waypoint x="755" y="455" />
+        <di:waypoint x="755" y="305" />
+        <di:waypoint x="780" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="880" y="305" />
+        <di:waypoint x="930" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="1030" y="305" />
+        <di:waypoint x="1055" y="305" />
+        <di:waypoint x="1055" y="155" />
+        <di:waypoint x="1080" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="1180" y="155" />
+        <di:waypoint x="1230" y="155" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

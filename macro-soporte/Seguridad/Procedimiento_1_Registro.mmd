@@ -1,0 +1,32 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Visitante ["Visitante"]
+        Start((Inicio))
+        Entregar[Entregar DNI y datos]
+        RecibirPase[Recibir pase de visitante]
+        Fin((Fin))
+    end
+
+    subgraph Garita ["Personal de Garita"]
+        Solicitar[Solicitar identificación y motivo de visita]
+        Registrar[Registrar ingreso en bitácora]
+        EntregarPase[Entregar pase de visitante y retener DNI]
+    end
+
+    subgraph AreaInterna ["Área Interna"]
+        Autorizar[Autorizar el ingreso mediante confirmación verbal]
+    end
+
+    %% Secuencia del proceso
+    Start --> Entregar
+    Entregar -->|DNI y datos| Solicitar
+    Solicitar -->|Solicitud de confirmación| Autorizar
+    Autorizar -->|Confirmación verbal| Registrar
+    Registrar -->|Registro abierto| EntregarPase
+    EntregarPase -->|Pase otorgado| RecibirPase
+    RecibirPase --> Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

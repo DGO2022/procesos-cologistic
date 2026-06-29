@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  id="Definitions_1" 
+                  targetNamespace="http://bpmn.io/schema/bpmn" 
+                  exporter="Camunda Modeler" 
+                  exporterVersion="4.0.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Salida" name="Seguridad: Control de salida y novedades" processRef="Process_Salida" />
+  </bpmn:collaboration>
+  
+  <bpmn:process id="Process_Salida" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Visitante" name="Visitante">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DevolverPase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RecibirDNI</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Fin</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Garita" name="Personal de Garita">
+        <bpmn:flowNodeRef>Task_Recibir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Registrar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DevolverDNI</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_DevolverPase" name="Acercarse a garita y devolver pase">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Recibir" name="Recibir pase y revisión visual">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Registrar" name="Registrar hora en bitácora">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DevolverDNI" name="Devolver DNI original">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_RecibirDNI" name="Recibir DNI y retirarse">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Fin" name="Fin">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+    </bpmn:endEvent>
+    
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Inicio" targetRef="Task_DevolverPase" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_DevolverPase" targetRef="Task_Recibir" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_Recibir" targetRef="Task_Registrar" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Registrar" targetRef="Task_DevolverDNI" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_DevolverDNI" targetRef="Task_RecibirDNI" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_RecibirDNI" targetRef="EndEvent_Fin" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Salida_di" bpmnElement="Participant_Salida" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1050" height="300" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Lane_Visitante_di" bpmnElement="Lane_Visitante" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1020" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Garita_di" bpmnElement="Lane_Garita" isHorizontal="true">
+        <dc:Bounds x="190" y="230" width="1020" height="150" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="250" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="180" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_DevolverPase_di" bpmnElement="Task_DevolverPase">
+        <dc:Bounds x="330" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Recibir_di" bpmnElement="Task_Recibir">
+        <dc:Bounds x="480" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Registrar_di" bpmnElement="Task_Registrar">
+        <dc:Bounds x="630" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_DevolverDNI_di" bpmnElement="Task_DevolverDNI">
+        <dc:Bounds x="780" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_RecibirDNI_di" bpmnElement="Task_RecibirDNI">
+        <dc:Bounds x="930" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="EndEvent_Fin_di" bpmnElement="EndEvent_Fin">
+        <dc:Bounds x="1080" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1090" y="180" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <!-- Connections -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="286" y="155" />
+        <di:waypoint x="330" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="430" y="155" />
+        <di:waypoint x="455" y="155" />
+        <di:waypoint x="455" y="305" />
+        <di:waypoint x="480" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="580" y="305" />
+        <di:waypoint x="630" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="730" y="305" />
+        <di:waypoint x="780" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="880" y="305" />
+        <di:waypoint x="905" y="305" />
+        <di:waypoint x="905" y="155" />
+        <di:waypoint x="930" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="1030" y="155" />
+        <di:waypoint x="1080" y="155" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
