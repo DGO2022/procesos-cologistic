@@ -111,26 +111,47 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 % ── Imágenes ─────────────────────────────────────────────
-\graphicspath{{./img/}}
+\graphicspath{{./img/}{./imagenes/}}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 
 \newcommand{\figura}[3][0.85\linewidth]{%
 \begin{figure}[H]
 \centering
-\IfFileExists{img/#2}{%
+\IfFileExists{imagenes/#2}{%
   \includegraphics[width=#1]{#2}%
 }{%
-  \fbox{%
-    \begin{minipage}[c][4.5cm][c]{#1}
-    \centering
-    \small Imagen pendiente: \texttt{#2}\\
-    Subir este archivo dentro de la carpeta \texttt{img/}.
-    \end{minipage}
+  \IfFileExists{img/#2}{%
+    \includegraphics[width=#1]{#2}%
+  }{%
+    \fbox{%
+      \begin{minipage}[c][4.5cm][c]{#1}
+      \centering
+      \small Imagen pendiente: \texttt{#2}\\
+      Subir en \texttt{img/} o \texttt{imagenes/}.
+      \end{minipage}
+    }%
   }%
 }
 \caption{#3}
 \end{figure}
+}
+
+% Comando para diagramas BPMN (soporta nombres con tildes y espacios)
+\newcommand{\diagrama}[3][0.90\linewidth]{%
+\begin{figure}[H]
+\centering
+\includegraphics[width=#1]{#2}
+\caption{#3}
+\end{figure}
+}
+
+% Encabezado de procedimiento: no numerado, no entra al TOC
+% Uso: \procedimiento{a}{Nombre del procedimiento}
+\newcommand{\procedimiento}[2]{%
+  \vspace{10pt}%
+  \noindent{\color{upeu_mid}\bfseries\normalsize #1)\ #2}%
+  \par\vspace{4pt}%
 }
 
 % ── Tablas ──────────────────────────────────────────────
@@ -268,117 +289,605 @@
 
 \section{Introducción al Análisis de Procesos}
 
-El presente capítulo tiene como propósito identificar y caracterizar los procesos organizacionales de CO LOGISTIC S.A.C. directamente vinculados al proyecto priorizado "Implementación ERP para la Gestión de Almacenes con Módulo de Inteligencia de Negocios". Esta caracterización constituye la base para el posterior modelamiento de los procesos en su situación actual (AS-IS) y en su situación futura propuesta (TO-BE), así como para la identificación de oportunidades de automatización mediante TIC.
+El presente capítulo tiene como propósito identificar y caracterizar los procesos organizacionales de CO LOGISTIC S.A.C. directamente vinculados al proyecto priorizado "Implementación ERP para la Gestión de Almacenes con Módulo de Inteligencia de Negocios". Esta caracterización constituye la base para el posterior modelamiento en su situación actual (AS-IS) y en su situación futura propuesta (TO-BE), así como para la identificación de oportunidades de automatización mediante TIC.
 
-El análisis se centra en el macroproceso de Gestión de Almacenes, el cual comprende las actividades de recepción de mercadería, almacenamiento y ubicabilidad, control de inventario, preparación de pedidos (picking) y despacho. Estos procesos fueron seleccionados debido a que constituyen el núcleo operativo de la empresa y representan el mayor potencial de mejora mediante la incorporación de tecnologías de información.
+El análisis se centra en el \textbf{macroproceso de Gestión de Almacén}, conformado por cuatro procesos: Recepción, Almacenamiento, Acondicionamiento y Despacho. Este macroproceso fue priorizado por constituir el núcleo operativo de la empresa y representar el mayor potencial de mejora mediante la incorporación de tecnologías de información.
 
 \section{Mapa de Procesos de la Organización}
 
-CO LOGISTIC S.A.C. estructura sus procesos en tres niveles jerárquicos: procesos estratégicos, procesos operativos (o de negocio) y procesos de soporte. El proceso priorizado para este entregable, Gestión de Almacenes, se ubica dentro de los procesos operativos, por ser el que agrega valor directo al servicio logístico ofrecido a los clientes arrendadores.
+CO LOGISTIC S.A.C. organiza sus procesos en tres categorías: procesos estratégicos, procesos misionales (operativos) y procesos de apoyo. Dentro de los procesos misionales se identifican dos macroprocesos: \textbf{Gestión de Almacén} —en el que Co Logistic opera directamente la mercadería— y \textbf{Arrendamiento de Espacios} —en el que el cliente opera su propia mercadería—. Los procesos de apoyo (Facturación, Seguridad y Vigilancia, Talento Humano) brindan soporte transversal a ambos macroprocesos.
 
-\figura{mapa-procesos-n0.png}{Mapa de procesos de CO LOGISTIC S.A.C. (nivel 0)}
+\subsection{Mapa General (Nivel 0)}
 
-\subsection{Ficha de Caracterización}
+El mapa de nivel 0 presenta la visión global de la organización, mostrando las tres categorías de procesos y los dos modelos de negocio que Co Logistic S.A.C. opera.
+
+\figura[0.95\linewidth]{mapa_operativo_nivel0.png}{Mapa de procesos de CO LOGISTIC S.A.C. --- Nivel 0}
+
+\subsection{Mapa de Procesos (Nivel 1)}
+
+El mapa de nivel 1 desagrega cada categoría hasta el nivel de proceso, identificando los cuatro procesos del macroproceso Gestión de Almacén, los cuatro procesos del macroproceso Arrendamiento de Espacios, y los tres procesos de apoyo de la organización.
+
+\figura[0.95\linewidth]{mapa_operativo_nivel1.png}{Mapa de procesos de CO LOGISTIC S.A.C. --- Nivel 1}
+
+\section{Caracterización de los Procesos}
+
+A continuación se presenta la ficha de caracterización del macroproceso priorizado, de cada uno de sus procesos y de los procedimientos correspondientes, incluyendo el análisis SIPOC y el diagrama BPMN de cada procedimiento.
+
+% ════════════════════════════════════════════════════
+\subsection{Macroproceso: Gestión de Almacén}
+% ════════════════════════════════════════════════════
 
 \begin{table}[H]
-\centering
-\small
+\centering\small
 \renewcommand{\arraystretch}{1.35}
 \setlength{\tabcolsep}{6pt}
-
-\begin{tabularx}{\textwidth}{
-    |>{\raggedright\arraybackslash}p{0.27\textwidth}
-    |>{\raggedright\arraybackslash}X|
-}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
 \hline
-
 \rowcolor{upeu_dark}
-\color{white}\bfseries Campo
-&
-\color{white}\bfseries Descripción
-\\
-\hline
-
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
 \rowcolor{gray!10}
-Nombre del proceso &
-Gestión de Almacenes
-\\
-\hline
-
-Tipo de proceso &
-Operativo (de negocio)
-\\
-\hline
-
+Nombre del macroproceso & Gestión de Almacén \\ \hline
+Categoría & Misional / Operativo \\ \hline
 \rowcolor{gray!10}
-Objetivo del proceso &
-Garantizar la correcta recepción, almacenamiento, control de inventario, preparación y despacho de la mercadería de los clientes arrendadores, asegurando trazabilidad, exactitud y oportunidad en cada operación.
-\\
-\hline
-
-Responsable del proceso (dueño) &
-Jefatura de Operaciones y Logística
-\\
-\hline
-
+Objetivo & Garantizar la correcta recepción, almacenamiento, acondicionamiento y despacho de la mercadería de los clientes arrendadores, asegurando trazabilidad, exactitud y oportunidad en cada operación. \\ \hline
+Responsable (dueño) & Gerente de Operaciones \\ \hline
 \rowcolor{gray!10}
-Entradas del proceso &
-Órdenes de ingreso de mercadería, guías de remisión, pedidos de despacho, reportes de stock
-\\
-\hline
-
-Salidas del proceso &
-Mercadería almacenada y ubicada, pedidos despachados, reportes de inventario, indicadores de ocupación
-\\
-\hline
-
+Entradas & Guía de remisión del cliente; contrato de servicio \\ \hline
+Salidas & Cliente atendido; mercadería almacenada, ubicada y despachada \\ \hline
 \rowcolor{gray!10}
-Proveedores del proceso &
-Clientes arrendadores (Bimbo y otros socios corporativos), transportistas
-\\
-\hline
-
-Clientes del proceso &
-Clientes arrendadores, áreas comerciales y de atención al cliente
-\\
-\hline
-
+Proveedores & Clientes arrendadores (Bimbo y otros socios corporativos), transportistas \\ \hline
+Clientes & Clientes arrendadores \\ \hline
 \rowcolor{gray!10}
-Recursos utilizados &
-Personal de almacén, montacargas, racks de almacenamiento, hojas de cálculo Excel, formatos físicos de control
-\\
-\hline
-
-Frecuencia de ejecución &
-Diaria
-\\
-\hline
-
-\rowcolor{gray!10}
-Indicadores asociados &
-Exactitud de inventario, tiempo de preparación de pedidos, nivel de ocupación de almacén, errores de despacho
-\\
-\hline
-
+Frecuencia de ejecución & Diaria \\ \hline
+Procesos que lo conforman & 1. Recepción de Mercadería \newline 2. Almacenamiento \newline 3. Acondicionamiento de Mercadería \newline 4. Despacho de Mercadería \\ \hline
 \end{tabularx}
-\caption{Ficha de caracterización del proceso de Gestión de Almacenes}
+\caption{Ficha de caracterización del macroproceso: Gestión de Almacén}
 \end{table}
 
-\subsection{Subprocesos Identificados}
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 1: Recepción de Mercadería}
+% ════════════════════════════════════════════════════
 
-A partir de la caracterización general, se identifican los siguientes subprocesos que conforman la Gestión de Almacenes:
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Recepción de Mercadería \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Objetivo & Registrar y verificar físicamente la mercadería entrante, asegurando que el pedido de ingreso coincida con la guía de remisión del cliente y con la mercadería física recibida. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Analista de inventarios \\ \hline
+Participantes & Cliente, Analista de inventarios, Auxiliar de almacén, Supervisor \\ \hline
+\rowcolor{gray!10}
+Entradas & Guía de remisión del cliente \\ \hline
+Salidas & Pedido de ingreso firmado y engrampado a la guía de remisión (archivado); mercadería lista para almacenamiento \\ \hline
+\rowcolor{gray!10}
+Proveedores & Cliente arrendador \\ \hline
+Clientes del proceso & Almacenamiento \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Registro de pedido de ingreso \newline 2. Verificación y conformidad \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Recepción de Mercadería}
+\end{table}
 
-\begin{itemize}
-    \item \textbf{Recepción de mercadería:} verificación y registro del ingreso de productos al almacén.
-    \item \textbf{Almacenamiento y ubicabilidad:} asignación de espacios físicos (racks, posiciones) a los productos recibidos.
-    \item \textbf{Control de inventario:} actualización y verificación periódica del stock disponible.
-    \item \textbf{Preparación de pedidos (picking):} selección y consolidación de productos según las órdenes de despacho.
-    \item \textbf{Despacho:} entrega física de la mercadería y generación de la documentación de salida.
-\end{itemize}
+\procedimiento{a}{Registro de pedido de ingreso}
 
-\section{Identificación de Problemas Asociados al Proceso}
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Registro de pedido de ingreso \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Proceso & Recepción de Mercadería \\ \hline
+Categoría & Misional / Operativo \\ \hline
+\rowcolor{gray!10}
+Líder & Analista de inventarios \\ \hline
+Participantes & Cliente, Analista de inventarios \\ \hline
+\rowcolor{gray!10}
+Entradas & Guía de remisión del cliente \\ \hline
+\rowcolor{gray!10}
+Salidas & Pedido de ingreso firmado (analista, chofer y almacén), listo para verificación física \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Registro de pedido de ingreso}
+\end{table}
 
-A través del diagnóstico organizacional realizado en el Entregable 1, se identificaron los siguientes problemas que afectan directamente al proceso de Gestión de Almacenes:
+El procedimiento inicia cuando el cliente envía la guía de remisión (correo electrónico, físico o WhatsApp). Sin este documento no es posible registrar ningún dato. El Analista de inventarios registra los datos de transporte (placa, nombre del chofer, brevete, usuario, fecha y hora) y, por cada código de la guía, determina la unidad comercial: si es por \textit{caja}, registra pallet, factor de conversión y calcula \texttt{cajas = pallets \texttimes{} factor}; si es por \textit{unidad} (mercadería de merchandising), registra sin pallet ni factor. El procedimiento concluye con la firma del pedido de ingreso por parte del analista, el chofer y el almacén.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & Guía recibida & 2. Registrar datos de transporte (placa, chofer, brevete, usuario, fecha y hora) & Pedido con datos de transporte & Analista \\ \hline
+Analista & Pedido con datos de transporte & 3. Registrar mercadería según unidad comercial (caja o unidad) & Pedido con cantidades calculadas & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & Pedido con cantidades & 4. Firmar pedido de ingreso (analista, chofer y almacén) & Pedido de ingreso firmado & Almacén \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Registro de pedido de ingreso}
+\end{table}
+
+\diagrama{Registro de pedido de ingreso.png}{Diagrama BPMN --- Registro de pedido de ingreso}
+
+\procedimiento{b}{Verificación y conformidad}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Verificación y conformidad \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Proceso & Recepción de Mercadería \\ \hline
+Categoría & Misional / Operativo \\ \hline
+Líder & Supervisor \\ \hline
+\rowcolor{gray!10}
+Participantes & Auxiliar de almacén, Supervisor \\ \hline
+Entradas & Pedido de ingreso firmado \\ \hline
+\rowcolor{gray!10}
+Salidas & Pedido de ingreso aprobado + guía de remisión (impresos, engrampados y archivados); mercadería lista para almacenamiento \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Verificación y conformidad (Recepción)}
+\end{table}
+
+El Auxiliar de almacén recibe el pedido de ingreso y verifica físicamente la mercadería contra lo registrado. El Supervisor determina la conformidad: si la mercadería coincide con la guía, aprueba el pedido; si existen observaciones, modifica el pedido en los campos de cantidad, lote, fecha de vencimiento o zona/ubicación, o ejecuta un reempaque cuando la composición física de la paleta no coincide con lo declarado. En ambos casos, el procedimiento concluye con la impresión del pedido de ingreso y su engrampado físico a la guía de remisión del cliente.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Analista & Pedido de ingreso firmado & 1. Verificar mercadería contra pedido de ingreso & Mercadería constatada físicamente & Supervisor \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Mercadería constatada & 2. Determinar conformidad (¿conforme a la guía?) & Decisión: aprobar o modificar & Supervisor \\ \hline
+Supervisor & Decisión: modificar & 3. Modificar pedido (cantidad, lote, FV, zona o reempaque) & Pedido corregido & Supervisor \\ \hline
+\rowcolor{gray!10}
+Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar pedido con la guía de remisión & Pedido + guía archivados & Almacenamiento \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Verificación y conformidad (Recepción)}
+\end{table}
+
+\diagrama{Recepción de mercadería.png}{Diagrama BPMN --- Verificación y conformidad (Recepción)}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 2: Almacenamiento}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Almacenamiento \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Objetivo & Gestionar la ubicación física de la mercadería dentro del almacén, asegurando la correcta asignación de posiciones en racks y la trazabilidad de los movimientos internos. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Analista de inventarios \\ \hline
+Participantes & Analista de inventarios, Auxiliar de almacén \\ \hline
+\rowcolor{gray!10}
+Entradas & Pedido de ingreso aprobado y engrampado a la guía de remisión \\ \hline
+Salidas & Mercadería ubicada en rack; reporte de movimientos actualizado \\ \hline
+\rowcolor{gray!10}
+Proveedores & Recepción de Mercadería \\ \hline
+Clientes del proceso & Despacho de Mercadería \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Transferencia de ubicación \newline 2. Reempaque \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Almacenamiento}
+\end{table}
+
+\procedimiento{a}{Transferencia de ubicación}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Transferencia de ubicación \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Proceso & Almacenamiento \\ \hline
+Categoría & Misional / Operativo \\ \hline
+\rowcolor{gray!10}
+Líder & Analista de inventarios \\ \hline
+Participantes & Analista de inventarios \\ \hline
+Entradas & Código previamente recepcionado \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte de movimientos actualizado con la nueva ubicación del código \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Transferencia de ubicación}
+\end{table}
+
+Procedimiento de sistema que permite mover un código de una ubicación origen a una ubicación destino dentro del almacén. El Analista de inventarios ingresa el código a transferir; el sistema muestra las fechas de vencimiento disponibles. El analista decide si transfiere la totalidad de las fechas registradas o únicamente una fecha específica, indica la ubicación de origen y destino, y ejecuta la transferencia. El movimiento queda reflejado en el reporte de movimientos.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Recepción & Código recepcionado & 1. Ingresar código a transferir & Código identificado & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & Código identificado & 2. Consultar fechas de vencimiento disponibles & Lista de fechas disponibles & Analista \\ \hline
+Analista & Lista de fechas & 3. Seleccionar todas las fechas o una fecha específica & Alcance de transferencia definido & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & Alcance definido; ubicación origen y destino & 4. Ejecutar transferencia & Reporte de movimientos actualizado & Despacho \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Transferencia de ubicación}
+\end{table}
+
+\diagrama{Transferencia ubicación.png}{Diagrama BPMN --- Transferencia de ubicación}
+
+\procedimiento{b}{Reempaque}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Reempaque \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Proceso & Almacenamiento \\ \hline
+Categoría & Misional / Operativo \\ \hline
+\rowcolor{gray!10}
+Líder & Analista de inventarios \\ \hline
+Participantes & Auxiliar de almacén, Analista de inventarios \\ \hline
+Entradas & Paleta física cuya composición no coincide con lo declarado en la guía de remisión \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte de movimientos actualizado con la paleta dividida en las cantidades reales \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Reempaque}
+\end{table}
+
+Procedimiento aplicado cuando la composición física de una paleta no coincide con lo declarado en la guía de remisión (por ejemplo, una paleta declarada como 50 unidades que físicamente llega dividida en dos paletas de 20 y 30). El Auxiliar de almacén constata las paletas tal como llegaron, sin unirlas. El Analista de inventarios selecciona la paleta a reempacar, registra la fecha de vencimiento correspondiente y ejecuta el reempaque, dividiendo el registro en las cantidades correspondientes. El resultado queda reflejado en el reporte de movimientos.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Recepción & Paleta física no coincidente con la guía & 1. Constatar paletas tal como llegaron (sin unirlas) & Paletas constatadas & Analista \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Paletas constatadas & 2. Seleccionar la paleta a reempacar & Paleta seleccionada & Analista \\ \hline
+Analista & Paleta seleccionada & 3. Registrar fecha de vencimiento & FV registrada & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & FV registrada & 4. Ejecutar reempaque (dividir paleta en cantidades reales) & Reporte de movimientos actualizado & Despacho \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Reempaque}
+\end{table}
+
+\diagrama{Reempaque.png}{Diagrama BPMN --- Reempaque}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 3: Acondicionamiento de Mercadería}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Acondicionamiento de Mercadería \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo (servicio opcional) \\ \hline
+Objetivo & Proveer servicios de acondicionamiento físico de mercadería (repaletizado y reencajado) conforme a la solicitud comercial del cliente, generando el reporte de servicio que sirve de insumo para la facturación. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Auxiliar de almacén \\ \hline
+Participantes & Cliente, Auxiliar de almacén \\ \hline
+\rowcolor{gray!10}
+Entradas & Solicitud comercial del cliente (repaletizado o reencajado) \\ \hline
+Salidas & Reporte manual de servicio (código, descripción, cantidad, paletas/unidades, tarifa) \\ \hline
+\rowcolor{gray!10}
+Proveedores & Cliente arrendador; Almacenamiento \\ \hline
+Clientes del proceso & Facturación \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Repaletizado \newline 2. Reencajado \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Acondicionamiento de Mercadería}
+\end{table}
+
+\procedimiento{a}{Repaletizado}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Repaletizado \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Almacén \\ \hline
+Proceso & Acondicionamiento de Mercadería \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo (servicio opcional) \\ \hline
+Líder & Auxiliar de almacén \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Auxiliar de almacén \\ \hline
+Entradas & Solicitud de repaletizado; mercadería en paleta de origen; paleta destino (estándar de exportación, fumigada o certificada) \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte manual de repaletizado (código, descripción, cantidad, N.° de paletas, tarifa) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Repaletizado}
+\end{table}
+
+Servicio opcional solicitado comercialmente por el cliente, mediante el cual la mercadería se traslada caja por caja desde la paleta en que se encuentra hacia una paleta estándar de exportación, fumigada o certificada, provista en algunos casos por el propio cliente. El procedimiento es enteramente físico, sin soporte en el sistema de información. Concluye con la elaboración manual de un reporte que detalla código, descripción, cantidad, número de paletas y tarifa, el cual constituye el insumo de entrada del proceso de Facturación.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Solicitud de repaletizado por código & 1. Solicitar repaletizado por código & Solicitud registrada & Auxiliar \\ \hline
+\rowcolor{gray!10}
+Cliente & Solicitud registrada & 2. Proveer paleta destino (si aplica) & Paleta destino disponible & Auxiliar \\ \hline
+Almacenamiento & Paleta destino; mercadería en paleta de origen & 3. Trasladar mercadería caja por caja a la nueva paleta & Mercadería repaletizada & Auxiliar \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Mercadería repaletizada & 4. Elaborar reporte manual (código, descripción, cantidad, paletas, tarifa) & Reporte de repaletizado & Facturación \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Repaletizado}
+\end{table}
+
+\diagrama{Repaletizado.png}{Diagrama BPMN --- Repaletizado}
+
+\procedimiento{b}{Reencajado}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Reencajado \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Almacén \\ \hline
+Proceso & Acondicionamiento de Mercadería \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo (servicio opcional) \\ \hline
+Líder & Auxiliar de almacén \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Auxiliar de almacén \\ \hline
+Entradas & Solicitud de reencajado; mercadería en caja original; caja destino indicada por el cliente \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte manual de reencajado (código, descripción, cantidad, tarifa) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Reencajado}
+\end{table}
+
+Servicio opcional similar en estructura al Repaletizado, mediante el cual la mercadería se traslada de su caja original a una nueva caja indicada por el cliente. El Auxiliar de almacén ejecuta el traslado de forma física y elabora un reporte manual con código, descripción, cantidad y tarifa, el cual constituye insumo de entrada del proceso de Facturación.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Solicitud de reencajado por código & 1. Solicitar reencajado por código & Solicitud registrada & Auxiliar \\ \hline
+\rowcolor{gray!10}
+Cliente & Solicitud registrada & 2. Indicar caja destino & Caja destino disponible & Auxiliar \\ \hline
+Almacenamiento & Caja destino; mercadería en caja original & 3. Trasladar mercadería a la nueva caja & Mercadería reencajada & Auxiliar \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Mercadería reencajada & 4. Elaborar reporte manual (código, descripción, cantidad, tarifa) & Reporte de reencajado & Facturación \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Reencajado}
+\end{table}
+
+\diagrama{Reencajado.png}{Diagrama BPMN --- Reencajado}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 4: Despacho de Mercadería}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Despacho de Mercadería \\ \hline
+Macroproceso & Gestión de Almacén \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Objetivo & Registrar y verificar la salida de mercadería del almacén conforme a la solicitud del cliente, aplicando la regla FEFO para la selección de lotes, asegurando que el pedido de salida coincida con la guía de remisión y con la mercadería física despachada. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Analista de inventarios \\ \hline
+Participantes & Cliente, Auxiliar de almacén, Analista de inventarios, Supervisor \\ \hline
+\rowcolor{gray!10}
+Entradas & Guía de remisión del cliente (salida); mercadería ubicada y registrada en Almacenamiento \\ \hline
+Salidas & Pedido de salida (P.S.) firmado y engrampado a la guía de remisión (archivado); cliente atendido \\ \hline
+\rowcolor{gray!10}
+Proveedores & Cliente arrendador; Almacenamiento \\ \hline
+Clientes del proceso & Cliente arrendador \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Registro de pedido de salida \newline 2. Verificación y conformidad (Despacho) \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Despacho de Mercadería}
+\end{table}
+
+\procedimiento{a}{Registro de pedido de salida}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Registro de pedido de salida \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Almacén \\ \hline
+Proceso & Despacho de Mercadería \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Analista de inventarios \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Auxiliar de almacén, Analista de inventarios \\ \hline
+Entradas & Guía de remisión del cliente (1 a 10+ líneas/códigos); mercadería en almacén \\ \hline
+\rowcolor{gray!10}
+Salidas & Pedido de salida (P.S.) firmado, listo para verificación física \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Registro de pedido de salida}
+\end{table}
+
+El procedimiento es estructuralmente similar al Registro de pedido de ingreso, con elementos adicionales propios del despacho. El Auxiliar de almacén realiza el \textit{picking}, localizando y extrayendo la mercadería según la zona, ubicación y stock disponible del código solicitado. El Analista de inventarios registra el pedido de salida código por código, consulta la zona y el stock del código recepcionado y, si el código presenta varias fechas de vencimiento, selecciona el lote aplicando la regla FEFO (primero en vencer, primero en salir). El registro sigue la misma bifurcación por unidad comercial (caja o unidad) que el proceso de Recepción.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Guía de remisión (1 a 10+ líneas) & 1. Enviar guía de remisión & Guía recibida & Auxiliar \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Guía recibida & 2. Realizar picking (localizar y extraer mercadería según zona, ubicación y stock) & Mercadería extraída & Analista \\ \hline
+Analista & Mercadería extraída & 3. Registrar pedido de salida (código por código) & Pedido con datos de transporte & Analista \\ \hline
+\rowcolor{gray!10}
+Almacenamiento & Pedido con datos de transporte & 4. Consultar zona y stock del código & Pedido con zona y stock & Analista \\ \hline
+Analista & Pedido con zona y stock & 5. Seleccionar lote y FV según FEFO (si aplica) & Pedido con lote y FV & Analista \\ \hline
+\rowcolor{gray!10}
+Analista & Pedido con lote y FV & 6. Registrar según unidad comercial (caja o unidad) & Pedido con cantidades & Analista \\ \hline
+Analista & Pedido con cantidades & 7. Firmar pedido de salida (analista, chofer y almacén) & Pedido de salida firmado & Almacén \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Registro de pedido de salida}
+\end{table}
+
+\diagrama{Despacho de mercadería.png}{Diagrama BPMN --- Registro de pedido de salida}
+
+\procedimiento{b}{Verificación y conformidad}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Verificación y conformidad \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Almacén \\ \hline
+Proceso & Despacho de Mercadería \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Supervisor \\ \hline
+\rowcolor{gray!10}
+Participantes & Auxiliar de almacén, Supervisor \\ \hline
+Entradas & Pedido de salida firmado \\ \hline
+\rowcolor{gray!10}
+Salidas & Pedido de salida (P.S.) aprobado + guía de remisión (impresos, engrampados y archivados); cliente atendido \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Verificación y conformidad (Despacho)}
+\end{table}
+
+Procedimiento idéntico en estructura a la Verificación y conformidad de Recepción, aplicado al pedido de salida (P.S.). El Auxiliar de almacén verifica la mercadería contra el pedido de salida; el Supervisor aprueba o, ante observaciones, modifica el pedido (cantidad, lote, fecha de vencimiento, zona/ubicación o reempaque). El procedimiento concluye con la impresión del pedido de salida y su engrampado a la guía de remisión, quedando el conjunto documental archivado y el cliente atendido.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Analista & Pedido de salida firmado & 1. Verificar mercadería contra pedido de salida & Mercadería constatada físicamente & Supervisor \\ \hline
+\rowcolor{gray!10}
+Auxiliar & Mercadería constatada & 2. Determinar conformidad (¿conforme a la guía?) & Decisión: aprobar o modificar & Supervisor \\ \hline
+Supervisor & Decisión: modificar & 3. Modificar pedido (cantidad, lote, FV, zona o reempaque) & Pedido corregido & Supervisor \\ \hline
+\rowcolor{gray!10}
+Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar P.S. con la guía de remisión & P.S. + guía archivados & Cliente \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Verificación y conformidad (Despacho)}
+\end{table}
+
+\diagrama{Verificación y conformidad.png}{Diagrama BPMN --- Verificación y conformidad (Despacho)}
+
+\section{Identificación de Problemas Asociados al Macroproceso}
+
+A través del diagnóstico organizacional realizado en el Entregable 1, se identificaron los siguientes problemas que afectan directamente al macroproceso de Gestión de Almacén:
 
 \begin{itemize}
     \item Registro manual de ingresos y salidas de mercadería mediante hojas de cálculo Excel, sin trazabilidad centralizada.
@@ -388,7 +897,7 @@ A través del diagnóstico organizacional realizado en el Entregable 1, se ident
     \item Demoras en la generación de reportes gerenciales, al requerir consolidación manual de múltiples archivos.
 \end{itemize}
 
-Estos problemas constituyen la justificación directa para el rediseño del proceso y la incorporación de un sistema ERP con módulo de inteligencia de negocios, desarrollado en los siguientes apartados del presente entregable.
+Estos problemas constituyen la justificación directa para el rediseño del macroproceso y la incorporación de un sistema ERP con módulo de inteligencia de negocios, desarrollado en los siguientes capítulos del presente entregable.
 
 % ============================================================
 % CAPÍTULO 2
