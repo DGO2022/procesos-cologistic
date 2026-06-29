@@ -1,0 +1,56 @@
+0:00
+Este, cuando le llamamos la vez en la mañana, usted dijo que había proceso de
+0:07
+stock inventario, la ubicación de movimientos,
+0:11
+el reempaque y los despachos. Eso está contemplado allí en esa imagen o falta,
+0:16
+¿no? Esos son otros procesos. En el hay procesos adicionales, por
+0:20
+ejemplo, este en las transferencias, ¿no?, que hay que
+0:25
+transferir de un una ubicación. Por ejemplo, el código A quiero transferirlo
+0:29
+de la ubicación C a la D. Entonces, yo lo puedo transferir de repente todo el
+0:34
+código A que incluye su lote, fechacimiento, todo lo que yo voy a
+0:37
+elegir. Usted tiene que salir ahí la lista de del pongo el código A, me va
+0:42
+ahí va a indicar qué cuántas fechas tienen y cuál es la fecha que yo tengo
+0:46
+que mover para el otro lado. Si es todo, entonces es yo selecciono todo o o
+0:51
+solamente coloco a código A, transferir todo a a tal de tal ubicación a tal
+0:55
+ubicación. ubicación origen, ubicación destino y se pide solamente una fecha
+1:00
+igual, ¿no? Este, ubicación código A, el lote o fecha tal eh de destino de
+1:06
+ubicación origen a ubicación destino. Y esa transferencia este se ve en los
+1:12
+movimientos, ¿no? De ahí vamos a llegar a los movimientos.
+1:15
+Luego hay reempaque. En lo que es reempaque, eh, el código A, como ya le
+1:21
+habíamos comentado hace momento, el código A, este dice que ingresaron,
+1:25
+según la guía decían 50, pero físicamente había 20 y otra paleta había
+1:30
+30. Entonces, eran dos paletas, ¿no? Entonces el almacénero no lo va a unir
+1:34
+todo, ¿no? Solamente lo vamos a seleccionar como viene. Viene una paleta
+1:37
+de 20, una paleta de 30. Entonces, yo tengo que hacer un reempaque, o sea,
+1:41
+esta paleta dividirla en dos en dos paletas, una de 20 y una de 30.
+1:46
+Entonces, ese reempaque igualito, ¿no? Su selecciona la paleta, este, le
+1:50
+colocas la fecha, fecha de vencimiento, eh, y haces el reempaque. Ahí te va a
+1:55
+decir la división, ¿no? Dividir una paleta en tanta cantidad y la otra en
+1:59
+tanta cantidad. Y eso te tiene que que ver en el reporte de movimientos
+2:04
+también. M.

@@ -1,0 +1,38 @@
+Sí se puede leer. La letra es apurada en partes, pero el diagrama es claro: es el **flujo AS-IS dibujado a mano por el entrevistado**, y calza casi exacto con las transcripciones. Te lo transcribo tal cual, marcando con [?] lo que quedó dudoso.
+
+**RECEPCIÓN DE MERCADERÍA**
+
+`INICIO` → caja **"Se registra la guía enviada"**, y debajo la lista de campos:
+- a) N° de guía o referencia
+- b) Cliente / placa / nombre chofer / brevete
+- c) Nombre del usuario
+- d) Fecha y hora
+- e) Código, descripción, lote, FV (fecha de vencimiento)
+- f) Pallet × factor = cantidad de cajas
+- g) Σ (suma) de los pallets y de cajas
+- (cierre) Firmas: analista / chofer / almacén
+
+Luego caja **"Entrego al almacén"** → rombo de decisión **"¿Registró / procesó el pedido?"**
+- **SÍ** → "se agrega / imprime el pedido" → "si tiene el pedido, lo imprime" → `FIN`
+- **NO** → "se modifica el pedido de ingreso y se [registra/agrega]"
+
+Notas al costado (las tres acciones de la modificación):
+- Modificación: cantidad, lote, FV, cajas
+- Ubicación: zona y ubicación
+- Reempaque: división de paleta [?]
+
+**DESPACHO DE MERCADERÍA**
+
+`INICIO` → caja **"Se registra guía / ingreso"**, con los mismos campos **a, b, c, d, e, f, g**, y además:
+- h) Ubicación de la mercadería: zona y ubicación
+- i) Stock del código
+
+Luego **"Entrego al almacén"** → rombo **"¿Aprueba el pedido / ingreso?"**
+- **SÍ** → "se despacha el pedido de salida" → "imprime el P.S" (pedido de salida) → `FIN`
+- **NO** → "se modifica el pedido y luego se despacha"
+
+Y abajo las mismas tres notas, pero marcadas con `=` (Modificación =, Ubicación =, Reempaque =), o sea **idénticas a recepción**. (En la esquina dice "andes", que es solo la marca del cuaderno.)
+
+En resumen, el dibujo no contradice nada de lo que ya documentamos; lo **confirma y lo ordena**: deja explícitos el inicio, el fin, el rombo de decisión "¿conforme/aprueba?" y la rama de modificación. Incluso refuerza que la **Σ de pallets y cajas** (campo g) es parte del diseño esperado, que es justo lo que el entrevistado dijo que "faltaba implementar".
+
+Esto es exactamente el insumo para el **AS-IS en BPMN 2.0** (CE0132). ¿Quiero pasarlo en limpio a un diagrama BPMN —con sus eventos de inicio/fin, la compuerta de decisión y el subproceso de modificación/reempaque— para Recepción y Despacho? Lo puedo hacer como diagrama aquí mismo y, si lo necesitas para el informe, también exportártelo en un archivo editable.

@@ -1,0 +1,66 @@
+0:02
+Ya, de repente no sé, no sé si eso era lo que quería yo, por ejemplo, yo le
+0:08
+estaba brondando eh digamos en el diagrama que usted pasó
+0:12
+ya este
+0:15
+e lo que me comenta de que había ese inconveniente, ¿en qué parte del
+0:20
+diagrama era ese? en el final, al final del proceso, o sea, como un pedido de
+0:26
+salida puede ver puede ver, por ejemplo, puede ver unas 10 a 15 o hasta 20
+0:31
+códigos que le está pidiendo el cliente para despachar, ¿no? Entonces, como es
+0:35
+una lista larga ya de 15 códigos, entonces no vamos despachando uno por
+0:39
+uno, uno por uno y son líneas, ¿no? líneas, renglones, renglones, renglones
+0:43
+y a veces este cuando ya terminas de hacer el tú ya terminé el el tú terminas
+0:49
+de hacer eso y tú supuestamente te sale que ya está, pero no te sale el aviso
+0:55
+que que si el pedido se recepcionó, se despachó correctamente, se falta
+1:00
+despachar de repente un ítem, ¿no? Un código, ese aviso no sabíamos. Entonces,
+1:06
+no sabíamos si ya está despachado correctamente todo o ya estaba ingresado
+1:09
+todo. Y entonces cuando hacíamos el reporte, sacábamos el reporte del stock,
+1:14
+este faltaba y que era que no se había descontado una
+1:19
+línea, no se había reaccionado una línea. Ahí es donde se generaba ese ese
+1:23
+problema. Ahí tengo que hacer ajustes, ajustes para poder regularizarlo.
+1:27
+Ahí más que todavía el el problema. Lo demás son eran detalles que había que
+1:31
+ajustar, afinar, mejor dicho. Pues el único problema que tenía, aparte
+1:37
+que reducé tiempo y es era en esa parte la última de los del final del proceso,
+1:42
+¿no? Descuadrado. Claro. Ahí ahí tenía un problema que no
+1:46
+tenía este finalización el el proceso, o sea, no te decía no proceso este
+1:52
+despacho terminado correctamente, recesión correctamente.
+1:57
+no decía registro, había este un código que no se había descontado
+2:04
+y ese lo que generaba que no sabíamos si este ya estaba o no este hecho el pedido
+2:11
+y como yo en esta oportunidad yo tenía un Excel aparte
+2:15
+y también la otra en el Excel parte yo también registraba ahí, entonces
+2:20
+comparaba mi stock en ambos y no me no cuadraba y cuando físicamente a ver
+2:24
+igualito, ¿no? También no cuadraba. Entonces, ¿qué era que faltaba?
+2:28
+descontar una línea. De esa manera es que nos dimos cuenta
+2:34
+porque no lo hemos dejado ahí el el sistema decía tal cantidad y entraba el
+2:39
+cliente a ver y decía que no y físicamente no Yeah.

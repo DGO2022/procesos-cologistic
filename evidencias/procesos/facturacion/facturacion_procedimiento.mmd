@@ -1,0 +1,71 @@
+%% Co Logistic SAC — Proceso de apoyo: Facturación
+%% Procedimiento único: Liquidación mensual in-out y servicios
+%% Fuente: 3-Facturacion.txt, Personal-Encargado-Sunat.txt,
+%%         9-Auditorias-trazabilidad.txt
+%% Elementos BPMN representados:
+%%   - Evento de inicio (Start Event, temporal/cíclico: cierre de mes)
+%%   - Tareas (Task)
+%%   - Compuerta exclusiva (Exclusive Gateway / XOR) tipo de tarifa
+%%   - Artefactos de datos / Data Objects (reporte de movimientos, Excel,
+%%     factura)
+%%   - Evento de fin (End Event)
+%%   - Pools/Lanes: Analista de inventarios, Contador
+%% Nota: proceso de apoyo, no misional. Se ejecuta una vez al mes, desacoplado
+%%       del despacho/recepción ("nunca interviene en la salida de despacho").
+%%       Brecha confirmada: 100% manual en Excel, sin soporte en el sistema.
+
+flowchart LR
+    classDef startEnd fill:#444441,stroke:#2C2C2A,stroke-width:1px,color:#FFFFFF
+    classDef task fill:#0F6E56,stroke:#04342C,stroke-width:1px,color:#FFFFFF
+    classDef gateway fill:#BA7517,stroke:#412402,stroke-width:1px,color:#FFFFFF
+    classDef variant fill:#993C1D,stroke:#4A1B0C,stroke-width:1px,color:#FFFFFF
+    classDef artifact fill:#5F5E5A,stroke:#2C2C2A,stroke-width:1px,stroke-dasharray: 3 3,color:#FFFFFF
+
+    subgraph LANE_ANALISTA["Lane: Analista de inventarios"]
+        direction LR
+        Inicio(("Inicio: cierre
+        de mes")):::startEnd
+        T1["Filtrar reporte de movimientos
+        por tipo de producto y mes"]:::task
+        T2["Incluir reportes de
+        Acondicionamiento
+        (repaletizado, reencajado)"]:::variant
+        T3["Exportar reporte a Excel"]:::task
+        T4["Enviar reportes
+        al contador"]:::task
+    end
+
+    subgraph LANE_CONTADOR["Lane: Contador"]
+        direction LR
+        G1{"¿Tarifa por
+        paleta o m²?"}:::gateway
+        T5["Aplicar tarifa por paleta"]:::task
+        T6["Aplicar tarifa
+        por metro cuadrado"]:::variant
+        T7["Prorratear por
+        fecha de corte (días/30)"]:::task
+        T8["Emitir factura
+        al cliente"]:::task
+        Fin(("Fin")):::startEnd
+    end
+
+    Doc1[/"Reporte de movimientos
+    (artefacto de datos)"/]:::artifact
+    Doc2[/"Excel con tarifa aplicada
+    (manual, sin soporte en sistema)"/]:::artifact
+    Doc3[/"Factura al cliente"/]:::artifact
+
+    Inicio --> T1
+    T1 -.- Doc1
+    T1 --> T2
+    T2 --> T3
+    T3 --> T4
+    T4 --> G1
+    G1 -->|"paleta"| T5
+    G1 -->|"m²"| T6
+    T5 --> T7
+    T6 --> T7
+    T7 -.- Doc2
+    T7 --> T8
+    T8 -.- Doc3
+    T8 --> Fin
