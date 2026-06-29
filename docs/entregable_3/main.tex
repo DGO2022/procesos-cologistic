@@ -1,1240 +1,871 @@
-\documentclass[11pt,a4paper]{report}
-% =========================================================
-% PLANTILLA UPeU ADAPTADA - MANUAL DE PROCESOS CO LOGISTIC
-% =========================================================
-\usepackage[a4paper,top=2.35cm,bottom=2.35cm,left=2.35cm,right=2.35cm,headheight=24pt,headsep=0.55cm,footskip=1.05cm]{geometry}
-\usepackage{fontenc}
-\usepackage[spanish,es-tabla]{babel}
-\usepackage{amsmath,amssymb}
-\usepackage[table]{xcolor}
+%! TEX program = xelatex
+% ============================================================
+%  ENTREGABLE 3 GTI — CO LOGISTIC S.A.C.
+%  Análisis y Rediseño de Procesos Organizacionales con TIC
+%  Compilar: xelatex → xelatex
+% ============================================================
+
+\documentclass[11pt, a4paper, oneside]{report}
+
+% ── Fuentes y codificación ───────────────────────────────
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{babel}
+\babelprovide[import, main]{spanish}
+
+% ── Márgenes ────────────────────────────────────────────
+\usepackage{geometry}
+\geometry{
+  top    = 2.54cm,
+  bottom = 2.54cm,
+  left   = 3.00cm,
+  right  = 2.54cm,
+}
+\setlength{\headheight}{14.5pt}
+
+% ── Interlineado y párrafo ───────────────────────────────
+\usepackage{setspace}
+\setstretch{1.5}
+\usepackage{parskip}
+\setlength{\parindent}{1.25cm}
+
+% ── Paquetes generales ───────────────────────────────────
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{lscape}
+\usepackage{tikz}
 \usepackage{graphicx}
+\usepackage{chngcntr}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{chngcntr}
 \usepackage{array}
-\usepackage{multirow}
-\usepackage{ragged2e}
+\usepackage{longtable}
 \usepackage{enumitem}
-\usepackage{microtype}
 \usepackage{caption}
-\usepackage{float}
-\usepackage{titlesec}
-\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{hyperref}
 \usepackage{tocloft}
-\usepackage{etoolbox}
-\usepackage[hidelinks]{hyperref}
 
-\definecolor{upeuBlue}{HTML}{173B6D}
-\definecolor{upeuBlueDark}{HTML}{0B3768}
-\definecolor{upeuLightBlue}{HTML}{EEF4FA}
-\definecolor{upeuLine}{HTML}{1E5A8A}
-\definecolor{tableGray}{HTML}{F3F3F3}
+% ── Colores UPeU ────────────────────────────────────────
+\usepackage[table]{xcolor}
+\definecolor{upeu_dark}{HTML}{1A3A6B}
+\definecolor{upeu_mid}{HTML}{2E75B6}
+\definecolor{upeu_light}{HTML}{D6E4F0}
+\definecolor{upeu_gold}{HTML}{B8860B}
+\definecolor{body_gray}{HTML}{404040}
+\definecolor{hint_gray}{HTML}{9E9E9E}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.7em}
+% ── Encabezado y pie ────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{%
+  {\color{upeu_dark}\small\bfseries Ingeniería de Sistemas · UPeU}%
+}
+\renewcommand{\headrule}{{\color{upeu_mid}\rule{\headwidth}{0.8pt}}}
+\fancyfoot[L]{{\color{hint_gray}\small\itshape Ingeniería de Sistemas}}
+\fancyfoot[R]{{\color{body_gray}\small Página \thepage}}
+\renewcommand{\footrule}{{\color{upeu_mid}\rule{\headwidth}{0.8pt}}}
+
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+
+% ── Títulos / secciones ──────────────────────────────────
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\thispagestyle{empty}\normalfont\centering\vspace*{\fill}}
+  {\color{upeu_mid}\bfseries\fontsize{20}{30}\selectfont CAPÍTULO \thechapter}
+  {0.05cm}
+  {\color{upeu_dark}\bfseries\fontsize{30}{40}\selectfont}
+  [\vspace*{\fill}\newpage]
+
+\titlespacing{\chapter}{0pt}{0pt}{0pt}
+
+\titleformat{\section}[hang]
+  {\normalfont\bfseries\large\color{upeu_dark}}
+  {\thesection}{0.7em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\bfseries\normalsize\color{upeu_mid}\itshape}
+  {\thesubsection}{0.7em}{}
+\titlespacing{\subsection}{0pt}{10pt}{4pt}
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\bfseries\normalsize\color{body_gray}}
+  {\thesubsubsection}{0.7em}{}
+\titlespacing{\subsubsection}{0pt}{8pt}{2pt}
+
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
-\renewcommand{\arraystretch}{1.22}
-\setlength{\tabcolsep}{5.4pt}
-\arrayrulecolor{upeuBlue}
-\sloppy
-\emergencystretch=2em
 
-\renewcommand{\contentsname}{Índice}
-\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
-\renewcommand{\figurename}{Figura}
-\renewcommand{\tablename}{Tabla}
-\captionsetup{font=small,labelfont={bf,color=upeuBlue},labelsep=period,justification=centering}
+% ── Índice ───────────────────────────────────────────────
+\renewcommand{\cfttoctitlefont}{\normalfont\bfseries\Large\color{upeu_dark}}
+\setlength{\cftbeforetoctitleskip}{10pt}
+\setlength{\cftaftertoctitleskip}{16pt}
+\renewcommand{\cftchapfont}{\bfseries\color{upeu_dark}}
+\renewcommand{\cftsecfont}{\color{body_gray}}
+\renewcommand{\cftsubsecfont}{\small\color{body_gray}}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% ── Imágenes ─────────────────────────────────────────────
+\graphicspath{{./img/}}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 
-% Encabezado y pie de página como la plantilla original
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[R]{\color{upeuBlue}\bfseries Ingeniería de Sistemas $\bullet$ UPeU}
-\fancyfoot[L]{\color{gray}\itshape Ingeniería de Sistemas}
-\fancyfoot[R]{\color{black}Página \thepage}
-\renewcommand{\headrulewidth}{0.45pt}
-\renewcommand{\footrulewidth}{0.45pt}
-\renewcommand{\headrule}{\hbox to\headwidth{\color{upeuLine}\leaders\hrule height \headrulewidth\hfill}}
-\renewcommand{\footrule}{\hbox to\headwidth{\color{upeuLine}\leaders\hrule height \footrulewidth\hfill}}
-
-\fancypagestyle{plain}{%
-  \fancyhf{}%
-  \fancyhead[R]{\color{upeuBlue}\bfseries Ingeniería de Sistemas $\bullet$ UPeU}%
-  \fancyfoot[L]{\color{gray}\itshape Ingeniería de Sistemas}%
-  \fancyfoot[R]{\color{black}Página \thepage}%
-  \renewcommand{\headrulewidth}{0.45pt}%
-  \renewcommand{\footrulewidth}{0.45pt}%
-}
-
-% Capítulos como portadilla: CAPÍTULO N / título centrado, igual a la plantilla PDF
-\titleformat{\chapter}[display]
-  {\normalfont\bfseries\filcenter\color{black}}
-  {\vspace*{0.26\textheight}\color{upeuBlue}\Large CAPÍTULO \thechapter}
-  {1.0em}
-  {\Huge\bfseries}
-  [\vfill\thispagestyle{empty}\clearpage]
-\titlespacing*{\chapter}{0pt}{0pt}{0pt}
-
-\titleformat{\section}
-  {\normalfont\Large\bfseries\color{upeuBlue}}
-  {\thesection}{0.7em}{}
-\titleformat{\subsection}
-  {\normalfont\large\bfseries\color{upeuBlue}}
-  {\thesubsection}{0.7em}{}
-\titleformat{\subsubsection}
-  {\normalfont\normalsize\bfseries\color{upeuBlue}}
-  {\thesubsubsection}{0.7em}{}
-
-% Índice con estilo institucional
-\renewcommand{\cfttoctitlefont}{\Huge\bfseries\color{upeuBlue}}
-\renewcommand{\cftchapfont}{\bfseries\color{upeuBlue}}
-\renewcommand{\cftsecfont}{\normalfont}
-\renewcommand{\cftchappagefont}{\bfseries\color{upeuBlue}}
-\renewcommand{\cftdotsep}{1.2}
-\setlength{\cftbeforechapskip}{0.55em}
-
-% Listas compactas dentro de tablas y texto
-\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt,leftmargin=1.4em}
-\setlist[enumerate]{topsep=2pt,itemsep=2pt,parsep=0pt,leftmargin=1.6em}
-
-% Inclusión segura de imágenes: si no existe el archivo, deja un recuadro elegante.
-\let\OriginalIncludeGraphics\includegraphics
-\renewcommand{\includegraphics}[2][]{%
-  \IfFileExists{#2}{\OriginalIncludeGraphics[#1]{#2}}{%
-    \fbox{\begin{minipage}[c][5.1cm][c]{0.88\linewidth}
-      \centering\color{gray}\small
-      \textbf{Imagen pendiente:} \texttt{\detokenize{#2}}\\[0.35em]
-      Subir este archivo dentro de la carpeta correspondiente.
-    \end{minipage}}%
+\newcommand{\figura}[3][0.85\linewidth]{%
+\begin{figure}[H]
+\centering
+\IfFileExists{img/#2}{%
+  \includegraphics[width=#1]{#2}%
+}{%
+  \fbox{%
+    \begin{minipage}[c][4.5cm][c]{#1}
+    \centering
+    \small Imagen pendiente: \texttt{#2}\\
+    Subir este archivo dentro de la carpeta \texttt{img/}.
+    \end{minipage}
   }%
 }
-\graphicspath{{img/}{imagenes/}{./imagenes/}}
-
-% Macro de indicador con formato de tabla institucional
-% Parámetros: {#1 Título}{#2 Nombre}{#3 Objetivo}{#4 Fórmula}
-%             {#5 Código}{#6 Resp. gestión}{#7 Resp. carga}{#8 Meta}{#9 Frecuencia}
-\newcommand{\fichaIndicador}[9]{%
-  \vspace{0.6em}
-  \noindent\begin{tabularx}{\textwidth}{|>{\RaggedRight\arraybackslash}p{0.25\textwidth}|>{\RaggedRight\arraybackslash}X|>{\RaggedRight\arraybackslash}X|}
-  \hline
-  \rowcolor{upeuBlue}\multicolumn{1}{|>{\color{white}\bfseries}p{0.25\textwidth}|}{#1} & \multicolumn{2}{>{\centering\arraybackslash\color{white}\bfseries}X|}{FICHA DE INDICADOR} \\
-  \hline
-  \rowcolor{upeuBlue}\textcolor{white}{\textbf{Nombre del indicador}} & \textcolor{white}{\textbf{Objetivo del indicador}} & \textcolor{white}{\textbf{Fórmula del indicador}} \\
-  \hline
-  #2 & #3 & #4 \\
-  \hline
-  \rowcolor{upeuBlue}\textcolor{white}{\textbf{Código del indicador}} & \textcolor{white}{\textbf{Responsable de gestión}} & \textcolor{white}{\textbf{Responsable de carga y reporte}} \\
-  \hline
-  #5 & #6 & #7 \\
-  \hline
-  \rowcolor{upeuBlue}\textcolor{white}{\textbf{Meta anualizada}} & \textcolor{white}{\textbf{Frecuencia de reporte}} & \textcolor{white}{\textbf{Fecha de actualización}} \\
-  \hline
-  #8 & #9 & Por definir \\
-  \hline
-  \end{tabularx}\par\vspace{1.3em}
+\caption{#3}
+\end{figure}
 }
 
-% Entornos auxiliares para portada y tablas institucionales
-\newcommand{\coverrow}[2]{\textbf{#1:} & #2 \\}
+% ── Tablas ──────────────────────────────────────────────
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
+% ── Listas ──────────────────────────────────────────────
+\setlist{noitemsep, topsep=4pt}
+
+% ── Hipervínculos ────────────────────────────────────────
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = upeu_dark,
+  urlcolor   = upeu_mid,
+  citecolor  = upeu_mid,
+  pdftitle   = {Entregable 3 - Análisis y Rediseño de Procesos Organizacionales con TIC},
+  pdfauthor  = {Grupo CO LOGISTIC S.A.C.},
+}
+
+% ── Captions ────────────────────────────────────────────
+\captionsetup{
+  font      = small,
+  labelfont = {bf, color=upeu_dark},
+  textfont  = {color=body_gray},
+  skip      = 4pt,
+  labelsep  = period
+}
+
+\addto\captionsspanish{%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\figurename}{Figura}%
+}
+
+\sloppy
+
+% ============================================================
 \begin{document}
+% ============================================================
 
-% =========================================================
-% PORTADA
-% =========================================================
+% ── PORTADA ─────────────────────────────────────────────────
 \begin{titlepage}
-\thispagestyle{empty}
-\centering
-\vspace*{0.75cm}
-{\Large\bfseries\color{upeuBlue} UNIVERSIDAD PERUANA UNIÓN\par}
-\vspace{0.42cm}
-{\large Facultad de Ingeniería y Arquitectura\par}
-\vspace{0.26cm}
-{\large Escuela Profesional de Ingeniería de Sistemas\par}
-\vspace{0.55cm}
-\includegraphics[width=4.3cm]{img/logo-upeu.png}\par
-\vspace{0.45cm}
-{\large\bfseries\color{upeuBlue} CE0131 -- CE0135\par}
-\vspace{0.22cm}
-{\Large\bfseries\color{upeuBlue} Manual de Procesos Operativos y de Apoyo\par}
-\vspace{0.10cm}
-{\LARGE\bfseries\color{upeuBlueDark} CO LOGISTIC SAC\par}
-\vspace{0.35cm}
-\begin{tabular}{>{\bfseries\color{upeuBlue}}r l}
-Área: & Ingeniería de Sistemas \\
-Asesor: & Mg. Lennin Centurion \\
-\end{tabular}
-\vspace{0.40cm}
+  \pagestyle{empty}
+  \centering
 
-{\large\bfseries\color{upeuBlue}Integrantes y roles:\par}
-\vspace{0.16cm}
-{\footnotesize
-\renewcommand{\arraystretch}{1.02}
-\begin{tabularx}{0.70\textwidth}{|>{\RaggedRight\arraybackslash}X|>{\centering\arraybackslash}p{0.20\textwidth}|}
-\hline
-\rowcolor{upeuBlue}\textcolor{white}{\textbf{Integrante}} & \textcolor{white}{\textbf{Rol}} \\
-\hline
-Quispe Mamani, Jhack Ernesto & Líder del proyecto \\
-\hline
-Guevara Huasco, Abel Is-Boset & Analista \\
-\hline
-Tello Rivas, Javier Kevin & Desarrollador \\
-\hline
-Cuti Magaño, Alvaro Kenji & Diseñador \\
-\hline
-Yanqui Inocente, Richard Josef & Documentador \\
-\hline
-Guerra Ordoñez, David & Tester \\
-\hline
-Calderón Camacho, Daniel Hernán & Desarrollador \\
-\hline
-Alfonso Javier, Joshua & Analista \\
-\hline
-Chinchay Collachagua, Sebastian & Soporte \\
-\hline
-\end{tabularx}
-}
-\renewcommand{\arraystretch}{1.22}
-\vfill
-{\large Junio, 2026\par}
+  \vspace*{\fill}
+
+  {\color{upeu_dark}\bfseries\Large UNIVERSIDAD PERUANA UNIÓN}\\[5pt]
+  {\color{body_gray}\large Facultad de Ingeniería y Arquitectura}\\[3pt]
+  {\color{body_gray}\normalsize Escuela Profesional de Ingeniería de Sistemas}
+
+  \vspace{12pt}
+
+  \includegraphics[width=6.5cm]{img/logo-upeu.png}\\[10pt]
+
+  {\color{upeu_mid}\bfseries\normalsize CE0131 -- CE0135}\\
+  {\color{upeu_dark}\bfseries\large Entregable-3-Análisis y Rediseño de Procesos Organizacionales con TIC}\\[4pt]
+
+  \vspace{0.3cm}
+
+  \begin{tabular}{@{}ll@{}}
+    {\color{upeu_dark}\bfseries Área:}    & {\color{body_gray} Ingeniería de Sistemas} \\[4pt]
+    {\color{upeu_dark}\bfseries Asesor:} & {\color{body_gray} Mg. Lennin Centurion} \\
+  \end{tabular}
+
+  \vspace{0.3cm}
+
+  {\color{upeu_dark}\bfseries Integrantes y roles:}\\[6pt]
+
+  \begin{tabular}{@{}|l|c|@{}}
+    \arrayrulecolor{upeu_dark}
+
+    \rowcolor{upeu_dark}
+    {\color{white}\bfseries\small Integrante} &
+    {\color{white}\bfseries\small Rol} \\ \hline
+
+    {\color{body_gray}\small Quispe Mamani, Jhack Ernesto} & {\color{body_gray}\small Líder del proyecto} \\ \hline
+    {\color{body_gray}\small Guevara Huasco, Abel Is-Boset} & {\color{body_gray}\small Analista} \\ \hline
+    {\color{body_gray}\small Tello Rivas, Javier Kevin} & {\color{body_gray}\small Desarrollador} \\ \hline
+    {\color{body_gray}\small Cuti Magaño, Alvaro Kenji} & {\color{body_gray}\small Diseñador} \\ \hline
+    {\color{body_gray}\small Yanqui Inocente, Richard Josef} & {\color{body_gray}\small Documentador} \\ \hline
+    {\color{body_gray}\small Guerra Ordoñez, David} & {\color{body_gray}\small Tester} \\ \hline
+    {\color{body_gray}\small Calderón Camacho, Daniel Hernán} & {\color{body_gray}\small Desarrollador} \\ \hline
+    {\color{body_gray}\small Alfonso Javier, Joshua} & {\color{body_gray}\small Analista} \\ \hline
+    {\color{body_gray}\small Chinchay Collachagua, Sebastian} & {\color{body_gray}\small Soporte} \\ \hline
+  \end{tabular}
+
+  \vspace{0.6cm}
+  {\color{body_gray} Junio, 2026}
+
+  \vspace*{\fill}
+
 \end{titlepage}
 
-% =========================================================
-% CONTROL DE VERSIONES
-% =========================================================
-\clearpage
+% ── CONTROL DE VERSIONES ────────────────────────────────────
+\newpage
 \thispagestyle{empty}
-\vspace*{0.8cm}
-\begin{center}
-\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.10\textwidth}|>{\centering\arraybackslash}p{0.14\textwidth}|>{\centering\arraybackslash}p{0.20\textwidth}|>{\RaggedRight\arraybackslash}X|>{\centering\arraybackslash}p{0.13\textwidth}|}
-\hline
-\rowcolor{upeuBlue}\textcolor{white}{\textbf{Versión}} & \textcolor{white}{\textbf{Fecha}} & \textcolor{white}{\textbf{Autor}} & \textcolor{white}{\textbf{Descripción}} & \textcolor{white}{\textbf{Estado}} \\
-\hline
-v1.0 & 28/06/2026 & Equipo de trabajo & Adaptación completa del manual a la plantilla institucional UPeU. & En revisión \\
-\hline
-v1.1 & & & & \\
-\hline
-v1.2 & & & & \\
-\hline
-v2.0 & & & & \\
-\hline
-v2.1 & & & & \\
-\hline
-\end{tabularx}
-\end{center}
-\clearpage
+\vspace*{\fill}
 
-% =========================================================
-% ÍNDICE
-% =========================================================
-\pagenumbering{roman}
+{\centering
+\begin{tabular}{@{}|C{1.5cm}|C{2.2cm}|L{3cm}|L{5cm}|C{2cm}|@{}}
+  \arrayrulecolor{upeu_dark}
+
+  \rowcolor{upeu_dark}
+  {\color{white}\bfseries\small Versión} &
+  {\color{white}\bfseries\small Fecha} &
+  {\color{white}\bfseries\small Autor} &
+  {\color{white}\bfseries\small Descripción} &
+  {\color{white}\bfseries\small Estado} \\ \hline
+
+  \small v1.0 & \small 26/06/2026 & \small Equipo de trabajo &
+  \small Creación inicial del documento -- Entregable 3 & \small En revisión \\ \hline
+
+  \small v1.1 & \small & \small & \small & \small \\ \hline
+  \small v1.2 & \small & \small & \small & \small \\ \hline
+  \small v2.0 & \small & \small & \small & \small \\ \hline
+  \small v2.1 & \small & \small & \small & \small \\ \hline
+\end{tabular}
+\par}
+
+\vspace*{\fill}
+
+% ── ÍNDICE ──────────────────────────────────────────────────
+\newpage
 \pagestyle{fancy}
+\pagenumbering{roman}
 \tableofcontents
 \clearpage
-
 \pagenumbering{arabic}
 
-\chapter{Generalidades}
-% ==========================================
+% ============================================================
+% CAPÍTULO 1
+% ============================================================
+
+\chapter{CE0131-Identificación y Caracterización de Procesos Organizacionales}
+
+\section{Introducción al Análisis de Procesos}
+
+El presente capítulo tiene como propósito identificar y caracterizar los procesos organizacionales de CO LOGISTIC S.A.C. directamente vinculados al proyecto priorizado "Implementación ERP para la Gestión de Almacenes con Módulo de Inteligencia de Negocios". Esta caracterización constituye la base para el posterior modelamiento de los procesos en su situación actual (AS-IS) y en su situación futura propuesta (TO-BE), así como para la identificación de oportunidades de automatización mediante TIC.
+
+El análisis se centra en el macroproceso de Gestión de Almacenes, el cual comprende las actividades de recepción de mercadería, almacenamiento y ubicabilidad, control de inventario, preparación de pedidos (picking) y despacho. Estos procesos fueron seleccionados debido a que constituyen el núcleo operativo de la empresa y representan el mayor potencial de mejora mediante la incorporación de tecnologías de información.
+
+\section{Mapa de Procesos de la Organización}
+
+CO LOGISTIC S.A.C. estructura sus procesos en tres niveles jerárquicos: procesos estratégicos, procesos operativos (o de negocio) y procesos de soporte. El proceso priorizado para este entregable, Gestión de Almacenes, se ubica dentro de los procesos operativos, por ser el que agrega valor directo al servicio logístico ofrecido a los clientes arrendadores.
+
+\figura{mapa-procesos-n0.png}{Mapa de procesos de CO LOGISTIC S.A.C. (nivel 0)}
+
+\subsection{Ficha de Caracterización}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\raggedright\arraybackslash}p{0.27\textwidth}
+    |>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo
+&
+\color{white}\bfseries Descripción
+\\
+\hline
+
+\rowcolor{gray!10}
+Nombre del proceso &
+Gestión de Almacenes
+\\
+\hline
+
+Tipo de proceso &
+Operativo (de negocio)
+\\
+\hline
+
+\rowcolor{gray!10}
+Objetivo del proceso &
+Garantizar la correcta recepción, almacenamiento, control de inventario, preparación y despacho de la mercadería de los clientes arrendadores, asegurando trazabilidad, exactitud y oportunidad en cada operación.
+\\
+\hline
+
+Responsable del proceso (dueño) &
+Jefatura de Operaciones y Logística
+\\
+\hline
+
+\rowcolor{gray!10}
+Entradas del proceso &
+Órdenes de ingreso de mercadería, guías de remisión, pedidos de despacho, reportes de stock
+\\
+\hline
+
+Salidas del proceso &
+Mercadería almacenada y ubicada, pedidos despachados, reportes de inventario, indicadores de ocupación
+\\
+\hline
+
+\rowcolor{gray!10}
+Proveedores del proceso &
+Clientes arrendadores (Bimbo y otros socios corporativos), transportistas
+\\
+\hline
+
+Clientes del proceso &
+Clientes arrendadores, áreas comerciales y de atención al cliente
+\\
+\hline
+
+\rowcolor{gray!10}
+Recursos utilizados &
+Personal de almacén, montacargas, racks de almacenamiento, hojas de cálculo Excel, formatos físicos de control
+\\
+\hline
+
+Frecuencia de ejecución &
+Diaria
+\\
+\hline
+
+\rowcolor{gray!10}
+Indicadores asociados &
+Exactitud de inventario, tiempo de preparación de pedidos, nivel de ocupación de almacén, errores de despacho
+\\
+\hline
 
-\section{Objetivo}
-Documentar de manera formal los macroprocesos, procesos y procedimientos que ejecuta Co Logistic SAC como operador logístico (3PL), estableciendo el estado actual (AS-IS) de sus actividades de recepción, almacenamiento, despacho, acondicionamiento de mercadería, arrendamiento de espacios y facturación, con el fin de servir como línea base para la mejora de procesos y la propuesta de automatización mediante tecnologías de información.
-
-\section{Alcance}
-El presente manual cubre los macroprocesos operativos (misionales) de \textbf{Gestión de almacén} y \textbf{Arrendamiento de espacios}, así como los procesos de apoyo de \textbf{Facturación} y \textbf{Seguridad y vigilancia}, en tanto se ejecutan en las instalaciones de Co Logistic SAC. Se excluyen del alcance los procesos estratégicos (Gestión de Planeación Estratégica, Gestión de Expansión Estratégica, Gestión Financiera) y los procesos de apoyo de Talento Humano y Mantenimiento, al ser desarrollados por otro equipo dentro del proyecto integrador.
-
-\section{Base Legal}
-\begin{enumerate}
-  \item \textbf{Resolución de Superintendencia N.° 188-2010/SUNAT y modificatorias:} Regula la emisión de la Guía de Remisión Electrónica (GRE), documento que sustenta el traslado de bienes y constituye el insumo de entrada de los procesos de Recepción y Despacho de mercadería.
-  \item \textbf{Resolución de Superintendencia N.° 123-2020/SUNAT:} Establece los requisitos mínimos de la Guía de Remisión Electrónica Remitente, conforme a su Anexo V.
-  \item \textbf{Resolución de Superintendencia N.° 000108-2026/SUNAT:} Introduce modificaciones al régimen de guías de remisión electrónicas, vigentes desde el 1 de junio de 2026.
-\end{enumerate}
-
-\section{Definiciones}
-\begin{itemize}
-  \item \textbf{Guía de remisión:} Documento electrónico exigido por la SUNAT para sustentar el traslado físico de bienes entre dos puntos, sin que dicho traslado implique necesariamente una transferencia de propiedad. Es emitida por el remitente (dueño de los bienes) y, cuando aplica transporte público, complementada por una guía de remisión del transportista.
-  \item \textbf{Pedido de ingreso:} Documento interno generado por Co Logistic SAC durante el proceso de Recepción, que registra los datos de transporte y de mercadería (código, lote, fecha de vencimiento, pallets, factor, cajas) no contenidos en la guía de remisión del cliente.
-  \item \textbf{Pedido de salida (P.S.):} Documento interno generado durante el proceso de Despacho, equivalente al pedido de ingreso, que además incorpora la zona, el stock y el lote/fecha de vencimiento del código solicitado por el cliente.
-  \item \textbf{FEFO (First Expired, First Out):} Regla de negocio aplicada en el despacho de mercadería, según la cual se prioriza la salida del lote con la fecha de vencimiento más próxima.
-  \item \textbf{Reempaque:} Procedimiento del proceso de Almacenamiento mediante el cual se divide el registro de una paleta cuando su composición física no coincide con lo declarado en la guía de remisión.
-  \item \textbf{Unidad comercial:} Atributo configurado a nivel de código de producto que determina si su registro se realiza por caja (aplicando pallet y factor de conversión) o por unidad (sin pallet ni factor), conforme a la naturaleza del producto.
-  \item \textbf{Acondicionamiento de mercadería:} Proceso opcional, activado únicamente ante solicitud comercial del cliente, que comprende los servicios de repaletizado y reencajado.
-\end{itemize}
-
-\newpage
-
-% ==========================================
-\chapter{Disposiciones Complementarias}
-% ==========================================
-
-\section{Diagrama General de Procesos}
-
-% --- Tabla SIPOC General: Procesos Misionales / Operativos ---
-\subsection*{SIPOC General -- Procesos Misionales / Operativos}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
-  \midrule
-  \textit{Cliente} & \textit{Guía de remisión} & \textit{Recepción de mercadería} & \textit{Pedido de ingreso aprobado, impreso y engrampado a la guía} & \textit{Almacenamiento} \\
-  \midrule
-  \textit{Recepción de mercadería} & \textit{Pedido de ingreso aprobado, impreso y engrampado a la guía} & \textit{Almacenamiento} & \textit{Mercadería ubicada y reporte de movimientos actualizado} & \textit{Despacho de mercadería} \\
-  \midrule
-  \textit{Almacenamiento; Cliente} & \textit{Mercadería ubicada y reporte de movimientos actualizado; nueva guía de remisión de salida} & \textit{Despacho de mercadería} & \textit{Pedido de salida (P.S.) aprobado, impreso y engrampado a la guía} & \textit{Cliente} \\
-  \midrule
-  \textit{Cliente} & \textit{Solicitud comercial de repaletizado o reencajado} & \textit{Acondicionamiento de mercadería} & \textit{Reporte manual de servicio (código, cantidad, paletas, tarifa)} & \textit{Facturación} \\
-  \midrule
-  \textit{Cliente; Notario} & \textit{Contrato de arrendamiento} & \textit{Arrendamiento de espacios} & \textit{Espacio entregado en uso} & \textit{Cliente arrendatario} \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel0.png}
-  \caption{Mapa de Procesos Nivel 0 -- Cadena de valor de Co Logistic SAC (procesos estratégicos, misionales y de apoyo)}
-\end{figure}
-
-
-
-
-\vspace{2em}
-
-% --- Tabla SIPOC General: Procesos de Apoyo ---
-\subsection*{SIPOC General -- Procesos de Apoyo}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores (del Proceso)} & \textbf{Elementos de entrada} & \textbf{Proceso} & \textbf{Productos (Elementos de Salida)} & \textbf{Clientes (del Proceso)} \\
-  \midrule
-  \textit{Recepción; Almacenamiento; Despacho; Acondicionamiento} & \textit{Reporte de movimientos; reportes de Acondicionamiento} & \textit{Facturación} & \textit{Factura mensual al cliente} & \textit{Cliente; Contador} \\
-  \midrule
-  \textit{Cliente; Almacenamiento; Arrendamiento de espacios} & \textit{Acceso de personas, vehículos y mercadería a las instalaciones} & \textit{Seguridad y vigilancia} & \textit{Control de acceso e instalaciones resguardadas} & \textit{Gestión de almacén; Arrendamiento de espacios} \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-
-\vspace{2em}
-
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel1.png}
-  \caption{Mapa de Procesos Nivel 1 -- Macroproceso Gestión de almacén}
-\end{figure}
-
-
-
-
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{./imagenes/mapa_operativo_nivel1.png}
-  \caption{Mapa de Procesos Nivel 1 -- Macroproceso Arrendamiento de espacios}
-\end{figure}
-
-\vspace{1.5em}
-
-
-
-
-
-\noindent\textit{Nota: los procesos estratégicos (Gestión de Planeación Estratégica, Gestión de Expansión Estratégica, Gestión Financiera) se excluyen del presente manual, al ser desarrollados por otro equipo de trabajo dentro del proyecto integrador.}
-
-\vspace{3em}
-
-% --- Tabla Macro Proceso → Proceso → Procedimientos ---
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.18\textwidth}XXp{0.25\textwidth}}
-  \toprule
-  \multicolumn{2}{c}{\textbf{Macro Proceso}} & \multicolumn{2}{c}{\textbf{Proceso}} & \multirow{2}{*}{\textbf{Procedimientos}} \\
-  \cmidrule(r){1-2} \cmidrule(l){3-4}
-  \textbf{Título} & \textbf{Líder} & \textbf{Título} & \textbf{Líder} & \\
-  \midrule
-  \multirow{8}{=}{Gestión de almacén} & \multirow{8}{=}{Gerente de Operaciones} & Recepción de mercadería & Analista de inventarios &
-  \begin{itemize} \item Registro de pedido de ingreso \item Verificación y conformidad \end{itemize} \\
-  \cmidrule{3-5}
-  & & Almacenamiento & Analista de inventarios &
-  \begin{itemize} \item Transferencia de ubicación \item Reempaque \end{itemize} \\
-  \cmidrule{3-5}
-  & & Despacho de mercadería & Analista de inventarios &
-  \begin{itemize} \item Registro de pedido de salida \item Verificación y conformidad \end{itemize} \\
-  \cmidrule{3-5}
-  & & Acondicionamiento de mercadería (opcional) & Auxiliar de almacén &
-  \begin{itemize} \item Repaletizado \item Reencajado \end{itemize} \\
-  \midrule
-  Arrendamiento de espacios & Gerente de Operaciones & Administración de contratos de arrendamiento & Por definir &
-  \begin{itemize} \item Contratación (vía notario) \item Entrega \item Vigencia \item Devolución \end{itemize} \\
-  \midrule
-  Facturación \newline (proceso de apoyo) & Contador & Liquidación mensual & Contador &
-  \begin{itemize} \item Liquidación mensual in-out y servicios \end{itemize} \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-
-\newpage
-
-% ==========================================
-\chapter{Procedimientos}
-% ==========================================
-
-% ------------------------------------------
-\section{Registro de pedido de ingreso}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Recepción de mercadería \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Analista de inventarios
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Cliente
-  \item Analista de inventarios
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-El procedimiento inicia cuando el cliente envía la guía de remisión (correo electrónico, físico o WhatsApp). Sin este documento no es posible registrar ningún dato en el sistema. El Analista de inventarios registra los datos de transporte (placa, nombre del chofer, brevete, usuario, fecha y hora) y, por cada código de la guía, determina si su unidad comercial es por caja (registrando pallet, factor de conversión y calculando la suma de cajas mediante \texttt{cajas = pallets × factor}) o por unidad (sin pallet ni factor, aplicable a mercadería de merchandising). El procedimiento concluye con la firma del pedido de ingreso por parte del analista, el chofer y el almacén, y su entrega al almacén para la verificación física.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Guía recibida & 2. Registrar pedido de ingreso: datos de transporte & Pedido de ingreso con datos de transporte & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Pedido de ingreso con datos de transporte & 3. Registrar mercadería según unidad comercial (caja o unidad) & Pedido de ingreso con cantidades y, si aplica, suma de cajas & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Pedido de ingreso con cantidades & 4. Firmar pedido de ingreso & Pedido de ingreso firmado & Almacén (Auxiliar / Supervisor) \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Registro de pedido de ingreso.png}
-  \caption{Diagrama de Actividades con BPMN - Registro de pedido de ingreso}
-\end{figure}
-
-\newpage
-
-
-
-% ------------------------------------------
-\section{Verificación y conformidad (Recepción)}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Recepción de mercadería \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Supervisor
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Auxiliar de almacén
-  \item Supervisor
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-El procedimiento inicia cuando el Auxiliar de almacén recibe el pedido de ingreso y verifica físicamente la mercadería contra lo registrado. El Supervisor determina la conformidad: si la mercadería coincide con la guía, aprueba el pedido; si existen observaciones, modifica el pedido en los campos de cantidad, lote, fecha de vencimiento, zona/ubicación, o ejecuta un reempaque cuando la composición física de la paleta no coincide con lo declarado. En ambos casos, el procedimiento concluye con la impresión del pedido de ingreso y su engrampado físico a la guía de remisión del cliente, quedando dicho conjunto documental archivado.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Analista de inventarios & Pedido de ingreso firmado & 1. Verificar mercadería contra pedido de ingreso & Mercadería constatada físicamente & Supervisor \\
-  \midrule
-  Auxiliar de almacén & Mercadería constatada físicamente & 2. Determinar conformidad (¿conforme a la guía?) & Decisión: aprobar (conforme) o modificar (con observación) & Supervisor \\
-  \midrule
-  Supervisor & Decisión: modificar (con observación) & 3. Modificar pedido (cantidad, lote, FV, zona o reempaque) & Pedido corregido & Supervisor \\
-  \midrule
-  Supervisor & Decisión: aprobar (conforme); o pedido corregido & 4. Imprimir y engrampar pedido de ingreso con la guía de remisión & Pedido de ingreso + guía (archivado) & Almacenamiento \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Recepción de mercadería.png}
-  \caption{Diagrama de Actividades con BPMN - Verificación y conformidad (Recepción)}
-\end{figure}
-
-\newpage
-
-
-
-% ------------------------------------------
-\section{Registro de pedido de salida}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Despacho de mercadería \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Analista de inventarios
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Cliente
-  \item Auxiliar de almacén
-  \item Analista de inventarios
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-El procedimiento es estructuralmente similar al de Registro de pedido de ingreso, con los siguientes elementos adicionales propios del despacho. El Auxiliar de almacén realiza el picking, localizando y extrayendo la mercadería según la zona, ubicación y stock disponible del código solicitado (actividad identificada como \textit{picking} en la descripción de funciones del Auxiliar de almacén, conforme a \texttt{Explicacion-puestos-areas-empresa.txt}, y descrita operativamente en \texttt{2-Despacho.txt} sin emplear dicho término técnico). Cuando la guía de remisión del cliente contiene varias líneas (códigos), cada una se registra de manera individual en el sistema. El Analista de inventarios consulta la zona y el stock del código ya recepcionado y, si el código presenta varias fechas de vencimiento, selecciona el lote y la fecha de vencimiento solicitados por el cliente conforme a la regla FEFO (primero en vencer, primero en salir). El registro de la mercadería sigue la misma bifurcación por unidad comercial (caja o unidad) que el proceso de Recepción. El procedimiento concluye con la firma del pedido de salida.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Cliente & Guía de remisión (1 a 10+ líneas/códigos) & 1. Enviar guía de remisión & Guía recibida & Auxiliar de almacén \\
-  \midrule
-  Auxiliar de almacén & Guía recibida & 2. Realizar picking: localizar y extraer mercadería según zona, ubicación y stock del código & Mercadería extraída & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Mercadería extraída & 3. Registrar pedido de salida (código por código) & Pedido de salida con datos de transporte & Analista de inventarios \\
-  \midrule
-  Almacenamiento & Pedido de salida con datos de transporte & 4. Consultar zona y stock del código recepcionado & Pedido de salida con zona y stock consultados & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Pedido de salida con zona y stock consultados & 5. Seleccionar lote y FV según FEFO (si aplica) & Pedido de salida con lote y FV seleccionados & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Pedido de salida con lote y FV seleccionados & 6. Registrar mercadería según unidad comercial (caja o unidad) & Pedido de salida con cantidades & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Pedido de salida con cantidades & 7. Firmar pedido de salida & Pedido de salida firmado & Almacén (Auxiliar / Supervisor) \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Despacho de mercadería.png}
-  \caption{Diagrama de Actividades con BPMN - Registro de pedido de salida}
-\end{figure}
-
-\newpage
-
-% ------------------------------------------
-\section{Verificación y conformidad (Despacho)}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Despacho de mercadería \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Supervisor
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Auxiliar de almacén
-  \item Supervisor
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Procedimiento idéntico en estructura a la Verificación y conformidad de Recepción, aplicado al pedido de salida (P.S.). El Auxiliar de almacén verifica la mercadería contra el pedido de salida; el Supervisor aprueba o, ante observaciones, modifica el pedido (cantidad, lote, fecha de vencimiento, zona/ubicación o reempaque). El procedimiento concluye con la impresión del pedido de salida y su engrampado a la guía de remisión, quedando el conjunto documental archivado.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Analista de inventarios & Pedido de salida firmado & 1. Verificar mercadería contra pedido de salida & Mercadería constatada físicamente & Supervisor \\
-  \midrule
-  Auxiliar de almacén & Mercadería constatada físicamente & 2. Determinar conformidad (¿conforme a la guía?) & Decisión: aprobar (conforme) o modificar (con observación) & Supervisor \\
-  \midrule
-  Supervisor & Decisión: modificar (con observación) & 3. Modificar pedido (cantidad, lote, FV, zona o reempaque) & Pedido corregido & Supervisor \\
-  \midrule
-  Supervisor & Decisión: aprobar (conforme); o pedido corregido & 4. Imprimir y engrampar P.S. con la guía de remisión & Pedido de salida + guía (archivado) & Cliente \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Verificación y conformidad.png}
-  \caption{Diagrama de Actividades con BPMN - Verificación y conformidad (Despacho)}
-\end{figure}
-
-\newpage
-
-
-
-
-% ------------------------------------------
-\section{Transferencia de ubicación}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Almacenamiento \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Analista de inventarios
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Analista de inventarios
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Procedimiento de sistema que permite mover un código de una ubicación origen a una ubicación destino dentro del almacén. El Analista de inventarios ingresa el código a transferir, y el sistema muestra las fechas de vencimiento disponibles para dicho código. El analista decide si transfiere la totalidad de las fechas registradas o únicamente una fecha de vencimiento específica, indica la ubicación de origen y destino, y ejecuta la transferencia. El movimiento queda reflejado en el reporte de movimientos.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Recepción de mercadería & Código previamente recepcionado & 1. Ingresar código a transferir & Código identificado & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Código identificado & 2. Consultar fechas de vencimiento disponibles & Lista de fechas disponibles & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Lista de fechas disponibles & 3. Seleccionar todas las fechas o una fecha específica & Alcance de la transferencia definido & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Alcance de la transferencia definido; ubicación origen y destino & 4. Ejecutar transferencia & Reporte de movimientos actualizado & Despacho de mercadería \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Transferencia ubicación.png}
-  \caption{Diagrama de Actividades con BPMN - Transferencia de ubicación}
-\end{figure}
-
-\newpage
-
-% ------------------------------------------
-\section{Reempaque}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Almacenamiento \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Analista de inventarios
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Auxiliar de almacén
-  \item Analista de inventarios
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Procedimiento aplicado cuando la composición física de una paleta no coincide con lo declarado en la guía de remisión (por ejemplo, una paleta declarada como 50 unidades que físicamente llega dividida en dos paletas de 20 y 30). El Auxiliar de almacén constata las paletas tal como llegaron, sin unirlas. El Analista de inventarios selecciona la paleta a reempacar, registra la fecha de vencimiento correspondiente y ejecuta el reempaque, dividiendo el registro en las cantidades correspondientes. El resultado queda reflejado en el reporte de movimientos.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Recepción de mercadería & Paleta física no coincidente con la guía & 1. Constatar paletas tal como llegaron (sin unirlas) & Paletas constatadas & Analista de inventarios \\
-  \midrule
-  Auxiliar de almacén & Paletas constatadas & 2. Seleccionar la paleta a reempacar & Paleta seleccionada & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Paleta seleccionada & 3. Colocar fecha de vencimiento & Fecha de vencimiento registrada & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Fecha de vencimiento registrada & 4. Ejecutar reempaque (dividir paleta en cantidades) & Reporte de movimientos actualizado & Despacho de mercadería \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Reempaque.png}
-  \caption{Diagrama de Actividades con BPMN - Reempaque}
-\end{figure}
-
-\newpage
-
-% ------------------------------------------
-\section{Repaletizado}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Acondicionamiento de mercadería (opcional) \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Auxiliar de almacén
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Cliente
-  \item Auxiliar de almacén
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Servicio opcional solicitado comercialmente por el cliente, mediante el cual la mercadería se traslada, caja por caja, desde la paleta en que se encuentra hacia una paleta estándar de exportación, fumigada o certificada, provista en algunos casos por el propio cliente. El procedimiento es enteramente físico, sin soporte en el sistema de información. Concluye con la elaboración manual de un reporte que detalla código, descripción, cantidad, número de paletas y tarifa, el cual constituye el insumo de entrada del proceso de Facturación.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Cliente & Solicitud de repaletizado por código & 1. Solicitar repaletizado por codigo & Solicitud registrada & Auxiliar de almacén \\
-  \midrule
-  Cliente & Solicitud registrada & 2. Proveer paleta destino (estándar de exportación, fumigada o certificada, si aplica) & Solicitud registrada; paleta destino disponible & Auxiliar de almacén \\
-  \midrule
-  Almacenamiento & Solicitud registrada; paleta destino disponible; mercadería en paleta de origen & 3. Trasladar mercadería caja por caja a la nueva paleta & Mercadería repaletizada & Auxiliar de almacén \\
-  \midrule
-  Auxiliar de almacén & Mercadería repaletizada & 4. Elaborar reporte manual (código, descripción, cantidad, paletas, tarifa) & Reporte manual de repaletizado & Facturación \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Repaletizado.png}
-  \caption{Diagrama de Actividades con BPMN - Repaletizado}
-\end{figure}
-
-\newpage
-
-% ------------------------------------------
-\section{Reencajado}
-% ------------------------------------------
-\textbf{Macroproceso:} Gestión de almacén \quad\textbar\quad \textbf{Proceso:} Acondicionamiento de mercadería (opcional) \quad\textbar\quad \textbf{Categoría:} Misional / Operativo
-
-\textbf{Líder:} Auxiliar de almacén
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Cliente
-  \item Auxiliar de almacén
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Servicio opcional solicitado comercialmente por el cliente, similar en su estructura al Repaletizado, mediante el cual la mercadería se traslada de su caja original a una nueva caja indicada por el cliente. El Auxiliar de almacén ejecuta el traslado de forma física y elabora un reporte manual con código, descripción, cantidad y tarifa, el cual constituye insumo de entrada del proceso de Facturación.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Cliente & Solicitud de reencajado por código & 1. Solicitar reencajado por codigo & Solicitud registrada & Auxiliar de almacén \\
-  \midrule
-  Cliente & Solicitud registrada & 2. Indicar caja destino & Solicitud registrada; caja destino disponible & Auxiliar de almacén \\
-  \midrule
-  Almacenamiento & Solicitud registrada; caja destino disponible; mercadería en caja original & 3. Trasladar mercadería a la nueva caja & Mercadería reencajada & Auxiliar de almacén \\
-  \midrule
-  Auxiliar de almacén & Mercadería reencajada & 4. Elaborar reporte manual (código, descripción, cantidad, tarifa) & Reporte manual de reencajado & Facturación \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Reencajado.png}
-  \caption{Diagrama de Actividades con BPMN - Reencajado}
-\end{figure}
-
-
-\newpage
-% ------------------------------------------
-\section{Liquidación mensual in-out y servicios (Facturación)}
-% ------------------------------------------
-\textbf{Macroproceso:} Procesos de apoyo \quad\textbar\quad \textbf{Proceso:} Facturación \quad\textbar\quad \textbf{Categoría:} Apoyo
-
-\textbf{Líder:} Contador
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Analista de inventarios
-  \item Contador
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Proceso de apoyo, desacoplado del flujo operativo de despacho, ejecutado al cierre de cada mes. El Analista de inventarios filtra el reporte de movimientos por tipo de producto y por mes, incorpora los reportes manuales de Acondicionamiento (repaletizado y reencajado) y exporta la información consolidada a una hoja de cálculo en Excel, la cual remite al Contador. El Contador aplica la tarifa correspondiente según el tipo de mercadería (por paleta o por metro cuadrado), prorratea el monto a cobrar conforme a la fecha de corte (días transcurridos sobre 30), y emite la factura correspondiente al cliente. El procedimiento se ejecuta en su totalidad de manera manual, sin soporte específico en el sistema de información.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Recepción; Almacenamiento; Despacho & Reporte de movimientos del mes & 1. Filtrar reporte de movimientos por tipo y mes & Reporte filtrado & Analista de inventarios \\
-  \midrule
-  Acondicionamiento de mercadería & Reporte filtrado; reportes de repaletizado y reencajado & 2. Incluir reportes de Acondicionamiento & Reporte consolidado & Analista de inventarios \\
-  \midrule
-  Analista de inventarios & Reporte consolidado & 3. Exportar reporte a Excel y enviar al contador & Excel enviado & Contador \\
-  \midrule
-  Contador & Excel enviado; tipo de tarifa (paleta o m²) & 4. Aplicar tarifa y prorratear por fecha de corte & Monto a cobrar calculado & Contador \\
-  \midrule
-  Contador & Monto a cobrar calculado & 5. Emitir factura al cliente & Factura mensual & Cliente \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/Facturación.png}
-  \caption{Diagrama de Actividades con BPMN - Liquidación mensual in-out y servicios}
-\end{figure}
-
-
-
-
-
-
-\newpage
-
-
-% ------------------------------------------
-\section{Seguridad y Vigilancia}
-% ------------------------------------------
-\textbf{Macroproceso:} Procesos de apoyo \quad\textbar\quad \textbf{Proceso:} Control de acceso a las visitas \quad\textbar\quad \textbf{Categoría:} Apoyo
-
-\textbf{Líder:} Jefe de Operaciones 
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Vigilantes 
-  \item Personal de seguridad armada
-  \item Visitantes 
-  \item Analista de Inventarios 
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-El proceso de Control de acceso a las visitas funciona como el primer filtro de seguridad y trazabilidad operativa en el almacén. Su ejecución garantiza el registro formal de los conductores y vehículos, validando previamente datos clave como la guía de remisión del cliente, la placa y el brevete. A la par, previene riesgos laborales mediante una inducción rápida que exige el uso de equipos de protección y establece el tránsito exclusivo por rutas seguras. En conjunto, estas acciones salvaguardan la integridad física de los visitantes y aseguran un flujo logístico estrictamente controlado.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Visitante / Conductor & Documentación de identidad y Seguro SCTR & 1. Validación y Seguridad: Recepción de documentos y verificación de vigencia de seguros para ingreso. & Visitante validado & Vigilante (Garitero) \\
-  \midrule
-  Vigilante (Garitero) & Visitante validado & 2. Inducción rápida de seguridad: Entrega de EPP e instrucciones de zonas seguras. & Visitante con EPP e instruido & Jefe de Operaciones \\
-  \midrule
-  Jefe de Operaciones & Visitante con EPP e instruido & 3. Registro de conductores y vehículos: Anotación manual de placa, brevete y hora de ingreso. & Pase de ingreso autorizado (Hoja de control) & Analista de Inventarios / Almacén \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/control de visitas.png}
-  \caption{Diagrama de Actividades con BPMN - Control de Visitas}
-\end{figure}
-
-\newpage
-
-
-
-
-
-
-
-
-% ------------------------------------------
-\section{Talento Humano}
-% ------------------------------------------
-\textbf{Macroproceso:} Procesos de apoyo \quad\textbar\quad \textbf{Proceso:} Reclutamiento de Personal \quad\textbar\quad \textbf{Categoría:} Apoyo
-
-\textbf{Líder:} Responsable de RR.HH. (en coordinación con la Gerencia General)
-
-\textbf{Participantes:}
-\begin{itemize}
-  \item Jefe de Operaciones 
-  \item Gerente General 
-  \item Candidatos
-  \item Analista de Inventarios 
-\end{itemize}
-
-\textbf{Descripción del Procedimiento:} \\
-Este proceso formaliza la captación de talento mediante la definición técnica de perfiles (MOF) y la selección rigurosa de estibadores. Busca mitigar riesgos legales y operativos asegurando que el personal cuente con seguros SCTR y EPP desde su ingreso. Con ello, se elimina la dependencia del conocimiento empírico, garantizando eficiencia en el manejo de las 5,000 paletas mensuales de la operación. Asegura la escalabilidad organizacional necesaria para soportar la expansión del modelo de negocio.
-
-\vspace{1em}
-\begin{center}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}}
-  \toprule
-  \textbf{S} & \textbf{I} & \textbf{P} & \textbf{O} & \textbf{C} \\
-  \textbf{Proveedores} & \textbf{Elementos de Entrada} & \textbf{Proceso / Actividades} & \textbf{Elementos de Salida} & \textbf{Clientes} \\
-  \midrule
-  Jefe de Operaciones & Requerimiento de personal (Vacante de estibador) & 1. Definición de perfiles de puesto: Análisis de tareas (picking, estiba) y requisitos legales. & Perfil de puesto aprobado (MOF) & RR.HH. / Gerencia General \\
-  \midrule
-  RR.HH. / Candidatos & Perfil de puesto aprobado (MOF) y CVs/Postulaciones. & 2. Convocatoria y Reclutamiento: Publicación de la vacante y filtro curricular inicial. & Lista de candidatos aptos & Jefe de Operaciones \\
-  \midrule
-  Jefe de Operaciones & Lista de candidatos aptos & 3. Evaluación y selección de estibadores: Entrevistas y pruebas técnicas en almacén. & Candidato seleccionado (Apto) & Gerencia General \\
-  \midrule
-  Gerencia General & Candidato seleccionado (Apto) & 4. Contratación e Inducción: Alta en planilla y asignación de SCTR/EPP. & Personal contratado y asegurado & Área de Operaciones \\
-  \bottomrule
-  \end{tabularx}
-\end{center}
-\vspace{1em}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./imagenes/reclutamiento personal.png}
-  \caption{Diagrama de Actividades con BPMN - Talento Humano}
-\end{figure}
-
-\newpage
-
-
-
-
-
-
-
-
-
-
-
-
-% ==========================================
-\chapter{Matriz de Indicadores}
-% ==========================================
-\newpage
-
-\fichaIndicador
-  {1. Registro de pedido de ingreso}
-  {Exactitud del registro de ingreso}
-  {Medir el porcentaje de pedidos de ingreso registrados sin necesidad de modificación posterior}
-  {(Pedidos de ingreso aprobados sin observación / Total de pedidos de ingreso del periodo) × 100}
-  {IND-REC-01}
-  {Supervisor}
-  {Analista de inventarios}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {2. Verificación y conformidad (Recepción)}
-  {Tasa de observación en recepción}
-  {Medir la frecuencia de modificaciones por discrepancia entre lo declarado en la guía y lo recibido físicamente}
-  {(Pedidos de ingreso con observación / Total de pedidos de ingreso del periodo) × 100}
-  {IND-REC-02}
-  {Supervisor}
-  {Auxiliar de almacén}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {3. Registro de pedido de salida}
-  {Exactitud del registro de salida}
-  {Medir el porcentaje de pedidos de salida registrados conforme a la solicitud del cliente (código, lote y fecha de vencimiento)}
-  {(Pedidos de salida aprobados sin observación / Total de pedidos de salida del periodo) × 100}
-  {IND-DES-01}
-  {Supervisor}
-  {Analista de inventarios}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {4. Verificación y conformidad (Despacho)}
-  {Tasa de observación en despacho}
-  {Medir la frecuencia de modificaciones por discrepancia entre el pedido de salida y la mercadería despachada}
-  {(Pedidos de salida con observación / Total de pedidos de salida del periodo) × 100}
-  {IND-DES-02}
-  {Supervisor}
-  {Auxiliar de almacén}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {5. Transferencia de ubicación}
-  {Volumen de transferencias internas}
-  {Medir la cantidad de transferencias de ubicación ejecutadas en el periodo, como indicador de reacomodo del almacén}
-  {Número total de transferencias ejecutadas en el periodo}
-  {IND-ALM-01}
-  {Analista de inventarios}
-  {Analista de inventarios}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {6. Reempaque}
-  {Tasa de reempaque sobre recepciones}
-  {Medir la proporción de paletas recepcionadas que requieren reempaque por discrepancia con la guía de remisión}
-  {(Reempaques ejecutados / Total de paletas recepcionadas en el periodo) × 100}
-  {IND-ALM-02}
-  {Analista de inventarios}
-  {Auxiliar de almacén}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {7. Repaletizado}
-  {Volumen de repaletizado facturable}
-  {Medir la cantidad de paletas repaletizadas por tipo de producto en el periodo, como base de facturación del servicio}
-  {Número de paletas repaletizadas por código / tipo de producto en el periodo}
-  {IND-ACO-01}
-  {Auxiliar de almacén}
-  {Auxiliar de almacén}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {8. Reencajado}
-  {Volumen de reencajado facturable}
-  {Medir la cantidad de unidades reencajadas por tipo de producto en el periodo, como base de facturación del servicio}
-  {Número de unidades reencajadas por código / tipo de producto en el periodo}
-  {IND-ACO-02}
-  {Auxiliar de almacén}
-  {Auxiliar de almacén}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {9. Liquidación mensual in-out y servicios}
-  {Oportunidad de facturación}
-  {Medir el tiempo transcurrido entre el cierre de mes y la emisión efectiva de la factura al cliente}
-  {Fecha de emisión de factura − Fecha de cierre de mes (en días)}
-  {IND-FAC-01}
-  {Contador}
-  {Analista de inventarios}
-  {Por definir}
-  {Mensual}
-
-
-\fichaIndicador
-  {10. Control de acceso a las visitas}
-  {Cumplimiento de registro e inducción de visitas}
-  {Medir el porcentaje de visitantes y conductores que ingresan con su registro de seguridad y entrega de EPP completados correctamente}
-  {(Visitantes registrados con EPP completo / Total de visitantes en el periodo) × 100}
-  {IND-SEG-01}
-  {Vigilante (Garitero)}
-  {Jefe de Operaciones}
-  {Por definir}
-  {Mensual}
-
-\fichaIndicador
-  {11. Reclutamiento de Personal}
-  {Efectividad en la cobertura de vacantes}
-  {Medir el porcentaje de vacantes de estibadores cubiertas que cumplen estrictamente con el MOF y cuentan con SCTR/EPP asignados}
-  {(Vacantes cubiertas según MOF y con seguros / Total de vacantes solicitadas en el periodo) × 100}
-  {IND-RRHH-01}
-  {Responsable de RR.HH.}
-  {Gerencia General}
-  {Por definir}
-  {Mensual}
-
-
-\newpage
-
-% ==========================================
-\chapter{Documentos Generados}
-% ==========================================
-
-% ------------------------------------------
-\section*{1. Registro de pedido de ingreso}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Guía de remisión del cliente & Analista de inventarios & Almacén Co Logistic SAC & Recibida por correo, físico o WhatsApp; conservada hasta su engrampado con el pedido de ingreso \\
-\midrule
-Pedido de ingreso (borrador) & Analista de inventarios & Sistema de almacén & Registro digital previo a firma y aprobación \\
-\bottomrule
 \end{tabularx}
+\caption{Ficha de caracterización del proceso de Gestión de Almacenes}
+\end{table}
 
-\vspace{2em}
+\subsection{Subprocesos Identificados}
 
-% ------------------------------------------
-\section*{2. Verificación y conformidad (Recepción)}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Pedido de ingreso firmado + guía de remisión & Supervisor / Archivo de almacén & Almacén Co Logistic SAC & Impreso y engrampado físicamente a la guía del cliente; archivo físico \\
-\bottomrule
+A partir de la caracterización general, se identifican los siguientes subprocesos que conforman la Gestión de Almacenes:
+
+\begin{itemize}
+    \item \textbf{Recepción de mercadería:} verificación y registro del ingreso de productos al almacén.
+    \item \textbf{Almacenamiento y ubicabilidad:} asignación de espacios físicos (racks, posiciones) a los productos recibidos.
+    \item \textbf{Control de inventario:} actualización y verificación periódica del stock disponible.
+    \item \textbf{Preparación de pedidos (picking):} selección y consolidación de productos según las órdenes de despacho.
+    \item \textbf{Despacho:} entrega física de la mercadería y generación de la documentación de salida.
+\end{itemize}
+
+\section{Identificación de Problemas Asociados al Proceso}
+
+A través del diagnóstico organizacional realizado en el Entregable 1, se identificaron los siguientes problemas que afectan directamente al proceso de Gestión de Almacenes:
+
+\begin{itemize}
+    \item Registro manual de ingresos y salidas de mercadería mediante hojas de cálculo Excel, sin trazabilidad centralizada.
+    \item Ausencia de un sistema de ubicabilidad que permita conocer en tiempo real la posición exacta de cada producto dentro del almacén.
+    \item Falta de visibilidad histórica del comportamiento del inventario, lo que impide proyectar la ocupación futura del almacén.
+    \item Errores frecuentes en la preparación de pedidos debido a la dependencia de criterios empíricos del personal operativo.
+    \item Demoras en la generación de reportes gerenciales, al requerir consolidación manual de múltiples archivos.
+\end{itemize}
+
+Estos problemas constituyen la justificación directa para el rediseño del proceso y la incorporación de un sistema ERP con módulo de inteligencia de negocios, desarrollado en los siguientes apartados del presente entregable.
+
+% ============================================================
+% CAPÍTULO 2
+% ============================================================
+
+\chapter{CE0132-Modelado de Procesos AS-IS (situación actual)}
+
+\section{Descripción General del Proceso AS-IS}
+
+El proceso actual de Gestión de Almacenes de CO LOGISTIC S.A.C. se ejecuta de forma predominantemente manual y empírica, apoyado en hojas de cálculo Excel y formatos físicos de control. A continuación, se describe el flujo del proceso en su situación actual, identificando a los responsables de cada actividad, los tiempos aproximados de ejecución y los puntos críticos detectados.
+
+\section{Flujo del Proceso AS-IS}
+
+\figura[0.95\linewidth]{proceso-as-is.png}{Flujo del proceso AS-IS de Gestión de Almacenes}
+
+\section{Descripción de Actividades del Proceso AS-IS}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\centering\arraybackslash}p{0.06\textwidth}
+    |>{\raggedright\arraybackslash}p{0.30\textwidth}
+    |>{\raggedright\arraybackslash}p{0.20\textwidth}
+    |>{\centering\arraybackslash}p{0.13\textwidth}
+    |>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries N°
+&
+\color{white}\bfseries Actividad
+&
+\color{white}\bfseries Responsable
+&
+\color{white}\bfseries Tiempo
+&
+\color{white}\bfseries Herramienta utilizada
+\\
+\hline
+
+\rowcolor{gray!10}
+1 & Recepción de mercadería y verificación de guía de remisión & Personal de almacén & 20 min & Formato físico \\
+\hline
+
+2 & Registro manual del ingreso en hoja de cálculo & Asistente de almacén & 15 min & Excel \\
+\hline
+
+\rowcolor{gray!10}
+3 & Asignación empírica de ubicación en racks & Personal de almacén & 25 min & Criterio del operario \\
+\hline
+
+4 & Actualización manual del stock en archivo Excel & Asistente de almacén & 15 min & Excel \\
+\hline
+
+\rowcolor{gray!10}
+5 & Recepción de pedido de despacho & Coordinador de operaciones & 10 min & Correo / WhatsApp \\
+\hline
+
+6 & Búsqueda física del producto en almacén & Personal de almacén & 30 min & Búsqueda manual \\
+\hline
+
+\rowcolor{gray!10}
+7 & Preparación y consolidación del pedido (picking) & Personal de almacén & 35 min & Formato físico \\
+\hline
+
+8 & Verificación y despacho de mercadería & Coordinador de operaciones & 15 min & Formato físico \\
+\hline
+
+\rowcolor{gray!10}
+9 & Actualización manual de salida en Excel & Asistente de almacén & 10 min & Excel \\
+\hline
+
+10 & Elaboración de reporte gerencial consolidado & Jefatura de Operaciones & 60 min & Excel (consolidación manual) \\
+\hline
+
 \end{tabularx}
+\caption{Descripción de actividades del proceso AS-IS}
+\end{table}
 
-\vspace{2em}
+\section{Puntos Críticos Identificados}
 
-% ------------------------------------------
-\section*{3. Registro de pedido de salida}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Guía de remisión del cliente & Analista de inventarios & Almacén Co Logistic SAC & Recibida por correo o físico; conservada hasta su engrampado con el pedido de salida \\
-\midrule
-Pedido de salida (P.S., borrador) & Analista de inventarios & Sistema de almacén & Registro digital previo a firma y aprobación \\
-\bottomrule
+Del análisis del flujo actual se desprenden los siguientes puntos críticos, que serán abordados en el rediseño TO-BE:
+
+\begin{itemize}
+    \item \textbf{Doble registro de información:} los datos se anotan primero en formato físico y luego se transcriben a Excel, duplicando el esfuerzo y generando riesgo de inconsistencias.
+    \item \textbf{Ausencia de trazabilidad en tiempo real:} la ubicación de los productos depende del conocimiento empírico del personal, sin un registro digital centralizado.
+    \item \textbf{Tiempo elevado en la búsqueda de productos:} al no existir un sistema de ubicabilidad, la búsqueda física puede tomar hasta 30 minutos por pedido.
+    \item \textbf{Reportes gerenciales tardíos:} la consolidación manual de la información retrasa la disponibilidad de indicadores para la toma de decisiones, llegando a tomar hasta una hora por reporte.
+    \item \textbf{Riesgo de errores humanos:} la dependencia de hojas de cálculo individuales incrementa la probabilidad de errores de digitación y descoordinación entre turnos.
+\end{itemize}
+
+\section{Tiempo Total del Ciclo AS-IS}
+
+El tiempo total aproximado del ciclo completo, desde la recepción de mercadería hasta la generación del reporte gerencial, asciende a \textbf{235 minutos (aprox. 3 horas y 55 minutos)} por ciclo operativo estándar, considerando que varias actividades no se ejecutan en paralelo debido a la falta de un sistema integrado.
+
+% ============================================================
+% CAPÍTULO 3
+% ============================================================
+
+\chapter{CE0133-Modelado de Procesos TO-BE (propuesta de mejora)}
+
+\section{Descripción General del Proceso TO-BE}
+
+La propuesta de rediseño del proceso de Gestión de Almacenes se fundamenta en la implementación del Sistema Web de Gestión de Almacenes con Módulo de Inteligencia de Negocios, desarrollado bajo el marco ágil Scrum y una arquitectura de microservicios, conforme a lo definido en el Entregable 2. El proceso TO-BE elimina los registros manuales redundantes, centraliza la información en una base de datos transaccional y habilita la ubicabilidad digital de los productos mediante códigos de ubicación dentro del sistema.
+
+\section{Flujo del Proceso TO-BE}
+
+\figura[0.95\linewidth]{proceso-to-be.png}{Flujo del proceso TO-BE de Gestión de Almacenes}
+
+\section{Descripción de Actividades del Proceso TO-BE}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\centering\arraybackslash}p{0.06\textwidth}
+    |>{\raggedright\arraybackslash}p{0.30\textwidth}
+    |>{\raggedright\arraybackslash}p{0.20\textwidth}
+    |>{\centering\arraybackslash}p{0.13\textwidth}
+    |>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries N°
+&
+\color{white}\bfseries Actividad
+&
+\color{white}\bfseries Responsable
+&
+\color{white}\bfseries Tiempo
+&
+\color{white}\bfseries Herramienta utilizada
+\\
+\hline
+
+\rowcolor{gray!10}
+1 & Registro digital de recepción de mercadería & Personal de almacén & 8 min & Módulo de Recepción (ERP) \\
+\hline
+
+2 & Asignación automática/asistida de ubicación en racks & Sistema / Personal de almacén & 5 min & Módulo de Ubicaciones (ERP) \\
+\hline
+
+\rowcolor{gray!10}
+3 & Actualización automática del stock en el sistema & Sistema & Inmediato & Módulo de Inventario (ERP) \\
+\hline
+
+4 & Recepción digital de pedido de despacho & Coordinador de operaciones & 3 min & Módulo de Pedidos (ERP) \\
+\hline
+
+\rowcolor{gray!10}
+5 & Localización del producto mediante ubicación digital & Personal de almacén & 5 min & Módulo de Ubicaciones (ERP) \\
+\hline
+
+6 & Preparación del pedido (picking) guiado por sistema & Personal de almacén & 20 min & Módulo de Picking (ERP) \\
+\hline
+
+\rowcolor{gray!10}
+7 & Verificación y despacho con registro digital & Coordinador de operaciones & 8 min & Módulo de Despacho (ERP) \\
+\hline
+
+8 & Actualización automática de indicadores BI & Sistema & Inmediato & Módulo de Inteligencia de Negocios \\
+\hline
+
+\rowcolor{gray!10}
+9 & Generación automática de reporte gerencial & Sistema & 2 min & Módulo de Inteligencia de Negocios \\
+\hline
+
 \end{tabularx}
+\caption{Descripción de actividades del proceso TO-BE}
+\end{table}
 
-\vspace{2em}
+\section{Mejoras Incorporadas Respecto al Proceso AS-IS}
 
-% ------------------------------------------
-\section*{4. Verificación y conformidad (Despacho)}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Pedido de salida firmado + guía de remisión & Supervisor / Archivo de almacén & Almacén Co Logistic SAC & Impreso y engrampado físicamente a la guía del cliente; archivo físico \\
-\bottomrule
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\raggedright\arraybackslash}p{0.30\textwidth}
+    |>{\raggedright\arraybackslash}p{0.32\textwidth}
+    |>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries Punto crítico AS-IS
+&
+\color{white}\bfseries Solución TO-BE
+&
+\color{white}\bfseries Beneficio esperado
+\\
+\hline
+
+\rowcolor{gray!10}
+Doble registro de información (físico y Excel)
+&
+Registro único y digital en el módulo de Recepción del ERP
+&
+Eliminación de duplicidad y reducción de errores de transcripción
+\\
+\hline
+
+Ausencia de trazabilidad en tiempo real
+&
+Módulo de Ubicaciones con código digital por posición de rack
+&
+Trazabilidad completa de cada producto dentro del almacén
+\\
+\hline
+
+\rowcolor{gray!10}
+Tiempo elevado de búsqueda de productos
+&
+Localización inmediata mediante consulta digital de ubicación
+&
+Reducción del tiempo de búsqueda de 30 a 5 minutos
+\\
+\hline
+
+Reportes gerenciales tardíos
+&
+Generación automática de reportes mediante el módulo de BI
+&
+Reducción del tiempo de reporte de 60 a 2 minutos
+\\
+\hline
+
+\rowcolor{gray!10}
+Riesgo de errores humanos en inventario
+&
+Actualización automática e inmediata del stock por el sistema
+&
+Mayor exactitud de inventario y menor intervención manual
+\\
+\hline
+
 \end{tabularx}
+\caption{Comparativo de mejoras incorporadas en el proceso TO-BE}
+\end{table}
 
-\vspace{2em}
+\section{Tiempo Total del Ciclo TO-BE}
 
-% ------------------------------------------
-\section*{5. Transferencia de ubicación}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Reporte de movimientos (registro de transferencia) & Analista de inventarios & Sistema de almacén & Generado automáticamente al ejecutar la transferencia; consultable por código, lote o periodo \\
-\bottomrule
+El tiempo total estimado del ciclo completo en el proceso TO-BE es de \textbf{51 minutos}, frente a los 235 minutos del proceso AS-IS, lo que representa una reducción aproximada del \textbf{78\%} en el tiempo total del ciclo operativo, gracias a la automatización de los registros, la digitalización de la ubicabilidad y la generación automática de indicadores.
+
+% ============================================================
+% CAPÍTULO 4
+% ============================================================
+
+\chapter{CE0134-Propuesta de Automatización o Mejora de Procesos mediante TIC}
+
+\section{Componentes Tecnológicos de la Propuesta}
+
+La propuesta de automatización del proceso de Gestión de Almacenes se sustenta en el desarrollo del Sistema Web de Gestión de Almacenes con Módulo de Inteligencia de Negocios, descrito en el Entregable 2, el cual incorpora los siguientes componentes tecnológicos clave:
+
+\begin{itemize}
+    \item \textbf{Módulo de Recepción:} digitaliza el registro de ingreso de mercadería, eliminando el uso de formatos físicos y hojas de cálculo independientes.
+    \item \textbf{Módulo de Ubicaciones:} asigna y gestiona la ubicabilidad de los productos mediante códigos digitales de posición dentro del almacén (zona, rack, nivel).
+    \item \textbf{Módulo de Inventario:} mantiene actualizado el stock en tiempo real a partir de las transacciones registradas por los demás módulos.
+    \item \textbf{Módulo de Pedidos y Picking:} centraliza la recepción de órdenes de despacho y guía al personal operativo en la preparación de pedidos.
+    \item \textbf{Módulo de Despacho:} registra digitalmente la salida de mercadería y genera la documentación correspondiente.
+    \item \textbf{Módulo de Inteligencia de Negocios (BI):} procesa la información transaccional generada por los módulos anteriores para producir indicadores, reportes y tableros de control en tiempo real.
+    \item \textbf{Modelo predictivo de Machine Learning:} apoya la proyección de la ocupación y saturación del almacén en temporadas de alta demanda, a partir de los datos históricos generados por el sistema.
+\end{itemize}
+
+\section{Arquitectura Tecnológica de Soporte}
+
+La automatización propuesta se apoya en la arquitectura de microservicios definida en el Entregable 2, la cual permite que cada módulo funcional (recepción, ubicaciones, inventario, pedidos, despacho y BI) opere de manera independiente, comunicándose entre sí mediante APIs. Esta arquitectura facilita la escalabilidad del sistema y la incorporación progresiva de nuevas funcionalidades durante los Sprints de desarrollo.
+
+\figura[0.85\linewidth]{arquitectura-microservicios.png}{Arquitectura de microservicios de soporte al proceso automatizado}
+
+\section{Nivel de Automatización por Subproceso}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\raggedright\arraybackslash}p{0.27\textwidth}
+    |>{\centering\arraybackslash}p{0.20\textwidth}
+    |>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries Subproceso
+&
+\color{white}\bfseries Nivel de automatización
+&
+\color{white}\bfseries Tecnología aplicada
+\\
+\hline
+
+\rowcolor{gray!10}
+Recepción de mercadería & Semiautomático & Módulo de Recepción (ERP) \\
+\hline
+
+Almacenamiento y ubicabilidad & Semiautomático & Módulo de Ubicaciones (ERP) \\
+\hline
+
+\rowcolor{gray!10}
+Control de inventario & Automático & Módulo de Inventario (ERP) \\
+\hline
+
+Preparación de pedidos (picking) & Semiautomático & Módulo de Pedidos y Picking (ERP) \\
+\hline
+
+\rowcolor{gray!10}
+Despacho & Semiautomático & Módulo de Despacho (ERP) \\
+\hline
+
+Elaboración de reportes gerenciales & Automático & Módulo de Inteligencia de Negocios \\
+\hline
+
+\rowcolor{gray!10}
+Proyección de ocupación de almacén & Automático & Modelo predictivo de Machine Learning \\
+\hline
+
 \end{tabularx}
+\caption{Nivel de automatización propuesto por subproceso}
+\end{table}
 
-\vspace{2em}
+\section{Justificación Tecnológica de la Propuesta}
 
-% ------------------------------------------
-\section*{6. Reempaque}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Reporte de movimientos (registro de reempaque) & Analista de inventarios & Sistema de almacén & Generado automáticamente al ejecutar el reempaque; refleja la división de la paleta \\
-\bottomrule
+La incorporación de TIC en el proceso de Gestión de Almacenes se justifica en la necesidad de eliminar el registro manual y disperso de la información, así como en la oportunidad de aprovechar los datos históricos generados por el sistema para anticipar la demanda de espacio de almacenamiento. La automatización semiautomática de los subprocesos operativos (recepción, ubicabilidad, picking y despacho) mantiene la intervención del personal en las decisiones operativas clave, mientras que la automatización completa del control de inventario y la generación de reportes elimina tareas repetitivas de bajo valor agregado, permitiendo que el personal se enfoque en actividades de mayor criterio.
+
+% ============================================================
+% CAPÍTULO 5
+% ============================================================
+
+\chapter{CE0135-Indicadores de Desempeño y Evaluación de Impacto del Proceso}
+
+\section{Definición de Indicadores Clave de Desempeño (KPI)}
+
+Con el propósito de evaluar el impacto de la propuesta de mejora sobre el proceso de Gestión de Almacenes, se definieron los siguientes indicadores clave de desempeño (KPI), los cuales serán monitoreados a través del Módulo de Inteligencia de Negocios del sistema.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabularx}{\textwidth}{
+    |>{\raggedright\arraybackslash}p{0.22\textwidth}
+    |>{\raggedright\arraybackslash}p{0.30\textwidth}
+    |>{\centering\arraybackslash}p{0.13\textwidth}
+    |>{\centering\arraybackslash}X|
+}
+\hline
+
+\rowcolor{upeu_dark}
+\color{white}\bfseries Indicador
+&
+\color{white}\bfseries Fórmula de cálculo
+&
+\color{white}\bfseries Línea base (AS-IS)
+&
+\color{white}\bfseries Meta esperada (TO-BE)
+\\
+\hline
+
+\rowcolor{gray!10}
+Exactitud de inventario &
+(Stock físico verificado / Stock registrado en sistema) $\times$ 100 &
+85\% &
+$\geq$ 98\%
+\\
+\hline
+
+Tiempo de preparación de pedidos &
+Tiempo total de picking por pedido &
+35 min &
+$\leq$ 20 min
+\\
+\hline
+
+\rowcolor{gray!10}
+Tiempo de búsqueda de productos &
+Tiempo desde la solicitud hasta la localización del producto &
+30 min &
+$\leq$ 5 min
+\\
+\hline
+
+Tiempo de generación de reportes &
+Tiempo desde la solicitud del reporte hasta su disponibilidad &
+60 min &
+$\leq$ 5 min
+\\
+\hline
+
+\rowcolor{gray!10}
+Errores de despacho &
+(N° de pedidos con error / N° total de pedidos despachados) $\times$ 100 &
+6\% &
+$\leq$ 1\%
+\\
+\hline
+
+Nivel de ocupación de almacén &
+(Espacio ocupado / Capacidad total del almacén) $\times$ 100 &
+Sin medición sistemática &
+Monitoreo en tiempo real
+\\
+\hline
+
 \end{tabularx}
+\caption{Indicadores clave de desempeño del proceso de Gestión de Almacenes}
+\end{table}
 
-\vspace{2em}
+\section{Tablero de Control (Dashboard) Propuesto}
 
-% ------------------------------------------
-\section*{7. Repaletizado}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Reporte manual de repaletizado & Auxiliar de almacén & Archivo manual (hoja de cálculo) & Elaborado a mano, sin soporte en el sistema; remitido a Facturación \\
-\bottomrule
-\end{tabularx}
+El módulo de Inteligencia de Negocios del sistema visualizará los indicadores definidos mediante un tablero de control accesible para la Gerencia de Operaciones y Logística, permitiendo el seguimiento en tiempo real de la exactitud de inventario, los tiempos de ciclo operativo y el nivel de ocupación del almacén.
 
-\vspace{2em}
+\figura[0.9\linewidth]{dashboard-bi.png}{Tablero de control (dashboard) del módulo de Inteligencia de Negocios}
 
-% ------------------------------------------
-\section*{8. Reencajado}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Reporte manual de reencajado & Auxiliar de almacén & Archivo manual (hoja de cálculo) & Elaborado a mano, sin soporte en el sistema; remitido a Facturación \\
-\bottomrule
-\end{tabularx}
+\section{Evaluación del Impacto Esperado}
 
-\vspace{2em}
+\subsection{Impacto Operativo}
 
-% ------------------------------------------
-\section*{9. Liquidación mensual in-out y servicios}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Reporte consolidado de movimientos (Excel) & Analista de inventarios & Archivo digital (hoja de cálculo) & Exportado mensualmente del sistema; remitido al contador \\
-\midrule
-Excel con tarifa aplicada & Contador & Archivo del contador & Elaborado manualmente, sin soporte en el sistema; incluye prorrateo por fecha de corte \\
-\midrule
-Factura al cliente & Contador & Archivo del contador / SUNAT & Emitida conforme a la normativa de comprobantes de pago electrónicos \\
-\bottomrule
-\end{tabularx}
+La reducción del tiempo total del ciclo de 235 a 51 minutos, evidenciada en el Capítulo 3, se traduce en una mayor capacidad de respuesta ante los pedidos de los clientes arrendadores y en una disminución de la carga operativa del personal de almacén, al eliminarse las actividades de doble registro y búsqueda manual de productos.
 
-\vspace{2em}
+\subsection{Impacto en la Toma de Decisiones}
 
-% ------------------------------------------
-\section*{10. Control de acceso a las visitas}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Documentación de identidad y Seguro SCTR & Vigilante (Garitero) & Garita de seguridad & Verificación física o digital de la vigencia antes de autorizar el ingreso \\
-\midrule
-Pase de ingreso autorizado / Hoja de control & Analista de inventarios & Archivo físico en Almacén & Registro generado tras la validación en garita y conservado para trazabilidad interna \\
-\bottomrule
-\end{tabularx}
+La disponibilidad de indicadores en tiempo real mediante el módulo de Inteligencia de Negocios permitirá que la Gerencia de Operaciones y Logística cuente con información oportuna para la toma de decisiones, especialmente en relación con la gestión de la capacidad del almacén y la proyección de ocupación en temporadas de alta demanda, a partir del modelo predictivo de Machine Learning incorporado al sistema.
 
-\vspace{2em}
+\subsection{Impacto Económico}
 
-% ------------------------------------------
-\section*{11. Reclutamiento de Personal}
-% ------------------------------------------
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
-\toprule
-\multirow{2}{*}{\textbf{DOCUMENTO (QUÉ)}} & \multicolumn{3}{c}{\textbf{CUSTODIA}} \\
-\cmidrule{2-4}
-& \textbf{QUIÉN} & \textbf{DÓNDE} & \textbf{CÓMO} \\
-\midrule
-Perfil de puesto aprobado (MOF) & Responsable de RR.HH. & Archivo digital & Documento formal que detalla el análisis de tareas y requisitos legales de la vacante \\
-\midrule
-CVs y lista de candidatos aptos & Jefe de Operaciones & Archivo de RR.HH. / Operaciones & Recopilación de postulaciones filtradas y resultados de las pruebas técnicas en almacén \\
-\midrule
-Contrato laboral, Alta en planilla y SCTR & Gerencia General & Archivo legal del personal & Documentación legal y de seguridad firmada al finalizar la selección, resguardada formalmente \\
-\bottomrule
-\end{tabularx}
+La reducción de errores de despacho y la disminución del tiempo de preparación de pedidos contribuyen a evitar costos asociados a reprocesos, devoluciones y penalidades contractuales con los clientes arrendadores, fortaleciendo la relación comercial y la sostenibilidad del servicio logístico ofrecido por CO LOGISTIC S.A.C.
 
-\vspace{2em}
+\subsection{Riesgos Asociados a la Implementación}
 
-% ==========================================
+\begin{itemize}
+    \item Resistencia al cambio por parte del personal operativo acostumbrado al uso de formatos físicos y hojas de cálculo.
+    \item Necesidad de capacitación previa a la puesta en marcha de los nuevos módulos del sistema.
+    \item Dependencia de la disponibilidad e infraestructura tecnológica (conectividad, equipos) para la operación continua del sistema.
+\end{itemize}
+
+Estos riesgos serán abordados de manera específica en el Plan de Gestión de Riesgos del proyecto, desarrollado en el Entregable 2.
+
+\section{Conclusiones del Rediseño de Procesos}
+
+El análisis y rediseño del proceso de Gestión de Almacenes de CO LOGISTIC S.A.C. evidencia que la incorporación de un sistema ERP con módulo de inteligencia de negocios no solo automatiza tareas operativas, sino que transforma la capacidad de la organización para tomar decisiones basadas en datos. La comparación entre los procesos AS-IS y TO-BE demuestra una mejora cuantificable en los tiempos de ciclo, la exactitud del inventario y la disponibilidad de información gerencial, validando la pertinencia del proyecto priorizado dentro de la cartera estratégica de TI de la organización.
+
+% ============================================================
+% ANEXOS
+% ============================================================
+
 \appendix
 \chapter{Anexos}
-% ==========================================
-\textbf{ANEXO N° 01:} Transcripción de entrevistas al Analista de Inventarios de Co Logistic SAC (Recepción, Despacho, Almacenamiento, Acondicionamiento, Facturación, Puestos y áreas) \\
-\textbf{ANEXO N° 02:} Borrador manuscrito del diagrama de flujo de Recepción y Despacho, elaborado por el Analista de Inventarios \\
-\textbf{ANEXO N° 03:} Muestra de Guía de Remisión Electrónica Remitente (Panificadora Bimbo del Perú S.A.) con sello de recepción/despacho de Co Logistic SAC \\
-\textbf{ANEXO N° 04:} Diagramas BPMN 2.0 (formato Mermaid .mmd) de los procedimientos documentados
 
+\section*{Listado de imágenes a subir en la carpeta \texttt{img/}}
+
+Para que el documento compile con las figuras finales, se deben subir las imágenes en formato PNG dentro de la carpeta \texttt{img/} con los siguientes nombres:
+
+\begin{itemize}
+  \item \texttt{logo-upeu.png}
+  \item \texttt{mapa-procesos-n0.png}
+  \item \texttt{proceso-as-is.png}
+  \item \texttt{proceso-to-be.png}
+  \item \texttt{arquitectura-microservicios.png}
+  \item \texttt{dashboard-bi.png}
+\end{itemize}
 
 \end{document}
