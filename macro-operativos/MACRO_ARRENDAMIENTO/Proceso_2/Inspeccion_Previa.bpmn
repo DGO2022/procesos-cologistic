@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  id="Definitions_1" 
+                  targetNamespace="http://bpmn.io/schema/bpmn" 
+                  exporter="Camunda Modeler" 
+                  exporterVersion="4.0.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Inspeccion" name="Arrendamiento: Inspección y acondicionamiento previo" processRef="Process_Inspeccion" />
+  </bpmn:collaboration>
+  
+  <bpmn:process id="Process_Inspeccion" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Gerencia" name="Gerencia General">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Recepcionar</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Operaciones" name="Operaciones">
+        <bpmn:flowNodeRef>Task_Delimitar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Inspeccionar</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Mantenimiento" name="Mantenimiento">
+        <bpmn:flowNodeRef>Task_Acondicionar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Fin</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Recepcionar" name="Recepcionar contrato e identificar área">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Delimitar" name="Delimitar físicamente el espacio">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Inspeccionar" name="Inspeccionar limpieza y servicios">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Acondicionar" name="Acondicionar y corregir observaciones">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Fin" name="Fin">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+    </bpmn:endEvent>
+    
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Inicio" targetRef="Task_Recepcionar" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Recepcionar" targetRef="Task_Delimitar" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_Delimitar" targetRef="Task_Inspeccionar" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Inspeccionar" targetRef="Task_Acondicionar" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_Acondicionar" targetRef="EndEvent_Fin" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Inspeccion_di" bpmnElement="Participant_Inspeccion" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="850" height="450" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Lane_Gerencia_di" bpmnElement="Lane_Gerencia" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Operaciones_di" bpmnElement="Lane_Operaciones" isHorizontal="true">
+        <dc:Bounds x="190" y="230" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Mantenimiento_di" bpmnElement="Lane_Mantenimiento" isHorizontal="true">
+        <dc:Bounds x="190" y="380" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="250" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="180" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Recepcionar_di" bpmnElement="Task_Recepcionar">
+        <dc:Bounds x="330" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Delimitar_di" bpmnElement="Task_Delimitar">
+        <dc:Bounds x="480" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Inspeccionar_di" bpmnElement="Task_Inspeccionar">
+        <dc:Bounds x="630" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Acondicionar_di" bpmnElement="Task_Acondicionar">
+        <dc:Bounds x="780" y="415" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="EndEvent_Fin_di" bpmnElement="EndEvent_Fin">
+        <dc:Bounds x="930" y="437" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="940" y="480" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <!-- Connections -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="286" y="155" />
+        <di:waypoint x="330" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="430" y="155" />
+        <di:waypoint x="455" y="155" />
+        <di:waypoint x="455" y="305" />
+        <di:waypoint x="480" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="580" y="305" />
+        <di:waypoint x="630" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="730" y="305" />
+        <di:waypoint x="755" y="305" />
+        <di:waypoint x="755" y="455" />
+        <di:waypoint x="780" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="880" y="455" />
+        <di:waypoint x="930" y="455" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

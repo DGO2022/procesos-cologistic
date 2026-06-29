@@ -1,0 +1,22 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Operaciones ["Operaciones"]
+        Start((Inicio))
+        Programar[1. Programar ronda de monitoreo preventivo]
+        Inspeccionar[2. Inspeccionar físicamente el área arrendada]
+        Contrastar[3. Contrastar estado contra el acta de entrega]
+        Registrar[4. Registrar resultados en el reporte interno]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Programar
+    Programar -->|Cronograma de ronda| Inspeccionar
+    Inspeccionar -->|Datos de la inspección| Contrastar
+    Contrastar -->|Conformidad o hallazgos| Registrar
+    Registrar -->|Reporte de estado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

@@ -1,0 +1,28 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Recepcionar[1. Recepcionar contrato e identificar área asignada]
+    end
+
+    subgraph Operaciones ["Operaciones"]
+        Delimitar[2. Delimitar físicamente el espacio del cliente]
+        Inspeccionar[3. Inspeccionar limpieza, servicios y seguridad]
+    end
+
+    subgraph Mantenimiento ["Mantenimiento"]
+        Acondicionar[4. Acondicionar y corregir observaciones]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Recepcionar
+    Recepcionar -->|Área identificada| Delimitar
+    Delimitar -->|Área delimitada| Inspeccionar
+    Inspeccionar -->|Lista de verificación| Acondicionar
+    Acondicionar -->|Espacio acondicionado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

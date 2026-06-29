@@ -1,0 +1,28 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Imprimir[1. Imprimir contrato definitivo y coordinar firmas]
+        Gestionar[3. Gestionar legalización en notaría]
+    end
+
+    subgraph Cliente ["Cliente / GG"]
+        Suscribir[2. Suscribir el contrato por ambas partes]
+    end
+
+    subgraph Notaria ["Notaría"]
+        Legalizar[4. Legalizar firmas y entregar documento final]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Imprimir
+    Imprimir -->|Documento listo para firma| Suscribir
+    Suscribir -->|Contrato con firmas simples| Gestionar
+    Gestionar -->|Trámite notarial en curso| Legalizar
+    Legalizar -->|Contrato firmado y legalizado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

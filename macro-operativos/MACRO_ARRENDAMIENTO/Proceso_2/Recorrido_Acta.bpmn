@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  id="Definitions_1" 
+                  targetNamespace="http://bpmn.io/schema/bpmn" 
+                  exporter="Camunda Modeler" 
+                  exporterVersion="4.0.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Recorrido" name="Arrendamiento: Recorrido físico y suscripción del acta" processRef="Process_Recorrido" />
+  </bpmn:collaboration>
+  
+  <bpmn:process id="Process_Recorrido" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Operaciones" name="Operaciones">
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Coordinar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Recorrido</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Suscribir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Fin</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Cliente" name="Cliente">
+        <bpmn:flowNodeRef>Task_Conformidad</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Coordinar" name="Coordinar cita con el cliente">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Recorrido" name="Realizar recorrido conjunto">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Conformidad" name="Dar conformidad de instalaciones">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Suscribir" name="Suscribir el acta de entrega">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Fin" name="Fin">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+    </bpmn:endEvent>
+    
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Inicio" targetRef="Task_Coordinar" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Coordinar" targetRef="Task_Recorrido" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_Recorrido" targetRef="Task_Conformidad" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Conformidad" targetRef="Task_Suscribir" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_Suscribir" targetRef="EndEvent_Fin" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Recorrido_di" bpmnElement="Participant_Recorrido" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="850" height="300" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Lane_Operaciones_di" bpmnElement="Lane_Operaciones" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Cliente_di" bpmnElement="Lane_Cliente" isHorizontal="true">
+        <dc:Bounds x="190" y="230" width="820" height="150" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="250" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="255" y="180" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Coordinar_di" bpmnElement="Task_Coordinar">
+        <dc:Bounds x="330" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Recorrido_di" bpmnElement="Task_Recorrido">
+        <dc:Bounds x="480" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Conformidad_di" bpmnElement="Task_Conformidad">
+        <dc:Bounds x="630" y="265" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="Task_Suscribir_di" bpmnElement="Task_Suscribir">
+        <dc:Bounds x="780" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      
+      <bpmndi:BPMNShape id="EndEvent_Fin_di" bpmnElement="EndEvent_Fin">
+        <dc:Bounds x="930" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="940" y="180" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      
+      <!-- Connections -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="286" y="155" />
+        <di:waypoint x="330" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="430" y="155" />
+        <di:waypoint x="480" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="580" y="155" />
+        <di:waypoint x="605" y="155" />
+        <di:waypoint x="605" y="305" />
+        <di:waypoint x="630" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="730" y="305" />
+        <di:waypoint x="755" y="305" />
+        <di:waypoint x="755" y="155" />
+        <di:waypoint x="780" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="880" y="155" />
+        <di:waypoint x="930" y="155" />
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

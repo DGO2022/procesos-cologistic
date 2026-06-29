@@ -1,0 +1,25 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Recepcionar[1. Recepcionar documentación y acuerdo comercial]
+        Validar[2. Validar vigencia de poderes y legalidad]
+        Redactar[3. Redactar borrador del contrato]
+        Fin((Fin))
+    end
+
+    subgraph Cliente ["Cliente"]
+        Revisar[4. Revisar y dar conformidad al contrato]
+    end
+
+    %% Secuencia del proceso
+    Start --> Recepcionar
+    Recepcionar -->|Expediente del cliente| Validar
+    Validar -->|Validación legal| Redactar
+    Redactar -->|Borrador preliminar| Revisar
+    Revisar -->|Borrador validado| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

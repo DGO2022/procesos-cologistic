@@ -1,0 +1,22 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Operaciones ["Operaciones"]
+        Start((Inicio))
+        Consolidar[1. Consolidar el estado del espacio al fin de mes]
+        Confirmar[2. Confirmar ausencia de penalidades/daños]
+        Generar[3. Generar el reporte de conformidad mensual]
+        Enviar[4. Enviar reporte al área de Facturación]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Consolidar
+    Consolidar -->|Estado mensual validado| Confirmar
+    Confirmar -->|Visto bueno preliminar| Generar
+    Generar -->|Conformidad documentada| Enviar
+    Enviar -->|Orden para facturar| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

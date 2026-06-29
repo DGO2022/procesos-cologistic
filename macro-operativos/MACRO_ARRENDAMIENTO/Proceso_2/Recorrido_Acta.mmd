@@ -1,0 +1,25 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Operaciones ["Operaciones"]
+        Start((Inicio))
+        Coordinar[1. Coordinar cita de entrega con el cliente]
+        Recorrido[2. Realizar recorrido conjunto por el espacio]
+        Suscribir[4. Suscribir el acta de entrega]
+        Fin((Fin))
+    end
+
+    subgraph Cliente ["Cliente"]
+        Conformidad[3. Dar conformidad de las instalaciones]
+    end
+
+    %% Secuencia del proceso
+    Start --> Coordinar
+    Coordinar -->|Cita programada| Recorrido
+    Recorrido -->|Revisión conjunta| Conformidad
+    Conformidad -->|Conformidad verbal| Suscribir
+    Suscribir -->|Acta de entrega firmada| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

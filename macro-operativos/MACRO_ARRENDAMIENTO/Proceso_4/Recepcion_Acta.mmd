@@ -1,0 +1,25 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Cliente ["Cliente"]
+        Start((Inicio))
+        Informar[1. Informar desocupación y solicitar entrega]
+        Firmar[4. Firmar acta y remitir a Administración]
+        Fin((Fin))
+    end
+
+    subgraph Operaciones ["Operaciones"]
+        Revisar[2. Efectuar revisión visual rápida del espacio]
+        Redactar[3. Redactar el acta de devolución]
+    end
+
+    %% Secuencia del proceso
+    Start --> Informar
+    Informar -->|Cita de recepción| Revisar
+    Revisar -->|Evaluación de condiciones| Redactar
+    Redactar -->|Acta lista para firma| Firmar
+    Firmar -->|Acta firmada y enviada| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff
