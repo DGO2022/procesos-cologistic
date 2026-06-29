@@ -344,6 +344,42 @@ Procesos que lo conforman & 1. Recepción de Mercadería \newline 2. Almacenamie
 \caption{Ficha de caracterización del macroproceso: Gestión de Almacén}
 \end{table}
 
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.17\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Proceso & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente arrendador &
+Guía de remisión del cliente &
+Recepción de Mercadería &
+Pedido de ingreso aprobado, impreso y engrampado a la guía &
+Almacenamiento \\ \hline
+\rowcolor{gray!10}
+Recepción de Mercadería &
+Pedido de ingreso aprobado + guía archivada &
+Almacenamiento &
+Mercadería ubicada en rack; reporte de movimientos actualizado &
+Despacho de Mercadería \\ \hline
+Almacenamiento; Cliente arrendador &
+Mercadería ubicada; guía de remisión de salida &
+Despacho de Mercadería &
+Pedido de salida (P.S.) aprobado, impreso y engrampado a la guía &
+Cliente arrendador \\ \hline
+\rowcolor{gray!10}
+Cliente arrendador &
+Solicitud comercial de repaletizado o reencajado &
+Acondicionamiento de Mercadería &
+Reporte manual de servicio (código, cantidad, paletas, tarifa) &
+Facturación \\ \hline
+\end{tabularx}
+\caption{SIPOC del macroproceso: Gestión de Almacén}
+\end{table}
+
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 1: Recepción de Mercadería}
 % ════════════════════════════════════════════════════
@@ -375,6 +411,31 @@ Clientes del proceso & Almacenamiento \\ \hline
 Procedimientos & 1. Registro de pedido de ingreso \newline 2. Verificación y conformidad \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Recepción de Mercadería}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente arrendador &
+Guía de remisión del cliente &
+Registro de pedido de ingreso &
+Pedido de ingreso firmado (analista, chofer y almacén) &
+Almacén (verificación física) \\ \hline
+\rowcolor{gray!10}
+Analista de inventarios &
+Pedido de ingreso firmado &
+Verificación y conformidad &
+Pedido de ingreso aprobado + guía engrampada (archivado) &
+Almacenamiento \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Recepción de Mercadería}
 \end{table}
 
 \procedimiento{a}{Registro de pedido de ingreso}
@@ -511,6 +572,31 @@ Procedimientos & 1. Transferencia de ubicación \newline 2. Reempaque \\ \hline
 \caption{Ficha de caracterización del proceso: Almacenamiento}
 \end{table}
 
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Recepción de Mercadería &
+Código previamente recepcionado &
+Transferencia de ubicación &
+Reporte de movimientos actualizado con nueva ubicación &
+Despacho de Mercadería \\ \hline
+\rowcolor{gray!10}
+Recepción de Mercadería &
+Paleta física no coincidente con la guía &
+Reempaque &
+Reporte de movimientos actualizado (paleta dividida en cantidades reales) &
+Despacho de Mercadería \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Almacenamiento}
+\end{table}
+
 \procedimiento{a}{Transferencia de ubicación}
 
 \begin{table}[H]
@@ -642,6 +728,31 @@ Clientes del proceso & Facturación \\ \hline
 Procedimientos & 1. Repaletizado \newline 2. Reencajado \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Acondicionamiento de Mercadería}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente arrendador &
+Solicitud comercial de repaletizado &
+Repaletizado &
+Reporte manual (código, descripción, cantidad, N.° de paletas, tarifa) &
+Facturación \\ \hline
+\rowcolor{gray!10}
+Cliente arrendador &
+Solicitud comercial de reencajado &
+Reencajado &
+Reporte manual (código, descripción, cantidad, tarifa) &
+Facturación \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Acondicionamiento de Mercadería}
 \end{table}
 
 \procedimiento{a}{Repaletizado}
@@ -777,6 +888,31 @@ Clientes del proceso & Cliente arrendador \\ \hline
 Procedimientos & 1. Registro de pedido de salida \newline 2. Verificación y conformidad (Despacho) \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Despacho de Mercadería}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente arrendador; Almacenamiento &
+Guía de remisión de salida; mercadería ubicada en rack &
+Registro de pedido de salida &
+Pedido de salida (P.S.) firmado (analista, chofer y almacén) &
+Almacén (verificación física) \\ \hline
+\rowcolor{gray!10}
+Analista de inventarios &
+Pedido de salida (P.S.) firmado &
+Verificación y conformidad &
+P.S. aprobado + guía engrampada (archivado); cliente atendido &
+Cliente arrendador \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Despacho de Mercadería}
 \end{table}
 
 \procedimiento{a}{Registro de pedido de salida}
