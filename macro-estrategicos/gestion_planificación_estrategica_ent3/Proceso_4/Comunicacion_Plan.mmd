@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Preparar[1. Preparar material didáctico y convocar al personal]
+        Exponer[2. Exponer los objetivos y el Tablero de Control]
+    end
+
+    subgraph Personal ["Personal (Colaboradores)"]
+        Firmar[3. Firmar el acta de conocimiento y compromiso]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Preparar
+    Preparar -->|Convocatoria| Exponer
+    Exponer -->|Mensaje estratégico| Firmar
+    Firmar -->|Actas firmadas| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Presentar[1. Presentar borradores de Misión, Visión y Valores]
+        Fin((Fin))
+    end
+
+    subgraph Junta ["Junta Directiva"]
+        Debatir[2. Debatir y consensuar ajustes a las propuestas]
+        Aprobar[3. Aprobar formalmente el documento definitivo]
+    end
+
+    %% Secuencia del proceso
+    Start --> Presentar
+    Presentar -->|Propuestas expuestas| Debatir
+    Debatir -->|Acuerdos preliminares| Aprobar
+    Aprobar -->|Marco filosófico oficial| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Analizar[1. Realizar sesión de análisis cruzado de información]
+        Redactar[3. Redactar las conclusiones en el Informe de Diagnóstico]
+        Fin((Fin))
+    end
+
+    subgraph Jefaturas ["Jefaturas de Área"]
+        Estructurar[2. Estructurar matriz de Fortalezas, Oportunidades, Debilidades y Amenazas]
+    end
+
+    %% Secuencia del proceso
+    Start --> Analizar
+    Analizar -->|Factores identificados| Estructurar
+    Estructurar -->|Matriz FODA preliminar| Redactar
+    Redactar -->|Informe de diagnóstico| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

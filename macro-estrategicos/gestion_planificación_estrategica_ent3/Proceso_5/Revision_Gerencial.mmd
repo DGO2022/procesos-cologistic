@@ -1,0 +1,26 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Jefaturas ["Jefaturas"]
+        Start((Inicio))
+        Analizar[1. Analizar el desempeño y desviaciones de las metas]
+    end
+
+    subgraph Comite ["Comité Directivo"]
+        Definir[2. Definir acciones correctivas para KPIs incumplidos]
+    end
+
+    subgraph Gerencia ["Gerencia General"]
+        Firmar[3. Firmar acta de compromisos y ajustar el plan si amerita]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Analizar
+    Analizar -->|Identificación de brechas| Definir
+    Definir -->|Planes de acción| Firmar
+    Firmar -->|Acta de revisión gerencial| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Clasificar[1. Clasificar objetivos en las 4 perspectivas del BSC]
+        Trazar[2. Trazar relaciones de causa-efecto entre perspectivas]
+    end
+
+    subgraph Junta ["Junta Directiva"]
+        Aprobar[3. Aprobar el Tablero de Control final]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Clasificar
+    Clasificar -->|Borrador del BSC| Trazar
+    Trazar -->|Mapa estratégico| Aprobar
+    Aprobar -->|Tablero de Control oficial| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

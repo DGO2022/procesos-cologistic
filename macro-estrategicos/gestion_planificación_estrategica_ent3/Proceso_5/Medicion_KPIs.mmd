@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Areas ["Áreas operativas"]
+        Start((Inicio))
+        Recopilar[1. Recopilar y consolidar datos de las operaciones]
+    end
+
+    subgraph Jefaturas ["Jefaturas"]
+        Calcular[2. Calcular los KPIs según el Balanced Scorecard]
+        Elaborar[3. Elaborar reporte de cumplimiento con semaforización]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Recopilar
+    Recopilar -->|Base de datos consolidada| Calcular
+    Calcular -->|Resultados numéricos| Elaborar
+    Elaborar -->|Reporte preliminar BSC| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

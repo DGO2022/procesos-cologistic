@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Revisar[1. Revisar conclusiones del FODA y su impacto a largo plazo]
+    end
+
+    subgraph Comite ["Comité Estratégico"]
+        Evaluar[2. Evaluar vigencia de la misión y visión actuales]
+        Redactar[3. Redactar propuestas de actualización del marco filosófico]
+        Fin((Fin))
+    end
+
+    %% Secuencia del proceso
+    Start --> Revisar
+    Revisar -->|Directrices iniciales| Evaluar
+    Evaluar -->|Brechas detectadas| Redactar
+    Redactar -->|Borradores de propuestas a Junta Directiva| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

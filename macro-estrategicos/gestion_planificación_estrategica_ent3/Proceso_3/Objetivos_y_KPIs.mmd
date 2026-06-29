@@ -1,0 +1,23 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Proponer[1. Proponer objetivos generales alineados a la estrategia]
+        Asignar[3. Asignar metas cuantificables y responsables]
+        Fin((Fin))
+    end
+
+    subgraph Jefaturas ["Jefaturas de Área"]
+        Definir[2. Definir los KPIs para cada objetivo]
+    end
+
+    %% Secuencia del proceso
+    Start --> Proponer
+    Proponer -->|Lista de objetivos| Definir
+    Definir -->|KPIs formulados| Asignar
+    Asignar -->|Matriz de objetivos completa| Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff

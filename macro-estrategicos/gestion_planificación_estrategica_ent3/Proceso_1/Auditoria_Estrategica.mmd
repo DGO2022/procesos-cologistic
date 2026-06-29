@@ -1,0 +1,30 @@
+flowchart TD
+    %% Definición de Carriles (Swimlanes)
+    
+    subgraph Mercado ["Mercado / Entorno"]
+        ProveerInfo[Proveer información externa]
+    end
+
+    subgraph Gerencia ["Gerencia General"]
+        Start((Inicio))
+        Investigar[1. Investigar tendencias macroeconómicas y competencia]
+        Evaluar[2. Evaluar recursos internos y desempeño organizacional]
+        Consolidar[3. Consolidar hallazgos en documento base]
+        Fin((Fin))
+    end
+
+    subgraph Jefaturas ["Jefaturas de Área"]
+        ProveerReportes[Generar y proveer reportes operativos]
+    end
+
+    %% Secuencia del proceso
+    Start --> ProveerInfo
+    ProveerInfo -->|Información externa| Investigar
+    Investigar --> ProveerReportes
+    ProveerReportes -->|Reportes operativos| Evaluar
+    Evaluar --> Consolidar
+    Consolidar --> Fin
+
+    %% Estilos básicos
+    style Start fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    style Fin fill:#007bff,stroke:#fff,stroke-width:2px,color:#fff
