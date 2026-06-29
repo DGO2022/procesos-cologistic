@@ -1,0 +1,32 @@
+---
+title: Organigrama Co Logistic S.A.C.
+---
+graph TD
+    GG["🏢 Gerencia General"]
+    JO["Jefe de Operaciones"]
+    RRHH["Responsable de RR.HH."]
+    CONT["Contador / Facturación"]
+    SUP["Supervisor de Almacén"]
+    AI["Analista de Inventarios"]
+    AA["Auxiliar de Almacén"]
+    EST["Estibadores"]
+    VIG["Vigilante (Garitero)"]
+
+    GG --> JO
+    GG --> RRHH
+    GG --> CONT
+    JO --> SUP
+    JO --> VIG
+    SUP --> AI
+    SUP --> AA
+    AA --> EST
+
+    style GG fill:#1A3A6B,color:#fff,font-weight:bold
+    style JO fill:#2E75B6,color:#fff
+    style RRHH fill:#2E75B6,color:#fff
+    style CONT fill:#2E75B6,color:#fff
+    style SUP fill:#4A90D9,color:#fff
+    style VIG fill:#4A90D9,color:#fff
+    style AI fill:#D6E4F0,color:#1A3A6B
+    style AA fill:#D6E4F0,color:#1A3A6B
+    style EST fill:#EAF2FB,color:#1A3A6B

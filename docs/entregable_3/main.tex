@@ -407,6 +407,16 @@ Facturación \\ \hline
 \caption{SIPOC del macroproceso: Gestión de Almacén}
 \end{table}
 
+\fichaIndicador
+  {IND-GA-00}
+  {Nivel de servicio global del almacén}
+  {Evaluar el nivel de servicio global del almacén consolidando el desempeño de sus cuatro procesos operativos}
+  {(Eficiencia de Recepción + Eficiencia de Almacenamiento + Eficiencia de Acondicionamiento + Eficiencia de Despacho) / 4}
+  {Jefe de Operaciones}
+  {Analista de inventarios}
+  {$\geq$ 90\,\% de eficiencia global}
+  {Mensual}
+
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 1: Recepción de Mercadería}
 % ════════════════════════════════════════════════════
@@ -464,6 +474,16 @@ Almacenamiento \\ \hline
 \end{tabularx}
 \caption{SIPOC del proceso: Recepción de Mercadería}
 \end{table}
+
+\fichaIndicador
+  {IND-REC-00}
+  {Eficiencia global del proceso de recepción}
+  {Evaluar el desempeño global del proceso de recepción combinando la exactitud del registro y la conformidad en la verificación física}
+  {(\% exactitud de registro + (100\,\% $-$ \% tasa de observación en recepción)) / 2}
+  {Supervisor}
+  {Analista de inventarios}
+  {$\geq$ 90\,\% de eficiencia en recepción}
+  {Mensual}
 
 \procedimiento{a}{Registro de pedido de ingreso}
 
@@ -523,7 +543,7 @@ Analista & Pedido con cantidades & 4. Firmar pedido de ingreso (analista, chofer
   {(Pedidos de ingreso aprobados sin observación / Total de pedidos de ingreso del periodo) × 100}
   {Supervisor}
   {Analista de inventarios}
-  {Por definir}
+  {$\geq$ 95\,\% de pedidos sin observación}
   {Mensual}
 
 \procedimiento{b}{Verificación y conformidad}
@@ -583,7 +603,7 @@ Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar ped
   {(Pedidos de ingreso con observación / Total de pedidos de ingreso del periodo) × 100}
   {Supervisor}
   {Auxiliar de almacén}
-  {Por definir}
+  {$\leq$ 5\,\% de pedidos con observación}
   {Mensual}
 
 % ════════════════════════════════════════════════════
@@ -644,6 +664,16 @@ Despacho de Mercadería \\ \hline
 \caption{SIPOC del proceso: Almacenamiento}
 \end{table}
 
+\fichaIndicador
+  {IND-ALM-00}
+  {Eficiencia global del proceso de almacenamiento}
+  {Medir la proporción de movimientos de almacén ejecutados conforme a lo requerido durante el periodo}
+  {(Transferencias y reempaques conformes / Total de movimientos de almacén del periodo) $\times$ 100}
+  {Analista de inventarios}
+  {Auxiliar de almacén}
+  {$\geq$ 90\,\% de movimientos conformes}
+  {Mensual}
+
 \procedimiento{a}{Transferencia de ubicación}
 
 \begin{table}[H]
@@ -697,11 +727,11 @@ Analista & Alcance definido; ubicación origen y destino & 4. Ejecutar transfere
 \fichaIndicador
   {IND-ALM-01}
   {Volumen de transferencias internas}
-  {Medir la cantidad de transferencias de ubicación ejecutadas en el periodo, como indicador de reacomodo del almacén}
-  {Número total de transferencias ejecutadas en el periodo}
+  {Controlar el nivel de actividad de reacomodo en el almacén para detectar tendencias de movimiento y planificar capacidad}
+  {Número de transferencias de ubicación ejecutadas en el periodo}
   {Analista de inventarios}
   {Analista de inventarios}
-  {Por definir}
+  {Línea base del primer mes (indicador de volumen)}
   {Mensual}
 
 \procedimiento{b}{Reempaque}
@@ -761,7 +791,7 @@ Analista & FV registrada & 4. Ejecutar reempaque (dividir paleta en cantidades r
   {(Reempaques ejecutados / Total de paletas recepcionadas en el periodo) × 100}
   {Analista de inventarios}
   {Auxiliar de almacén}
-  {Por definir}
+  {$\leq$ 10\,\% de paletas con reempaque}
   {Mensual}
 
 % ════════════════════════════════════════════════════
@@ -822,6 +852,16 @@ Facturación \\ \hline
 \caption{SIPOC del proceso: Acondicionamiento de Mercadería}
 \end{table}
 
+\fichaIndicador
+  {IND-ACO-00}
+  {Volumen total de acondicionamiento facturable}
+  {Medir el volumen total de servicios de acondicionamiento facturables ejecutados en el periodo}
+  {Número de paletas repaletizadas + número de unidades reencajadas del periodo}
+  {Jefe de Operaciones}
+  {Auxiliar de almacén}
+  {100\,\% de unidades registradas para facturación}
+  {Mensual}
+
 \procedimiento{a}{Repaletizado}
 
 \begin{table}[H]
@@ -876,11 +916,11 @@ Auxiliar & Mercadería repaletizada & 4. Elaborar reporte manual (código, descr
 \fichaIndicador
   {IND-ACO-01}
   {Volumen de repaletizado facturable}
-  {Medir la cantidad de paletas repaletizadas por tipo de producto en el periodo, como base de facturación del servicio}
-  {Número de paletas repaletizadas por código / tipo de producto en el periodo}
+  {Cuantificar el servicio de repaletizado ejecutado como base para la facturación y el control de capacidad operativa}
+  {Número de paletas repaletizadas en el periodo}
   {Auxiliar de almacén}
   {Auxiliar de almacén}
-  {Por definir}
+  {100\,\% de paletas repaletizadas registradas}
   {Mensual}
 
 \procedimiento{b}{Reencajado}
@@ -937,11 +977,11 @@ Auxiliar & Mercadería reencajada & 4. Elaborar reporte manual (código, descrip
 \fichaIndicador
   {IND-ACO-02}
   {Volumen de reencajado facturable}
-  {Medir la cantidad de unidades reencajadas por tipo de producto en el periodo, como base de facturación del servicio}
-  {Número de unidades reencajadas por código / tipo de producto en el periodo}
+  {Cuantificar el servicio de reencajado ejecutado como base para la facturación y el control de capacidad operativa}
+  {Número de unidades reencajadas en el periodo}
   {Auxiliar de almacén}
   {Auxiliar de almacén}
-  {Por definir}
+  {100\,\% de unidades reencajadas registradas}
   {Mensual}
 
 % ════════════════════════════════════════════════════
@@ -1001,6 +1041,16 @@ Cliente arrendador \\ \hline
 \end{tabularx}
 \caption{SIPOC del proceso: Despacho de Mercadería}
 \end{table}
+
+\fichaIndicador
+  {IND-DES-00}
+  {Eficiencia global del proceso de despacho}
+  {Evaluar el desempeño global del proceso de despacho combinando la exactitud del registro de salida y la conformidad en la verificación física}
+  {(\% exactitud de registro de salida + (100\,\% $-$ \% tasa de observación en despacho)) / 2}
+  {Supervisor}
+  {Analista de inventarios}
+  {$\geq$ 90\,\% de eficiencia en despacho}
+  {Mensual}
 
 \procedimiento{a}{Registro de pedido de salida}
 
@@ -1064,7 +1114,7 @@ Analista & Pedido con cantidades & 7. Firmar pedido de salida (analista, chofer 
   {(Pedidos de salida aprobados sin observación / Total de pedidos de salida del periodo) × 100}
   {Supervisor}
   {Analista de inventarios}
-  {Por definir}
+  {$\geq$ 95\,\% de pedidos sin observación}
   {Mensual}
 
 \procedimiento{b}{Verificación y conformidad}
@@ -1125,7 +1175,7 @@ Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar el 
   {(Pedidos de salida con observación / Total de pedidos de salida del periodo) × 100}
   {Supervisor}
   {Auxiliar de almacén}
-  {Por definir}
+  {$\leq$ 5\,\% de pedidos con observación}
   {Mensual}
 
 
@@ -1748,17 +1798,138 @@ El análisis y rediseño del proceso de Gestión de Almacenes de CO LOGISTIC S.A
 \appendix
 \chapter{Anexos}
 
-\section*{Listado de imágenes a subir en la carpeta \texttt{img/}}
+\section{Documentos generados por procedimiento}
 
-Para que el documento compile con las figuras finales, se deben subir las imágenes en formato PNG dentro de la carpeta \texttt{img/} con los siguientes nombres:
+Las siguientes tablas registran los documentos producidos o manipulados en cada procedimiento del macroproceso Gestión de Almacén, indicando quién los custodia, dónde se almacenan y cómo se conservan.
 
-\begin{itemize}
-  \item \texttt{logo-upeu.png}
-  \item \texttt{mapa-procesos-n0.png}
-  \item \texttt{proceso-as-is.png}
-  \item \texttt{proceso-to-be.png}
-  \item \texttt{arquitectura-microservicios.png}
-  \item \texttt{dashboard-bi.png}
-\end{itemize}
+% ── Procedimiento a: Registro de pedido de ingreso ──────────────────────────
+\subsection*{a) Registro de pedido de ingreso}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Guía de remisión del cliente & Analista de inventarios & Almacén Co Logistic SAC & Recibida por correo, físico o WhatsApp; conservada hasta su engrampado con el pedido de ingreso \\ \hline
+Pedido de ingreso (borrador) & Analista de inventarios & Sistema de almacén & Registro digital previo a firma y aprobación \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento b: Verificación y conformidad (Recepción) ─────────────────
+\subsection*{b) Verificación y conformidad (Recepción)}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Pedido de ingreso firmado + guía de remisión & Supervisor / Archivo de almacén & Almacén Co Logistic SAC & Impreso y engrampado físicamente a la guía del cliente; archivo físico \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento a: Transferencia de ubicación ─────────────────────────────
+\subsection*{c) Transferencia de ubicación}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Reporte de movimientos (registro de transferencia) & Analista de inventarios & Sistema de almacén & Generado automáticamente al ejecutar la transferencia; consultable por código, lote o periodo \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento b: Reempaque ───────────────────────────────────────────────
+\subsection*{d) Reempaque}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Reporte de movimientos (registro de reempaque) & Analista de inventarios & Sistema de almacén & Generado automáticamente al ejecutar el reempaque; refleja la división de la paleta \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento a: Repaletizado ────────────────────────────────────────────
+\subsection*{e) Repaletizado}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Reporte manual de repaletizado & Auxiliar de almacén & Archivo manual (hoja de cálculo) & Elaborado a mano, sin soporte en el sistema; remitido a Facturación \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento b: Reencajado ──────────────────────────────────────────────
+\subsection*{f) Reencajado}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Reporte manual de reencajado & Auxiliar de almacén & Archivo manual (hoja de cálculo) & Elaborado a mano, sin soporte en el sistema; remitido a Facturación \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento a: Registro de pedido de salida ────────────────────────────
+\subsection*{g) Registro de pedido de salida}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Guía de remisión del cliente & Analista de inventarios & Almacén Co Logistic SAC & Recibida por correo o físico; conservada hasta su engrampado con el pedido de salida \\ \hline
+Pedido de salida (borrador) & Analista de inventarios & Sistema de almacén & Registro digital previo a firma y aprobación \\ \hline
+\end{tabularx}
+\end{table}
+
+% ── Procedimiento b: Verificación y conformidad (Despacho) ──────────────────
+\subsection*{h) Verificación y conformidad (Despacho)}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Documento (qué) & \color{white}\bfseries Quién & \color{white}\bfseries Dónde & \color{white}\bfseries Cómo \\ \hline
+\rowcolor{gray!10}
+Pedido de salida firmado + guía de remisión & Supervisor / Archivo de almacén & Almacén Co Logistic SAC & Impreso y engrampado físicamente a la guía del cliente; archivo físico \\ \hline
+\end{tabularx}
+\end{table}
 
 \end{document}
