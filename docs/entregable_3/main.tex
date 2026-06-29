@@ -1210,6 +1210,44 @@ Procesos que lo conforman & 1. Contratación \newline 2. Entrega \newline 3. Vig
 \caption{Ficha de caracterización del macroproceso: Arrendamiento de espacios}
 \end{table}
 
+
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Proceso & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente &
+Solicitud de arrendamiento y documentos legales &
+1. Contratación &
+Contrato de arrendamiento firmado y legalizado &
+Subgerencia de Operaciones \\ \hline
+\rowcolor{gray!10}
+Gerencia General &
+Contrato de arrendamiento firmado y legalizado &
+2. Entrega &
+Acta de entrega firmada y espacio físico a disposición &
+Cliente / Subgerencia de Operaciones \\ \hline
+Subgerencia de Operaciones &
+Acta de entrega firmada y cronograma de pagos &
+3. Vigencia &
+Reportes de cumplimiento y conformidades mensuales &
+Administración (Facturación) \\ \hline
+\rowcolor{gray!10}
+Cliente &
+Notificación de fin de contrato y espacio desocupado &
+4. Devolución &
+Acta de devolución firmada y reporte de levantamiento &
+Administración \\ \hline
+\end{tabularx}
+\caption{SIPOC del macroproceso: Arrendamiento de espacios}
+\end{table}
+
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 1: Contratación}
 % ════════════════════════════════════════════════════
@@ -1234,9 +1272,141 @@ Participantes & Cliente, Gerencia General, Notaría \\ \hline
 \rowcolor{gray!10}
 Entradas & Acuerdo comercial preliminar, documentos de identidad o personería jurídica \\ \hline
 Salidas & Contrato de arrendamiento firmado y legalizado \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Evaluación y elaboración del contrato \newline 2. Firma y legalización notarial \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Contratación}
 \end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente &
+Acuerdo preliminar y documentos legales &
+Evaluación y elaboración del contrato &
+Borrador de contrato validado &
+Gerencia General \\ \hline
+\rowcolor{gray!10}
+Gerencia General / Cliente &
+Borrador de contrato validado &
+Firma y legalización notarial &
+Contrato de arrendamiento firmado y legalizado &
+Subgerencia de Operaciones \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Contratación}
+\end{table}
+
+
+
+\newpage
+\procedimiento{a}{Evaluación y elaboración del contrato}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Evaluación y elaboración del contrato \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Contratación \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Gerencia General, Asesoría Legal \\ \hline
+Entradas & Documentos de identidad/personería jurídica, acuerdo comercial preliminar \\ \hline
+\rowcolor{gray!10}
+Salidas & Borrador del contrato de arrendamiento validado por las partes \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Evaluación y elaboración del contrato}
+\end{table}
+
+Procedimiento mediante el cual se recibe la documentación legal del cliente (vigencia de poder, RUC, representantes legales) junto con las condiciones comerciales previamente negociadas. La Gerencia General, con apoyo de asesoría legal si es requerido, valida los documentos y redacta el borrador del contrato. Este documento preliminar se somete a revisión del cliente para su conformidad.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Acuerdo preliminar y documentos & 1. Recepcionar documentación y acuerdo comercial & Expediente del cliente & Gerencia \\ \hline
+\rowcolor{gray!10}
+Gerencia & Expediente del cliente & 2. Validar vigencia de poderes y legalidad & Validación legal & Gerencia \\ \hline
+Gerencia & Validación legal & 3. Redactar borrador del contrato & Borrador preliminar & Cliente \\ \hline
+\rowcolor{gray!10}
+Cliente & Borrador preliminar & 4. Revisar y dar conformidad al contrato & Borrador validado & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Evaluación y elaboración del contrato}
+\end{table}
+
+\diagrama{evaluacion-contrato.png}{Diagrama BPMN --- Evaluación y elaboración del contrato}
+
+\procedimiento{b}{Firma y legalización notarial}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Firma y legalización notarial \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Contratación \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Gerencia General, Notaría \\ \hline
+Entradas & Borrador del contrato de arrendamiento validado \\ \hline
+\rowcolor{gray!10}
+Salidas & Contrato de arrendamiento firmado y legalizado \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Firma y legalización notarial}
+\end{table}
+
+Una vez aprobado el borrador del contrato, se procede a la recolección de las firmas físicas o digitales de los representantes legales de ambas partes (CO LOGISTIC y el cliente). Posteriormente, el documento firmado es enviado a la notaría para su respectiva legalización de firmas, lo cual le otorga validez legal plena para iniciar la etapa de entrega del espacio físico.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Borrador validado & 1. Imprimir contrato definitivo y coordinar firmas & Documento listo para firma & Cliente / GG \\ \hline
+\rowcolor{gray!10}
+Cliente / GG & Documento listo para firma & 2. Suscribir el contrato por ambas partes & Contrato con firmas simples & Gerencia \\ \hline
+Gerencia & Contrato con firmas simples & 3. Gestionar legalización en notaría & Trámite notarial en curso & Notaría \\ \hline
+\rowcolor{gray!10}
+Notaría & Trámite notarial en curso & 4. Legalizar firmas y entregar documento final & Contrato firmado y legalizado & Subgerencia de Operaciones \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Firma y legalización notarial}
+\end{table}
+
+\diagrama{firma-contrato.png}{Diagrama BPMN --- Firma y legalización notarial}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 2: Entrega}
@@ -1262,9 +1432,138 @@ Participantes & Cliente, Jefe de Operaciones \\ \hline
 \rowcolor{gray!10}
 Entradas & Contrato de arrendamiento legalizado \\ \hline
 Salidas & Acta de entrega firmada, espacio físico a disposición del cliente \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Inspección y acondicionamiento previo \newline 2. Recorrido físico y suscripción del acta \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Entrega}
 \end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia General &
+Contrato de arrendamiento firmado y legalizado &
+Inspección y acondicionamiento previo &
+Espacio físico inspeccionado y acondicionado &
+Subgerencia de Operaciones \\ \hline
+\rowcolor{gray!10}
+Subgerencia de Operaciones &
+Espacio físico acondicionado &
+Recorrido físico y suscripción del acta &
+Acta de entrega firmada y toma de posesión &
+Cliente / Subgerencia de Operaciones \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Entrega}
+\end{table}
+
+\procedimiento{a}{Inspección y acondicionamiento previo}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Inspección y acondicionamiento previo \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Entrega \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Jefe de Operaciones \\ \hline
+\rowcolor{gray!10}
+Participantes & Jefe de Operaciones, Auxiliar de almacén / Mantenimiento \\ \hline
+Entradas & Contrato de arrendamiento firmado y legalizado \\ \hline
+\rowcolor{gray!10}
+Salidas & Espacio físico delimitado, limpio y condicionado (servicios funcionales) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Inspección y acondicionamiento previo}
+\end{table}
+
+Procedimiento en el cual el personal de Operaciones recibe la instrucción (y el contrato) para preparar el espacio antes de que el cliente tome posesión. Se realizan actividades físicas como delimitación del área asignada, verificación de la funcionalidad de los servicios básicos (luz, agua) y de los sistemas de seguridad, asegurando que el espacio se encuentre en condiciones óptimas y conforme a lo estipulado contractualmente.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia General & Contrato de arrendamiento & 1. Recepcionar contrato e identificar área asignada & Área identificada & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones & Área identificada & 2. Delimitar físicamente el espacio del cliente & Área delimitada & Operaciones \\ \hline
+Operaciones & Área delimitada & 3. Inspeccionar limpieza, servicios y seguridad & Lista de verificación completada & Operaciones \\ \hline
+\rowcolor{gray!10}
+Mantenimiento & Lista de verificación & 4. Acondicionar y corregir observaciones (si aplica) & Espacio acondicionado & Operaciones \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Inspección y acondicionamiento previo}
+\end{table}
+
+\diagrama{inspeccion-previa.png}{Diagrama BPMN --- Inspección y acondicionamiento previo}
+
+\procedimiento{b}{Recorrido físico y suscripción del acta}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Recorrido físico y suscripción del acta \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Entrega \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Jefe de Operaciones \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Jefe de Operaciones \\ \hline
+Entradas & Espacio acondicionado y contrato firmado \\ \hline
+\rowcolor{gray!10}
+Salidas & Acta de entrega firmada, oficializando la toma de posesión \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Recorrido físico y suscripción del acta}
+\end{table}
+
+Procedimiento que formaliza la entrega material del espacio al cliente. Consiste en un recorrido presencial guiado por el Jefe de Operaciones junto con el representante del cliente, verificando que el espacio cumpla con las condiciones previamente acordadas. Una vez que el cliente da su conformidad, se suscribe el "Acta de entrega", documento que marca el inicio de la vigencia del servicio y habilita la toma de posesión.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Operaciones & Espacio acondicionado & 1. Coordinar cita de entrega con el cliente & Cita programada & Cliente \\ \hline
+\rowcolor{gray!10}
+Operaciones / Cliente & Cita programada & 2. Realizar recorrido conjunto por el espacio & Revisión conjunta & Cliente \\ \hline
+Cliente & Revisión conjunta & 3. Dar conformidad de las instalaciones & Conformidad verbal & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones & Conformidad verbal & 4. Suscribir el acta de entrega (ambas partes) & Acta de entrega firmada & Operaciones / Cliente \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Recorrido físico y suscripción del acta}
+\end{table}
+
+\diagrama{recorrido-acta.png}{Diagrama BPMN --- Recorrido físico y suscripción del acta}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 3: Vigencia}
@@ -1290,9 +1589,138 @@ Participantes & Cliente, Jefe de Operaciones, Facturación \\ \hline
 \rowcolor{gray!10}
 Entradas & Acta de entrega, cronograma de pagos del contrato \\ \hline
 Salidas & Reportes de cumplimiento, conformidades mensuales para facturación \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Monitoreo y control de infraestructura \newline 2. Emisión de conformidad para facturación \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Vigencia}
 \end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Subgerencia de Operaciones &
+Acta de entrega firmada y cronograma &
+Monitoreo y control de infraestructura &
+Reporte de estado de instalaciones &
+Subgerencia de Operaciones \\ \hline
+\rowcolor{gray!10}
+Subgerencia de Operaciones &
+Reporte de estado de instalaciones &
+Emisión de conformidad para facturación &
+Reporte de conformidad mensual &
+Administración (Facturación) \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Vigencia}
+\end{table}
+
+\procedimiento{a}{Monitoreo y control de infraestructura}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Monitoreo y control de infraestructura \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Vigencia \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Jefe de Operaciones \\ \hline
+\rowcolor{gray!10}
+Participantes & Jefe de Operaciones, Auxiliar de almacén \\ \hline
+Entradas & Acta de entrega y normativas internas del almacén \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte interno de estado de instalaciones \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Monitoreo y control de infraestructura}
+\end{table}
+
+Procedimiento preventivo consistente en revisiones periódicas (por ejemplo, semanales o mensuales) ejecutadas por el equipo de Operaciones sobre los espacios arrendados. El objetivo es asegurar que el cliente respete los límites físicos del área asignada, mantenga condiciones adecuadas de limpieza y orden, y no ocasione daños a la infraestructura o los servicios provistos, cumpliendo así con las normativas internas del almacén.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Operaciones & Normativas internas & 1. Programar ronda de monitoreo preventivo & Cronograma de ronda & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones & Cronograma de ronda & 2. Inspeccionar físicamente el área arrendada & Datos de la inspección & Operaciones \\ \hline
+Operaciones & Datos de la inspección & 3. Contrastar estado contra el acta de entrega & Conformidad o hallazgos & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones & Conformidad o hallazgos & 4. Registrar resultados en el reporte interno & Reporte de estado & Operaciones \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Monitoreo y control de infraestructura}
+\end{table}
+
+\diagrama{monitoreo-infra.png}{Diagrama BPMN --- Monitoreo y control de infraestructura}
+
+\procedimiento{b}{Emisión de conformidad para facturación}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Emisión de conformidad para facturación \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Vigencia \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Jefe de Operaciones \\ \hline
+\rowcolor{gray!10}
+Participantes & Jefe de Operaciones, Facturación (Administración) \\ \hline
+Entradas & Reporte de estado de instalaciones, cronograma de pagos \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte de conformidad mensual enviado a Facturación \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Emisión de conformidad para facturación}
+\end{table}
+
+Procedimiento administrativo ejecutado al cierre de cada ciclo de facturación (normalmente a fin de mes). El Jefe de Operaciones consolida la información de los monitoreos realizados durante el periodo; si no existen novedades o daños que requieran cobros adicionales (penalidades), emite el visto bueno o "reporte de conformidad" correspondiente. Este documento es remitido al área de Facturación para que proceda con la emisión del comprobante de pago de la mensualidad.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Operaciones & Reporte de estado mensual & 1. Consolidar el estado del espacio al fin de mes & Estado mensual validado & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones & Estado mensual validado & 2. Confirmar ausencia de penalidades/daños & Visto bueno preliminar & Operaciones \\ \hline
+Operaciones & Visto bueno preliminar & 3. Generar el reporte de conformidad mensual & Conformidad documentada & Facturación \\ \hline
+\rowcolor{gray!10}
+Operaciones & Conformidad documentada & 4. Enviar reporte al área de Facturación & Orden para facturar & Facturación \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Emisión de conformidad para facturación}
+\end{table}
+
+\diagrama{conformidad-facturacion.png}{Diagrama BPMN --- Emisión de conformidad para facturación}
 
 % ════════════════════════════════════════════════════
 \subsubsection{Proceso 4: Devolución}
@@ -1318,9 +1746,1272 @@ Participantes & Cliente, Jefe de Operaciones \\ \hline
 \rowcolor{gray!10}
 Entradas & Notificación de fin de contrato, espacio físico desocupado por el cliente \\ \hline
 Salidas & Acta de devolución firmada, reporte de levantamiento de observaciones o penalidades (si aplica) \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Recepción de espacio y firma de acta \\ \hline
 \end{tabularx}
 \caption{Ficha de caracterización del proceso: Devolución}
 \end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente &
+Notificación de fin y espacio desocupado &
+Recepción de espacio y firma de acta &
+Acta de devolución firmada (con o sin penalidades) &
+Administración \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Devolución}
+\end{table}
+
+\procedimiento{a}{Recepción de espacio y firma de acta}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Recepción de espacio y firma de acta \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Arrendamiento de espacios \\ \hline
+Proceso & Devolución \\ \hline
+\rowcolor{gray!10}
+Categoría & Misional / Operativo \\ \hline
+Líder & Jefe de Operaciones \\ \hline
+\rowcolor{gray!10}
+Participantes & Cliente, Jefe de Operaciones \\ \hline
+Entradas & Notificación de término de contrato, espacio desocupado \\ \hline
+\rowcolor{gray!10}
+Salidas & Acta de devolución firmada y enviada para cierre de contrato \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Recepción de espacio y firma de acta}
+\end{table}
+
+Procedimiento unificado en el que, una vez finalizado el periodo contractual y desocupado el espacio por parte del cliente, el Jefe de Operaciones acude al lugar para realizar una rápida inspección física. Durante esta visita, se verifica superficialmente que el espacio se entrega en las mismas condiciones en que fue recibido. Si todo es conforme, o si existen observaciones menores, se documentan inmediatamente en el "Acta de devolución", la cual es firmada por ambas partes en ese mismo instante, permitiendo cerrar el trámite comercial de forma ágil y remitir el acta a Administración para la liquidación respectiva.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Cliente & Notificación de término & 1. Informar desocupación y solicitar entrega de llaves & Cita de recepción & Operaciones \\ \hline
+\rowcolor{gray!10}
+Operaciones / Cliente & Cita de recepción & 2. Efectuar revisión visual rápida del espacio desocupado & Evaluación de condiciones & Cliente \\ \hline
+Operaciones & Evaluación de condiciones & 3. Redactar el acta de devolución (con/sin novedades) & Acta lista para firma & Cliente \\ \hline
+\rowcolor{gray!10}
+Cliente & Acta lista para firma & 4. Firmar acta y remitir a Administración para cierre & Acta firmada y enviada & Administración \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Recepción de espacio y firma de acta}
+\end{table}
+
+\diagrama{recepcion-acta.png}{Diagrama BPMN --- Recepción de espacio y firma de acta}
+
+% ════════════════════════════════════════════════════
+\subsection{Macroproceso: Planeación Estratégica}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del macroproceso & Planeación Estratégica \\ \hline
+Categoría & Estratégico \\ \hline
+\rowcolor{gray!10}
+Objetivo & Definir, comunicar y controlar el rumbo de la organización a largo plazo, asegurando la alineación de todos los recursos y esfuerzos hacia el cumplimiento de la visión y misión de CO LOGISTIC. \\ \hline
+Responsable (dueño) & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Entradas & Datos del entorno, situación interna, reportes de gestión \\ \hline
+Salidas & Plan estratégico, objetivos organizacionales, evaluaciones de desempeño estratégico \\ \hline
+\rowcolor{gray!10}
+Proveedores & Mercado, Junta Directiva, Áreas internas \\ \hline
+Clientes & Todas las áreas de la organización, Junta Directiva \\ \hline
+\rowcolor{gray!10}
+Frecuencia de ejecución & Anual (con revisiones periódicas) \\ \hline
+Procesos que lo conforman & 
+1. Diagnóstico estratégico organizacional \newline 
+2. Definición de la dirección estratégica \newline 
+3. Formulación del plan estratégico \newline 
+4. Comunicación y alineamiento organizacional \newline 
+5. Seguimiento, control y revisión estratégica \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del macroproceso: Planeación Estratégica}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Proceso & \bfseries Salidas & \bfseries Clientes \\ \hline
+Mercado / Áreas internas &
+Datos del entorno y reportes internos &
+1. Diagnóstico estratégico organizacional &
+Informe de diagnóstico (FODA, PESTEL, etc.) &
+Gerencia General \\ \hline
+\rowcolor{gray!10}
+Gerencia General &
+Informe de diagnóstico &
+2. Definición de la dirección estratégica &
+Misión, Visión y Valores actualizados &
+Gerencia General \\ \hline
+Gerencia General &
+Misión, Visión y Valores actualizados &
+3. Formulación del plan estratégico &
+Plan estratégico y objetivos (KPIs) &
+Todas las áreas \\ \hline
+\rowcolor{gray!10}
+Gerencia General &
+Plan estratégico y objetivos &
+4. Comunicación y alineamiento &
+Personal alineado a los objetivos &
+Todas las áreas \\ \hline
+Todas las áreas &
+Resultados de ejecución de objetivos &
+5. Seguimiento, control y revisión &
+Ajustes al plan estratégico &
+Gerencia General \\ \hline
+\end{tabularx}
+\caption{SIPOC del macroproceso: Planeación Estratégica}
+\end{table}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 1: Diagnóstico estratégico organizacional}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Diagnóstico estratégico organizacional \\ \hline
+Macroproceso & Planeación Estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Objetivo & Analizar el entorno externo e interno de la empresa para identificar oportunidades, amenazas, fortalezas y debilidades que impacten en el negocio. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Gerencia General \\ \hline
+Participantes & Gerencia General, Jefaturas \\ \hline
+\rowcolor{gray!10}
+Entradas & Datos del mercado, reportes financieros y operativos \\ \hline
+Salidas & Matriz FODA, Informe de diagnóstico \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Auditoría interna y externa \newline 2. Construcción de matriz FODA y diagnóstico \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Diagnóstico estratégico}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Mercado / Áreas internas &
+Datos del entorno y reportes internos &
+Auditoría interna y externa (Recopilación de datos) &
+Datos consolidados para análisis &
+Gerencia General \\ \hline
+\rowcolor{gray!10}
+Gerencia General &
+Datos consolidados para análisis &
+Construcción de matriz FODA y diagnóstico &
+Matriz FODA e Informe de diagnóstico &
+Gerencia General \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Diagnóstico estratégico organizacional}
+\end{table}
+
+\procedimiento{a}{Auditoría interna y externa (Recopilación de datos)}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Auditoría interna y externa (Recopilación de datos) \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Diagnóstico estratégico organizacional \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Jefaturas \\ \hline
+Entradas & Datos del mercado (tendencias, competidores), reportes internos \\ \hline
+\rowcolor{gray!10}
+Salidas & Documento de datos consolidados (información cruda) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Auditoría interna y externa}
+\end{table}
+
+Procedimiento en el cual la Gerencia General, en coordinación con las distintas Jefaturas de área, ejecuta un levantamiento de información crítica. Hacia el exterior, se analizan variables macroeconómicas, tendencias del sector logístico, marco legal y movimientos de la competencia (análisis PESTEL). Hacia el interior, se evalúa el estado de los recursos de la empresa, la rentabilidad, la eficiencia operativa y el clima laboral, consolidando estos hallazgos en un documento base de trabajo.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Mercado & Información externa & 1. Investigar tendencias macroeconómicas y competencia & Datos externos (PESTEL) & Gerencia \\ \hline
+\rowcolor{gray!10}
+Jefaturas & Reportes operativos & 2. Evaluar recursos internos y desempeño organizacional & Datos internos & Gerencia \\ \hline
+Gerencia & Datos int/ext & 3. Consolidar los hallazgos en un documento base & Documento de datos consolidados & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Auditoría interna y externa}
+\end{table}
+
+\diagrama{auditoria-estrategica.png}{Diagrama BPMN --- Auditoría interna y externa}
+
+\procedimiento{b}{Construcción de matriz FODA y diagnóstico}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Construcción de matriz FODA y diagnóstico \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Diagnóstico estratégico organizacional \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Jefaturas \\ \hline
+Entradas & Documento de datos consolidados \\ \hline
+\rowcolor{gray!10}
+Salidas & Matriz FODA e Informe final de diagnóstico estratégico \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Construcción de matriz FODA}
+\end{table}
+
+Una vez recopilada la información base, la Gerencia General convoca a una o varias sesiones de trabajo estratégicas con las Jefaturas. A través de metodologías de lluvia de ideas y análisis cruzado, se identifican sistemáticamente las Fortalezas y Debilidades de CO LOGISTIC, así como las Oportunidades y Amenazas del entorno. Estos resultados se plasman en la matriz FODA y se documentan formalmente en el Informe de Diagnóstico Estratégico, el cual servirá como fundamento para las decisiones a largo plazo.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Documento de datos & 1. Realizar sesión de análisis cruzado de información & Factores identificados & Gerencia \\ \hline
+\rowcolor{gray!10}
+Gerencia/Jefaturas & Factores identificados & 2. Estructurar matriz de Fortalezas, Oportunidades, Debilidades y Amenazas & Matriz FODA preliminar & Gerencia \\ \hline
+Gerencia & Matriz FODA preliminar & 3. Redactar las conclusiones en el Informe de Diagnóstico & Informe de diagnóstico & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Construcción de matriz FODA}
+\end{table}
+
+\diagrama{matriz-foda.png}{Diagrama BPMN --- Construcción de matriz FODA}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 2: Definición de la dirección estratégica}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Definición de la dirección estratégica \\ \hline
+Macroproceso & Planeación Estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Objetivo & Establecer o actualizar la Misión, Visión y Valores fundamentales de la empresa, basados en los resultados del diagnóstico organizacional. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Gerencia General \\ \hline
+Participantes & Gerencia General, Junta Directiva \\ \hline
+\rowcolor{gray!10}
+Entradas & Informe de diagnóstico \\ \hline
+Salidas & Misión, Visión y Valores documentados y aprobados \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Formulación de propuestas filosóficas \newline 2. Validación y aprobación directiva \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Definición de la dirección estratégica}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia General &
+Informe de diagnóstico (FODA) &
+Formulación de propuestas filosóficas &
+Borradores de Misión, Visión y Valores &
+Junta Directiva \\ \hline
+\rowcolor{gray!10}
+Junta Directiva &
+Borradores de Misión, Visión y Valores &
+Validación y aprobación directiva &
+Marco filosófico formalmente aprobado &
+Gerencia General \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Definición de la dirección estratégica}
+\end{table}
+
+\procedimiento{a}{Formulación de propuestas filosóficas}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Formulación de propuestas filosóficas \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Definición de la dirección estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Comité de estrategia \\ \hline
+Entradas & Informe de diagnóstico estratégico (FODA) \\ \hline
+\rowcolor{gray!10}
+Salidas & Documento preliminar con propuestas de Misión, Visión y Valores \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Formulación de propuestas filosóficas}
+\end{table}
+
+Procedimiento en el cual la Gerencia General analiza las conclusiones del Informe de Diagnóstico y las proyecta hacia el futuro de CO LOGISTIC. Se evalúa si el marco filosófico actual sigue siendo vigente o si requiere ajustes. Con base en este análisis, se redactan los borradores (propuestas) de la nueva Misión (razón de ser), Visión (meta a largo plazo) y Valores Corporativos (principios éticos).
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Informe de diagnóstico & 1. Revisar conclusiones del FODA y su impacto a largo plazo & Directrices iniciales & Comité \\ \hline
+\rowcolor{gray!10}
+Comité & Directrices iniciales & 2. Evaluar vigencia de la misión y visión actuales & Brechas detectadas & Comité \\ \hline
+Comité & Brechas detectadas & 3. Redactar propuestas de actualización del marco filosófico & Borradores de propuestas & Junta Directiva \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Formulación de propuestas filosóficas}
+\end{table}
+
+\diagrama{propuestas-filosoficas.png}{Diagrama BPMN --- Formulación de propuestas filosóficas}
+
+\procedimiento{b}{Validación y aprobación directiva}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Validación y aprobación directiva \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Definición de la dirección estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Junta Directiva (o Gerencia General) \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Junta Directiva \\ \hline
+Entradas & Documento preliminar con propuestas filosóficas \\ \hline
+\rowcolor{gray!10}
+Salidas & Documento oficial de Misión, Visión y Valores aprobado \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Validación y aprobación directiva}
+\end{table}
+
+Sesión formal donde la Junta Directiva revisa críticamente los borradores presentados por la Gerencia General. Se debate la alineación de estas propuestas con los intereses de los accionistas y las capacidades reales de la organización. Tras realizar los ajustes finales necesarios, se emite la aprobación oficial del nuevo marco filosófico, el cual servirá como guía inamovible para la formulación de los objetivos estratégicos.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Documento de propuestas & 1. Presentar borradores de Misión, Visión y Valores & Propuestas expuestas & Junta Directiva \\ \hline
+\rowcolor{gray!10}
+Junta Directiva & Propuestas expuestas & 2. Debatir y consensuar ajustes a las propuestas & Acuerdos preliminares & Junta Directiva \\ \hline
+Junta Directiva & Acuerdos preliminares & 3. Aprobar formalmente el documento definitivo & Marco filosófico oficial & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Validación y aprobación directiva}
+\end{table}
+
+\diagrama{validacion-directiva.png}{Diagrama BPMN --- Validación y aprobación directiva}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 3: Formulación del plan estratégico}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Formulación del plan estratégico \\ \hline
+Macroproceso & Planeación Estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Objetivo & Traducir la dirección estratégica en objetivos claros, metas cuantificables e iniciativas concretas a largo y mediano plazo. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Gerencia General \\ \hline
+Participantes & Gerencia General, Jefaturas \\ \hline
+\rowcolor{gray!10}
+Entradas & Misión, Visión y Valores \\ \hline
+Salidas & Plan Estratégico, Tablero de Control (Balanced Scorecard) \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Definición de objetivos estratégicos y KPIs \newline 2. Elaboración del Balanced Scorecard \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Formulación del plan estratégico}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia General &
+Misión, Visión y Valores &
+Definición de objetivos estratégicos y KPIs &
+Lista de objetivos, metas y responsables &
+Gerencia / Jefaturas \\ \hline
+\rowcolor{gray!10}
+Gerencia / Jefaturas &
+Lista de objetivos, metas y responsables &
+Elaboración del Balanced Scorecard &
+Tablero de Control oficial &
+Todas las áreas \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Formulación del plan estratégico}
+\end{table}
+
+\procedimiento{a}{Definición de objetivos estratégicos y KPIs}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Definición de objetivos estratégicos y KPIs \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Formulación del plan estratégico \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Jefaturas \\ \hline
+Entradas & Misión, Visión, Valores y FODA \\ \hline
+\rowcolor{gray!10}
+Salidas & Matriz de objetivos con KPIs, metas y responsables \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Definición de objetivos estratégicos y KPIs}
+\end{table}
+
+Procedimiento técnico donde la Gerencia y las Jefaturas se reúnen para traducir las directrices filosóficas en metas tangibles. Se definen los "Grandes Objetivos" a nivel corporativo y se asocian a Indicadores Clave de Desempeño (KPIs) específicos. A cada indicador se le asigna una meta cuantificable, un periodo de cumplimiento y un responsable directo, asegurando que toda iniciativa tenga un líder asignado.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Marco filosófico y FODA & 1. Proponer objetivos generales alineados a la estrategia & Lista de objetivos & Jefaturas \\ \hline
+\rowcolor{gray!10}
+Jefaturas & Lista de objetivos & 2. Definir los KPIs (indicadores) para cada objetivo & KPIs formulados & Gerencia \\ \hline
+Gerencia & KPIs formulados & 3. Asignar metas cuantificables y responsables & Matriz de objetivos completa & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Definición de objetivos estratégicos y KPIs}
+\end{table}
+
+\diagrama{objetivos-kpi.png}{Diagrama BPMN --- Definición de objetivos estratégicos y KPIs}
+
+\procedimiento{b}{Elaboración del Balanced Scorecard}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Elaboración del Balanced Scorecard \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Formulación del plan estratégico \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Jefaturas \\ \hline
+Entradas & Matriz de objetivos con KPIs \\ \hline
+\rowcolor{gray!10}
+Salidas & Balanced Scorecard (Tablero de Control) consolidado y aprobado \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Elaboración del Balanced Scorecard}
+\end{table}
+
+Una vez definidos los objetivos y KPIs, este procedimiento consiste en organizarlos lógicamente dentro de una herramienta de gestión. Se utiliza la metodología del Balanced Scorecard (Cuadro de Mando Integral) para clasificar los objetivos en cuatro perspectivas fundamentales: Financiera, Clientes, Procesos Internos, y Aprendizaje/Crecimiento. El resultado final es el Tablero de Control oficial que regirá el monitoreo estratégico de CO LOGISTIC.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Matriz de objetivos & 1. Clasificar los objetivos en las 4 perspectivas del BSC & Borrador del BSC & Jefaturas \\ \hline
+\rowcolor{gray!10}
+Gerencia & Borrador del BSC & 2. Trazar relaciones de causa-efecto entre perspectivas & Mapa estratégico & Junta Directiva \\ \hline
+Junta Directiva & Mapa estratégico & 3. Aprobar el Tablero de Control final & Tablero de Control oficial & Áreas operativas \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Elaboración del Balanced Scorecard}
+\end{table}
+
+\diagrama{balanced-scorecard.png}{Diagrama BPMN --- Elaboración del Balanced Scorecard}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 4: Comunicación y alineamiento organizacional}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Comunicación y alineamiento organizacional \\ \hline
+Macroproceso & Planeación Estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Objetivo & Difundir el plan estratégico a todos los niveles de la organización y asegurar que las operaciones diarias estén alineadas a los grandes objetivos. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Gerencia General \\ \hline
+Participantes & Todos los colaboradores \\ \hline
+\rowcolor{gray!10}
+Entradas & Plan Estratégico, Tablero de Control \\ \hline
+Salidas & Actas de difusión, personal capacitado y alineado \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Comunicación del plan a colaboradores \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Comunicación y alineamiento organizacional}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia General &
+Plan Estratégico (BSC) aprobado &
+Comunicación del plan a colaboradores &
+Colaboradores informados (Actas firmadas) &
+Todas las áreas \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Comunicación y alineamiento organizacional}
+\end{table}
+
+\procedimiento{a}{Comunicación del plan a colaboradores}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Comunicación del plan a colaboradores \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Comunicación y alineamiento organizacional \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Todos los colaboradores \\ \hline
+Entradas & Plan Estratégico oficial, material de presentación \\ \hline
+\rowcolor{gray!10}
+Salidas & Actas de asistencia/conocimiento firmadas por el personal \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Comunicación del plan a colaboradores}
+\end{table}
+
+Procedimiento directo en el que la Gerencia General convoca a una sesión o asamblea general (o mediante comunicaciones oficiales escalonadas) para presentar el Plan Estratégico y el Tablero de Control a todo el personal de CO LOGISTIC. Durante la sesión, se explican la nueva Misión, Visión y los principales objetivos corporativos. Al finalizar, los colaboradores firman un acta de asistencia y conocimiento, garantizando que todos entienden hacia dónde se dirige la organización y cómo su trabajo contribuye a dichas metas.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Gerencia & Plan Estratégico & 1. Preparar material didáctico y convocar al personal & Convocatoria & Personal \\ \hline
+\rowcolor{gray!10}
+Gerencia & Material didáctico & 2. Exponer los objetivos y el Tablero de Control (BSC) & Mensaje estratégico & Personal \\ \hline
+Personal & Mensaje estratégico & 3. Firmar el acta de conocimiento y compromiso & Actas firmadas & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Comunicación del plan a colaboradores}
+\end{table}
+
+\diagrama{comunicacion-plan.png}{Diagrama BPMN --- Comunicación del plan a colaboradores}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 5: Seguimiento, control y revisión estratégica}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Seguimiento, control y revisión estratégica \\ \hline
+Macroproceso & Planeación Estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Objetivo & Monitorear continuamente el avance de los indicadores estratégicos, tomando acciones correctivas cuando existan desviaciones significativas del plan original. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Gerencia General \\ \hline
+Participantes & Gerencia General, Jefaturas \\ \hline
+\rowcolor{gray!10}
+Entradas & Reportes de ejecución de las distintas áreas \\ \hline
+Salidas & Ajustes al plan estratégico, actas de revisión gerencial \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Medición de indicadores estratégicos (KPIs) \newline 2. Revisión gerencial y acciones correctivas \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Seguimiento, control y revisión}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Jefaturas &
+Datos y reportes de ejecución &
+Medición de indicadores estratégicos (KPIs) &
+Reporte de cumplimiento de KPIs &
+Gerencia General \\ \hline
+\rowcolor{gray!10}
+Gerencia General &
+Reporte de cumplimiento de KPIs &
+Revisión gerencial y acciones correctivas &
+Acta de revisión y planes de acción &
+Jefaturas / Junta Directiva \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Seguimiento, control y revisión estratégica}
+\end{table}
+
+\procedimiento{a}{Medición de indicadores estratégicos (KPIs)}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Medición de indicadores estratégicos (KPIs) \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Seguimiento, control y revisión estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Jefaturas de área \\ \hline
+\rowcolor{gray!10}
+Participantes & Jefaturas, Analistas \\ \hline
+Entradas & Datos operativos, financieros y comerciales del periodo \\ \hline
+\rowcolor{gray!10}
+Salidas & Reporte preliminar de cumplimiento del Tablero de Control \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Medición de indicadores estratégicos (KPIs)}
+\end{table}
+
+Procedimiento analítico que se realiza al cierre de cada periodo de evaluación (mensual o trimestral). Cada Jefatura consolida la información operativa, comercial y financiera de su área y alimenta las fórmulas de los KPIs definidos en el Tablero de Control. El resultado es un reporte preliminar que refleja, mediante semaforización (verde, amarillo, rojo), el nivel de cumplimiento de las metas estratégicas trazadas.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Áreas operativas & Datos en crudo del periodo & 1. Recopilar y consolidar datos de las operaciones & Base de datos consolidada & Jefaturas \\ \hline
+\rowcolor{gray!10}
+Jefaturas & Base de datos consolidada & 2. Calcular los KPIs según el Balanced Scorecard & Resultados numéricos & Jefaturas \\ \hline
+Jefaturas & Resultados numéricos & 3. Elaborar reporte de cumplimiento con semaforización & Reporte preliminar BSC & Gerencia \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Medición de indicadores estratégicos}
+\end{table}
+
+\diagrama{medicion-kpi.png}{Diagrama BPMN --- Medición de indicadores estratégicos (KPIs)}
+
+\procedimiento{b}{Revisión gerencial y acciones correctivas}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Revisión gerencial y acciones correctivas \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Planeación Estratégica \\ \hline
+Proceso & Seguimiento, control y revisión estratégica \\ \hline
+\rowcolor{gray!10}
+Categoría & Estratégico \\ \hline
+Líder & Gerencia General \\ \hline
+\rowcolor{gray!10}
+Participantes & Gerencia General, Comité Directivo, Jefaturas \\ \hline
+Entradas & Reporte preliminar de cumplimiento del BSC \\ \hline
+\rowcolor{gray!10}
+Salidas & Acta de comité y planes de acción correctiva \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Revisión gerencial y acciones correctivas}
+\end{table}
+
+Sesión ejecutiva (Comité de Gerencia) en la que se analiza el reporte de cumplimiento de los KPIs. Para aquellas metas que se encuentren en estado de alerta o incumplimiento (semáforo amarillo o rojo), se realiza un análisis de causa raíz y se formulan acciones correctivas o preventivas. Toda la sesión, junto con los compromisos, responsables y nuevos plazos, se documenta en el Acta de Revisión Gerencial, asegurando el ciclo de mejora continua.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Jefaturas & Reporte preliminar BSC & 1. Analizar el desempeño y desviaciones de las metas & Identificación de brechas & Comité \\ \hline
+\rowcolor{gray!10}
+Comité & Identificación de brechas & 2. Definir acciones correctivas para los KPIs incumplidos & Planes de acción & Jefaturas \\ \hline
+Gerencia & Planes de acción & 3. Firmar acta de compromisos y ajustar el plan si amerita & Acta de revisión gerencial & Junta Directiva \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Revisión gerencial y acciones correctivas}
+\end{table}
+
+\diagrama{revision-gerencial.png}{Diagrama BPMN --- Revisión gerencial y acciones correctivas}
+
+% ════════════════════════════════════════════════════
+\subsection{Macroproceso: Seguridad Integral y Vigilancia}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del macroproceso & Seguridad Integral y Vigilancia \\ \hline
+Categoría & Soporte \\ \hline
+\rowcolor{gray!10}
+Objetivo & Garantizar la integridad física de las instalaciones, bienes y personal que transita por CO LOGISTIC, manteniendo un control estricto de accesos y salidas. \\ \hline
+Responsable (dueño) & Jefatura de Seguridad / Prevención \\ \hline
+\rowcolor{gray!10}
+Entradas & Identificación de visitantes, reportes de incidencias \\ \hline
+Salidas & Registro de accesos, reportes de seguridad \\ \hline
+\rowcolor{gray!10}
+Proveedores & Visitantes, Proveedores, Clientes \\ \hline
+Clientes & Todas las áreas internas \\ \hline
+\rowcolor{gray!10}
+Frecuencia de ejecución & Continua (Diaria 24/7) \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del macroproceso: Seguridad Integral}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Proceso & \bfseries Salidas & \bfseries Clientes \\ \hline
+Visitantes / Proveedores &
+Documento de identidad y motivo de visita &
+1. Control de acceso a las visitas &
+Registro de ingreso/salida y pase temporal &
+Todas las áreas internas \\ \hline
+\end{tabularx}
+\caption{SIPOC del macroproceso: Seguridad Integral}
+\end{table}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 1: Control de acceso a las visitas}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Control de acceso a las visitas \\ \hline
+Macroproceso & Seguridad Integral y Vigilancia \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Objetivo & Registrar y autorizar el ingreso y salida de personas ajenas a la empresa, asegurando que se dirijan al área correcta sin comprometer la seguridad. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Jefatura de Seguridad \\ \hline
+Participantes & Personal de Garita, Áreas receptoras \\ \hline
+\rowcolor{gray!10}
+Entradas & Identificación física (DNI) \\ \hline
+Salidas & Pase de visitante, registro en bitácora \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Registro y autorización de ingreso \newline 2. Control de salida y novedades \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Control de acceso a visitas}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+Visitante &
+DNI y solicitud de ingreso &
+Registro y autorización de ingreso &
+Pase de visitante autorizado &
+Área receptora \\ \hline
+\rowcolor{gray!10}
+Visitante &
+Pase de visitante a devolver &
+Control de salida y novedades &
+DNI devuelto y registro cerrado &
+Seguridad \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Control de acceso a visitas}
+\end{table}
+
+\procedimiento{a}{Registro y autorización de ingreso}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Registro y autorización de ingreso \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Seguridad Integral y Vigilancia \\ \hline
+Proceso & Control de acceso a las visitas \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Líder & Personal de Garita (Vigilancia) \\ \hline
+\rowcolor{gray!10}
+Participantes & Visitante, Garita, Área interna \\ \hline
+Entradas & Documento de identidad (DNI) \\ \hline
+\rowcolor{gray!10}
+Salidas & Pase entregado y registro inicial en bitácora \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Registro de ingreso}
+\end{table}
+
+Procedimiento en el cual el personal de garita recibe a la visita, solicita su documento de identidad y se comunica con el área interna para confirmar si la persona está autorizada a ingresar. Una vez recibida la confirmación, se retiene el DNI, se anota el ingreso en la bitácora (física o digital) y se le entrega un fotocheck o pase temporal, indicándole la ruta hacia su destino.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Visitante & DNI y datos & 1. Solicitar identificación y motivo de visita & Solicitud de confirmación & Área interna \\ \hline
+\rowcolor{gray!10}
+Área interna & Confirmación verbal & 2. Autorizar el ingreso y registrar en bitácora & Registro abierto & Garita \\ \hline
+Garita & Registro abierto & 3. Entregar pase de visitante y retener DNI & Pase otorgado & Visitante \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Registro y autorización de ingreso}
+\end{table}
+
+\diagrama{registro-ingreso.png}{Diagrama BPMN --- Registro y autorización de ingreso}
+
+\procedimiento{b}{Control de salida y novedades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Control de salida y novedades \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Seguridad Integral y Vigilancia \\ \hline
+Proceso & Control de acceso a las visitas \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Líder & Personal de Garita (Vigilancia) \\ \hline
+\rowcolor{gray!10}
+Participantes & Visitante, Garita \\ \hline
+Entradas & Pase de visitante devuelto \\ \hline
+\rowcolor{gray!10}
+Salidas & Bitácora cerrada (hora de salida registrada) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Control de salida}
+\end{table}
+
+Procedimiento final donde la visita, al retirarse de las instalaciones, se acerca a la garita para devolver el fotocheck o pase temporal. El vigilante verifica que la persona sea la misma que ingresó (sin bultos extraños o novedades), registra la hora de salida en la bitácora para cerrar el ciclo, y le devuelve su documento de identidad original.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Visitante & Pase de visitante & 1. Recibir el pase y realizar revisión visual rápida & Conformidad de salida & Garita \\ \hline
+\rowcolor{gray!10}
+Garita & Conformidad & 2. Registrar la hora exacta de salida en la bitácora & Registro cerrado & Garita \\ \hline
+Garita & Registro cerrado & 3. Devolver el documento de identidad original & DNI devuelto & Visitante \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Control de salida y novedades}
+\end{table}
+
+\diagrama{control-salida.png}{Diagrama BPMN --- Control de salida y novedades}
+
+% ════════════════════════════════════════════════════
+\subsection{Macroproceso: Gestión de Recursos Humanos}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del macroproceso & Gestión de Recursos Humanos \\ \hline
+Categoría & Soporte \\ \hline
+\rowcolor{gray!10}
+Objetivo & Captar, desarrollar y retener el talento humano necesario para el correcto funcionamiento de las operaciones de la empresa. \\ \hline
+Responsable (dueño) & Jefatura de Recursos Humanos \\ \hline
+\rowcolor{gray!10}
+Entradas & Requerimiento de personal, perfiles de puesto \\ \hline
+Salidas & Personal contratado, planillas, evaluaciones de desempeño \\ \hline
+\rowcolor{gray!10}
+Proveedores & Áreas solicitantes, Mercado laboral \\ \hline
+Clientes & Todas las áreas internas \\ \hline
+\rowcolor{gray!10}
+Frecuencia de ejecución & Según requerimiento \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del macroproceso: Gestión de RRHH}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Proceso & \bfseries Salidas & \bfseries Clientes \\ \hline
+Área solicitante &
+Requerimiento de personal &
+1. Reclutamiento de personal &
+Nuevo colaborador contratado e inducido &
+Área solicitante \\ \hline
+\end{tabularx}
+\caption{SIPOC del macroproceso: Gestión de RRHH}
+\end{table}
+
+% ════════════════════════════════════════════════════
+\subsubsection{Proceso 1: Reclutamiento de personal}
+% ════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Campo & \color{white}\bfseries Descripción \\ \hline
+\rowcolor{gray!10}
+Nombre del proceso & Reclutamiento de personal \\ \hline
+Macroproceso & Gestión de Recursos Humanos \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Objetivo & Atraer, evaluar y seleccionar al candidato idóneo para cubrir las vacantes operativas y administrativas de CO LOGISTIC, garantizando que cumpla con el perfil del puesto. \\ \hline
+\rowcolor{gray!10}
+Responsable (Líder) & Jefatura de RRHH \\ \hline
+Participantes & Área de RRHH, Jefatura solicitante \\ \hline
+\rowcolor{gray!10}
+Entradas & Solicitud de requerimiento de personal \\ \hline
+Salidas & Contrato firmado y expediente de nuevo ingreso \\ \hline
+\rowcolor{gray!10}
+Procedimientos & 1. Convocatoria y filtro inicial \newline 2. Evaluación final y selección \\ \hline
+\end{tabularx}
+\caption{Ficha de caracterización del proceso: Reclutamiento de personal}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.20\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
+RRHH / Mercado &
+Perfil del puesto y hojas de vida (CVs) &
+Convocatoria y filtro inicial &
+Terna de candidatos aptos (shortlist) &
+Jefatura solicitante \\ \hline
+\rowcolor{gray!10}
+RRHH / Jefatura &
+Terna de candidatos aptos &
+Evaluación final y selección &
+Candidato elegido y contrato firmado &
+RRHH y Jefatura \\ \hline
+\end{tabularx}
+\caption{SIPOC del proceso: Reclutamiento de personal}
+\end{table}
+
+\procedimiento{a}{Convocatoria y filtro inicial}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Convocatoria y filtro inicial \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Recursos Humanos \\ \hline
+Proceso & Reclutamiento de personal \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Líder & Analista de RRHH \\ \hline
+\rowcolor{gray!10}
+Participantes & Analista de RRHH, Candidatos \\ \hline
+Entradas & Solicitud de personal y perfil del puesto \\ \hline
+\rowcolor{gray!10}
+Salidas & Lista reducida de candidatos viables (terna) \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Convocatoria y filtro inicial}
+\end{table}
+
+Procedimiento en el cual Recursos Humanos recibe la solicitud de cobertura de vacante. Se redacta y publica la oferta laboral en bolsas de trabajo o redes sociales. Tras recibir las hojas de vida (CVs), RRHH realiza un filtrado curricular descartando a quienes no cumplen los requisitos mínimos. Posteriormente, se efectúan entrevistas telefónicas o filtros básicos para construir una "terna" (grupo selecto) de candidatos que pasarán a la evaluación presencial o técnica.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+Área interna & Solicitud de personal & 1. Publicar la oferta laboral según el perfil requerido & Oferta publicada & Mercado \\ \hline
+\rowcolor{gray!10}
+Candidatos & Hojas de vida (CVs) & 2. Filtrar currículums y realizar screening telefónico & CVs pre-seleccionados & RRHH \\ \hline
+RRHH & CVs pre-seleccionados & 3. Consolidar una terna de candidatos viables & Terna de candidatos & Jefatura \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Convocatoria y filtro inicial}
+\end{table}
+
+\diagrama{convocatoria-rrhh.png}{Diagrama BPMN --- Convocatoria y filtro inicial}
+
+\procedimiento{b}{Evaluación final y selección}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_mid}
+\color{white}\bfseries Campo & \color{white}\bfseries Detalle \\ \hline
+\rowcolor{gray!10}
+Nombre del procedimiento & Evaluación final y selección \\ \hline
+\rowcolor{gray!10}
+Macroproceso & Gestión de Recursos Humanos \\ \hline
+Proceso & Reclutamiento de personal \\ \hline
+\rowcolor{gray!10}
+Categoría & Soporte \\ \hline
+Líder & Jefatura de RRHH / Jefatura solicitante \\ \hline
+\rowcolor{gray!10}
+Participantes & RRHH, Jefatura solicitante, Candidato finalista \\ \hline
+Entradas & Terna de candidatos viables \\ \hline
+\rowcolor{gray!10}
+Salidas & Candidato seleccionado y contrato formalizado \\ \hline
+\end{tabularx}
+\caption{Ficha del procedimiento: Evaluación final y selección}
+\end{table}
+
+Procedimiento definitivo donde la Jefatura del área solicitante, junto con RRHH, entrevista presencial o virtualmente a los candidatos de la terna para medir sus competencias técnicas y blandas. Tras un consenso, se elige al candidato ideal. Finalmente, RRHH solicita la documentación de ingreso, programa los exámenes médicos (si aplican) y procede a la firma del contrato laboral, cerrando así el ciclo de reclutamiento.
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.13\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.13\textwidth}|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
+\rowcolor{upeu_light}
+\bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
+RRHH & Terna de candidatos & 1. Realizar entrevistas a profundidad y/o técnicas & Resultado de evaluación & RRHH / Jefe \\ \hline
+\rowcolor{gray!10}
+RRHH / Jefe & Resultado de evaluación & 2. Seleccionar al candidato ideal e informar condiciones & Oferta aceptada & Candidato \\ \hline
+Candidato & Documentos de ingreso & 3. Elaborar y firmar el contrato de trabajo & Contrato firmado & RRHH / Jefe \\ \hline
+\end{tabularx}
+\caption{SIPOC --- Evaluación final y selección}
+\end{table}
+
+\diagrama{evaluacion-seleccion.png}{Diagrama BPMN --- Evaluación final y selección}
 
 \section{Identificación de Problemas Asociados al Macroproceso}
 
