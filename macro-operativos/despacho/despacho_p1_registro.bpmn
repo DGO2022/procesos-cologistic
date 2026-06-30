@@ -40,9 +40,9 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
         <bpmn:flowNodeRef>Gateway_006qk4f</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_084ffmx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_4</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Inicio">
@@ -117,17 +117,6 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
       <bpmn:incoming>Flow_8</bpmn:incoming>
       <bpmn:outgoing>Flow_1f3tx0i</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="Task_4" name="Seleccionar lote y fecha de vencimiento">
-      <bpmn:incoming>Flow_6_si</bpmn:incoming>
-      <bpmn:outgoing>Flow_8</bpmn:outgoing>
-      <bpmn:property id="Property_1hd78jx" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_2">
-        <bpmn:sourceRef>DataObjectReference_2</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1hd78jx</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_2" name="Stock y lote por código" dataObjectRef="DataObject_2" />
-    <bpmn:dataObject id="DataObject_2" />
     <bpmn:task id="Task_5" name="Registrar pallets y cajas">
       <bpmn:incoming>Flow_17bccnu</bpmn:incoming>
       <bpmn:outgoing>Flow_11</bpmn:outgoing>
@@ -138,6 +127,17 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
     </bpmn:task>
     <bpmn:dataObjectReference id="DataObjectReference_1" name="Guía de remisión" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_2" name="Stock y lote por código" dataObjectRef="DataObject_2" />
+    <bpmn:dataObject id="DataObject_2" />
+    <bpmn:task id="Task_4" name="Seleccionar lote y fecha de vencimiento">
+      <bpmn:incoming>Flow_6_si</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+      <bpmn:property id="Property_1hd78jx" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_2">
+        <bpmn:sourceRef>DataObjectReference_2</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1hd78jx</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
@@ -199,15 +199,6 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
       <bpmndi:BPMNShape id="Gateway_1_di" bpmnElement="Gateway_1" isMarkerVisible="true">
         <dc:Bounds x="975" y="525" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_4_di" bpmnElement="Task_4">
-        <dc:Bounds x="820" y="440" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_2_di" bpmnElement="DataObjectReference_2">
-        <dc:Bounds x="682" y="405" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="663" y="455" width="76" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Task_5_di" bpmnElement="Task_5">
         <dc:Bounds x="1140" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -219,6 +210,15 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
         <bpmndi:BPMNLabel>
           <dc:Bounds x="413" y="123" width="84" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_2_di" bpmnElement="DataObjectReference_2">
+        <dc:Bounds x="672" y="419" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="653" y="469" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_4_di" bpmnElement="Task_4">
+        <dc:Bounds x="820" y="430" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
         <di:waypoint x="248" y="150" />
@@ -257,10 +257,10 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_6_si_di" bpmnElement="Flow_6_si">
         <di:waypoint x="750" y="525" />
-        <di:waypoint x="750" y="480" />
-        <di:waypoint x="820" y="480" />
+        <di:waypoint x="750" y="470" />
+        <di:waypoint x="820" y="470" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="765" y="493" width="9" height="14" />
+          <dc:Bounds x="765" y="487" width="9" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_7_no_di" bpmnElement="Flow_7_no">
@@ -273,8 +273,8 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
-        <di:waypoint x="920" y="480" />
-        <di:waypoint x="1000" y="480" />
+        <di:waypoint x="920" y="470" />
+        <di:waypoint x="1000" y="470" />
         <di:waypoint x="1000" y="525" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1n0bv90_di" bpmnElement="Flow_1n0bv90">
@@ -311,11 +311,12 @@ Nota: hereda la misma bifurcación caja/unidad que Recepción P1, y agrega la co
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_2_di" bpmnElement="DataOutputAssociation_2">
         <di:waypoint x="610" y="510" />
-        <di:waypoint x="682" y="441" />
+        <di:waypoint x="610" y="444" />
+        <di:waypoint x="670" y="444" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_2_di" bpmnElement="DataInputAssociation_2">
-        <di:waypoint x="718" y="431" />
-        <di:waypoint x="820" y="458" />
+        <di:waypoint x="710" y="444" />
+        <di:waypoint x="820" y="444" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
