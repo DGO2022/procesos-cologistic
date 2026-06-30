@@ -1,4 +1,3 @@
-% ============================================================
 %  ENTREGABLE 3 GTI — CO LOGISTIC S.A.C.
 %  Análisis y Rediseño de Procesos Organizacionales con TIC
 % ============================================================
@@ -109,6 +108,16 @@
 \renewcommand{\cftsubsecfont}{\small\color{body_gray}}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% ── Lista de figuras y tablas ────────────────────────────
+\renewcommand{\listfigurename}{Índice de Figuras}
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\cftloftitlefont}{\normalfont\bfseries\Large\color{upeu_dark}}
+\setlength{\cftbeforeloftitleskip}{10pt}
+\setlength{\cftafterloftitleskip}{16pt}
+\renewcommand{\cftlottitlefont}{\normalfont\bfseries\Large\color{upeu_dark}}
+\setlength{\cftbeforelottitleskip}{10pt}
+\setlength{\cftafterlottitleskip}{16pt}
 
 % ── Imágenes ─────────────────────────────────────────────
 \graphicspath{{./img/}{./imagenes/}}
@@ -320,6 +329,19 @@
 \pagenumbering{roman}
 \tableofcontents
 \clearpage
+
+% ── LISTA DE FIGURAS ─────────────────────────────────────────
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\clearpage
+
+% ── LISTA DE TABLAS ──────────────────────────────────────────
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\clearpage
+
 \pagenumbering{arabic}
 
 % ============================================================

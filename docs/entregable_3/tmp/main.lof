@@ -1,0 +1,55 @@
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Mapa de procesos de CO LOGISTIC S.A.C. --- Nivel 0}}{2}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Mapa de procesos de CO LOGISTIC S.A.C. --- Nivel 1}}{3}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Diagrama BPMN --- Registro de pedido de ingreso}}{9}{figure.caption.13}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama BPMN --- Verificación y conformidad (Recepción)}}{11}{figure.caption.17}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Diagrama BPMN --- Transferencia de ubicación}}{15}{figure.caption.24}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Diagrama BPMN --- Reempaque}}{17}{figure.caption.28}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Diagrama BPMN --- Repaletizado}}{22}{figure.caption.35}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagrama BPMN --- Reencajado}}{24}{figure.caption.39}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Diagrama BPMN --- Registro de pedido de salida}}{29}{figure.caption.46}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Diagrama BPMN --- Verificación y conformidad (Despacho)}}{31}{figure.caption.50}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Diagrama BPMN --- Evaluación y elaboración del contrato}}{37}{figure.caption.58}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Diagrama BPMN --- Firma y legalización notarial}}{39}{figure.caption.61}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Diagrama BPMN --- Inspección y acondicionamiento previo}}{41}{figure.caption.66}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagrama BPMN --- Recorrido físico y suscripción del acta}}{43}{figure.caption.69}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Diagrama BPMN --- Monitoreo y control de infraestructura}}{45}{figure.caption.74}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Diagrama BPMN --- Emisión de conformidad para facturación}}{46}{figure.caption.77}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Diagrama BPMN --- Recepción de espacio y firma de acta}}{49}{figure.caption.82}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagrama BPMN --- Auditoría interna y externa}}{53}{figure.caption.89}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Diagrama BPMN --- Construcción de matriz FODA}}{54}{figure.caption.92}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Diagrama BPMN --- Formulación de propuestas filosóficas}}{57}{figure.caption.97}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Diagrama BPMN --- Validación y aprobación directiva}}{58}{figure.caption.100}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama BPMN --- Definición de objetivos estratégicos y KPIs}}{61}{figure.caption.105}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Diagrama BPMN --- Elaboración del Balanced Scorecard}}{62}{figure.caption.108}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Diagrama BPMN --- Comunicación del plan a colaboradores}}{65}{figure.caption.113}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Diagrama BPMN --- Medición de indicadores estratégicos (KPIs)}}{67}{figure.caption.118}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Diagrama BPMN --- Revisión gerencial y acciones correctivas}}{69}{figure.caption.121}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Diagrama BPMN --- Registro y autorización de ingreso}}{72}{figure.caption.128}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Diagrama BPMN --- Control de salida y novedades}}{74}{figure.caption.131}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Diagrama BPMN --- Convocatoria y filtro inicial}}{77}{figure.caption.138}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Diagrama BPMN --- Evaluación final y selección}}{78}{figure.caption.141}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {31}{\ignorespaces AS-IS --- Registro de pedido de ingreso (Recepción P1)}}{83}{figure.caption.145}%
+\contentsline {figure}{\numberline {32}{\ignorespaces AS-IS --- Verificación y conformidad (Recepción P2)}}{84}{figure.caption.146}%
+\contentsline {figure}{\numberline {33}{\ignorespaces AS-IS --- Transferencia de ubicación (Almacenamiento P1)}}{85}{figure.caption.148}%
+\contentsline {figure}{\numberline {34}{\ignorespaces AS-IS --- Reempaque (Almacenamiento P2)}}{86}{figure.caption.149}%
+\contentsline {figure}{\numberline {35}{\ignorespaces AS-IS --- Repaletizado (Acondicionamiento P1)}}{87}{figure.caption.151}%
+\contentsline {figure}{\numberline {36}{\ignorespaces AS-IS --- Reencajado (Acondicionamiento P2)}}{88}{figure.caption.152}%
+\contentsline {figure}{\numberline {37}{\ignorespaces AS-IS --- Registro de pedido de salida (Despacho P1)}}{89}{figure.caption.154}%
+\contentsline {figure}{\numberline {38}{\ignorespaces AS-IS --- Verificación y conformidad (Despacho P2)}}{90}{figure.caption.155}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {39}{\ignorespaces TO-BE --- Registro de pedido de ingreso (Recepción P1)}}{93}{figure.caption.157}%
+\contentsline {figure}{\numberline {40}{\ignorespaces TO-BE --- Verificación y conformidad (Recepción P2)}}{94}{figure.caption.158}%
+\contentsline {figure}{\numberline {41}{\ignorespaces TO-BE --- Transferencia de ubicación (Almacenamiento P1)}}{95}{figure.caption.161}%
+\contentsline {figure}{\numberline {42}{\ignorespaces TO-BE --- Reempaque (flujo físico sin cambios; mejora: registro digital)}}{96}{figure.caption.162}%
+\contentsline {figure}{\numberline {43}{\ignorespaces TO-BE --- Repaletizado (flujo físico sin cambios; mejora: registro digital)}}{97}{figure.caption.165}%
+\contentsline {figure}{\numberline {44}{\ignorespaces TO-BE --- Reencajado (flujo físico sin cambios; mejora: registro digital)}}{98}{figure.caption.166}%
+\contentsline {figure}{\numberline {45}{\ignorespaces TO-BE --- Registro de pedido de salida (Despacho P1)}}{99}{figure.caption.169}%
+\contentsline {figure}{\numberline {46}{\ignorespaces TO-BE --- Verificación y conformidad (Despacho P2)}}{99}{figure.caption.170}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {47}{\ignorespaces Arquitectura de microservicios de soporte al proceso automatizado}}{104}{figure.caption.173}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {48}{\ignorespaces Tablero de control (dashboard) del módulo de Inteligencia de Negocios}}{108}{figure.caption.176}%
+\addvspace {10\p@ }

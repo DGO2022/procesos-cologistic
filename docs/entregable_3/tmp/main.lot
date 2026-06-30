@@ -1,0 +1,133 @@
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1}{\ignorespaces Ficha de caracterización del macroproceso: Gestión de Almacén}}{4}{table.caption.5}%
+\contentsline {table}{\numberline {2}{\ignorespaces SIPOC del macroproceso: Gestión de Almacén}}{5}{table.caption.6}%
+\contentsline {table}{\numberline {3}{\ignorespaces Ficha de indicador: Nivel de servicio global del almacén}}{6}{table.caption.7}%
+\contentsline {table}{\numberline {4}{\ignorespaces Ficha de caracterización del proceso: Recepción de Mercadería}}{7}{table.caption.8}%
+\contentsline {table}{\numberline {5}{\ignorespaces SIPOC del proceso: Recepción de Mercadería}}{7}{table.caption.9}%
+\contentsline {table}{\numberline {6}{\ignorespaces Ficha de indicador: Eficiencia global del proceso de recepción}}{8}{table.caption.10}%
+\contentsline {table}{\numberline {7}{\ignorespaces Ficha del procedimiento: Registro de pedido de ingreso}}{8}{table.caption.11}%
+\contentsline {table}{\numberline {8}{\ignorespaces SIPOC --- Registro de pedido de ingreso}}{9}{table.caption.12}%
+\contentsline {table}{\numberline {9}{\ignorespaces Ficha de indicador: Exactitud del registro de ingreso}}{10}{table.caption.14}%
+\contentsline {table}{\numberline {10}{\ignorespaces Ficha del procedimiento: Verificación y conformidad (Recepción)}}{10}{table.caption.15}%
+\contentsline {table}{\numberline {11}{\ignorespaces SIPOC --- Verificación y conformidad (Recepción)}}{11}{table.caption.16}%
+\contentsline {table}{\numberline {12}{\ignorespaces Ficha de indicador: Tasa de observación en recepción}}{12}{table.caption.18}%
+\contentsline {table}{\numberline {13}{\ignorespaces Ficha de caracterización del proceso: Almacenamiento}}{13}{table.caption.19}%
+\contentsline {table}{\numberline {14}{\ignorespaces SIPOC del proceso: Almacenamiento}}{13}{table.caption.20}%
+\contentsline {table}{\numberline {15}{\ignorespaces Ficha de indicador: Eficiencia global del proceso de almacenamiento}}{14}{table.caption.21}%
+\contentsline {table}{\numberline {16}{\ignorespaces Ficha del procedimiento: Transferencia de ubicación}}{14}{table.caption.22}%
+\contentsline {table}{\numberline {17}{\ignorespaces SIPOC --- Transferencia de ubicación}}{15}{table.caption.23}%
+\contentsline {table}{\numberline {18}{\ignorespaces Ficha de indicador: Volumen de transferencias internas}}{16}{table.caption.25}%
+\contentsline {table}{\numberline {19}{\ignorespaces Ficha del procedimiento: Reempaque}}{16}{table.caption.26}%
+\contentsline {table}{\numberline {20}{\ignorespaces SIPOC --- Reempaque}}{17}{table.caption.27}%
+\contentsline {table}{\numberline {21}{\ignorespaces Ficha de indicador: Tasa de reempaque sobre recepciones}}{18}{table.caption.29}%
+\contentsline {table}{\numberline {22}{\ignorespaces Ficha de caracterización del proceso: Acondicionamiento de Mercadería}}{19}{table.caption.30}%
+\contentsline {table}{\numberline {23}{\ignorespaces SIPOC del proceso: Acondicionamiento de Mercadería}}{20}{table.caption.31}%
+\contentsline {table}{\numberline {24}{\ignorespaces Ficha de indicador: Volumen total de acondicionamiento facturable}}{20}{table.caption.32}%
+\contentsline {table}{\numberline {25}{\ignorespaces Ficha del procedimiento: Repaletizado}}{21}{table.caption.33}%
+\contentsline {table}{\numberline {26}{\ignorespaces SIPOC --- Repaletizado}}{22}{table.caption.34}%
+\contentsline {table}{\numberline {27}{\ignorespaces Ficha de indicador: Volumen de repaletizado facturable}}{23}{table.caption.36}%
+\contentsline {table}{\numberline {28}{\ignorespaces Ficha del procedimiento: Reencajado}}{23}{table.caption.37}%
+\contentsline {table}{\numberline {29}{\ignorespaces SIPOC --- Reencajado}}{24}{table.caption.38}%
+\contentsline {table}{\numberline {30}{\ignorespaces Ficha de indicador: Volumen de reencajado facturable}}{25}{table.caption.40}%
+\contentsline {table}{\numberline {31}{\ignorespaces Ficha de caracterización del proceso: Despacho de Mercadería}}{26}{table.caption.41}%
+\contentsline {table}{\numberline {32}{\ignorespaces SIPOC del proceso: Despacho de Mercadería}}{27}{table.caption.42}%
+\contentsline {table}{\numberline {33}{\ignorespaces Ficha de indicador: Eficiencia global del proceso de despacho}}{27}{table.caption.43}%
+\contentsline {table}{\numberline {34}{\ignorespaces Ficha del procedimiento: Registro de pedido de salida}}{28}{table.caption.44}%
+\contentsline {table}{\numberline {35}{\ignorespaces SIPOC --- Registro de pedido de salida}}{29}{table.caption.45}%
+\contentsline {table}{\numberline {36}{\ignorespaces Ficha de indicador: Exactitud del registro de salida}}{30}{table.caption.47}%
+\contentsline {table}{\numberline {37}{\ignorespaces Ficha del procedimiento: Verificación y conformidad (Despacho)}}{30}{table.caption.48}%
+\contentsline {table}{\numberline {38}{\ignorespaces SIPOC --- Verificación y conformidad (Despacho)}}{31}{table.caption.49}%
+\contentsline {table}{\numberline {39}{\ignorespaces Ficha de indicador: Tasa de observación en despacho}}{32}{table.caption.51}%
+\contentsline {table}{\numberline {40}{\ignorespaces Ficha de caracterización del macroproceso: Arrendamiento de espacios}}{33}{table.caption.52}%
+\contentsline {table}{\numberline {41}{\ignorespaces SIPOC del macroproceso: Arrendamiento de espacios}}{34}{table.caption.53}%
+\contentsline {table}{\numberline {42}{\ignorespaces Ficha de caracterización del proceso: Contratación}}{35}{table.caption.54}%
+\contentsline {table}{\numberline {43}{\ignorespaces SIPOC del proceso: Contratación}}{35}{table.caption.55}%
+\contentsline {table}{\numberline {44}{\ignorespaces Ficha del procedimiento: Evaluación y elaboración del contrato}}{36}{table.caption.56}%
+\contentsline {table}{\numberline {45}{\ignorespaces SIPOC --- Evaluación y elaboración del contrato}}{37}{table.caption.57}%
+\contentsline {table}{\numberline {46}{\ignorespaces Ficha del procedimiento: Firma y legalización notarial}}{38}{table.caption.59}%
+\contentsline {table}{\numberline {47}{\ignorespaces SIPOC --- Firma y legalización notarial}}{38}{table.caption.60}%
+\contentsline {table}{\numberline {48}{\ignorespaces Ficha de caracterización del proceso: Entrega}}{39}{table.caption.62}%
+\contentsline {table}{\numberline {49}{\ignorespaces SIPOC del proceso: Entrega}}{40}{table.caption.63}%
+\contentsline {table}{\numberline {50}{\ignorespaces Ficha del procedimiento: Inspección y acondicionamiento previo}}{40}{table.caption.64}%
+\contentsline {table}{\numberline {51}{\ignorespaces SIPOC --- Inspección y acondicionamiento previo}}{41}{table.caption.65}%
+\contentsline {table}{\numberline {52}{\ignorespaces Ficha del procedimiento: Recorrido físico y suscripción del acta}}{42}{table.caption.67}%
+\contentsline {table}{\numberline {53}{\ignorespaces SIPOC --- Recorrido físico y suscripción del acta}}{42}{table.caption.68}%
+\contentsline {table}{\numberline {54}{\ignorespaces Ficha de caracterización del proceso: Vigencia}}{43}{table.caption.70}%
+\contentsline {table}{\numberline {55}{\ignorespaces SIPOC del proceso: Vigencia}}{44}{table.caption.71}%
+\contentsline {table}{\numberline {56}{\ignorespaces Ficha del procedimiento: Monitoreo y control de infraestructura}}{44}{table.caption.72}%
+\contentsline {table}{\numberline {57}{\ignorespaces SIPOC --- Monitoreo y control de infraestructura}}{45}{table.caption.73}%
+\contentsline {table}{\numberline {58}{\ignorespaces Ficha del procedimiento: Emisión de conformidad para facturación}}{45}{table.caption.75}%
+\contentsline {table}{\numberline {59}{\ignorespaces SIPOC --- Emisión de conformidad para facturación}}{46}{table.caption.76}%
+\contentsline {table}{\numberline {60}{\ignorespaces Ficha de caracterización del proceso: Devolución}}{47}{table.caption.78}%
+\contentsline {table}{\numberline {61}{\ignorespaces SIPOC del proceso: Devolución}}{47}{table.caption.79}%
+\contentsline {table}{\numberline {62}{\ignorespaces Ficha del procedimiento: Recepción de espacio y firma de acta}}{48}{table.caption.80}%
+\contentsline {table}{\numberline {63}{\ignorespaces SIPOC --- Recepción de espacio y firma de acta}}{48}{table.caption.81}%
+\contentsline {table}{\numberline {64}{\ignorespaces Ficha de caracterización del macroproceso: Planeación Estratégica}}{49}{table.caption.83}%
+\contentsline {table}{\numberline {65}{\ignorespaces SIPOC del macroproceso: Planeación Estratégica}}{50}{table.caption.84}%
+\contentsline {table}{\numberline {66}{\ignorespaces Ficha de caracterización del proceso: Diagnóstico estratégico}}{51}{table.caption.85}%
+\contentsline {table}{\numberline {67}{\ignorespaces SIPOC del proceso: Diagnóstico estratégico organizacional}}{51}{table.caption.86}%
+\contentsline {table}{\numberline {68}{\ignorespaces Ficha del procedimiento: Auditoría interna y externa}}{52}{table.caption.87}%
+\contentsline {table}{\numberline {69}{\ignorespaces SIPOC --- Auditoría interna y externa}}{52}{table.caption.88}%
+\contentsline {table}{\numberline {70}{\ignorespaces Ficha del procedimiento: Construcción de matriz FODA}}{53}{table.caption.90}%
+\contentsline {table}{\numberline {71}{\ignorespaces SIPOC --- Construcción de matriz FODA}}{54}{table.caption.91}%
+\contentsline {table}{\numberline {72}{\ignorespaces Ficha de caracterización del proceso: Definición de la dirección estratégica}}{55}{table.caption.93}%
+\contentsline {table}{\numberline {73}{\ignorespaces SIPOC del proceso: Definición de la dirección estratégica}}{55}{table.caption.94}%
+\contentsline {table}{\numberline {74}{\ignorespaces Ficha del procedimiento: Formulación de propuestas filosóficas}}{56}{table.caption.95}%
+\contentsline {table}{\numberline {75}{\ignorespaces SIPOC --- Formulación de propuestas filosóficas}}{56}{table.caption.96}%
+\contentsline {table}{\numberline {76}{\ignorespaces Ficha del procedimiento: Validación y aprobación directiva}}{57}{table.caption.98}%
+\contentsline {table}{\numberline {77}{\ignorespaces SIPOC --- Validación y aprobación directiva}}{58}{table.caption.99}%
+\contentsline {table}{\numberline {78}{\ignorespaces Ficha de caracterización del proceso: Formulación del plan estratégico}}{59}{table.caption.101}%
+\contentsline {table}{\numberline {79}{\ignorespaces SIPOC del proceso: Formulación del plan estratégico}}{59}{table.caption.102}%
+\contentsline {table}{\numberline {80}{\ignorespaces Ficha del procedimiento: Definición de objetivos estratégicos y KPIs}}{60}{table.caption.103}%
+\contentsline {table}{\numberline {81}{\ignorespaces SIPOC --- Definición de objetivos estratégicos y KPIs}}{60}{table.caption.104}%
+\contentsline {table}{\numberline {82}{\ignorespaces Ficha del procedimiento: Elaboración del Balanced Scorecard}}{61}{table.caption.106}%
+\contentsline {table}{\numberline {83}{\ignorespaces SIPOC --- Elaboración del Balanced Scorecard}}{62}{table.caption.107}%
+\contentsline {table}{\numberline {84}{\ignorespaces Ficha de caracterización del proceso: Comunicación y alineamiento organizacional}}{63}{table.caption.109}%
+\contentsline {table}{\numberline {85}{\ignorespaces SIPOC del proceso: Comunicación y alineamiento organizacional}}{63}{table.caption.110}%
+\contentsline {table}{\numberline {86}{\ignorespaces Ficha del procedimiento: Comunicación del plan a colaboradores}}{64}{table.caption.111}%
+\contentsline {table}{\numberline {87}{\ignorespaces SIPOC --- Comunicación del plan a colaboradores}}{64}{table.caption.112}%
+\contentsline {table}{\numberline {88}{\ignorespaces Ficha de caracterización del proceso: Seguimiento, control y revisión}}{65}{table.caption.114}%
+\contentsline {table}{\numberline {89}{\ignorespaces SIPOC del proceso: Seguimiento, control y revisión estratégica}}{66}{table.caption.115}%
+\contentsline {table}{\numberline {90}{\ignorespaces Ficha del procedimiento: Medición de indicadores estratégicos (KPIs)}}{66}{table.caption.116}%
+\contentsline {table}{\numberline {91}{\ignorespaces SIPOC --- Medición de indicadores estratégicos}}{67}{table.caption.117}%
+\contentsline {table}{\numberline {92}{\ignorespaces Ficha del procedimiento: Revisión gerencial y acciones correctivas}}{68}{table.caption.119}%
+\contentsline {table}{\numberline {93}{\ignorespaces SIPOC --- Revisión gerencial y acciones correctivas}}{68}{table.caption.120}%
+\contentsline {table}{\numberline {94}{\ignorespaces Ficha de caracterización del macroproceso: Seguridad Integral}}{69}{table.caption.122}%
+\contentsline {table}{\numberline {95}{\ignorespaces SIPOC del macroproceso: Seguridad Integral}}{70}{table.caption.123}%
+\contentsline {table}{\numberline {96}{\ignorespaces Ficha de caracterización del proceso: Control de acceso a visitas}}{70}{table.caption.124}%
+\contentsline {table}{\numberline {97}{\ignorespaces SIPOC del proceso: Control de acceso a visitas}}{71}{table.caption.125}%
+\contentsline {table}{\numberline {98}{\ignorespaces Ficha del procedimiento: Registro de ingreso}}{71}{table.caption.126}%
+\contentsline {table}{\numberline {99}{\ignorespaces SIPOC --- Registro y autorización de ingreso}}{72}{table.caption.127}%
+\contentsline {table}{\numberline {100}{\ignorespaces Ficha del procedimiento: Control de salida}}{73}{table.caption.129}%
+\contentsline {table}{\numberline {101}{\ignorespaces SIPOC --- Control de salida y novedades}}{73}{table.caption.130}%
+\contentsline {table}{\numberline {102}{\ignorespaces Ficha de caracterización del macroproceso: Gestión de RRHH}}{74}{table.caption.132}%
+\contentsline {table}{\numberline {103}{\ignorespaces SIPOC del macroproceso: Gestión de RRHH}}{74}{table.caption.133}%
+\contentsline {table}{\numberline {104}{\ignorespaces Ficha de caracterización del proceso: Reclutamiento de personal}}{75}{table.caption.134}%
+\contentsline {table}{\numberline {105}{\ignorespaces SIPOC del proceso: Reclutamiento de personal}}{75}{table.caption.135}%
+\contentsline {table}{\numberline {106}{\ignorespaces Ficha del procedimiento: Convocatoria y filtro inicial}}{76}{table.caption.136}%
+\contentsline {table}{\numberline {107}{\ignorespaces SIPOC --- Convocatoria y filtro inicial}}{76}{table.caption.137}%
+\contentsline {table}{\numberline {108}{\ignorespaces Ficha del procedimiento: Evaluación final y selección}}{77}{table.caption.139}%
+\contentsline {table}{\numberline {109}{\ignorespaces SIPOC --- Evaluación final y selección}}{78}{table.caption.140}%
+\contentsline {table}{\numberline {110}{\ignorespaces Jerarquización de los procesos operativos}}{79}{table.caption.142}%
+\contentsline {table}{\numberline {111}{\ignorespaces Jerarquización de los procesos estratégicos}}{80}{table.caption.143}%
+\contentsline {table}{\numberline {112}{\ignorespaces Jerarquización de los procesos de apoyo}}{80}{table.caption.144}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {113}{\ignorespaces Actividades AS-IS --- Recepción de Mercadería}}{84}{table.caption.147}%
+\contentsline {table}{\numberline {114}{\ignorespaces Actividades AS-IS --- Almacenamiento}}{86}{table.caption.150}%
+\contentsline {table}{\numberline {115}{\ignorespaces Actividades AS-IS --- Acondicionamiento de Mercadería}}{88}{table.caption.153}%
+\contentsline {table}{\numberline {116}{\ignorespaces Actividades AS-IS --- Despacho de Mercadería}}{90}{table.caption.156}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {117}{\ignorespaces Actividades TO-BE --- Recepción de Mercadería}}{94}{table.caption.159}%
+\contentsline {table}{\numberline {118}{\ignorespaces Comparativo AS-IS vs TO-BE --- Recepción}}{95}{table.caption.160}%
+\contentsline {table}{\numberline {119}{\ignorespaces Actividades TO-BE --- Almacenamiento}}{96}{table.caption.163}%
+\contentsline {table}{\numberline {120}{\ignorespaces Comparativo AS-IS vs TO-BE --- Almacenamiento}}{97}{table.caption.164}%
+\contentsline {table}{\numberline {121}{\ignorespaces Actividades TO-BE --- Acondicionamiento de Mercadería}}{98}{table.caption.167}%
+\contentsline {table}{\numberline {122}{\ignorespaces Comparativo AS-IS vs TO-BE --- Acondicionamiento}}{98}{table.caption.168}%
+\contentsline {table}{\numberline {123}{\ignorespaces Actividades TO-BE --- Despacho de Mercadería}}{100}{table.caption.171}%
+\contentsline {table}{\numberline {124}{\ignorespaces Comparativo AS-IS vs TO-BE --- Despacho}}{101}{table.caption.172}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {125}{\ignorespaces Nivel de automatización propuesto por subproceso}}{105}{table.caption.174}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {126}{\ignorespaces Indicadores clave de desempeño del proceso de Gestión de Almacenes}}{107}{table.caption.175}%
+\addvspace {10\p@ }
