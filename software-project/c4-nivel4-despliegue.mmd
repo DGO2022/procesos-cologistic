@@ -35,7 +35,7 @@ C4Deployment
             Container(ms_admin, "MS Administración", "Spring Boot + Actuator", "Puerto 8089")
         }
         Deployment_Node(etl_srv, "SRV-ETL-01", "Ubuntu 22.04 / Docker — 2 vCPU 4GB") {
-            Container(etl, "Job ETL Nocturno", "Spring Batch — Cron 00:00", "Carga diaria al Data Warehouse")
+            Container(etl, "Pipeline ETL", "Spring Batch — Cron 00:00", "Carga diaria al Data Warehouse")
         }
     }
 

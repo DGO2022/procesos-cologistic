@@ -7,41 +7,44 @@ C4Component
 
     Container_Boundary(ms_usr, "MS Usuarios y Roles — Spring Boot 3 (Puerto 8082)") {
 
-        Component(usuario_ctrl, "UsuarioController", "@RestController", "CRUD de usuarios: crear, editar, desactivar y listar")
-        Component(rol_ctrl, "RolController", "@RestController", "Gestiona roles disponibles del sistema")
-        Component(permiso_ctrl, "PermisoController", "@RestController", "Asigna y revoca permisos por rol y módulo")
-        Component(recovery_ctrl, "PasswordRecoveryController", "@RestController", "POST /usuarios/recuperar — envía enlace por correo")
 
-        Component(usuario_svc, "UsuarioService", "@Service", "Lógica de negocio: crea usuario, valida duplicados y desactiva")
-        Component(rol_svc, "RolService", "@Service", "Gestiona la matriz de roles y sus permisos por módulo")
-        Component(recovery_svc, "PasswordRecoveryService", "@Service", "Genera token de recuperación y coordina envío por correo")
+        Container_Boundary(g_roles, "Gestión de Roles y Permisos") {
+            Component(rol_ctrl, "RolController", "@RestController", "CRUD de roles")
+            Component(permiso_ctrl, "PermisoController", "@RestController", "Asigna y revoca permisos")
+            Component(rol_svc, "RolService", "@Service", "Gestiona la matriz de roles y permisos")
+            Component(rol_repo, "RolRepository", "@Repository", "Persiste roles y permisos")
+        }
+        Container_Boundary(g_usuario, "Gestión de Usuarios") {
+            Component(usuario_ctrl, "UsuarioController", "@RestController", "CRUD de usuarios")
+            Component(usuario_svc, "UsuarioService", "@Service", "Crea, valida duplicados y desactiva usuarios")
+            Component(usuario_repo, "UsuarioRepository", "@Repository", "CRUD de usuarios")
+            Component(usuario_mapper, "UsuarioMapper", "MapStruct", "Entidad Usuario ↔ DTO")
+        }
 
-        Component(usuario_repo, "UsuarioRepository", "@Repository", "CRUD de usuarios con validación de duplicados")
-        Component(rol_repo, "RolRepository", "@Repository", "Consulta y persiste roles y su matriz de permisos")
+        Container_Boundary(g_recovery, "Recuperación de Contraseña") {
+            Component(recovery_ctrl, "PasswordRecoveryController", "@RestController", "POST /usuarios/recuperar")
+            Component(recovery_svc, "PasswordRecoveryService", "@Service", "Genera token y envía correo vía Amazon SES")
+        }
 
-        Component(usuario_mapper, "UsuarioMapper", "MapStruct", "Entidad Usuario ↔ DTO de respuesta")
-        Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja usuario duplicado, rol no encontrado y acceso denegado")
-        Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y verifica rol Administrador TI")
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja usuario duplicado y acceso denegado")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y rol Administrador TI")
+        }
     }
 
-    Rel(gateway, usuario_ctrl, "GET/POST/PUT /usuarios/**", "HTTP / JSON")
-    Rel(gateway, rol_ctrl, "GET/POST /roles/**", "HTTP / JSON")
-    Rel(gateway, permiso_ctrl, "POST /permisos/**", "HTTP / JSON")
-    Rel(gateway, recovery_ctrl, "POST /usuarios/recuperar", "HTTP / JSON")
+    Rel(gateway, usuario_ctrl, "Enruta peticiones /usuarios/**", "HTTP")
 
     Rel(usuario_ctrl, usuario_svc, "Delega CRUD de usuarios", "")
+    Rel(usuario_svc, usuario_repo, "CRUD en BD", "JPA")
+    Rel(usuario_svc, usuario_mapper, "Convierte a DTO", "")
+
     Rel(rol_ctrl, rol_svc, "Delega gestión de roles", "")
     Rel(permiso_ctrl, rol_svc, "Delega asignación de permisos", "")
-    Rel(recovery_ctrl, recovery_svc, "Delega recuperación de contraseña", "")
-
-    Rel(usuario_svc, usuario_repo, "CRUD de usuarios", "JPA")
-    Rel(usuario_svc, usuario_mapper, "Convierte a DTO", "")
     Rel(rol_svc, rol_repo, "CRUD de roles y permisos", "JPA")
+
+    Rel(recovery_ctrl, recovery_svc, "Delega recuperación", "")
     Rel(recovery_svc, usuario_repo, "Busca usuario por correo", "JPA")
     Rel(recovery_svc, aws_ses, "Envía correo de recuperación", "AWS SDK")
-
-    Rel(usuario_repo, db, "SELECT / INSERT / UPDATE usuarios", "JDBC")
-    Rel(rol_repo, db, "SELECT / INSERT roles y permisos", "JDBC")
 
     UpdateElementStyle(usuario_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
     UpdateElementStyle(rol_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
@@ -55,4 +58,4 @@ C4Component
     UpdateElementStyle(usuario_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
     UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
     UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
-    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="5")
