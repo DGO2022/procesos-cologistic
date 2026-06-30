@@ -12,7 +12,7 @@ C4Component
             Component(restaurar_ctrl, "RestauracionController", "@RestController", "POST /admin/restaurar — restaura BD")
             Component(restaurar_svc, "RestauracionService", "@Service", "Ejecuta pg_restore validando integridad")
         }
-        
+
         Container_Boundary(g_config, "Configuración del Sistema") {
             Component(config_repo, "ConfiguracionRepository", "@Repository", "Persiste y consulta parámetros de configuración")
             Component(config_svc, "ConfiguracionService", "@Service", "Lee y actualiza parámetros del sistema")
@@ -25,7 +25,6 @@ C4Component
             Component(monitor_ctrl, "MonitoreoController", "@RestController", "GET /admin/health — estado de MS")
             Component(monitor_svc, "MonitoreoService", "@Service + Actuator", "Consulta /actuator/health de cada MS")
         }
-
 
         Container_Boundary(g_infra, "Infraestructura") {
             Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja errores de backup y migración fallida")

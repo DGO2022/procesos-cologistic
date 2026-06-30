@@ -6,10 +6,10 @@ C4Context
     Person(supervisor, "Supervisor", "Aprueba pedidos y gestiona conformidad")
     Person(jefe, "Jefe de Operaciones", "Supervisa KPIs y planifica recursos del almacén")
     Person(gerencia, "Gerencia", "Consulta dashboards BI e indicadores estratégicos")
+    System(erp, "ERP de Gestión de Almacenes", "Sistema web que digitaliza recepción, inventario, despacho, acondicionamiento y BI para CO LOGISTIC S.A.C.")
     Person(admin_ti, "Administrador TI", "Gestiona usuarios, roles y backups del sistema")
     Person(cliente, "Cliente / Arrendador", "Solicita servicios de acondicionamiento y repaletizado")
 
-    System(erp, "ERP de Gestión de Almacenes", "Sistema web que digitaliza recepción, inventario, despacho, acondicionamiento y BI para CO LOGISTIC S.A.C.")
 
     System_Ext(aws_ses, "Amazon SES", "Servicio AWS de envío de alertas BI y reportes por correo")
 
@@ -24,4 +24,4 @@ C4Context
 
     UpdateElementStyle(erp, $fontColor="white", $bgColor="#1A3A6B", $borderColor="#0d2447")
     UpdateElementStyle(aws_ses, $fontColor="black", $bgColor="#fff3e0", $borderColor="#e65100")
-    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="5")

@@ -7,20 +7,18 @@ C4Container
 
     System_Boundary(erp, "ERP de Gestión de Almacenes — CO LOGISTIC S.A.C.") {
 
+        Container(webapp, "Aplicación Web", "Vue.js 3", "SPA con todos los módulos del ERP")
+        Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enrutamiento, JWT y rate limiting")
+        ContainerDb(db, "Base de Datos ERP", "PostgreSQL 15", "Esquema propio por cada microservicio — ACID")
+        ContainerDb(dw, "Data Warehouse BI", "PostgreSQL Analytics", "Modelo estrella para reportes BI")
+        
         Container_Boundary(g_ops, "Microservicios Operativos") {
-            Container(ms_recepcion, "MS Recepción", "Spring Boot 3", "Pedido de ingreso y ASN")
             Container(ms_inventario, "MS Inventario", "Spring Boot 3", "Stock, lotes y FEFO")
+            Container(ms_recepcion, "MS Recepción", "Spring Boot 3", "Pedido de ingreso y ASN")
             Container(ms_despacho, "MS Despacho", "Spring Boot 3", "Pedido de salida y picking")
             Container(ms_servicios, "MS Acondicionamiento", "Spring Boot 3", "Repaletizado y reencajado")
         }
         
-        Container(webapp, "Aplicación Web", "Vue.js 3", "SPA con todos los módulos del ERP")
-        Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enrutamiento, JWT y rate limiting")
-
-        Container_Boundary(g_analytics, "Analytics") {
-            Container(ms_bi, "MS Inteligencia de Negocios", "Spring Boot + Jasper", "KPIs, reportes y dashboards")
-            Container(etl, "Pipeline ETL", "Spring Batch", "Lee BD ERP y carga diaria al Data Warehouse")
-        }
         Container_Boundary(g_soporte, "Microservicios de Soporte") {
             Container(ms_auth, "MS Autenticación", "Spring Boot 3", "Login y tokens JWT")
             Container(ms_usuarios, "MS Usuarios y Roles", "Spring Boot 3", "CRUD usuarios y permisos")
@@ -28,23 +26,24 @@ C4Container
             Container(ms_admin, "MS Administración", "Spring Boot", "Backups y monitoreo")
         }
 
+        Container_Boundary(g_analytics, "Analytics") {
+            Container(etl, "Pipeline ETL", "Spring Batch", "Lee BD ERP y carga diaria al Data Warehouse")
+            Container(ms_bi, "MS Inteligencia de Negocios", "Spring Boot + Jasper", "KPIs, reportes y dashboards")
+        }
 
-
-        ContainerDb(db, "Base de Datos ERP", "PostgreSQL 15", "Esquema propio por cada microservicio — ACID")
-        ContainerDb(dw, "Data Warehouse BI", "PostgreSQL Analytics", "Modelo estrella para reportes BI")
     }
 
-    Rel(usuario, webapp, "Accede al ERP según su rol", "HTTPS")
+    Rel(usuario, webapp, "Usa el ERP", "HTTPS")
 
-    Rel(webapp, gateway, "REST con JWT", "HTTPS")
+    Rel(webapp, gateway, "JWT", "HTTPS")
 
-    Rel(gateway, ms_auth, "Enruta por path prefix a cada MS", "REST")
-    Rel(gateway, ms_inventario, "Enruta por path prefix a cada MS", "REST")
-    Rel(gateway, ms_bi, "Enruta por path prefix a cada MS", "REST")
+    Rel(gateway, ms_auth, "Enruta", "REST")
+    Rel(gateway, ms_inventario, "Enruta", "REST")
+    Rel(gateway, ms_bi, "Enruta", "REST")
 
-    Rel(etl, dw, "Carga diaria al DW", "JDBC")
-    Rel(ms_bi, dw, "Consultas BI", "JDBC")
-    Rel(ms_bi, aws_ses, "Alertas y reportes", "AWS SDK")
+    Rel(etl, dw, "Carga ETL", "JDBC")
+    Rel(ms_bi, dw, "Consultas", "JDBC")
+    Rel(ms_bi, aws_ses, "Alertas", "AWS SDK")
 
     UpdateElementStyle(gateway, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
     UpdateElementStyle(etl, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
@@ -52,3 +51,4 @@ C4Container
     UpdateElementStyle(dw, $fontColor="black", $bgColor="#fff3e0", $borderColor="#e65100")
     UpdateElementStyle(ms_bi, $fontColor="black", $bgColor="#e8eaf6", $borderColor="#283593")
     UpdateElementStyle(aws_ses, $fontColor="black", $bgColor="#fff3e0", $borderColor="#e65100")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="5")
