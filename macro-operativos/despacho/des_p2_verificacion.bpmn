@@ -1,174 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+<bpmn:definitions 
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn"
+  exporter="Camunda Modeler" exporterVersion="5.22.0" 
+  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
   <bpmn:collaboration id="Collaboration_1">
-    <bpmn:participant id="Participant_1" name="Procedimiento Verificación y conformidad" processRef="Process_Despacho_Verificacion" />
+    <bpmn:participant id="Participant_1" name="AS-IS: Verificación y conformidad (Despacho)" processRef="Proc_des_p2" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_Despacho_Verificacion" isExecutable="true">
-    <bpmn:documentation>Co Logistic SAC — Proceso: Despacho de mercadería
-Procedimiento 2: Verificación y conformidad
-Fuente: 2-Despacho.txt (fragmento "Lo demás es el mismo proceso. Si hay que modificar, se modifica... se despacha el sistema igual."), 10-Explicacion_de_reporte-adjuntar-a-guia.txt
-Elementos BPMN representados:
-  - Tarea de recepción (Receive Task, continúa de P1)
-  - Tareas (Task)
-  - Compuerta exclusiva (Exclusive Gateway / XOR) de conformidad
-  - Artefacto de datos / Data Object (pedido de salida + guía engrampados)
-  - Evento de fin (End Event)
-  - Pools/Lanes: Auxiliar de almacén, Supervisor
-Nota: misma estructura que Recepción P2; cambia únicamente la nomenclatura del documento (pedido de salida / P.S. en vez de pedido de ingreso)</bpmn:documentation>
+  <bpmn:process id="Proc_des_p2" isExecutable="true">
+    <bpmn:documentation>AS-IS — Despacho P2. Al final del proceso se emite la guía de remisión de salida para que el transportista pueda retirar la mercadería legalmente.</bpmn:documentation>
     <bpmn:laneSet id="LaneSet_1">
-      <bpmn:lane id="Lane_Auxiliar_Almacen" name="Auxiliar de almacén">
-        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1</bpmn:flowNodeRef>
+      <bpmn:lane id="LAux" name="Auxiliar de almacén">
+        <bpmn:flowNodeRef>Start_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T1</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_Supervisor" name="Supervisor">
-        <bpmn:flowNodeRef>Gateway_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0rw6jg3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_4</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_3</bpmn:flowNodeRef>
+      <bpmn:lane id="LS" name="Supervisor">
+        <bpmn:flowNodeRef>GW1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GW_join</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="StartEvent_1" name="Recibe pedido de salida (de P1)">
-      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    <bpmn:dataObject id="DO_guia_sal" name="Guía de remisión de salida"/>
+    <bpmn:dataObjectReference id="DOR_guia_sal" name="Guía de remisión de salida" dataObjectRef="DO_guia_sal"/>
+    <bpmn:startEvent id="Start_1" name="Recibe pedido de salida">
+      <bpmn:outgoing>F1</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:task id="Task_1" name="Verificar mercadería contra pedido de salida">
-      <bpmn:incoming>Flow_1</bpmn:incoming>
-      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    <bpmn:task id="T1" name="Verificar mercadería contra pedido">
+      <bpmn:incoming>F1</bpmn:incoming>
+      <bpmn:outgoing>F2</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:exclusiveGateway id="Gateway_1" name="¿Conforme a la guía?">
-      <bpmn:incoming>Flow_2</bpmn:incoming>
-      <bpmn:outgoing>Flow_3_si</bpmn:outgoing>
-      <bpmn:outgoing>Flow_4_no</bpmn:outgoing>
+    <bpmn:exclusiveGateway id="GW1" name="¿Conforme?">
+      <bpmn:incoming>F2</bpmn:incoming>
+      <bpmn:outgoing>F3_si</bpmn:outgoing>
+      <bpmn:outgoing>F4_no</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1" />
-    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="Gateway_1" />
-    <bpmn:sequenceFlow id="Flow_3_si" name="sí" sourceRef="Gateway_1" targetRef="Task_2" />
-    <bpmn:sequenceFlow id="Flow_4_no" name="no" sourceRef="Gateway_1" targetRef="Task_3" />
-    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_2" targetRef="Gateway_0rw6jg3" />
-    <bpmn:exclusiveGateway id="Gateway_0rw6jg3">
-      <bpmn:incoming>Flow_5</bpmn:incoming>
-      <bpmn:incoming>Flow_18v4dnr</bpmn:incoming>
-      <bpmn:outgoing>Flow_0awxjmr</bpmn:outgoing>
+    <bpmn:task id="T2" name="Aprobar y despachar">
+      <bpmn:incoming>F3_si</bpmn:incoming>
+      <bpmn:outgoing>F5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="T3" name="Modificar pedido de salida">
+      <bpmn:incoming>F4_no</bpmn:incoming>
+      <bpmn:outgoing>F6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="GW_join">
+      <bpmn:incoming>F5</bpmn:incoming>
+      <bpmn:incoming>F6</bpmn:incoming>
+      <bpmn:outgoing>F7</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_18v4dnr" sourceRef="Task_3" targetRef="Gateway_0rw6jg3" />
-    <bpmn:sequenceFlow id="Flow_0awxjmr" sourceRef="Gateway_0rw6jg3" targetRef="Task_4" />
-    <bpmn:endEvent id="EndEvent_1" name="Fin">
-      <bpmn:incoming>Flow_7</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:task id="Task_4" name="Imprimir y engrampar pedido de salida">
-      <bpmn:incoming>Flow_0awxjmr</bpmn:incoming>
-      <bpmn:outgoing>Flow_7</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
-        <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
+    <bpmn:task id="T4" name="Imprimir pedido y emitir guía de remisión de salida">
+      <bpmn:incoming>F7</bpmn:incoming>
+      <bpmn:outgoing>F8</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DOA_sal">
+        <bpmn:targetRef>DOR_guia_sal</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Pedido de salida archivado" dataObjectRef="DataObject_1" />
-    <bpmn:dataObject id="DataObject_1" />
-    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_4" targetRef="EndEvent_1" />
-    <bpmn:task id="Task_2" name="Aprobar pedido y despachar">
-      <bpmn:incoming>Flow_3_si</bpmn:incoming>
-      <bpmn:outgoing>Flow_5</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="Task_3" name="Modificar pedido">
-      <bpmn:incoming>Flow_4_no</bpmn:incoming>
-      <bpmn:outgoing>Flow_18v4dnr</bpmn:outgoing>
-    </bpmn:task>
+    <bpmn:endEvent id="End_1" name="Fin">
+      <bpmn:incoming>F8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="F1" sourceRef="Start_1" targetRef="T1"/>
+    <bpmn:sequenceFlow id="F2" sourceRef="T1" targetRef="GW1"/>
+    <bpmn:sequenceFlow id="F3_si" name="sí" sourceRef="GW1" targetRef="T2"/>
+    <bpmn:sequenceFlow id="F4_no" name="no" sourceRef="GW1" targetRef="T3"/>
+    <bpmn:sequenceFlow id="F5" sourceRef="T2" targetRef="GW_join"/>
+    <bpmn:sequenceFlow id="F6" sourceRef="T3" targetRef="GW_join"/>
+    <bpmn:sequenceFlow id="F7" sourceRef="GW_join" targetRef="T4"/>
+    <bpmn:sequenceFlow id="F8" sourceRef="T4" targetRef="End_1"/>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
-      <bpmndi:BPMNShape id="Participant_1_di" bpmnElement="Participant_1" isHorizontal="true">
-        <dc:Bounds x="130" y="80" width="870" height="450" />
+      <bpmndi:BPMNShape id="P_di" bpmnElement="Participant_1" isHorizontal="true">
+        <dc:Bounds x="130" y="80" width="1080" height="480"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_Supervisor_di" bpmnElement="Lane_Supervisor" isHorizontal="true">
-        <dc:Bounds x="160" y="280" width="840" height="250" />
+      <bpmndi:BPMNShape id="LAux_di" bpmnElement="LAux" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1050" height="190"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_Auxiliar_Almacen_di" bpmnElement="Lane_Auxiliar_Almacen" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="840" height="200" />
+      <bpmndi:BPMNShape id="LS_di" bpmnElement="LS" isHorizontal="true">
+        <dc:Bounds x="160" y="270" width="1050" height="290"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="212" y="152" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1_di" bpmnElement="Task_1">
-        <dc:Bounds x="320" y="130" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1_di" bpmnElement="Gateway_1" isMarkerVisible="true">
-        <dc:Bounds x="485" y="375" width="50" height="50" />
+      <bpmndi:BPMNShape id="Start_di" bpmnElement="Start_1">
+        <dc:Bounds x="202" y="157" width="36" height="36"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="412" y="411" width="76" height="27" />
+          <dc:Bounds x="180" y="200" width="82" height="27"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0rw6jg3_di" bpmnElement="Gateway_0rw6jg3" isMarkerVisible="true">
-        <dc:Bounds x="705" y="375" width="50" height="50" />
+      <bpmndi:BPMNShape id="T1_di" bpmnElement="T1">
+        <dc:Bounds x="300" y="135" width="100" height="80"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1">
-        <dc:Bounds x="942" y="382" width="36" height="36" />
+      <bpmndi:BPMNShape id="GW1_di" bpmnElement="GW1" isMarkerVisible="true">
+        <dc:Bounds x="465" y="385" width="50" height="50"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="952" y="418" width="16" height="14" />
+          <dc:Bounds x="452" y="442" width="76" height="14"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_4_di" bpmnElement="Task_4">
-        <dc:Bounds x="780" y="360" width="100" height="80" />
+      <bpmndi:BPMNShape id="T2_di" bpmnElement="T2">
+        <dc:Bounds x="580" y="310" width="100" height="80"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1_di" bpmnElement="DataObjectReference_1">
-        <dc:Bounds x="902" y="425" width="36" height="50" />
+      <bpmndi:BPMNShape id="T3_di" bpmnElement="T3">
+        <dc:Bounds x="580" y="430" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GW_join_di" bpmnElement="GW_join" isMarkerVisible="true">
+        <dc:Bounds x="745" y="385" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T4_di" bpmnElement="T4">
+        <dc:Bounds x="850" y="370" width="140" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DOR_guia_sal_di" bpmnElement="DOR_guia_sal">
+        <dc:Bounds x="900" y="490" width="36" height="50"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="879" y="475" width="82" height="53" />
+          <dc:Bounds x="870" y="547" width="98" height="27"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_2_di" bpmnElement="Task_2">
-        <dc:Bounds x="580" y="300" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_3_di" bpmnElement="Task_3">
-        <dc:Bounds x="580" y="420" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
-        <di:waypoint x="248" y="170" />
-        <di:waypoint x="320" y="170" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
-        <di:waypoint x="420" y="170" />
-        <di:waypoint x="450" y="170" />
-        <di:waypoint x="450" y="400" />
-        <di:waypoint x="485" y="400" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_3_si_di" bpmnElement="Flow_3_si">
-        <di:waypoint x="510" y="375" />
-        <di:waypoint x="510" y="340" />
-        <di:waypoint x="580" y="340" />
+      <bpmndi:BPMNShape id="End_di" bpmnElement="End_1">
+        <dc:Bounds x="1052" y="392" width="36" height="36"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="514" y="348" width="9" height="14" />
+          <dc:Bounds x="1062" y="435" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F1_di" bpmnElement="F1">
+        <di:waypoint x="238" y="175"/>
+        <di:waypoint x="300" y="175"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F2_di" bpmnElement="F2">
+        <di:waypoint x="400" y="175"/>
+        <di:waypoint x="440" y="175"/>
+        <di:waypoint x="440" y="410"/>
+        <di:waypoint x="465" y="410"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F3_si_di" bpmnElement="F3_si">
+        <di:waypoint x="490" y="385"/>
+        <di:waypoint x="490" y="350"/>
+        <di:waypoint x="580" y="350"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="494" y="360" width="11" height="14"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_4_no_di" bpmnElement="Flow_4_no">
-        <di:waypoint x="510" y="425" />
-        <di:waypoint x="510" y="460" />
-        <di:waypoint x="580" y="460" />
+      <bpmndi:BPMNEdge id="F4_no_di" bpmnElement="F4_no">
+        <di:waypoint x="490" y="435"/>
+        <di:waypoint x="490" y="470"/>
+        <di:waypoint x="580" y="470"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="519" y="433" width="13" height="14" />
+          <dc:Bounds x="494" y="448" width="13" height="14"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
-        <di:waypoint x="680" y="340" />
-        <di:waypoint x="730" y="340" />
-        <di:waypoint x="730" y="375" />
+      <bpmndi:BPMNEdge id="F5_di" bpmnElement="F5">
+        <di:waypoint x="680" y="350"/>
+        <di:waypoint x="770" y="350"/>
+        <di:waypoint x="770" y="385"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_18v4dnr_di" bpmnElement="Flow_18v4dnr">
-        <di:waypoint x="680" y="460" />
-        <di:waypoint x="730" y="460" />
-        <di:waypoint x="730" y="425" />
+      <bpmndi:BPMNEdge id="F6_di" bpmnElement="F6">
+        <di:waypoint x="680" y="470"/>
+        <di:waypoint x="770" y="470"/>
+        <di:waypoint x="770" y="435"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0awxjmr_di" bpmnElement="Flow_0awxjmr">
-        <di:waypoint x="755" y="400" />
-        <di:waypoint x="780" y="400" />
+      <bpmndi:BPMNEdge id="F7_di" bpmnElement="F7">
+        <di:waypoint x="795" y="410"/>
+        <di:waypoint x="850" y="410"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
-        <di:waypoint x="880" y="400" />
-        <di:waypoint x="942" y="400" />
+      <bpmndi:BPMNEdge id="DOA_sal_di" bpmnElement="DOA_sal">
+        <di:waypoint x="920" y="450"/>
+        <di:waypoint x="918" y="490"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1_di" bpmnElement="DataOutputAssociation_1">
-        <di:waypoint x="880" y="428" />
-        <di:waypoint x="902" y="440" />
+      <bpmndi:BPMNEdge id="F8_di" bpmnElement="F8">
+        <di:waypoint x="990" y="410"/>
+        <di:waypoint x="1052" y="410"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

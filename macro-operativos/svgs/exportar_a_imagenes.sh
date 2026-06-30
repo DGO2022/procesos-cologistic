@@ -12,6 +12,11 @@ SVGS=(
   aco_p2_reencajado
   des_p1_registro
   des_p2_verificacion
+  tobe_rec_p1
+  tobe_rec_p2
+  tobe_alm_p1
+  tobe_des_p1
+  tobe_des_p2
 )
 
 for name in "${SVGS[@]}"; do

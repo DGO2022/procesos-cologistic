@@ -519,14 +519,14 @@ Categoría & Misional / Operativo \\ \hline
 Líder & Analista de inventarios \\ \hline
 Participantes & Cliente, Analista de inventarios \\ \hline
 \rowcolor{gray!10}
-Entradas & Guía de remisión del cliente \\ \hline
+Entradas & Guía de remisión del cliente (datos de transporte); mercadería física (paletas) \\ \hline
 \rowcolor{gray!10}
 Salidas & Pedido de ingreso firmado (analista, chofer y almacén), listo para verificación física \\ \hline
 \end{tabularx}
 \caption{Ficha del procedimiento: Registro de pedido de ingreso}
 \end{table}
 
-El procedimiento inicia cuando el cliente envía la guía de remisión (correo electrónico, físico o WhatsApp). Sin este documento no es posible registrar ningún dato. El Analista de inventarios registra los datos de transporte (placa, nombre del chofer, brevete, usuario, fecha y hora) y, por cada código de la guía, determina la unidad comercial: si es por \textit{caja}, registra pallet, factor de conversión y calcula \texttt{cajas = pallets \texttimes{} factor}; si es por \textit{unidad} (mercadería de merchandising), registra sin pallet ni factor. El procedimiento concluye con la firma del pedido de ingreso por parte del analista, el chofer y el almacén.
+El procedimiento inicia cuando el cliente entrega la guía de remisión física, documento legal de transporte que incluye datos del vehículo (placa, brevete del chofer) y la relación general de bienes trasladados. El Analista de inventarios inspecciona físicamente las paletas recibidas y extrae de ellas los datos de inventario: código de producto, descripción, lote y fecha de vencimiento (FV), y la cantidad. Para la cantidad, determina la unidad comercial del producto: si es por \textit{caja}, registra pallet, factor de conversión y calcula \texttt{cajas = pallets \texttimes{} factor}; si es por \textit{unidad} (mercadería de merchandising), registra sin pallet ni factor. Adicionalmente ingresa los datos de transporte de la guía (placa, chofer, brevete, usuario, fecha y hora). El procedimiento concluye con la firma del pedido de ingreso por parte del analista, el chofer y el almacén.
 
 \begin{table}[H]
 \centering\small
@@ -538,9 +538,9 @@ El procedimiento inicia cuando el cliente envía la guía de remisión (correo e
 \color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
 \rowcolor{upeu_light}
 \bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
-Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista \\ \hline
+Cliente & Guía de remisión; mercadería física & 1. Entregar guía de remisión & Guía entregada & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & Guía recibida & 2. Registrar pedido de ingreso & Pedido de ingreso registrado & Analista \\ \hline
+Analista & Guía + paletas físicas & 2. Inspeccionar paletas y registrar datos (código, lote, FV, cantidad) & Pedido de ingreso registrado & Analista \\ \hline
 Analista & Pedido de ingreso registrado & 3. Firmar pedido de ingreso & Pedido de ingreso firmado & Almacén \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Registro de pedido de ingreso}
@@ -707,12 +707,12 @@ Líder & Analista de inventarios \\ \hline
 Participantes & Analista de inventarios \\ \hline
 Entradas & Código previamente recepcionado \\ \hline
 \rowcolor{gray!10}
-Salidas & Reporte de movimientos actualizado con la nueva ubicación del código \\ \hline
+Salidas & Stock actualizado con la nueva ubicación del código \\ \hline
 \end{tabularx}
 \caption{Ficha del procedimiento: Transferencia de ubicación}
 \end{table}
 
-Procedimiento de sistema que permite mover un código de una ubicación origen a una ubicación destino dentro del almacén. El Analista de inventarios ingresa el código a transferir; el sistema muestra las fechas de vencimiento disponibles. El analista decide si transfiere la totalidad de las fechas registradas o únicamente una fecha específica, indica la ubicación de origen y destino, y ejecuta la transferencia. El movimiento queda reflejado en el reporte de movimientos.
+Procedimiento de sistema que permite mover un código de una ubicación origen a una ubicación destino dentro del almacén. El Analista de inventarios ingresa el código a transferir; el sistema muestra las fechas de vencimiento disponibles. El analista selecciona el lote a transferir, indica la ubicación de origen y destino, y ejecuta la transferencia. El stock queda actualizado en el sistema con la nueva ubicación. El reporte de movimientos es un artefacto de trazabilidad disponible bajo demanda, no un output directo de este procedimiento.
 
 \begin{table}[H]
 \centering\small
@@ -730,7 +730,7 @@ Analista & Código identificado & 2. Consultar fechas de vencimiento & Lotes dis
 Analista & Lotes disponibles & 3. Seleccionar lote a transferir & Lote seleccionado & Analista \\ \hline
 \rowcolor{gray!10}
 Analista & Lote seleccionado & 4. Indicar ubicación origen y destino & Ubicaciones definidas & Analista \\ \hline
-Analista & Ubicaciones definidas & 5. Ejecutar transferencia & Reporte de movimientos actualizado & Despacho \\ \hline
+Analista & Ubicaciones definidas & 5. Ejecutar transferencia & Stock actualizado con nueva ubicación & Despacho \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Transferencia de ubicación}
 \end{table}
@@ -768,12 +768,12 @@ Líder & Analista de inventarios \\ \hline
 Participantes & Auxiliar de almacén, Analista de inventarios \\ \hline
 Entradas & Paleta física cuya composición no coincide con lo declarado en la guía de remisión \\ \hline
 \rowcolor{gray!10}
-Salidas & Reporte de movimientos actualizado con la paleta dividida en las cantidades reales \\ \hline
+Salidas & Paleta dividida en cantidades reales; stock actualizado en sistema \\ \hline
 \end{tabularx}
 \caption{Ficha del procedimiento: Reempaque}
 \end{table}
 
-Procedimiento aplicado cuando la composición física de una paleta no coincide con lo declarado en la guía de remisión (por ejemplo, una paleta declarada como 50 unidades que físicamente llega dividida en dos paletas de 20 y 30). El Auxiliar de almacén constata las paletas tal como llegaron, sin unirlas. El Analista de inventarios selecciona la paleta a reempacar, registra la fecha de vencimiento correspondiente y ejecuta el reempaque, dividiendo el registro en las cantidades correspondientes. El resultado queda reflejado en el reporte de movimientos.
+Procedimiento aplicado cuando la composición física de una paleta no coincide con lo declarado en la guía de remisión (por ejemplo, una paleta declarada como 50 unidades que físicamente llega dividida en dos paletas de 20 y 30). El Auxiliar de almacén constata las paletas tal como llegaron, sin unirlas. El Analista de inventarios selecciona la paleta a reempacar, registra la fecha de vencimiento correspondiente y ejecuta el reempaque, dividiendo el registro en las cantidades reales. El stock queda actualizado en el sistema con la composición real de la paleta.
 
 \begin{table}[H]
 \centering\small
@@ -790,7 +790,7 @@ Recepción & Paleta física no coincidente con la guía & 1. Constatar paletas t
 Auxiliar & Paletas constatadas & 2. Seleccionar la paleta a reempacar & Paleta seleccionada & Analista \\ \hline
 Analista & Paleta seleccionada & 3. Registrar fecha de vencimiento & FV registrada & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & FV registrada & 4. Ejecutar reempaque (dividir paleta en cantidades reales) & Reporte de movimientos actualizado & Despacho \\ \hline
+Analista & FV registrada & 4. Ejecutar reempaque (dividir paleta en cantidades reales) & Stock actualizado con cantidades reales & Despacho \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Reempaque}
 \end{table}
@@ -1092,7 +1092,7 @@ Salidas & Pedido de salida firmado, listo para verificación física \\ \hline
 \caption{Ficha del procedimiento: Registro de pedido de salida}
 \end{table}
 
-El procedimiento es estructuralmente similar al Registro de pedido de ingreso, con elementos adicionales propios del despacho. El Auxiliar de almacén realiza el \textit{picking}, localizando y extrayendo la mercadería según la zona, ubicación y stock disponible del código solicitado. El Analista de inventarios registra el pedido de salida código por código, consulta la zona y el stock del código recepcionado y, si el código presenta varias fechas de vencimiento, selecciona el lote aplicando la regla FEFO (primero en vencer, primero en salir). El registro sigue la misma bifurcación por unidad comercial (caja o unidad) que el proceso de Recepción.
+El procedimiento inicia con la entrega de la guía de remisión de entrada por parte del cliente, que declara los bienes a retirar. El Analista de inventarios verifica primero en el sistema que existe stock suficiente para atender el pedido, y a continuación registra el pedido de salida código por código, consultando zona y stock del código, y seleccionando el lote según la regla FEFO (primero en vencer, primero en salir) cuando hay varias fechas de vencimiento. El Auxiliar de almacén realiza el \textit{picking} guiándose por la zona e instrucciones del sistema. El procedimiento concluye con la firma del pedido por parte del analista, el chofer y el almacén.
 
 \begin{table}[H]
 \centering\small
@@ -1104,12 +1104,13 @@ El procedimiento es estructuralmente similar al Registro de pedido de ingreso, c
 \color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
 \rowcolor{upeu_light}
 \bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
-Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista \\ \hline
+Cliente & Guía de remisión de entrada & 1. Entregar guía de remisión & Guía recibida & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & Guía recibida & 2. Registrar pedido de salida & Pedido de salida registrado & Auxiliar \\ \hline
-Auxiliar & Pedido de salida registrado & 3. Realizar picking & Mercadería extraída & Analista \\ \hline
+Analista & Guía recibida & 2. Verificar existencias en sistema & Stock confirmado & Analista \\ \hline
+Analista & Stock confirmado & 3. Registrar pedido de salida & Pedido de salida registrado & Auxiliar \\ \hline
 \rowcolor{gray!10}
-Analista & Mercadería extraída & 4. Firmar pedido de salida & Pedido de salida firmado & Almacén \\ \hline
+Auxiliar & Pedido de salida registrado & 4. Realizar picking & Mercadería extraída & Analista \\ \hline
+Analista & Mercadería extraída & 5. Firmar pedido de salida & Pedido de salida firmado & Almacén \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Registro de pedido de salida}
 \end{table}
@@ -1148,12 +1149,12 @@ Líder & Supervisor \\ \hline
 Participantes & Auxiliar de almacén, Supervisor \\ \hline
 Entradas & Pedido de salida firmado \\ \hline
 \rowcolor{gray!10}
-Salidas & Pedido de salida aprobado + guía de remisión (impresos, engrampados y archivados); cliente atendido \\ \hline
+Salidas & Pedido de salida impreso y archivado; guía de remisión de salida emitida para el transportista \\ \hline
 \end{tabularx}
 \caption{Ficha del procedimiento: Verificación y conformidad (Despacho)}
 \end{table}
 
-Procedimiento idéntico en estructura a la Verificación y conformidad de Recepción, aplicado al pedido de salida. El Auxiliar de almacén verifica la mercadería contra el pedido de salida; el Supervisor aprueba o, ante observaciones, modifica el pedido (cantidad, lote, fecha de vencimiento, zona/ubicación o reempaque). El procedimiento concluye con la impresión del pedido de salida y su engrampado a la guía de remisión, quedando el conjunto documental archivado y el cliente atendido.
+Procedimiento estructuralmente similar a la Verificación y conformidad de Recepción, aplicado al pedido de salida. El Auxiliar de almacén verifica la mercadería contra el pedido de salida; el Supervisor aprueba o, ante observaciones, modifica el pedido (cantidad, lote, fecha de vencimiento, zona/ubicación). El procedimiento concluye con la impresión del pedido de salida y la emisión de la guía de remisión de salida, documento legal que CO LOGISTIC entrega al transportista para que pueda circular con la mercadería despachada. El pedido de salida queda archivado.
 
 \begin{table}[H]
 \centering\small
@@ -1170,7 +1171,7 @@ Analista & Pedido de salida firmado & 1. Verificar mercadería contra pedido de 
 Auxiliar & Mercadería constatada & 2. Determinar conformidad (¿conforme a la guía?) & Decisión: aprobar o modificar & Supervisor \\ \hline
 Supervisor & Decisión: modificar & 3. Modificar pedido (cantidad, lote, FV, zona o reempaque) & Pedido corregido & Supervisor \\ \hline
 \rowcolor{gray!10}
-Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir y engrampar el pedido de salida con la guía de remisión & Pedido de salida + guía archivados & Cliente \\ \hline
+Supervisor & Decisión: aprobar / pedido corregido & 4. Imprimir pedido de salida y emitir guía de remisión de salida & Pedido archivado; guía de remisión de salida entregada al transportista & Cliente / Transportista \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Verificación y conformidad (Despacho)}
 \end{table}
@@ -3121,7 +3122,7 @@ El presente capítulo documenta la situación actual (AS-IS) del macroproceso pr
 
 \subsection{Descripción del proceso actual}
 
-El proceso de Recepción de Mercadería inicia cuando el cliente llega al almacén con la guía de remisión física. El Analista de inventarios registra el pedido de ingreso en el sistema, introduciendo manualmente los datos de transporte (placa, chofer, brevete, usuario, fecha y hora) y la mercadería línea por línea: código, descripción, lote, fecha de vencimiento, y cantidad en pallets con su factor de conversión o en unidades, según la unidad comercial del producto. El pedido es firmado por el analista, el chofer y el personal de almacén. A continuación, el Auxiliar de almacén verifica físicamente la mercadería contra lo registrado, y el Supervisor determina la conformidad: si todo coincide, aprueba el pedido; si hay observaciones, modifica los campos necesarios. El proceso concluye con la impresión del pedido de ingreso y su engrampado a la guía de remisión del cliente, quedando el conjunto archivado.
+El proceso de Recepción de Mercadería inicia cuando el cliente llega al almacén con la guía de remisión física, documento legal de transporte que declara los bienes trasladados e incluye datos del vehículo (placa, brevete del chofer). El Analista de inventarios inspecciona físicamente las paletas recibidas y registra los datos de inventario directamente desde la mercadería: código de producto, descripción, lote y fecha de vencimiento (FV) de cada partida, y la cantidad en pallets con su factor de conversión o en unidades según la unidad comercial. Adicionalmente, ingresa los datos de transporte que figuran en la guía de remisión (placa, chofer, brevete, usuario, fecha y hora). El pedido es firmado por el analista, el chofer y el personal de almacén. A continuación, el Auxiliar de almacén verifica físicamente la mercadería contra lo registrado, y el Supervisor determina la conformidad: si todo coincide, aprueba el pedido; si hay observaciones, modifica los campos necesarios. El proceso concluye con la impresión del pedido de ingreso y su engrampado a la guía de remisión del cliente, quedando el conjunto archivado.
 
 \subsection{Diagramas BPMN AS-IS}
 
@@ -3145,7 +3146,7 @@ El proceso de Recepción de Mercadería inicia cuando el cliente llega al almac�
 \color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
 \rowcolor{gray!10}
 1 & Entregar guía de remisión & Cliente & 5 min & Guía física \\ \hline
-2 & Registrar pedido de ingreso (transporte + mercadería) & Analista & 20 min & Sistema \\ \hline
+2 & Inspeccionar paletas y registrar datos (código, lote, FV, cantidad) & Analista & 20 min & Sistema + inspección física \\ \hline
 \rowcolor{gray!10}
 3 & Firmar pedido de ingreso & Analista / Chofer / Almacén & 5 min & Pedido impreso \\ \hline
 4 & Verificar mercadería contra pedido de ingreso & Auxiliar & 15 min & Pedido + guía física \\ \hline
@@ -3171,7 +3172,7 @@ El proceso de Recepción de Mercadería inicia cuando el cliente llega al almac�
 
 \subsection{Descripción del proceso actual}
 
-El proceso de Almacenamiento comprende dos procedimientos independientes orientados a mantener la integridad del inventario físico. La \textbf{Transferencia de ubicación} ocurre cuando el Analista necesita mover mercadería de una posición a otra dentro del almacén: ingresa el código en el sistema, consulta las fechas de vencimiento disponibles, selecciona el lote a transferir, indica la ubicación origen y destino, y ejecuta la transferencia. El \textbf{Reempaque} se activa cuando una paleta llega con una composición física distinta a la declarada en la guía de remisión; el Auxiliar constata las paletas tal como llegaron y el Analista divide el registro en las cantidades reales, actualizando el reporte de movimientos del sistema. Ambos procedimientos son ejecutados por el Analista de inventarios, apoyado por el Auxiliar de almacén en el caso del reempaque.
+El proceso de Almacenamiento comprende dos procedimientos independientes orientados a mantener la integridad del inventario físico. La \textbf{Transferencia de ubicación} ocurre cuando el Analista necesita mover mercadería de una posición a otra dentro del almacén: ingresa el código en el sistema, consulta las fechas de vencimiento disponibles, selecciona el lote a transferir, indica la ubicación origen y destino, y ejecuta la transferencia, quedando el stock actualizado en el sistema. El \textbf{Reempaque} se activa cuando una paleta llega con una composición física distinta a la declarada en la guía de remisión; el Auxiliar constata las paletas tal como llegaron y el Analista divide el registro en las cantidades reales en el sistema. El \textbf{reporte de movimientos} es un artefacto de trazabilidad que el sistema genera bajo demanda del cliente (filtrable por código, lote, placa o rango de fechas) para auditar el historial de ingresos, salidas y movimientos; no es un output directo de estos procedimientos sino una consulta disponible en cualquier momento. Ambos procedimientos son ejecutados por el Analista de inventarios, apoyado por el Auxiliar de almacén en el caso del reempaque.
 
 \subsection{Diagramas BPMN AS-IS}
 
@@ -3273,7 +3274,7 @@ Los servicios de Acondicionamiento (Repaletizado y Reencajado) son opcionales, s
 
 \subsection{Descripción del proceso actual}
 
-El proceso de Despacho inicia cuando el cliente entrega la guía de remisión de salida. El Analista de inventarios registra el pedido de salida código por código, consultando en el sistema la zona y el stock disponible para cada ítem, y aplicando FEFO (\textit{First Expired, First Out}) cuando existen varias fechas de vencimiento para un mismo código. Paralelamente, el Auxiliar de almacén realiza el picking físico guiándose por la información de zona que provee el sistema. El pedido es firmado por el analista, el chofer y el almacén. El Auxiliar verifica la mercadería contra el pedido de salida, y el Supervisor determina la conformidad: si todo coincide, aprueba y despacha; si hay observaciones, modifica el pedido. El proceso concluye con la impresión del pedido de salida y su engrampado a la guía de remisión, quedando el conjunto documental archivado y el cliente atendido.
+El proceso de Despacho inicia cuando el cliente entrega la guía de remisión de entrada, que declara los bienes que debe retirar del almacén. El Analista de inventarios verifica en el sistema que existe stock suficiente para atender el pedido, y luego registra el pedido de salida código por código, aplicando FEFO (\textit{First Expired, First Out}) cuando existen varias fechas de vencimiento para un mismo código. El Auxiliar de almacén realiza el picking físico guiándose por la información de zona que provee el sistema. El pedido es firmado por el analista, el chofer y el almacén. El Auxiliar verifica la mercadería contra el pedido de salida, y el Supervisor determina la conformidad: si todo coincide, aprueba y despacha; si hay observaciones, modifica el pedido. El proceso concluye con la impresión del pedido de salida y la emisión de la guía de remisión de salida, documento legal que acompaña al transporte para que el vehículo pueda circular legalmente con la mercadería despachada.
 
 \subsection{Diagramas BPMN AS-IS}
 
@@ -3296,16 +3297,17 @@ El proceso de Despacho inicia cuando el cliente entrega la guía de remisión de
 \rowcolor{upeu_dark}
 \color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
 \rowcolor{gray!10}
-1 & Entregar guía de remisión de salida & Cliente & 5 min & Guía física \\ \hline
-2 & Registrar pedido de salida (código, lote, FV, cantidad) & Analista & 20 min & Sistema \\ \hline
+1 & Entregar guía de remisión de entrada & Cliente & 5 min & Guía física \\ \hline
+2 & Verificar existencias en sistema & Analista & 5 min & Sistema \\ \hline
 \rowcolor{gray!10}
-3 & Realizar picking de mercadería & Auxiliar & 20--40 min & Sistema (zona) + físico \\ \hline
-4 & Firmar pedido de salida & Analista / Chofer / Almacén & 5 min & Pedido impreso \\ \hline
+3 & Registrar pedido de salida (código, lote, FV, cantidad) & Analista & 20 min & Sistema \\ \hline
+4 & Realizar picking de mercadería & Auxiliar & 20--40 min & Sistema (zona) + físico \\ \hline
 \rowcolor{gray!10}
-5 & Verificar mercadería contra pedido de salida & Auxiliar & 15 min & Pedido + guía física \\ \hline
-6 & Aprobar o modificar pedido & Supervisor & 5--15 min & Sistema \\ \hline
+5 & Firmar pedido de salida & Analista / Chofer / Almacén & 5 min & Pedido impreso \\ \hline
+6 & Verificar mercadería contra pedido de salida & Auxiliar & 15 min & Pedido + guía física \\ \hline
 \rowcolor{gray!10}
-7 & Imprimir y engrampar pedido de salida + guía & Supervisor & 5 min & Impresora \\ \hline
+7 & Aprobar o modificar pedido & Supervisor & 5--15 min & Sistema \\ \hline
+8 & Imprimir pedido de salida y emitir guía de remisión de salida & Supervisor & 5 min & Impresora \\ \hline
 \end{tabularx}
 \caption{Actividades AS-IS --- Despacho de Mercadería}
 \end{table}
@@ -3326,154 +3328,245 @@ El proceso de Despacho inicia cuando el cliente entrega la guía de remisión de
 
 \chapter{CE0133-Modelado de Procesos TO-BE (propuesta de mejora)}
 
-\section{Descripción General del Proceso TO-BE}
+El presente capítulo describe la situación futura (TO-BE) del macroproceso \textbf{Gestión de Almacén} de CO LOGISTIC S.A.C. tras la implementación del Sistema Web de Gestión de Almacenes con Módulo de Inteligencia de Negocios, desarrollado bajo arquitectura de microservicios conforme al Entregable 2. Para cada proceso se presentan los diagramas BPMN rediseñados, la tabla de actividades mejorada y la tabla comparativa AS-IS vs TO-BE. Los procesos cuyo flujo físico no cambia (Reempaque, Repaletizado, Reencajado) reutilizan los diagramas AS-IS; la mejora en ellos es exclusivamente el registro digital del reporte en el sistema.
 
-La propuesta de rediseño del proceso de Gestión de Almacenes se fundamenta en la implementación del Sistema Web de Gestión de Almacenes con Módulo de Inteligencia de Negocios, desarrollado bajo el marco ágil Scrum y una arquitectura de microservicios, conforme a lo definido en el Entregable 2. El proceso TO-BE elimina los registros manuales redundantes, centraliza la información en una base de datos transaccional y habilita la ubicabilidad digital de los productos mediante códigos de ubicación dentro del sistema.
+% ------------------------------------------------------------
+\section{Recepción de Mercadería}
+% ------------------------------------------------------------
 
-\section{Flujo del Proceso TO-BE}
+\subsection{Descripción del proceso TO-BE}
 
-\figura[0.95\linewidth]{proceso-to-be.png}{Flujo del proceso TO-BE de Gestión de Almacenes}
+Con el módulo de Recepción del sistema, el Analista escanea el código de barras de cada producto en lugar de introducirlo manualmente, eliminando errores de digitación en el código. El lote y la fecha de vencimiento se siguen tomando directamente de la inspección física de las paletas, pero el sistema autocompleta la descripción y datos maestros del producto al leer el código, reduciendo el tiempo de registro. El Analista confirma el pedido de ingreso y lo firma junto al chofer; el registro queda centralizado digitalmente, eliminando la impresión y el engrampado de documentos físicos al término del proceso de recepción.
 
-\section{Descripción de Actividades del Proceso TO-BE}
+\subsection{Diagramas BPMN TO-BE}
 
-\begin{table}[H]
-\centering
-\small
-\renewcommand{\arraystretch}{1.35}
-\setlength{\tabcolsep}{6pt}
+\diagrama{tobe_rec_p1.png}{TO-BE --- Registro de pedido de ingreso (Recepción P1)}
+\diagrama{tobe_rec_p2.png}{TO-BE --- Verificación y conformidad (Recepción P2)}
 
-\begin{tabularx}{\textwidth}{
-    |>{\centering\arraybackslash}p{0.06\textwidth}
-    |>{\raggedright\arraybackslash}p{0.30\textwidth}
-    |>{\raggedright\arraybackslash}p{0.20\textwidth}
-    |>{\centering\arraybackslash}p{0.13\textwidth}
-    |>{\raggedright\arraybackslash}X|
-}
-\hline
-
-\rowcolor{upeu_dark}
-\color{white}\bfseries N°
-&
-\color{white}\bfseries Actividad
-&
-\color{white}\bfseries Responsable
-&
-\color{white}\bfseries Tiempo
-&
-\color{white}\bfseries Herramienta utilizada
-\\
-\hline
-
-\rowcolor{gray!10}
-1 & Registro digital de recepción de mercadería & Personal de almacén & 8 min & Módulo de Recepción (ERP) \\
-\hline
-
-2 & Asignación automática/asistida de ubicación en racks & Sistema / Personal de almacén & 5 min & Módulo de Ubicaciones (ERP) \\
-\hline
-
-\rowcolor{gray!10}
-3 & Actualización automática del stock en el sistema & Sistema & Inmediato & Módulo de Inventario (ERP) \\
-\hline
-
-4 & Recepción digital de pedido de despacho & Coordinador de operaciones & 3 min & Módulo de Pedidos (ERP) \\
-\hline
-
-\rowcolor{gray!10}
-5 & Localización del producto mediante ubicación digital & Personal de almacén & 5 min & Módulo de Ubicaciones (ERP) \\
-\hline
-
-6 & Preparación del pedido (picking) guiado por sistema & Personal de almacén & 20 min & Módulo de Picking (ERP) \\
-\hline
-
-\rowcolor{gray!10}
-7 & Verificación y despacho con registro digital & Coordinador de operaciones & 8 min & Módulo de Despacho (ERP) \\
-\hline
-
-8 & Actualización automática de indicadores BI & Sistema & Inmediato & Módulo de Inteligencia de Negocios \\
-\hline
-
-\rowcolor{gray!10}
-9 & Generación automática de reporte gerencial & Sistema & 2 min & Módulo de Inteligencia de Negocios \\
-\hline
-
-\end{tabularx}
-\caption{Descripción de actividades del proceso TO-BE}
-\end{table}
-
-\section{Mejoras Incorporadas Respecto al Proceso AS-IS}
+\subsection{Tabla de actividades}
 
 \begin{table}[H]
-\centering
-\small
-\renewcommand{\arraystretch}{1.35}
-\setlength{\tabcolsep}{6pt}
-
-\begin{tabularx}{\textwidth}{
-    |>{\raggedright\arraybackslash}p{0.30\textwidth}
-    |>{\raggedright\arraybackslash}p{0.32\textwidth}
-    |>{\raggedright\arraybackslash}X|
-}
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.04\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}X|}
 \hline
-
 \rowcolor{upeu_dark}
-\color{white}\bfseries Punto crítico AS-IS
-&
-\color{white}\bfseries Solución TO-BE
-&
-\color{white}\bfseries Beneficio esperado
-\\
-\hline
-
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
 \rowcolor{gray!10}
-Doble registro de información (físico y Excel)
-&
-Registro único y digital en el módulo de Recepción del ERP
-&
-Eliminación de duplicidad y reducción de errores de transcripción
-\\
-\hline
-
-Ausencia de trazabilidad en tiempo real
-&
-Módulo de Ubicaciones con código digital por posición de rack
-&
-Trazabilidad completa de cada producto dentro del almacén
-\\
-\hline
-
+1 & Entregar guía de remisión & Cliente & 5 min & Guía física \\ \hline
+2 & Escanear código e ingresar lote/FV desde paleta & Analista & 8 min & Lector + Módulo Recepción \\ \hline
 \rowcolor{gray!10}
-Tiempo elevado de búsqueda de productos
-&
-Localización inmediata mediante consulta digital de ubicación
-&
-Reducción del tiempo de búsqueda de 30 a 5 minutos
-\\
-\hline
-
-Reportes gerenciales tardíos
-&
-Generación automática de reportes mediante el módulo de BI
-&
-Reducción del tiempo de reporte de 60 a 2 minutos
-\\
-\hline
-
+3 & Autocompletar descripción y datos del producto & Sistema & Inmediato & Módulo Recepción \\ \hline
+4 & Confirmar y registrar pedido de ingreso & Analista & 3 min & Módulo Recepción \\ \hline
 \rowcolor{gray!10}
-Riesgo de errores humanos en inventario
-&
-Actualización automática e inmediata del stock por el sistema
-&
-Mayor exactitud de inventario y menor intervención manual
-\\
-\hline
-
+5 & Firmar pedido de ingreso & Analista / Chofer & 3 min & Sistema \\ \hline
+6 & Verificar mercadería contra pedido & Auxiliar & 10 min & Módulo Recepción \\ \hline
+\rowcolor{gray!10}
+7 & Aprobar o modificar pedido & Supervisor & 3--5 min & Módulo Recepción \\ \hline
+8 & Archivar pedido digitalmente & Sistema & Inmediato & Módulo Recepción \\ \hline
 \end{tabularx}
-\caption{Comparativo de mejoras incorporadas en el proceso TO-BE}
+\caption{Actividades TO-BE --- Recepción de Mercadería}
 \end{table}
 
-\section{Tiempo Total del Ciclo TO-BE}
+\subsection{Comparativo AS-IS vs TO-BE}
 
-El tiempo total estimado del ciclo completo en el proceso TO-BE es de \textbf{51 minutos}, frente a los 235 minutos del proceso AS-IS, lo que representa una reducción aproximada del \textbf{78\%} en el tiempo total del ciclo operativo, gracias a la automatización de los registros, la digitalización de la ubicabilidad y la generación automática de indicadores.
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Problema AS-IS & \color{white}\bfseries Solución TO-BE & \color{white}\bfseries Beneficio \\ \hline
+\rowcolor{gray!10}
+Registro manual de código línea por línea & Escaneo de código + autocompletado de descripción del producto & Eliminación de errores de digitación en código; lote/FV se siguen tomando de la paleta física \\ \hline
+Detección reactiva de discrepancias & Validación automática al confirmar pedido & Alertas inmediatas ante inconsistencias \\ \hline
+\rowcolor{gray!10}
+Reproceso por modificaciones post-firma & Modificación digital sin reimpresión & Eliminación de reimpresiones \\ \hline
+Archivo documental en físico & Archivo digital automático en el sistema & Trazabilidad completa e historial consultable \\ \hline
+\end{tabularx}
+\caption{Comparativo AS-IS vs TO-BE --- Recepción}
+\end{table}
+
+% ------------------------------------------------------------
+\section{Almacenamiento}
+% ------------------------------------------------------------
+
+\subsection{Descripción del proceso TO-BE}
+
+El módulo de Ubicaciones sugiere automáticamente la ubicación destino para la mercadería según reglas configuradas (capacidad, tipo de producto, rotación). En la Transferencia, el sistema propone el lote y la ubicación destino, y actualiza el inventario de forma automática al confirmar la operación. El Reempaque mantiene su flujo físico; la mejora es que el Analista registra el resultado en el módulo de Inventario y Movimientos, eliminando el papel.
+
+\subsection{Diagramas BPMN TO-BE}
+
+\diagrama{tobe_alm_p1.png}{TO-BE --- Transferencia de ubicación (Almacenamiento P1)}
+\diagrama{alm_p2_reempaque.png}{TO-BE --- Reempaque (flujo físico sin cambios; mejora: registro digital)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.04\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{upeu_light}\bfseries Procedimiento 1: Transferencia de ubicación} \\ \hline
+\rowcolor{gray!10}
+1 & Ingresar código a transferir & Analista & 2 min & Módulo Ubicaciones \\ \hline
+2 & Sugerir lote y ubicación destino & Sistema & Inmediato & Módulo Ubicaciones \\ \hline
+\rowcolor{gray!10}
+3 & Confirmar o ajustar selección & Analista & 1 min & Módulo Ubicaciones \\ \hline
+4 & Ejecutar transferencia & Analista & 1 min & Módulo Ubicaciones \\ \hline
+\rowcolor{gray!10}
+5 & Actualizar inventario automáticamente & Sistema & Inmediato & Módulo Inventario \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{upeu_light}\bfseries Procedimiento 2: Reempaque (flujo físico sin cambios)} \\ \hline
+6 & Constatar paletas y ejecutar reempaque & Auxiliar / Analista & 15 min & Físico \\ \hline
+\rowcolor{gray!10}
+7 & Registrar reempaque en sistema & Analista & 3 min & Módulo Inventario \\ \hline
+\end{tabularx}
+\caption{Actividades TO-BE --- Almacenamiento}
+\end{table}
+
+\subsection{Comparativo AS-IS vs TO-BE}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Problema AS-IS & \color{white}\bfseries Solución TO-BE & \color{white}\bfseries Beneficio \\ \hline
+\rowcolor{gray!10}
+Ubicación sin reglas automáticas & Módulo de Ubicaciones sugiere destino según reglas & Reducción de tiempo de decisión y errores de asignación \\ \hline
+Sin alertas de vencimiento próximo & Dashboard BI con alertas de lotes próximos a vencer & Gestión proactiva de FV \\ \hline
+\rowcolor{gray!10}
+Reempaque sin registro digital & Registro en Módulo de Inventario y Movimientos & Trazabilidad completa del reempaque \\ \hline
+Transferencias una a una & Actualización automática de inventario al confirmar & Reducción de pasos manuales \\ \hline
+\end{tabularx}
+\caption{Comparativo AS-IS vs TO-BE --- Almacenamiento}
+\end{table}
+
+% ------------------------------------------------------------
+\section{Acondicionamiento de Mercadería}
+% ------------------------------------------------------------
+
+\subsection{Descripción del proceso TO-BE}
+
+El flujo físico del Repaletizado y el Reencajado no cambia: el cliente sigue solicitando el servicio y el Auxiliar ejecuta el traslado manual. La mejora es que al finalizar, el Auxiliar registra el servicio directamente en el sistema (módulo de movimientos/servicios), que calcula la tarifa automáticamente desde el tarifario digital. El reporte ya no se genera en papel.
+
+\subsection{Diagramas BPMN TO-BE}
+
+\diagrama{aco_p1_repaletizado.png}{TO-BE --- Repaletizado (flujo físico sin cambios; mejora: registro digital)}
+\diagrama{aco_p2_reencajado.png}{TO-BE --- Reencajado (flujo físico sin cambios; mejora: registro digital)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.04\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\rowcolor{gray!10}
+1 & Solicitar servicio de acondicionamiento & Cliente & 2 min & Solicitud verbal / guía \\ \hline
+2 & Proveer material destino & Cliente & 5 min & Paleta / caja física \\ \hline
+\rowcolor{gray!10}
+3 & Trasladar mercadería al nuevo contenedor & Auxiliar & 30--60 min & Trabajo físico \\ \hline
+4 & Registrar servicio en sistema (tarifa automática) & Auxiliar & 3 min & Módulo de Servicios \\ \hline
+\end{tabularx}
+\caption{Actividades TO-BE --- Acondicionamiento de Mercadería}
+\end{table}
+
+\subsection{Comparativo AS-IS vs TO-BE}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Problema AS-IS & \color{white}\bfseries Solución TO-BE & \color{white}\bfseries Beneficio \\ \hline
+\rowcolor{gray!10}
+Reporte en papel sin integración & Registro digital en módulo de servicios & Trazabilidad y eliminación del riesgo de pérdida documental \\ \hline
+Tarifa calculada manualmente & Tarifario digital integrado en el sistema & Facturación exacta y automática \\ \hline
+\rowcolor{gray!10}
+Sin medición de tiempos & Registro de fecha/hora automático al crear la orden & Datos para análisis de capacidad \\ \hline
+\end{tabularx}
+\caption{Comparativo AS-IS vs TO-BE --- Acondicionamiento}
+\end{table}
+
+% ------------------------------------------------------------
+\section{Despacho de Mercadería}
+% ------------------------------------------------------------
+
+\subsection{Descripción del proceso TO-BE}
+
+Al recibir la guía de remisión del cliente, el sistema verifica automáticamente la disponibilidad de stock antes de que el Analista registre el pedido. Al registrar, el módulo de Despacho aplica FEFO automáticamente, seleccionando el lote con vencimiento más próximo sin intervención manual. El Auxiliar realiza el picking guiado por el sistema, que indica la ubicación exacta de cada ítem. La verificación es asistida: el sistema compara lo despachado contra lo registrado y alerta ante discrepancias. Al confirmar, el sistema registra el despacho y emite automáticamente la guía de remisión electrónica de salida, documento legal que acompaña al transportista, sin necesidad de impresión manual.
+
+\subsection{Diagramas BPMN TO-BE}
+
+\diagrama{tobe_des_p1.png}{TO-BE --- Registro de pedido de salida (Despacho P1)}
+\diagrama{tobe_des_p2.png}{TO-BE --- Verificación y conformidad (Despacho P2)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{0.04\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\rowcolor{gray!10}
+1 & Entregar guía de remisión & Cliente & 5 min & Guía física \\ \hline
+2 & Verificar stock disponible & Sistema & Inmediato & Módulo Despacho \\ \hline
+\rowcolor{gray!10}
+3 & Registrar pedido de salida & Analista & 8 min & Módulo Despacho \\ \hline
+4 & Aplicar FEFO y asignar lote automáticamente & Sistema & Inmediato & Módulo Despacho \\ \hline
+\rowcolor{gray!10}
+5 & Confirmar pedido de salida & Analista & 2 min & Módulo Despacho \\ \hline
+6 & Realizar picking guiado por sistema & Auxiliar & 15--25 min & Módulo Picking \\ \hline
+\rowcolor{gray!10}
+7 & Firmar pedido de salida & Analista / Chofer & 3 min & Sistema \\ \hline
+8 & Verificar mercadería con soporte del sistema & Auxiliar & 8 min & Módulo Despacho \\ \hline
+\rowcolor{gray!10}
+9 & Aprobar o modificar pedido & Supervisor & 3--5 min & Módulo Despacho \\ \hline
+10 & Registrar despacho y emitir guía de remisión electrónica de salida & Sistema & Inmediato & Módulo Despacho \\ \hline
+\end{tabularx}
+\caption{Actividades TO-BE --- Despacho de Mercadería}
+\end{table}
+
+\subsection{Comparativo AS-IS vs TO-BE}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}p{0.32\textwidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries Problema AS-IS & \color{white}\bfseries Solución TO-BE & \color{white}\bfseries Beneficio \\ \hline
+\rowcolor{gray!10}
+Registro manual código por código & Registro asistido en módulo de Despacho & Reducción de tiempo y errores de entrada \\ \hline
+Picking sin guía digital & Picking guiado por módulo (ubicación exacta por ítem) & Reducción de tiempo de picking y errores de localización \\ \hline
+\rowcolor{gray!10}
+FEFO a criterio del analista & FEFO automático aplicado por el sistema & Cumplimiento garantizado sin intervención manual \\ \hline
+Verificación manual sin soporte & Verificación asistida con alertas automáticas & Detección inmediata de discrepancias \\ \hline
+\rowcolor{gray!10}
+Reproceso por modificaciones post-firma & Modificación digital sin reimpresión & Eliminación de reproceso documental \\ \hline
+Archivo físico de documentos & Archivo digital automático al confirmar despacho & Trazabilidad completa e historial consultable \\ \hline
+\rowcolor{gray!10}
+Guía de remisión de salida manual (impresa) & Guía de remisión electrónica emitida por el sistema & Eliminación de impresión; documento disponible de inmediato para el transportista \\ \hline
+\end{tabularx}
+\caption{Comparativo AS-IS vs TO-BE --- Despacho}
+\end{table}
 
 % ============================================================
 % CAPÍTULO 4
@@ -3491,8 +3584,7 @@ La propuesta de automatización del proceso de Gestión de Almacenes se sustenta
     \item \textbf{Módulo de Inventario:} mantiene actualizado el stock en tiempo real a partir de las transacciones registradas por los demás módulos.
     \item \textbf{Módulo de Pedidos y Picking:} centraliza la recepción de órdenes de despacho y guía al personal operativo en la preparación de pedidos.
     \item \textbf{Módulo de Despacho:} registra digitalmente la salida de mercadería y genera la documentación correspondiente.
-    \item \textbf{Módulo de Inteligencia de Negocios (BI):} procesa la información transaccional generada por los módulos anteriores para producir indicadores, reportes y tableros de control en tiempo real.
-    \item \textbf{Modelo predictivo de Machine Learning:} apoya la proyección de la ocupación y saturación del almacén en temporadas de alta demanda, a partir de los datos históricos generados por el sistema.
+    \item \textbf{Módulo de Inteligencia de Negocios (BI):} procesa la información transaccional generada por los módulos anteriores para producir indicadores, reportes y tableros de control en tiempo real, permitiendo la toma de decisiones basada en datos.
 \end{itemize}
 
 \section{Arquitectura Tecnológica de Soporte}
