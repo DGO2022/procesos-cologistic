@@ -540,10 +540,8 @@ El procedimiento inicia cuando el cliente envía la guía de remisión (correo e
 \bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
 Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & Guía recibida & 2. Registrar datos de transporte (placa, chofer, brevete, usuario, fecha y hora) & Pedido con datos de transporte & Analista \\ \hline
-Analista & Pedido con datos de transporte & 3. Registrar mercadería según unidad comercial (caja o unidad) & Pedido con cantidades calculadas & Analista \\ \hline
-\rowcolor{gray!10}
-Analista & Pedido con cantidades & 4. Firmar pedido de ingreso (analista, chofer y almacén) & Pedido de ingreso firmado & Almacén \\ \hline
+Analista & Guía recibida & 2. Registrar pedido de ingreso & Pedido de ingreso registrado & Analista \\ \hline
+Analista & Pedido de ingreso registrado & 3. Firmar pedido de ingreso & Pedido de ingreso firmado & Almacén \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Registro de pedido de ingreso}
 \end{table}
@@ -728,10 +726,11 @@ Procedimiento de sistema que permite mover un código de una ubicación origen a
 \bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
 Recepción & Código recepcionado & 1. Ingresar código a transferir & Código identificado & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & Código identificado & 2. Consultar fechas de vencimiento disponibles & Lista de fechas disponibles & Analista \\ \hline
-Analista & Lista de fechas & 3. Seleccionar todas las fechas o una fecha específica & Alcance de transferencia definido & Analista \\ \hline
+Analista & Código identificado & 2. Consultar fechas de vencimiento & Lotes disponibles & Analista \\ \hline
+Analista & Lotes disponibles & 3. Seleccionar lote a transferir & Lote seleccionado & Analista \\ \hline
 \rowcolor{gray!10}
-Analista & Alcance definido; ubicación origen y destino & 4. Ejecutar transferencia & Reporte de movimientos actualizado & Despacho \\ \hline
+Analista & Lote seleccionado & 4. Indicar ubicación origen y destino & Ubicaciones definidas & Analista \\ \hline
+Analista & Ubicaciones definidas & 5. Ejecutar transferencia & Reporte de movimientos actualizado & Despacho \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Transferencia de ubicación}
 \end{table}
@@ -1105,16 +1104,12 @@ El procedimiento es estructuralmente similar al Registro de pedido de ingreso, c
 \color{white}\bfseries S & \color{white}\bfseries I & \color{white}\bfseries P & \color{white}\bfseries O & \color{white}\bfseries C \\ \hline
 \rowcolor{upeu_light}
 \bfseries Proveedores & \bfseries Entradas & \bfseries Actividades & \bfseries Salidas & \bfseries Clientes \\ \hline
-Cliente & Guía de remisión (1 a 10+ líneas) & 1. Enviar guía de remisión & Guía recibida & Auxiliar \\ \hline
+Cliente & Guía de remisión & 1. Enviar guía de remisión & Guía recibida & Analista \\ \hline
 \rowcolor{gray!10}
-Auxiliar & Guía recibida & 2. Realizar picking (localizar y extraer mercadería según zona, ubicación y stock) & Mercadería extraída & Analista \\ \hline
-Analista & Mercadería extraída & 3. Registrar pedido de salida (código por código) & Pedido con datos de transporte & Analista \\ \hline
+Analista & Guía recibida & 2. Registrar pedido de salida & Pedido de salida registrado & Auxiliar \\ \hline
+Auxiliar & Pedido de salida registrado & 3. Realizar picking & Mercadería extraída & Analista \\ \hline
 \rowcolor{gray!10}
-Almacenamiento & Pedido con datos de transporte & 4. Consultar zona y stock del código & Pedido con zona y stock & Analista \\ \hline
-Analista & Pedido con zona y stock & 5. Seleccionar lote y FV según FEFO (si aplica) & Pedido con lote y FV & Analista \\ \hline
-\rowcolor{gray!10}
-Analista & Pedido con lote y FV & 6. Registrar según unidad comercial (caja o unidad) & Pedido con cantidades & Analista \\ \hline
-Analista & Pedido con cantidades & 7. Firmar pedido de salida (analista, chofer y almacén) & Pedido de salida firmado & Almacén \\ \hline
+Analista & Mercadería extraída & 4. Firmar pedido de salida & Pedido de salida firmado & Almacén \\ \hline
 \end{tabularx}
 \caption{SIPOC --- Registro de pedido de salida}
 \end{table}
