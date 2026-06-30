@@ -404,13 +404,13 @@ Almacenamiento \\ \hline
 Recepción de Mercadería &
 Pedido de ingreso aprobado + guía archivada &
 Almacenamiento &
-Mercadería ubicada en rack; reporte de movimientos actualizado &
+Mercadería ubicada en rack; stock actualizado en sistema &
 Despacho de Mercadería \\ \hline
 Almacenamiento; Cliente arrendador &
-Mercadería ubicada; guía de remisión de salida &
+Mercadería ubicada; guía de remisión de entrada del cliente &
 Despacho de Mercadería &
-Pedido de salida aprobado, impreso y engrampado a la guía &
-Cliente arrendador \\ \hline
+Pedido de salida archivado; guía de remisión de salida emitida al transportista &
+Cliente arrendador / Transportista \\ \hline
 \rowcolor{gray!10}
 Cliente arrendador &
 Solicitud comercial de repaletizado o reencajado &
@@ -1019,8 +1019,8 @@ Objetivo & Registrar y verificar la salida de mercadería del almacén conforme 
 Responsable (Líder) & Analista de inventarios \\ \hline
 Participantes & Cliente, Auxiliar de almacén, Analista de inventarios, Supervisor \\ \hline
 \rowcolor{gray!10}
-Entradas & Guía de remisión del cliente (salida); mercadería ubicada y registrada en Almacenamiento \\ \hline
-Salidas & Pedido de salida firmado y engrampado a la guía de remisión (archivado); cliente atendido \\ \hline
+Entradas & Guía de remisión de entrada del cliente; mercadería ubicada y registrada en Almacenamiento \\ \hline
+Salidas & Pedido de salida archivado; guía de remisión de salida emitida al transportista; cliente atendido \\ \hline
 \rowcolor{gray!10}
 Proveedores & Cliente arrendador; Almacenamiento \\ \hline
 Clientes del proceso & Cliente arrendador \\ \hline
@@ -1041,7 +1041,7 @@ Procedimientos & 1. Registro de pedido de salida \newline 2. Verificación y con
 \rowcolor{upeu_light}
 \bfseries Proveedores & \bfseries Entradas & \bfseries Procedimiento & \bfseries Salidas & \bfseries Clientes \\ \hline
 Cliente arrendador; Almacenamiento &
-Guía de remisión de salida; mercadería ubicada en rack &
+Guía de remisión de entrada del cliente; mercadería ubicada en rack &
 Registro de pedido de salida &
 Pedido de salida firmado (analista, chofer y almacén) &
 Almacén (verificación física) \\ \hline
@@ -1049,8 +1049,8 @@ Almacén (verificación física) \\ \hline
 Analista de inventarios &
 Pedido de salida firmado &
 Verificación y conformidad &
-Pedido de salida aprobado + guía engrampada (archivado); cliente atendido &
-Cliente arrendador \\ \hline
+Pedido de salida archivado; guía de remisión de salida emitida al transportista &
+Cliente arrendador / Transportista \\ \hline
 \end{tabularx}
 \caption{SIPOC del proceso: Despacho de Mercadería}
 \end{table}
@@ -3639,7 +3639,7 @@ Elaboración de reportes gerenciales & Automático & Módulo de Inteligencia de 
 \hline
 
 \rowcolor{gray!10}
-Proyección de ocupación de almacén & Automático & Modelo predictivo de Machine Learning \\
+Monitoreo de ocupación y alertas de FV & Automático & Módulo de Inteligencia de Negocios (BI) \\
 \hline
 
 \end{tabularx}
@@ -3648,7 +3648,7 @@ Proyección de ocupación de almacén & Automático & Modelo predictivo de Machi
 
 \section{Justificación Tecnológica de la Propuesta}
 
-La incorporación de TIC en el proceso de Gestión de Almacenes se justifica en la necesidad de eliminar el registro manual y disperso de la información, así como en la oportunidad de aprovechar los datos históricos generados por el sistema para anticipar la demanda de espacio de almacenamiento. La automatización semiautomática de los subprocesos operativos (recepción, ubicabilidad, picking y despacho) mantiene la intervención del personal en las decisiones operativas clave, mientras que la automatización completa del control de inventario y la generación de reportes elimina tareas repetitivas de bajo valor agregado, permitiendo que el personal se enfoque en actividades de mayor criterio.
+La incorporación de TIC en el proceso de Gestión de Almacenes se justifica en la necesidad de eliminar el registro manual y disperso de la información, centralizar el stock en tiempo real y habilitar la toma de decisiones basada en datos mediante el módulo de BI. La automatización semiautomática de los subprocesos operativos (recepción, ubicabilidad, picking y despacho) mantiene la intervención del personal en las decisiones operativas clave, mientras que la automatización completa del control de inventario y la generación de reportes elimina tareas repetitivas de bajo valor agregado, permitiendo que el personal se enfoque en actividades de mayor criterio.
 
 % ============================================================
 % CAPÍTULO 5
@@ -3748,7 +3748,7 @@ La reducción del tiempo total del ciclo de 235 a 51 minutos, evidenciada en el 
 
 \subsection{Impacto en la Toma de Decisiones}
 
-La disponibilidad de indicadores en tiempo real mediante el módulo de Inteligencia de Negocios permitirá que la Gerencia de Operaciones y Logística cuente con información oportuna para la toma de decisiones, especialmente en relación con la gestión de la capacidad del almacén y la proyección de ocupación en temporadas de alta demanda, a partir del modelo predictivo de Machine Learning incorporado al sistema.
+La disponibilidad de indicadores en tiempo real mediante el módulo de Inteligencia de Negocios permitirá que la Gerencia de Operaciones y Logística cuente con información oportuna para la toma de decisiones, especialmente en relación con la exactitud del inventario, la ocupación del almacén, los tiempos de ciclo operativo y las alertas de productos próximos a vencer.
 
 \subsection{Impacto Económico}
 
