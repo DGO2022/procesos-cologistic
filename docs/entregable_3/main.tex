@@ -3113,98 +3113,212 @@ Estos problemas constituyen la justificación directa para el rediseño del macr
 
 \chapter{CE0132-Modelado de Procesos AS-IS (situación actual)}
 
-\section{Descripción General del Proceso AS-IS}
+El presente capítulo documenta la situación actual (AS-IS) del macroproceso priorizado \textbf{Gestión de Almacén} de CO LOGISTIC S.A.C., detallando por cada uno de sus cuatro procesos operativos: la descripción del flujo actual, los diagramas BPMN de sus procedimientos, la tabla de actividades con tiempos y herramientas reales, y los problemas identificados que servirán de base para la propuesta de mejora TO-BE.
 
-El proceso actual de Gestión de Almacenes de CO LOGISTIC S.A.C. se ejecuta de forma predominantemente manual y empírica, apoyado en hojas de cálculo Excel y formatos físicos de control. A continuación, se describe el flujo del proceso en su situación actual, identificando a los responsables de cada actividad, los tiempos aproximados de ejecución y los puntos críticos detectados.
+% ------------------------------------------------------------
+\section{Recepción de Mercadería}
+% ------------------------------------------------------------
 
-\section{Flujo del Proceso AS-IS}
+\subsection{Descripción del proceso actual}
 
-\figura[0.95\linewidth]{proceso-as-is.png}{Flujo del proceso AS-IS de Gestión de Almacenes}
+El proceso de Recepción de Mercadería inicia cuando el cliente llega al almacén con la guía de remisión física. El Analista de inventarios registra el pedido de ingreso en el sistema, introduciendo manualmente los datos de transporte (placa, chofer, brevete, usuario, fecha y hora) y la mercadería línea por línea: código, descripción, lote, fecha de vencimiento, y cantidad en pallets con su factor de conversión o en unidades, según la unidad comercial del producto. El pedido es firmado por el analista, el chofer y el personal de almacén. A continuación, el Auxiliar de almacén verifica físicamente la mercadería contra lo registrado, y el Supervisor determina la conformidad: si todo coincide, aprueba el pedido; si hay observaciones, modifica los campos necesarios. El proceso concluye con la impresión del pedido de ingreso y su engrampado a la guía de remisión del cliente, quedando el conjunto archivado.
 
-\section{Descripción de Actividades del Proceso AS-IS}
+\subsection{Diagramas BPMN AS-IS}
+
+\diagrama{rec_p1_registro.png}{AS-IS --- Registro de pedido de ingreso (Recepción P1)}
+\diagrama{rec_p2_verificacion.png}{AS-IS --- Verificación y conformidad (Recepción P2)}
+
+\subsection{Tabla de actividades}
 
 \begin{table}[H]
-\centering
-\small
-\renewcommand{\arraystretch}{1.35}
-\setlength{\tabcolsep}{6pt}
-
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{
-    |>{\centering\arraybackslash}p{0.06\textwidth}
-    |>{\raggedright\arraybackslash}p{0.30\textwidth}
-    |>{\raggedright\arraybackslash}p{0.20\textwidth}
-    |>{\centering\arraybackslash}p{0.13\textwidth}
-    |>{\raggedright\arraybackslash}X|
-}
+  |>{\centering\arraybackslash}p{0.04\textwidth}
+  |>{\raggedright\arraybackslash}p{0.30\textwidth}
+  |>{\raggedright\arraybackslash}p{0.18\textwidth}
+  |>{\centering\arraybackslash}p{0.11\textwidth}
+  |>{\raggedright\arraybackslash}X|}
 \hline
-
 \rowcolor{upeu_dark}
-\color{white}\bfseries N°
-&
-\color{white}\bfseries Actividad
-&
-\color{white}\bfseries Responsable
-&
-\color{white}\bfseries Tiempo
-&
-\color{white}\bfseries Herramienta utilizada
-\\
-\hline
-
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
 \rowcolor{gray!10}
-1 & Recepción de mercadería y verificación de guía de remisión & Personal de almacén & 20 min & Formato físico \\
-\hline
-
-2 & Registro manual del ingreso en hoja de cálculo & Asistente de almacén & 15 min & Excel \\
-\hline
-
+1 & Entregar guía de remisión & Cliente & 5 min & Guía física \\ \hline
+2 & Registrar pedido de ingreso (transporte + mercadería) & Analista & 20 min & Sistema \\ \hline
 \rowcolor{gray!10}
-3 & Asignación empírica de ubicación en racks & Personal de almacén & 25 min & Criterio del operario \\
-\hline
-
-4 & Actualización manual del stock en archivo Excel & Asistente de almacén & 15 min & Excel \\
-\hline
-
+3 & Firmar pedido de ingreso & Analista / Chofer / Almacén & 5 min & Pedido impreso \\ \hline
+4 & Verificar mercadería contra pedido de ingreso & Auxiliar & 15 min & Pedido + guía física \\ \hline
 \rowcolor{gray!10}
-5 & Recepción de pedido de despacho & Coordinador de operaciones & 10 min & Correo / WhatsApp \\
-\hline
-
-6 & Búsqueda física del producto en almacén & Personal de almacén & 30 min & Búsqueda manual \\
-\hline
-
-\rowcolor{gray!10}
-7 & Preparación y consolidación del pedido (picking) & Personal de almacén & 35 min & Formato físico \\
-\hline
-
-8 & Verificación y despacho de mercadería & Coordinador de operaciones & 15 min & Formato físico \\
-\hline
-
-\rowcolor{gray!10}
-9 & Actualización manual de salida en Excel & Asistente de almacén & 10 min & Excel \\
-\hline
-
-10 & Elaboración de reporte gerencial consolidado & Jefatura de Operaciones & 60 min & Excel (consolidación manual) \\
-\hline
-
+5 & Aprobar o modificar pedido & Supervisor & 5--15 min & Sistema \\ \hline
+6 & Imprimir y engrampar pedido + guía & Supervisor & 5 min & Impresora \\ \hline
 \end{tabularx}
-\caption{Descripción de actividades del proceso AS-IS}
+\caption{Actividades AS-IS --- Recepción de Mercadería}
 \end{table}
 
-\section{Puntos Críticos Identificados}
-
-Del análisis del flujo actual se desprenden los siguientes puntos críticos, que serán abordados en el rediseño TO-BE:
+\subsection{Problemas identificados}
 
 \begin{itemize}
-    \item \textbf{Doble registro de información:} los datos se anotan primero en formato físico y luego se transcriben a Excel, duplicando el esfuerzo y generando riesgo de inconsistencias.
-    \item \textbf{Ausencia de trazabilidad en tiempo real:} la ubicación de los productos depende del conocimiento empírico del personal, sin un registro digital centralizado.
-    \item \textbf{Tiempo elevado en la búsqueda de productos:} al no existir un sistema de ubicabilidad, la búsqueda física puede tomar hasta 30 minutos por pedido.
-    \item \textbf{Reportes gerenciales tardíos:} la consolidación manual de la información retrasa la disponibilidad de indicadores para la toma de decisiones, llegando a tomar hasta una hora por reporte.
-    \item \textbf{Riesgo de errores humanos:} la dependencia de hojas de cálculo individuales incrementa la probabilidad de errores de digitación y descoordinación entre turnos.
+  \item \textbf{Registro manual línea por línea:} sin lectura de códigos de barras, el analista introduce cada campo manualmente, generando alto riesgo de errores de digitación en código, lote o fecha de vencimiento.
+  \item \textbf{Detección reactiva de discrepancias:} las diferencias entre la guía y la mercadería física (incluyendo necesidades de reempaque) solo se detectan durante la verificación, no en el momento del registro.
+  \item \textbf{Reproceso por modificaciones post-firma:} si el supervisor modifica el pedido tras la firma inicial, se debe reimprimir y volver a engrampar el documento.
+  \item \textbf{Archivo documental en físico:} el pedido de ingreso y la guía se archivan en papel, sin trazabilidad digital del historial de recepciones.
 \end{itemize}
 
-\section{Tiempo Total del Ciclo AS-IS}
+% ------------------------------------------------------------
+\section{Almacenamiento}
+% ------------------------------------------------------------
 
-El tiempo total aproximado del ciclo completo, desde la recepción de mercadería hasta la generación del reporte gerencial, asciende a \textbf{235 minutos (aprox. 3 horas y 55 minutos)} por ciclo operativo estándar, considerando que varias actividades no se ejecutan en paralelo debido a la falta de un sistema integrado.
+\subsection{Descripción del proceso actual}
+
+El proceso de Almacenamiento comprende dos procedimientos independientes orientados a mantener la integridad del inventario físico. La \textbf{Transferencia de ubicación} ocurre cuando el Analista necesita mover mercadería de una posición a otra dentro del almacén: ingresa el código en el sistema, consulta las fechas de vencimiento disponibles, selecciona el lote a transferir, indica la ubicación origen y destino, y ejecuta la transferencia. El \textbf{Reempaque} se activa cuando una paleta llega con una composición física distinta a la declarada en la guía de remisión; el Auxiliar constata las paletas tal como llegaron y el Analista divide el registro en las cantidades reales, actualizando el reporte de movimientos del sistema. Ambos procedimientos son ejecutados por el Analista de inventarios, apoyado por el Auxiliar de almacén en el caso del reempaque.
+
+\subsection{Diagramas BPMN AS-IS}
+
+\diagrama{alm_p1_transferencia.png}{AS-IS --- Transferencia de ubicación (Almacenamiento P1)}
+\diagrama{alm_p2_reempaque.png}{AS-IS --- Reempaque (Almacenamiento P2)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{
+  |>{\centering\arraybackslash}p{0.04\textwidth}
+  |>{\raggedright\arraybackslash}p{0.30\textwidth}
+  |>{\raggedright\arraybackslash}p{0.18\textwidth}
+  |>{\centering\arraybackslash}p{0.11\textwidth}
+  |>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{upeu_light}\bfseries Procedimiento 1: Transferencia de ubicación} \\ \hline
+\rowcolor{gray!10}
+1 & Ingresar código a transferir & Analista & 2 min & Sistema \\ \hline
+2 & Consultar fechas de vencimiento disponibles & Analista & 3 min & Sistema \\ \hline
+\rowcolor{gray!10}
+3 & Seleccionar lote a transferir & Analista & 2 min & Sistema \\ \hline
+4 & Indicar ubicación origen y destino & Analista & 3 min & Sistema \\ \hline
+\rowcolor{gray!10}
+5 & Ejecutar transferencia & Analista & 2 min & Sistema \\ \hline
+\multicolumn{5}{|l|}{\cellcolor{upeu_light}\bfseries Procedimiento 2: Reempaque} \\ \hline
+6 & Constatar paletas tal como llegaron & Auxiliar & 10 min & Inspección física \\ \hline
+\rowcolor{gray!10}
+7 & Seleccionar paleta a reempacar & Analista & 2 min & Sistema \\ \hline
+8 & Ejecutar reempaque (dividir en cantidades reales) & Analista & 5 min & Sistema \\ \hline
+\end{tabularx}
+\caption{Actividades AS-IS --- Almacenamiento}
+\end{table}
+
+\subsection{Problemas identificados}
+
+\begin{itemize}
+  \item \textbf{Selección de ubicación sin reglas automáticas:} la decisión de a qué ubicación destinar la mercadería depende del criterio del analista, sin sugerencias automáticas del sistema.
+  \item \textbf{Reempaque reactivo:} la necesidad de reempacar se detecta al momento de la recepción física, sin anticipación desde la guía del proveedor.
+  \item \textbf{Sin alertas de vencimiento próximo:} el sistema no notifica automáticamente cuando un lote se aproxima a su fecha de vencimiento, requiriendo revisión manual periódica.
+  \item \textbf{Transferencias una a una:} no existe funcionalidad de transferencia masiva; cada código se procesa individualmente.
+\end{itemize}
+
+% ------------------------------------------------------------
+\section{Acondicionamiento de Mercadería}
+% ------------------------------------------------------------
+
+\subsection{Descripción del proceso actual}
+
+Los servicios de Acondicionamiento (Repaletizado y Reencajado) son opcionales, solicitados directamente por el cliente cuando necesita reorganizar su mercadería. En el \textbf{Repaletizado}, el cliente indica el código y provee la paleta de exportación destino; el Auxiliar traslada la mercadería caja por caja desde la paleta original a la nueva. En el \textbf{Reencajado}, el cliente indica la caja destino y el Auxiliar traslada la mercadería unidad por unidad. En ambos casos, el Auxiliar elabora un reporte manual en papel consignando código, descripción, cantidad, número de paletas o cajas, y la tarifa correspondiente. Este reporte se entrega al proceso de Facturación sin registro en el sistema de inventarios.
+
+\subsection{Diagramas BPMN AS-IS}
+
+\diagrama{aco_p1_repaletizado.png}{AS-IS --- Repaletizado (Acondicionamiento P1)}
+\diagrama{aco_p2_reencajado.png}{AS-IS --- Reencajado (Acondicionamiento P2)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{
+  |>{\centering\arraybackslash}p{0.04\textwidth}
+  |>{\raggedright\arraybackslash}p{0.30\textwidth}
+  |>{\raggedright\arraybackslash}p{0.18\textwidth}
+  |>{\centering\arraybackslash}p{0.11\textwidth}
+  |>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\rowcolor{gray!10}
+1 & Solicitar servicio de acondicionamiento & Cliente & 2 min & Solicitud verbal / guía \\ \hline
+2 & Proveer material destino (paleta o caja) & Cliente & 5 min & Paleta / caja física \\ \hline
+\rowcolor{gray!10}
+3 & Trasladar mercadería al nuevo contenedor & Auxiliar & 30--60 min & Trabajo físico manual \\ \hline
+4 & Elaborar reporte de acondicionamiento & Auxiliar & 10 min & Formato en papel \\ \hline
+\end{tabularx}
+\caption{Actividades AS-IS --- Acondicionamiento de Mercadería}
+\end{table}
+
+\subsection{Problemas identificados}
+
+\begin{itemize}
+  \item \textbf{Reporte en papel sin integración al sistema:} el registro del servicio es manual y no actualiza automáticamente el inventario ni genera trazabilidad digital.
+  \item \textbf{Tarifa calculada manualmente:} el auxiliar calcula la tarifa sin validación contra un tarifario digital, exponiendo el proceso a errores de facturación.
+  \item \textbf{Sin medición sistemática de tiempos:} la duración del servicio no se registra, imposibilitando el análisis de capacidad operativa.
+  \item \textbf{Riesgo de pérdida documental:} al tratarse de un reporte en papel, existe riesgo de extravío antes de llegar al proceso de Facturación.
+\end{itemize}
+
+% ------------------------------------------------------------
+\section{Despacho de Mercadería}
+% ------------------------------------------------------------
+
+\subsection{Descripción del proceso actual}
+
+El proceso de Despacho inicia cuando el cliente entrega la guía de remisión de salida. El Analista de inventarios registra el pedido de salida código por código, consultando en el sistema la zona y el stock disponible para cada ítem, y aplicando FEFO (\textit{First Expired, First Out}) cuando existen varias fechas de vencimiento para un mismo código. Paralelamente, el Auxiliar de almacén realiza el picking físico guiándose por la información de zona que provee el sistema. El pedido es firmado por el analista, el chofer y el almacén. El Auxiliar verifica la mercadería contra el pedido de salida, y el Supervisor determina la conformidad: si todo coincide, aprueba y despacha; si hay observaciones, modifica el pedido. El proceso concluye con la impresión del pedido de salida y su engrampado a la guía de remisión, quedando el conjunto documental archivado y el cliente atendido.
+
+\subsection{Diagramas BPMN AS-IS}
+
+\diagrama{des_p1_registro.png}{AS-IS --- Registro de pedido de salida (Despacho P1)}
+\diagrama{des_p2_verificacion.png}{AS-IS --- Verificación y conformidad (Despacho P2)}
+
+\subsection{Tabla de actividades}
+
+\begin{table}[H]
+\centering\small
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{
+  |>{\centering\arraybackslash}p{0.04\textwidth}
+  |>{\raggedright\arraybackslash}p{0.30\textwidth}
+  |>{\raggedright\arraybackslash}p{0.18\textwidth}
+  |>{\centering\arraybackslash}p{0.11\textwidth}
+  |>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{upeu_dark}
+\color{white}\bfseries N° & \color{white}\bfseries Actividad & \color{white}\bfseries Responsable & \color{white}\bfseries Tiempo & \color{white}\bfseries Herramienta \\ \hline
+\rowcolor{gray!10}
+1 & Entregar guía de remisión de salida & Cliente & 5 min & Guía física \\ \hline
+2 & Registrar pedido de salida (código, lote, FV, cantidad) & Analista & 20 min & Sistema \\ \hline
+\rowcolor{gray!10}
+3 & Realizar picking de mercadería & Auxiliar & 20--40 min & Sistema (zona) + físico \\ \hline
+4 & Firmar pedido de salida & Analista / Chofer / Almacén & 5 min & Pedido impreso \\ \hline
+\rowcolor{gray!10}
+5 & Verificar mercadería contra pedido de salida & Auxiliar & 15 min & Pedido + guía física \\ \hline
+6 & Aprobar o modificar pedido & Supervisor & 5--15 min & Sistema \\ \hline
+\rowcolor{gray!10}
+7 & Imprimir y engrampar pedido de salida + guía & Supervisor & 5 min & Impresora \\ \hline
+\end{tabularx}
+\caption{Actividades AS-IS --- Despacho de Mercadería}
+\end{table}
+
+\subsection{Problemas identificados}
+
+\begin{itemize}
+  \item \textbf{Registro manual código por código:} sin lectura de códigos de barras, el analista introduce manualmente cada línea del pedido, con riesgo de error en código, lote o cantidad.
+  \item \textbf{Picking sin guía digital en tiempo real:} el auxiliar depende de la información verbal o impresa del analista para localizar la mercadería; no dispone de un dispositivo móvil con instrucciones de picking.
+  \item \textbf{Aplicación de FEFO a criterio del analista:} la selección del lote a despachar según vencimiento más próximo depende del juicio del operador, sin validación automática del sistema.
+  \item \textbf{Verificación manual sin soporte automático:} la comparación entre la guía del cliente y el pedido de salida es visual y manual, sin alertas automáticas ante discrepancias.
+  \item \textbf{Reproceso por modificaciones post-firma:} las correcciones detectadas en la verificación obligan a reimprimir y firmar nuevamente el pedido de salida.
+\end{itemize}
 
 % ============================================================
 % CAPÍTULO 3
