@@ -1,0 +1,52 @@
+---
+description: "Diagrama de Arquitectura Intermedia - WMS COLOGISTIC"
+config:
+  layout: elk
+---
+flowchart TD
+    classDef frontend fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef gateway fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#000
+    classDef backend fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef ml fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#000
+    classDef database fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+
+    subgraph Frontend_Layer [📱 Frontend - Interfaces de Usuario]
+        Dashboard[Dashboard Web<br/>Vue.js]
+        AppOperario[App Montacarguista<br/>Flutter]
+    end
+    class Frontend_Layer frontend
+
+    subgraph Gateway_Layer [🚪 Gateway]
+        Gateway[API Gateway<br/>Spring Cloud Gateway]
+    end
+    class Gateway_Layer gateway
+
+    subgraph Backend_Layer [⚙️ Core WMS - Spring Boot]
+        MsInventario[MS Inventario & Ubicaciones]
+        MsRecepcion[MS Recepción & Despacho]
+        MsUsuarios[MS Usuarios & Seguridad]
+    end
+    class Backend_Layer backend
+
+    subgraph ML_Layer [🧠 Inteligencia Artificial - Python]
+        MsForecasting[MS Pronóstico de Capacidad]
+    end
+    class ML_Layer ml
+
+    subgraph Data_Layer [💾 Bases de Datos]
+        PostgreSQL[(PostgreSQL Principal)]
+    end
+    class Data_Layer database
+
+    Dashboard --> Gateway
+    AppOperario --> Gateway
+
+    Gateway --> MsUsuarios
+    Gateway --> MsInventario
+    Gateway --> MsRecepcion
+    Gateway --> MsForecasting
+
+    MsUsuarios --> PostgreSQL
+    MsInventario --> PostgreSQL
+    MsRecepcion --> PostgreSQL
+    MsForecasting -->|Lectura histórico| PostgreSQL

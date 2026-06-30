@@ -1,0 +1,67 @@
+C4Component
+    title Componentes del MS Recepción — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Recepción")
+    ContainerDb(db, "PostgreSQL — schema recepcion", "Puerto 5432", "Tablas: pedido_ingreso, asn, discrepancia")
+
+    Container_Boundary(ms_rec, "MS Recepción — Spring Boot 3 (Puerto 8084)") {
+
+        Container_Boundary(g_pedido, "Pedido de Ingreso") {
+            Component(pedido_ctrl, "PedidoIngresoController", "@RestController", "POST /recepcion/pedido — registra transporte, chofer y mercadería")
+            Component(pedido_svc, "PedidoIngresoService", "@Service", "Registra unidades y valida datos de ingreso")
+            Component(pedido_repo, "PedidoIngresoRepository", "@Repository", "Persiste y consulta pedidos de ingreso")
+            Component(rec_mapper, "RecepcionMapper", "MapStruct", "Entidades de recepción ↔ DTOs")
+            Component(rec_validator, "RecepcionValidator", "@Component", "Valida SKU, chofer, placa y cantidades")
+        }
+
+        Container_Boundary(g_asn_verif, "ASN y Verificación") {
+            Component(asn_ctrl, "ASNController", "@RestController", "POST /recepcion/asn — crea Advance Shipping Notice")
+            Component(asn_svc, "ASNService", "@Service", "Genera ASN con pallet y factor de conversión")
+            Component(asn_repo, "ASNRepository", "@Repository", "Persiste y consulta ASN por código y fecha")
+            Component(verif_ctrl, "VerificacionController", "@RestController", "PUT /recepcion/verificar — aprueba o registra discrepancia")
+            Component(verif_svc, "VerificacionService", "@Service", "Aprueba recepción y notifica a MS Inventario para suma de stock")
+        }
+
+        Container_Boundary(g_discrepancia, "Discrepancias") {
+            Component(disc_ctrl, "DiscrepanciaController", "@RestController", "GET /recepcion/discrepancias — lista observaciones")
+            Component(disc_svc, "DiscrepanciaService", "@Service", "Gestiona observaciones y coordina resolución")
+            Component(disc_repo, "DiscrepanciaRepository", "@Repository", "Persiste observaciones y su estado")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja guía no encontrada y SKU inválido")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y rol Analista de Inventarios")
+        }
+    }
+
+    Rel(gateway, pedido_ctrl, "Enruta peticiones /recepcion/**", "HTTP")
+
+    Rel(pedido_ctrl, pedido_svc, "Delega registro de pedido", "")
+    Rel(pedido_svc, rec_validator, "Valida datos del pedido", "")
+    Rel(pedido_svc, pedido_repo, "Persiste pedido de ingreso", "JPA")
+    Rel(pedido_svc, rec_mapper, "Convierte a DTO", "")
+
+    Rel(asn_ctrl, asn_svc, "Delega generación de ASN", "")
+    Rel(asn_svc, asn_repo, "Persiste ASN", "JPA")
+    Rel(verif_ctrl, verif_svc, "Delega verificación", "")
+    Rel(verif_svc, disc_svc, "Registra discrepancia si no conforme", "")
+
+    Rel(disc_ctrl, disc_svc, "Consulta discrepancias", "")
+    Rel(disc_svc, disc_repo, "Persiste y consulta observaciones", "JPA")
+
+    UpdateElementStyle(pedido_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(asn_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(verif_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(disc_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(pedido_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(asn_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(verif_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(disc_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(pedido_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(asn_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(disc_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(rec_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(rec_validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="5")

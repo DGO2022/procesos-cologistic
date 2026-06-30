@@ -1,0 +1,60 @@
+C4Component
+    title Componentes del MS Administración — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Administración")
+    ContainerDb(db, "PostgreSQL — schema config", "Puerto 5432", "Tablas: configuracion_sistema")
+
+    Container_Boundary(ms_adm, "MS Administración — Spring Boot 3 + Actuator (Puerto 8089)") {
+
+        Container_Boundary(g_respaldo, "Respaldo de Base de Datos") {
+            Component(backup_ctrl, "BackupController", "@RestController", "POST /admin/backup — backup manual")
+            Component(backup_svc, "BackupService", "@Service", "Ejecuta pg_dump con timestamp en directorio seguro")
+            Component(restaurar_ctrl, "RestauracionController", "@RestController", "POST /admin/restaurar — restaura BD")
+            Component(restaurar_svc, "RestauracionService", "@Service", "Ejecuta pg_restore validando integridad")
+        }
+
+        Container_Boundary(g_config, "Configuración del Sistema") {
+            Component(config_repo, "ConfiguracionRepository", "@Repository", "Persiste y consulta parámetros de configuración")
+            Component(config_svc, "ConfiguracionService", "@Service", "Lee y actualiza parámetros del sistema")
+            Component(config_ctrl, "ConfiguracionController", "@RestController", "GET/PUT /admin/config — parámetros")
+        }
+
+        Container_Boundary(g_operaciones, "Operaciones del Sistema") {
+            Component(migracion_ctrl, "MigracionController", "@RestController", "POST /admin/migracion — ejecuta scripts")
+            Component(migracion_svc, "MigracionService", "@Service + Flyway", "Gestiona migraciones de esquema con Flyway")
+            Component(monitor_ctrl, "MonitoreoController", "@RestController", "GET /admin/health — estado de MS")
+            Component(monitor_svc, "MonitoreoService", "@Service + Actuator", "Consulta /actuator/health de cada MS")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja errores de backup y migración fallida")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida JWT y rol exclusivo Administrador TI")
+        }
+    }
+
+    Rel(gateway, backup_ctrl, "Enruta peticiones /admin/**", "HTTP")
+
+    Rel(backup_ctrl, backup_svc, "Delega ejecución de backup", "")
+    Rel(restaurar_ctrl, restaurar_svc, "Delega restauración de BD", "")
+
+    Rel(migracion_ctrl, migracion_svc, "Delega ejecución de migraciones", "")
+    Rel(monitor_ctrl, monitor_svc, "Delega consulta de salud del sistema", "")
+
+    Rel(config_ctrl, config_svc, "Delega lectura y actualización de config", "")
+    Rel(config_svc, config_repo, "CRUD de parámetros del sistema", "JPA")
+    Rel(config_repo, db, "SELECT / UPDATE configuraciones", "JDBC")
+
+    UpdateElementStyle(backup_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(restaurar_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(migracion_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(monitor_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(config_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(backup_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(restaurar_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(migracion_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(monitor_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(config_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(config_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="5")

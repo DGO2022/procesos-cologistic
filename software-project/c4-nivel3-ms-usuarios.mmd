@@ -1,0 +1,61 @@
+C4Component
+    title Componentes del MS Usuarios y Roles — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Usuarios y Roles")
+    ContainerDb(db, "PostgreSQL — schema usuarios", "Puerto 5432", "Tablas: usuario, rol, permiso, recovery_token")
+    System_Ext(aws_ses, "Amazon SES", "Envío de correo para recuperación de contraseña")
+
+    Container_Boundary(ms_usr, "MS Usuarios y Roles — Spring Boot 3 (Puerto 8082)") {
+
+
+        Container_Boundary(g_roles, "Gestión de Roles y Permisos") {
+            Component(rol_ctrl, "RolController", "@RestController", "CRUD de roles")
+            Component(permiso_ctrl, "PermisoController", "@RestController", "Asigna y revoca permisos")
+            Component(rol_svc, "RolService", "@Service", "Gestiona la matriz de roles y permisos")
+            Component(rol_repo, "RolRepository", "@Repository", "Persiste roles y permisos")
+        }
+        Container_Boundary(g_usuario, "Gestión de Usuarios") {
+            Component(usuario_ctrl, "UsuarioController", "@RestController", "CRUD de usuarios")
+            Component(usuario_svc, "UsuarioService", "@Service", "Crea, valida duplicados y desactiva usuarios")
+            Component(usuario_repo, "UsuarioRepository", "@Repository", "CRUD de usuarios")
+            Component(usuario_mapper, "UsuarioMapper", "MapStruct", "Entidad Usuario ↔ DTO")
+        }
+
+        Container_Boundary(g_recovery, "Recuperación de Contraseña") {
+            Component(recovery_ctrl, "PasswordRecoveryController", "@RestController", "POST /usuarios/recuperar")
+            Component(recovery_svc, "PasswordRecoveryService", "@Service", "Genera token y envía correo vía Amazon SES")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja usuario duplicado y acceso denegado")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y rol Administrador TI")
+        }
+    }
+
+    Rel(gateway, usuario_ctrl, "Enruta peticiones /usuarios/**", "HTTP")
+
+    Rel(usuario_ctrl, usuario_svc, "Delega CRUD de usuarios", "")
+    Rel(usuario_svc, usuario_repo, "CRUD en BD", "JPA")
+    Rel(usuario_svc, usuario_mapper, "Convierte a DTO", "")
+
+    Rel(rol_ctrl, rol_svc, "Delega gestión de roles", "")
+    Rel(permiso_ctrl, rol_svc, "Delega asignación de permisos", "")
+    Rel(rol_svc, rol_repo, "CRUD de roles y permisos", "JPA")
+
+    Rel(recovery_ctrl, recovery_svc, "Delega recuperación", "")
+    Rel(recovery_svc, usuario_repo, "Busca usuario por correo", "JPA")
+    Rel(recovery_svc, aws_ses, "Envía correo de recuperación", "AWS SDK")
+
+    UpdateElementStyle(usuario_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(rol_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(permiso_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(recovery_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(usuario_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(rol_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(recovery_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(usuario_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(rol_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(usuario_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="5")

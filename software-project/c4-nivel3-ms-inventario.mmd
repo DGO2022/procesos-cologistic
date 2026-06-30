@@ -1,0 +1,73 @@
+C4Component
+    title Componentes del MS Inventario — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Inventario")
+    ContainerDb(db, "PostgreSQL — schema inventario", "Puerto 5432", "Tablas: stock, movimiento, lote, reserva")
+
+    Container_Boundary(ms_inv, "MS Inventario — Spring Boot 3 (Puerto 8085)") {
+
+        Container_Boundary(g_stock, "Stock") {
+            Component(stock_ctrl, "StockController", "@RestController", "Consulta saldo por SKU, lote y almacén")
+            Component(stock_svc, "StockService", "@Service", "Suma, descuenta y ajusta saldo — llamado por MS Recepción y Despacho")
+            Component(stock_repo, "StockRepository", "@Repository", "Saldos por SKU, lote y almacén")
+            Component(mapper, "StockMapper", "MapStruct", "Entidad JPA ↔ DTO de respuesta")
+            Component(validator, "InventoryValidator", "@Component", "Valida stock suficiente y SKU activo")
+        }
+
+        Container_Boundary(g_movimiento, "Movimientos y Trazabilidad") {
+            Component(mov_ctrl, "MovimientoController", "@RestController", "Registra transferencias y ajustes de inventario")
+            Component(traz_ctrl, "TrazabilidadController", "@RestController", "Historial completo por SKU o lote")
+            Component(mov_svc, "MovimientoService", "@Service", "Registra movimientos — leído por Pipeline ETL vía JDBC")
+            Component(mov_repo, "MovimientoRepository", "@Repository", "Historial de movimientos internos")
+        }
+
+        Container_Boundary(g_fefo_reserva, "FEFO y Reservas") {
+            Component(venc_ctrl, "VencimientoController", "@RestController", "Alertas de productos por vencer")
+            Component(fefo_svc, "FEFOService", "@Service", "Selecciona lote por fecha de vencimiento ASC")
+            Component(lote_repo, "LoteRepository", "@Repository", "Lotes ordenados por fecha de vencimiento")
+            Component(reserva_ctrl, "ReservaController", "@RestController", "Reserva y libera stock para pedidos")
+            Component(reserva_svc, "ReservaService", "@Service", "Gestiona reservas activas por pedido salida")
+            Component(reserva_repo, "ReservaRepository", "@Repository", "Reservas activas y liberaciones")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Manejo de errores de negocio e infraestructura")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida JWT y establece contexto de seguridad")
+        }
+    }
+
+    Rel(gateway, stock_ctrl, "Enruta peticiones /inventario/**", "HTTP")
+
+    Rel(stock_ctrl, stock_svc, "Delega lógica de saldo", "")
+    Rel(stock_svc, validator, "Valida antes de operar", "")
+    Rel(stock_svc, stock_repo, "CRUD de saldos", "JPA")
+    Rel(stock_svc, mov_svc, "Registra movimiento resultante", "")
+    Rel(stock_ctrl, mapper, "Convierte entidad a DTO", "")
+
+    Rel(mov_ctrl, mov_svc, "Delega registro de movimiento", "")
+    Rel(traz_ctrl, mov_svc, "Consulta historial", "")
+    Rel(mov_svc, mov_repo, "Persiste movimiento", "JPA")
+
+    Rel(venc_ctrl, fefo_svc, "Consulta lotes por vencer", "")
+    Rel(fefo_svc, lote_repo, "Lotes ordenados por FV ASC", "JPA")
+    Rel(reserva_ctrl, reserva_svc, "Delega reserva/liberación", "")
+    Rel(reserva_svc, reserva_repo, "Gestiona reservas", "JPA")
+
+    UpdateElementStyle(stock_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(mov_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(traz_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(venc_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(reserva_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(stock_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(mov_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(fefo_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(reserva_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(stock_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(mov_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(lote_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(reserva_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="5")

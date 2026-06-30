@@ -1,0 +1,22 @@
+architecture-beta
+    
+    service user(cloud)[Frontend Vue y Flutter]
+    
+    group cloud(cloud)[WMS COLOGISTIC Cloud]
+
+        service gateway(internet)[Spring Cloud Gateway] in cloud
+        
+        service wms(server)[Core WMS Spring Boot] in cloud
+        service ml(server)[ML Forecast Python] in cloud
+        
+        service kafka(server)[Bus Kafka] in cloud
+        service db(database)[PostgreSQL] in cloud
+
+    user:B -- T:gateway
+    gateway:B -- T:wms
+    gateway:R -- L:ml
+    
+    wms:B -- T:db
+    ml:B -- T:kafka
+    
+    wms:R -- L:kafka

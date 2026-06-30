@@ -1,0 +1,73 @@
+C4Deployment
+    title Despliegue — ERP Gestión de Almacenes · CO LOGISTIC S.A.C.
+
+    Deployment_Node(wan, "Internet / WAN", "Red pública — TLS 1.3") {
+        Person(user, "Usuario Final", "Accede vía navegador web")
+    }
+
+    Deployment_Node(aws_cloud, "Amazon Web Services", "Servicios en la nube — us-east-1") {
+        Container(aws_ses, "Amazon SES", "Servicio administrado AWS", "Envío de alertas BI y reportes por correo")
+    }
+
+    Deployment_Node(dmz, "DMZ — VLAN 10 / 192.168.10.0/24", "Servicios expuestos a Internet") {
+        Deployment_Node(nginx_srv, "SRV-WEB-01", "Ubuntu 22.04 / NGINX 1.24 — 4 vCPU 8GB") {
+            Container(webapp, "Aplicación Web", "Vue.js 3 — Estático", "SPA servida por NGINX — Puerto 443")
+        }
+        Deployment_Node(gw_srv, "SRV-GW-01", "Ubuntu 22.04 / Docker — 4 vCPU 8GB") {
+            Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enrutamiento y validación JWT — Puerto 8080")
+        }
+    }
+
+    Deployment_Node(lan, "LAN Microservicios — VLAN 20 / 192.168.20.0/24", "Red interna — no expuesta a Internet") {
+        Deployment_Node(node1, "SRV-APP-01", "Ubuntu 22.04 / Docker — 8 vCPU 16GB") {
+            Container(ms_auth, "MS Autenticación", "Spring Boot 3 JAR", "Puerto 8081")
+            Container(ms_usuarios, "MS Usuarios y Roles", "Spring Boot 3 JAR", "Puerto 8082")
+            Container(ms_maestros, "MS Maestros", "Spring Boot 3 JAR", "Puerto 8083")
+        }
+        Deployment_Node(node2, "SRV-APP-02", "Ubuntu 22.04 / Docker — 8 vCPU 16GB") {
+            Container(ms_recepcion, "MS Recepción", "Spring Boot 3 JAR", "Puerto 8084")
+            Container(ms_inventario, "MS Inventario", "Spring Boot 3 JAR", "Puerto 8085")
+            Container(ms_despacho, "MS Pedidos y Despacho", "Spring Boot 3 JAR", "Puerto 8086")
+        }
+        Deployment_Node(node3, "SRV-APP-03", "Ubuntu 22.04 / Docker — 4 vCPU 8GB") {
+            Container(ms_bi, "MS Inteligencia de Negocios", "Spring Boot + Jasper", "Puerto 8087")
+            Container(ms_servicios, "MS Acondicionamiento", "Spring Boot 3 JAR", "Puerto 8088")
+            Container(ms_admin, "MS Administración", "Spring Boot + Actuator", "Puerto 8089")
+        }
+        Deployment_Node(etl_srv, "SRV-ETL-01", "Ubuntu 22.04 / Docker — 2 vCPU 4GB") {
+            Container(etl, "Pipeline ETL", "Spring Batch — Cron 00:00", "Carga diaria al Data Warehouse")
+        }
+    }
+
+    Deployment_Node(db_vlan, "VLAN Datos — VLAN 30 / 192.168.30.0/24", "Zona segura — solo accesible desde VLAN 20") {
+        Deployment_Node(db_srv, "SRV-DB-01", "Ubuntu 22.04 / PostgreSQL 15 — 8 vCPU 32GB") {
+            ContainerDb(db, "BD Transaccional ERP", "PostgreSQL 15 — Puerto 5432", "Esquemas por MS con ACID y auditoría")
+        }
+        Deployment_Node(dw_srv, "SRV-DW-01", "Ubuntu 22.04 / PostgreSQL 15 — 8 vCPU 16GB") {
+            ContainerDb(dw, "Data Warehouse BI", "PostgreSQL Analytics — Puerto 5433", "Modelo estrella para reportes BI")
+        }
+    }
+
+    Rel(user, webapp, "HTTPS : 443", "TLS 1.3")
+    Rel(webapp, gateway, "REST / JSON", "HTTP : 8080")
+    Rel(gateway, ms_auth, "Autenticación", "HTTP : 8081")
+    Rel(gateway, ms_usuarios, "Usuarios y roles", "HTTP : 8082")
+    Rel(gateway, ms_maestros, "Maestros", "HTTP : 8083")
+    Rel(gateway, ms_recepcion, "Recepción", "HTTP : 8084")
+    Rel(gateway, ms_inventario, "Inventario", "HTTP : 8085")
+    Rel(gateway, ms_despacho, "Despacho", "HTTP : 8086")
+    Rel(gateway, ms_bi, "BI y reportes", "HTTP : 8087")
+    Rel(gateway, ms_servicios, "Acondicionamiento", "HTTP : 8088")
+    Rel(gateway, ms_admin, "Administración", "HTTP : 8089")
+    Rel(ms_auth, db, "Esquema auth", "JDBC : 5432")
+    Rel(ms_usuarios, db, "Esquema usuarios", "JDBC : 5432")
+    Rel(ms_maestros, db, "Esquema maestros", "JDBC : 5432")
+    Rel(ms_recepcion, db, "Esquema recepcion", "JDBC : 5432")
+    Rel(ms_inventario, db, "Esquema inventario", "JDBC : 5432")
+    Rel(ms_despacho, db, "Esquema pedidos", "JDBC : 5432")
+    Rel(ms_servicios, db, "Esquema servicios", "JDBC : 5432")
+    Rel(ms_admin, db, "Todos los esquemas", "JDBC : 5432")
+    Rel(ms_bi, dw, "Consultas BI", "JDBC : 5433")
+    Rel(ms_bi, aws_ses, "Alertas y reportes", "AWS SDK / HTTPS")
+    Rel(etl, db, "Lectura diaria", "JDBC : 5432")
+    Rel(etl, dw, "Carga batch", "JDBC : 5433")

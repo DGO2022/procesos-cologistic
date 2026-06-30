@@ -1,0 +1,69 @@
+C4Component
+    title Componentes del MS Inteligencia de Negocios — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS BI")
+    ContainerDb(dw, "Data Warehouse BI", "PostgreSQL Analytics", "Modelo estrella para reportes")
+    System_Ext(aws_ses, "Amazon SES", "Envío de alertas y reportes por correo")
+
+    Container_Boundary(ms_bi, "MS Inteligencia de Negocios — Spring Boot 3 + Jasper (Puerto 8087)") {
+
+        Container_Boundary(g_indicadores, "KPIs y Dashboard") {
+            Component(dashboard_ctrl, "DashboardController", "@RestController", "GET /bi/dashboard — KPIs del día")
+            Component(dashboard_svc, "DashboardService", "@Service", "Agrega KPIs del día desde el Data Warehouse")
+            Component(ocupacion_ctrl, "OcupacionController", "@RestController", "GET /bi/ocupacion — capacidad vs. real")
+            Component(kpi_ctrl, "KPIController", "@RestController", "GET /bi/kpis — indicadores por periodo")
+            Component(kpi_svc, "KPIService", "@Service", "Calcula indicadores de eficiencia y volumen")
+        }
+
+
+        Container_Boundary(g_datos_alertas, "Datos y Alertas") {
+            Component(alerta_svc, "AlertaService", "@Service", "Envía alerta cuando ocupación supera umbral")
+            Component(dw_repo, "DataWarehouseRepository", "@Repository", "Consulta hechos y dimensiones del modelo estrella")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja errores de consulta al DW y reportes")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida JWT y roles Gerencia / Jefe de Operaciones")
+        }
+        Container_Boundary(g_reportes, "Reportes y Tendencias") {
+            Component(bi_mapper, "BIMapper", "MapStruct", "Resultados de DW ↔ DTOs de dashboard y reportes")
+            Component(reporte_ctrl, "ReporteController", "@RestController", "GET /bi/reportes — PDF y Excel")
+            Component(reporte_svc, "ReporteService", "@Service + Jasper", "Genera reportes con plantillas Jasper Reports")
+            Component(tendencia_svc, "TendenciaService", "@Service", "Calcula tendencias agrupadas por mes")
+            Component(tendencia_ctrl, "TendenciaController", "@RestController", "GET /bi/tendencias — evolución mensual")
+        }
+    }
+
+    Rel(gateway, dashboard_ctrl, "Enruta peticiones /bi/**", "HTTP")
+
+    Rel(dashboard_ctrl, dashboard_svc, "Delega agregación de KPIs", "")
+    Rel(kpi_ctrl, kpi_svc, "Delega cálculo de indicadores", "")
+    Rel(ocupacion_ctrl, dashboard_svc, "Delega comparación de ocupación", "")
+    Rel(dashboard_svc, dw_repo, "Consulta hechos del día", "JPA")
+    Rel(kpi_svc, dw_repo, "Consulta métricas por proceso y periodo", "JPA")
+
+    Rel(reporte_ctrl, reporte_svc, "Delega generación de reporte", "")
+    Rel(tendencia_ctrl, tendencia_svc, "Delega cálculo de tendencias", "")
+    Rel(reporte_svc, dw_repo, "Lee datos para plantilla Jasper", "JPA")
+    Rel(reporte_svc, bi_mapper, "Convierte a DTO de reporte", "")
+    Rel(tendencia_svc, dw_repo, "Consulta hechos agrupados por mes", "JPA")
+
+    Rel(alerta_svc, dw_repo, "Consulta ocupación actual vs. capacidad", "JPA")
+    Rel(alerta_svc, aws_ses, "Envía alerta por correo si supera umbral", "AWS SDK")
+    Rel(dw_repo, dw, "SELECT sobre fact y dim tables", "JDBC")
+
+    UpdateElementStyle(dashboard_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(kpi_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(reporte_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(tendencia_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(ocupacion_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(dashboard_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(kpi_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(reporte_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(tendencia_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(alerta_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(dw_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(bi_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="5")

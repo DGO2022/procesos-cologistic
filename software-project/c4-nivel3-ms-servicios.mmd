@@ -1,0 +1,62 @@
+C4Component
+    title Componentes del MS Acondicionamiento — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Acondicionamiento")
+    ContainerDb(db, "PostgreSQL — schema servicios", "Puerto 5432", "Tablas: repaletizado, reencajado, servicio")
+
+    Container_Boundary(ms_svc, "MS Acondicionamiento — Spring Boot 3 (Puerto 8088)") {
+
+        Container_Boundary(g_repaletizado, "Repaletizado") {
+            Component(repal_ctrl, "RepaletizadoController", "@RestController", "POST /servicios/repaletizado — registra por código")
+            Component(repal_svc, "RepaletizadoService", "@Service", "Registra repaletizado: código, cantidad y tarifa")
+            Component(repal_repo, "RepaletizadoRepository", "@Repository", "Persiste y consulta servicios de repaletizado")
+        }
+
+        Container_Boundary(g_reencajado, "Reencajado") {
+            Component(reenc_ctrl, "ReencajadoController", "@RestController", "POST /servicios/reencajado — registra por código")
+            Component(reenc_svc, "ReencajadoService", "@Service", "Registra reencajado: código, unidades y tarifa")
+            Component(reenc_repo, "ReencajadoRepository", "@Repository", "Persiste y consulta servicios de reencajado")
+        }
+
+        Container_Boundary(g_consolidado, "Consolidado de Servicios") {
+            Component(servicio_ctrl, "ServicioController", "@RestController", "GET /servicios — lista servicios con estado y tarifa")
+            Component(servicio_svc, "ServicioService", "@Service", "Consolida servicios del periodo para facturación")
+            Component(servicio_repo, "ServicioRepository", "@Repository", "Consulta servicios consolidados por cliente")
+            Component(svc_mapper, "ServicioMapper", "MapStruct", "Entidades de servicio ↔ DTOs y facturación")
+            Component(svc_validator, "ServicioValidator", "@Component", "Valida código, cliente activo y tarifa configurada")
+        }
+
+        Container_Boundary(g_infra, "Infraestructura") {
+            Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja código inválido y cliente no encontrado")
+            Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y rol Auxiliar de Almacén")
+        }
+    }
+
+    Rel(gateway, repal_ctrl, "Enruta peticiones /servicios/**", "HTTP")
+
+    Rel(repal_ctrl, repal_svc, "Delega registro de repaletizado", "")
+    Rel(repal_svc, svc_validator, "Valida código y tarifa", "")
+    Rel(repal_svc, repal_repo, "Persiste repaletizado", "JPA")
+
+    Rel(reenc_ctrl, reenc_svc, "Delega registro de reencajado", "")
+    Rel(reenc_svc, svc_validator, "Valida código y tarifa", "")
+    Rel(reenc_svc, reenc_repo, "Persiste reencajado", "JPA")
+
+    Rel(servicio_ctrl, servicio_svc, "Delega consolidado de servicios", "")
+    Rel(servicio_svc, servicio_repo, "Consulta servicios del periodo", "JPA")
+    Rel(servicio_svc, svc_mapper, "Convierte a DTO de facturación", "")
+
+    UpdateElementStyle(repal_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(reenc_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(servicio_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(repal_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(reenc_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(servicio_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(repal_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(reenc_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(servicio_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(svc_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(svc_validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="5")
