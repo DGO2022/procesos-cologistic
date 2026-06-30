@@ -1,0 +1,68 @@
+C4Component
+    title Componentes del MS Pedidos y Despacho — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Pedidos y Despacho")
+    ContainerDb(db, "PostgreSQL — schema pedidos", "Puerto 5432", "Tablas: pedido_salida, picking, despacho")
+    Container(ms_inv, "MS Inventario", "Spring Boot", "Reserva y descuenta stock")
+
+    Container_Boundary(ms_des, "MS Pedidos y Despacho — Spring Boot 3 (Puerto 8086)") {
+
+        Component(pedido_ctrl, "PedidoSalidaController", "@RestController", "POST /despacho/pedido — registra pedido de salida desde guía de remisión")
+        Component(picking_ctrl, "PickingController", "@RestController", "GET /despacho/picking — genera lista de picking por zona y pasillo")
+        Component(despacho_ctrl, "DespachoController", "@RestController", "PUT /despacho/confirmar — confirma despacho y cierra el pedido")
+        Component(guia_ctrl, "GuiaController", "@RestController", "GET /despacho/guia — genera guía de remisión de salida en PDF")
+
+        Component(pedido_svc, "PedidoSalidaService", "@Service", "Registra pedido código por código con selección FEFO de lotes")
+        Component(picking_svc, "PickingService", "@Service", "Genera y optimiza lista de picking ordenada por zona y pasillo")
+        Component(despacho_svc, "DespachoService", "@Service", "Confirma despacho, actualiza stock y genera comprobante")
+        Component(guia_svc, "GuiaService", "@Service", "Genera guía de remisión de salida con datos del pedido aprobado")
+
+        Component(pedido_repo, "PedidoSalidaRepository", "@Repository", "Persiste pedidos de salida y sus líneas por código")
+        Component(picking_repo, "PickingRepository", "@Repository", "Persiste y consulta listas de picking por pedido")
+        Component(despacho_repo, "DespachoRepository", "@Repository", "Persiste despachos confirmados con historial de salida")
+
+        Component(despacho_mapper, "DespachoMapper", "MapStruct", "Entidades de despacho ↔ DTOs de respuesta y PDF")
+        Component(despacho_validator, "DespachoValidator", "@Component", "Valida stock disponible, lote FEFO y datos del transportista")
+        Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja stock insuficiente y pedido no encontrado")
+        Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y rol Analista de Inventarios")
+    }
+
+    Rel(gateway, pedido_ctrl, "POST /despacho/pedido", "HTTP / JSON")
+    Rel(gateway, picking_ctrl, "GET /despacho/picking", "HTTP / JSON")
+    Rel(gateway, despacho_ctrl, "PUT /despacho/confirmar", "HTTP / JSON")
+    Rel(gateway, guia_ctrl, "GET /despacho/guia", "HTTP / JSON")
+
+    Rel(pedido_ctrl, pedido_svc, "Delega registro de pedido de salida", "")
+    Rel(picking_ctrl, picking_svc, "Delega generación de lista de picking", "")
+    Rel(despacho_ctrl, despacho_svc, "Delega confirmación del despacho", "")
+    Rel(guia_ctrl, guia_svc, "Delega generación de guía de remisión", "")
+
+    Rel(pedido_svc, despacho_validator, "Valida stock y lotes FEFO", "")
+    Rel(pedido_svc, ms_inv, "Reserva stock al crear pedido", "REST")
+    Rel(pedido_svc, pedido_repo, "Persiste pedido de salida", "JPA")
+    Rel(pedido_svc, despacho_mapper, "Convierte a DTO", "")
+    Rel(picking_svc, picking_repo, "Persiste lista de picking", "JPA")
+    Rel(despacho_svc, ms_inv, "Descuenta stock al confirmar despacho", "REST")
+    Rel(despacho_svc, despacho_repo, "Persiste despacho confirmado", "JPA")
+    Rel(guia_svc, pedido_repo, "Lee datos del pedido aprobado", "JPA")
+
+    Rel(pedido_repo, db, "INSERT / SELECT pedidos de salida", "JDBC")
+    Rel(picking_repo, db, "INSERT / SELECT listas de picking", "JDBC")
+    Rel(despacho_repo, db, "INSERT / SELECT despachos", "JDBC")
+
+    UpdateElementStyle(pedido_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(picking_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(despacho_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(guia_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(pedido_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(picking_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(despacho_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(guia_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(pedido_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(picking_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(despacho_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(despacho_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(despacho_validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")

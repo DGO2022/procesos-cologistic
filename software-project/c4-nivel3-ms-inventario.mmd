@@ -1,0 +1,81 @@
+C4Component
+    title Componentes del MS Inventario — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Inventario")
+    ContainerDb(db, "PostgreSQL — schema inventario", "Puerto 5432", "Tablas: stock, movimiento, lote, reserva")
+    Container(ms_rec, "MS Recepción", "Spring Boot", "Suma stock al ingresar")
+    Container(ms_des, "MS Despacho", "Spring Boot", "Descuenta stock al despachar")
+    Container(etl, "Job ETL", "Spring Batch", "Lee movimientos del día")
+
+    Container_Boundary(ms_inv, "MS Inventario — Spring Boot 3 (Puerto 8085)") {
+
+        Component(stock_ctrl, "StockController", "@RestController", "Consulta saldo por SKU, lote y almacén")
+        Component(mov_ctrl, "MovimientoController", "@RestController", "Registra transferencias y ajustes")
+        Component(traz_ctrl, "TrazabilidadController", "@RestController", "Historial completo por SKU o lote")
+        Component(reserva_ctrl, "ReservaController", "@RestController", "Reserva y libera stock para pedidos")
+        Component(venc_ctrl, "VencimientoController", "@RestController", "Alertas FEFO de productos por vencer")
+
+        Component(stock_svc, "StockService", "@Service", "Lógica de saldo: suma, descuento y ajuste")
+        Component(mov_svc, "MovimientoService", "@Service", "Registra movimientos con trazabilidad")
+        Component(fefo_svc, "FEFOService", "@Service", "Selecciona lote por fecha de vencimiento")
+        Component(reserva_svc, "ReservaService", "@Service", "Gestiona reservas activas por pedido")
+        Component(stock_repo, "StockRepository", "@Repository", "Saldos por SKU, lote y almacén")
+        Component(mov_repo, "MovimientoRepository", "@Repository", "Historial de movimientos internos")
+        Component(lote_repo, "LoteRepository", "@Repository", "Lotes ordenados por fecha de vencimiento")
+        Component(reserva_repo, "ReservaRepository", "@Repository", "Reservas activas y liberaciones")
+
+        Component(mapper, "StockMapper", "MapStruct", "Entidad JPA ↔ DTO de respuesta")
+        Component(validator, "InventoryValidator", "@Component", "Valida stock suficiente y SKU activo")
+        Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Manejo de errores de negocio e infraestructura")
+        Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT y establece contexto de seguridad")
+    }
+
+    Rel(gateway, jwt_filter, "Authorization: Bearer token", "HTTP")
+    Rel(jwt_filter, stock_ctrl, "Petición autenticada", "")
+    Rel(jwt_filter, mov_ctrl, "Petición autenticada", "")
+    Rel(jwt_filter, traz_ctrl, "Petición autenticada", "")
+    Rel(jwt_filter, reserva_ctrl, "Petición autenticada", "")
+    Rel(jwt_filter, venc_ctrl, "Petición autenticada", "")
+
+    Rel(stock_ctrl, stock_svc, "Delega lógica de saldo", "")
+    Rel(mov_ctrl, mov_svc, "Delega registro de movimiento", "")
+    Rel(traz_ctrl, mov_svc, "Consulta historial", "")
+    Rel(reserva_ctrl, reserva_svc, "Delega reserva/liberación", "")
+    Rel(venc_ctrl, fefo_svc, "Consulta lotes por vencer", "")
+
+    Rel(stock_svc, validator, "Valida antes de operar", "")
+    Rel(stock_svc, mov_svc, "Registra movimiento resultante", "")
+    Rel(stock_svc, stock_repo, "CRUD de saldos", "JPA")
+    Rel(fefo_svc, lote_repo, "Lotes ordenados por FV ASC", "JPA")
+    Rel(mov_svc, mov_repo, "Persiste movimiento", "JPA")
+    Rel(reserva_svc, reserva_repo, "Gestiona reservas", "JPA")
+    Rel(stock_ctrl, mapper, "Convierte entidad a DTO", "")
+
+    Rel(ms_rec, stock_svc, "Suma stock al registrar ingreso", "REST")
+    Rel(ms_des, stock_svc, "Descuenta stock al despachar", "REST")
+    Rel(ms_des, reserva_svc, "Reserva stock al crear pedido", "REST")
+
+    Rel(stock_repo, db, "SELECT / UPDATE stock", "JDBC")
+    Rel(mov_repo, db, "INSERT movimientos", "JDBC")
+    Rel(lote_repo, db, "SELECT ORDER BY fecha_venc ASC", "JDBC")
+    Rel(reserva_repo, db, "SELECT / UPDATE reservas", "JDBC")
+    Rel(etl, mov_repo, "Lee movimientos del día", "JDBC")
+
+    UpdateElementStyle(stock_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(mov_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(traz_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(reserva_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(venc_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(stock_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(mov_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(fefo_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(reserva_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(stock_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(mov_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(lote_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(reserva_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="5", $c4BoundaryInRow="1")

@@ -1,0 +1,69 @@
+C4Component
+    title Componentes del MS Maestros — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Maestros")
+    ContainerDb(db, "PostgreSQL — schema maestros", "Puerto 5432", "Tablas: producto, cliente, almacen, pallet")
+
+    Container_Boundary(ms_mae, "MS Maestros — Spring Boot 3 (Puerto 8083)") {
+
+        Component(producto_ctrl, "ProductoController", "@RestController", "CRUD de productos: SKU, categoría, peso, volumen y unidad")
+        Component(cliente_ctrl, "ClienteController", "@RestController", "CRUD de clientes arrendadores y sus contratos activos")
+        Component(almacen_ctrl, "AlmacenController", "@RestController", "CRUD de almacenes: zonas, pasillos y capacidad configurada")
+        Component(pallet_ctrl, "PalletController", "@RestController", "CRUD de tipos de pallet y factores de conversión")
+
+        Component(producto_svc, "ProductoService", "@Service", "Valida SKU único y gestiona atributos del producto")
+        Component(cliente_svc, "ClienteService", "@Service", "Valida RUC único y gestiona contratos del arrendador")
+        Component(almacen_svc, "AlmacenService", "@Service", "Gestiona estructura física del almacén y capacidad por zona")
+        Component(pallet_svc, "PalletService", "@Service", "Gestiona tipos de pallet y factor caja/pallet por cliente")
+
+        Component(producto_repo, "ProductoRepository", "@Repository", "Consulta y persiste productos con validación de SKU")
+        Component(cliente_repo, "ClienteRepository", "@Repository", "Consulta y persiste clientes arrendadores")
+        Component(almacen_repo, "AlmacenRepository", "@Repository", "Consulta y persiste almacenes, zonas y pasillos")
+        Component(pallet_repo, "PalletRepository", "@Repository", "Consulta y persiste tipos de pallet")
+
+        Component(maestro_mapper, "MaestroMapper", "MapStruct", "Entidades maestras ↔ DTOs de respuesta")
+        Component(maestro_validator, "MaestroValidator", "@Component", "Valida unicidad de SKU, RUC y capacidad de almacén")
+        Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja duplicados y referencias no encontradas")
+        Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT en cada petición")
+    }
+
+    Rel(gateway, producto_ctrl, "GET/POST/PUT /productos/**", "HTTP / JSON")
+    Rel(gateway, cliente_ctrl, "GET/POST/PUT /clientes/**", "HTTP / JSON")
+    Rel(gateway, almacen_ctrl, "GET/POST/PUT /almacenes/**", "HTTP / JSON")
+    Rel(gateway, pallet_ctrl, "GET/POST/PUT /pallets/**", "HTTP / JSON")
+
+    Rel(producto_ctrl, producto_svc, "Delega CRUD de productos", "")
+    Rel(cliente_ctrl, cliente_svc, "Delega CRUD de clientes", "")
+    Rel(almacen_ctrl, almacen_svc, "Delega CRUD de almacenes", "")
+    Rel(pallet_ctrl, pallet_svc, "Delega CRUD de pallets", "")
+
+    Rel(producto_svc, maestro_validator, "Valida SKU y atributos", "")
+    Rel(producto_svc, producto_repo, "CRUD de productos", "JPA")
+    Rel(producto_svc, maestro_mapper, "Convierte a DTO", "")
+    Rel(cliente_svc, maestro_validator, "Valida RUC único", "")
+    Rel(cliente_svc, cliente_repo, "CRUD de clientes", "JPA")
+    Rel(almacen_svc, almacen_repo, "CRUD de almacenes y zonas", "JPA")
+    Rel(pallet_svc, pallet_repo, "CRUD de tipos de pallet", "JPA")
+
+    Rel(producto_repo, db, "SELECT / INSERT / UPDATE productos", "JDBC")
+    Rel(cliente_repo, db, "SELECT / INSERT / UPDATE clientes", "JDBC")
+    Rel(almacen_repo, db, "SELECT / INSERT / UPDATE almacenes", "JDBC")
+    Rel(pallet_repo, db, "SELECT / INSERT / UPDATE pallets", "JDBC")
+
+    UpdateElementStyle(producto_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(cliente_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(almacen_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(pallet_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(producto_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(cliente_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(almacen_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(pallet_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(producto_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(cliente_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(almacen_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(pallet_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(maestro_mapper, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(maestro_validator, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")

@@ -1,0 +1,72 @@
+C4Container
+    title Contenedores — ERP Gestión de Almacenes · CO LOGISTIC S.A.C.
+
+    Person(analista, "Analista de Inventarios", "Registra pedidos y controla stock")
+    Person(auxiliar, "Auxiliar / Supervisor", "Picking, transferencias y conformidad")
+    Person(gerencia, "Gerencia / Jefe Ops.", "Dashboards BI e indicadores")
+    Person(admin_ti, "Administrador TI", "Usuarios, roles y backups")
+    Person(cliente, "Cliente / Arrendador", "Solicita acondicionamiento")
+
+    System_Ext(aws_ses, "Amazon SES", "Servicio AWS — alertas BI y reportes por correo")
+
+    System_Boundary(erp, "ERP de Gestión de Almacenes — CO LOGISTIC S.A.C.") {
+
+        Container(webapp, "Aplicación Web", "Vue.js 3", "SPA con todos los módulos del ERP")
+
+        Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enrutamiento, JWT y rate limiting")
+
+        Container(ms_auth, "MS Autenticación", "Spring Boot 3 + JWT", "Login, refresco y revocación de tokens")
+        Container(ms_usuarios, "MS Usuarios y Roles", "Spring Boot 3", "CRUD de usuarios, roles y permisos")
+        Container(ms_maestros, "MS Maestros", "Spring Boot 3", "Productos, clientes, almacenes y pallets")
+        Container(ms_recepcion, "MS Recepción", "Spring Boot 3", "Pedido de ingreso, ASN y verificación")
+        Container(ms_inventario, "MS Inventario", "Spring Boot 3", "Stock, movimientos, transferencias y FEFO")
+        Container(ms_despacho, "MS Pedidos y Despacho", "Spring Boot 3", "Pedido de salida, picking y guía de remisión")
+        Container(ms_bi, "MS Inteligencia de Negocios", "Spring Boot + Jasper", "KPIs, reportes, ocupación y tendencias")
+        Container(ms_servicios, "MS Acondicionamiento", "Spring Boot 3", "Repaletizado y reencajado para clientes")
+        Container(ms_admin, "MS Administración", "Spring Boot + Actuator", "Backups, restauraciones y monitoreo")
+
+        Container(etl, "Job ETL Nocturno", "Spring Batch", "Consolida transacciones al Data Warehouse")
+
+        ContainerDb(db, "Base de Datos ERP", "PostgreSQL 15", "Datos transaccionales por esquema por MS")
+        ContainerDb(dw, "Data Warehouse BI", "PostgreSQL Analytics", "Modelo estrella para reportes BI")
+    }
+
+    Rel(analista, webapp, "Gestiona pedidos e inventario", "HTTPS")
+    Rel(auxiliar, webapp, "Picking, transferencias y conformidad", "HTTPS")
+    Rel(gerencia, webapp, "Dashboards BI", "HTTPS")
+    Rel(admin_ti, webapp, "Administración del sistema", "HTTPS")
+    Rel(cliente, webapp, "Solicita acondicionamiento", "HTTPS")
+
+    Rel(webapp, gateway, "REST con JWT", "HTTPS")
+
+    Rel(gateway, ms_auth, "/auth/**", "REST")
+    Rel(gateway, ms_usuarios, "/usuarios/**", "REST")
+    Rel(gateway, ms_maestros, "/maestros/**", "REST")
+    Rel(gateway, ms_recepcion, "/recepcion/**", "REST")
+    Rel(gateway, ms_inventario, "/inventario/**", "REST")
+    Rel(gateway, ms_despacho, "/despacho/**", "REST")
+    Rel(gateway, ms_bi, "/bi/**", "REST")
+    Rel(gateway, ms_servicios, "/servicios/**", "REST")
+    Rel(gateway, ms_admin, "/admin/**", "REST")
+
+    Rel(ms_auth, db, "Esquema auth", "JDBC")
+    Rel(ms_usuarios, db, "Esquema usuarios", "JDBC")
+    Rel(ms_maestros, db, "Esquema maestros", "JDBC")
+    Rel(ms_recepcion, db, "Esquema recepcion", "JDBC")
+    Rel(ms_inventario, db, "Esquema inventario", "JDBC")
+    Rel(ms_despacho, db, "Esquema pedidos", "JDBC")
+    Rel(ms_servicios, db, "Esquema servicios", "JDBC")
+    Rel(ms_admin, db, "Todos los esquemas", "JDBC")
+    Rel(ms_bi, dw, "Modelo estrella", "JDBC")
+    Rel(ms_bi, aws_ses, "Alertas y reportes", "AWS SDK")
+
+    Rel(etl, db, "Lee transacciones del día", "JDBC")
+    Rel(etl, dw, "Carga al Data Warehouse", "JDBC")
+
+    UpdateElementStyle(gateway, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(etl, $fontColor="black", $bgColor="#f3e5f5", $borderColor="#6a1b9a")
+    UpdateElementStyle(db, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(dw, $fontColor="black", $bgColor="#fff3e0", $borderColor="#e65100")
+    UpdateElementStyle(ms_bi, $fontColor="black", $bgColor="#e8eaf6", $borderColor="#283593")
+    UpdateElementStyle(aws_ses, $fontColor="black", $bgColor="#fff3e0", $borderColor="#e65100")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")

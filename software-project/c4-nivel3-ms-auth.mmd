@@ -1,0 +1,53 @@
+C4Component
+    title Componentes del MS Autenticación — ERP CO LOGISTIC S.A.C.
+
+    Container(gateway, "API Gateway", "Spring Cloud Gateway", "Enruta al MS Autenticación")
+    ContainerDb(db, "PostgreSQL — schema auth", "Puerto 5432", "Tablas: usuario, token_blacklist")
+
+    Container_Boundary(ms_auth, "MS Autenticación — Spring Boot 3 (Puerto 8081)") {
+
+        Component(login_ctrl, "LoginController", "@RestController", "POST /auth/login — valida credenciales y emite token JWT")
+        Component(refresh_ctrl, "RefreshController", "@RestController", "POST /auth/refresh — renueva el token JWT activo")
+        Component(logout_ctrl, "LogoutController", "@RestController", "POST /auth/logout — invalida el token en la blacklist")
+
+        Component(auth_svc, "AuthService", "@Service", "Orquesta login, refresco y cierre de sesión")
+        Component(token_svc, "TokenService", "@Service", "Genera, firma y valida tokens JWT con clave secreta")
+        Component(blacklist_svc, "BlacklistService", "@Service", "Registra tokens revocados para invalidar sesiones")
+        Component(pass_encoder, "PasswordEncoder", "BCryptPasswordEncoder", "Codifica y verifica contraseñas con BCrypt")
+
+        Component(auth_repo, "AuthRepository", "@Repository", "Consulta credenciales de usuario por username")
+        Component(blacklist_repo, "BlacklistRepository", "@Repository", "Persiste y consulta tokens revocados")
+
+        Component(ex_handler, "GlobalExceptionHandler", "@ControllerAdvice", "Maneja credenciales inválidas y tokens expirados")
+        Component(jwt_filter, "JwtAuthFilter", "@OncePerRequestFilter", "Valida token JWT en cada petición entrante")
+    }
+
+    Rel(gateway, login_ctrl, "POST /auth/login", "HTTP / JSON")
+    Rel(gateway, refresh_ctrl, "POST /auth/refresh", "HTTP / JSON")
+    Rel(gateway, logout_ctrl, "POST /auth/logout", "HTTP / JSON")
+
+    Rel(login_ctrl, auth_svc, "Delega autenticación", "")
+    Rel(refresh_ctrl, auth_svc, "Delega refresco de token", "")
+    Rel(logout_ctrl, auth_svc, "Delega revocación de token", "")
+
+    Rel(auth_svc, token_svc, "Genera y valida JWT", "")
+    Rel(auth_svc, blacklist_svc, "Registra token revocado", "")
+    Rel(auth_svc, pass_encoder, "Verifica contraseña", "")
+    Rel(auth_svc, auth_repo, "Consulta credenciales", "JPA")
+    Rel(blacklist_svc, blacklist_repo, "Persiste revocación", "JPA")
+
+    Rel(auth_repo, db, "SELECT usuario por username", "JDBC")
+    Rel(blacklist_repo, db, "INSERT / SELECT token blacklist", "JDBC")
+
+    UpdateElementStyle(login_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(refresh_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(logout_ctrl, $fontColor="black", $bgColor="#e8f5e9", $borderColor="#2e7d32")
+    UpdateElementStyle(auth_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(token_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(blacklist_svc, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(pass_encoder, $fontColor="black", $bgColor="#e1f5fe", $borderColor="#01579b")
+    UpdateElementStyle(auth_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(blacklist_repo, $fontColor="black", $bgColor="#fff9c4", $borderColor="#fbc02d")
+    UpdateElementStyle(ex_handler, $fontColor="black", $bgColor="#ffebee", $borderColor="#c62828")
+    UpdateElementStyle(jwt_filter, $fontColor="black", $bgColor="#d1c4e9", $borderColor="#4527a0")
+    UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")

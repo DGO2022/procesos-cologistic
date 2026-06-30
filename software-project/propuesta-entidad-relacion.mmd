@@ -1,0 +1,51 @@
+erDiagram
+    %% ==========================================
+    %% ESQUEMA: INVENTARIO (WMS Core)
+    %% ==========================================
+    UBICACION ||--o{ PALETA : "almacena"
+    UBICACION {
+        int id PK
+        string pasillo "Ej. P-01"
+        string nivel "Ej. N-03"
+        string estado "DISPONIBLE, OCUPADO, BLOQUEADO"
+        decimal capacidad_max_kg
+    }
+
+    PALETA ||--o| PRODUCTO : "contiene"
+    PALETA {
+        string codigo_lote PK
+        int id_ubicacion FK
+        int id_producto FK
+        string estado "INGRESADO, ALMACENADO, DESPACHADO"
+        timestamp fecha_ingreso
+    }
+
+    PRODUCTO {
+        int id PK
+        string sku
+        string descripcion
+        string categoria
+    }
+
+    %% ==========================================
+    %% ESQUEMA: TRANSACCIONES WMS
+    %% ==========================================
+    MOVIMIENTO }o--|| PALETA : "registra"
+    MOVIMIENTO {
+        int id PK
+        string codigo_lote FK
+        string tipo_movimiento "RECEPCION, UBICACION, DESPACHO"
+        timestamp fecha
+        int usuario_operario_id
+    }
+
+    %% ==========================================
+    %% ESQUEMA: ML FORECASTING
+    %% ==========================================
+    PRONOSTICO_CAPACIDAD {
+        int id PK
+        date fecha_proyeccion
+        decimal porcentaje_ocupacion_estimado
+        string nivel_alerta "BAJO, MEDIO, CRITICO"
+        timestamp fecha_calculo
+    }
