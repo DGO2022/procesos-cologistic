@@ -40,14 +40,14 @@ Elementos BPMN representados:
       <bpmn:incoming>Flow_3</bpmn:incoming>
       <bpmn:outgoing>Flow_4</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_4" name="Ejecutar reempaque: dividir paleta en cantidades">
+    <bpmn:task id="Task_4" name="Ejecutar reempaque">
       <bpmn:incoming>Flow_4</bpmn:incoming>
       <bpmn:outgoing>Flow_5</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de movimientos (artefacto de datos)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de movimientos" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_5</bpmn:incoming>

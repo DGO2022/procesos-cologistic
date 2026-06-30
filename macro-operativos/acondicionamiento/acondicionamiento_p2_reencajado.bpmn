@@ -37,18 +37,18 @@ Nota: procedimiento análogo al Repaletizado, conforme a la descripción del Ana
       <bpmn:incoming>Flow_2</bpmn:incoming>
       <bpmn:outgoing>Flow_3</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_3" name="Trasladar mercadería a la nueva caja">
+    <bpmn:task id="Task_3" name="Trasladar mercadería a nueva caja">
       <bpmn:incoming>Flow_3</bpmn:incoming>
       <bpmn:outgoing>Flow_4</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_4" name="Elaborar reporte manual: código, descripción, cantidad y tarifa">
+    <bpmn:task id="Task_4" name="Elaborar reporte de reencajado">
       <bpmn:incoming>Flow_4</bpmn:incoming>
       <bpmn:outgoing>Flow_5</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte manual de reencajado (sin soporte en el sistema)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de reencajado" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_5</bpmn:incoming>

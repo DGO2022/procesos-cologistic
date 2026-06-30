@@ -28,7 +28,7 @@ Elementos BPMN representados:
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:task id="Task_1" name="Enviar guía de remisión (correo, físico o WhatsApp)">
+    <bpmn:task id="Task_1" name="Enviar guía de remisión">
       <bpmn:incoming>Flow_1</bpmn:incoming>
       <bpmn:outgoing>Flow_2</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
@@ -38,11 +38,11 @@ Elementos BPMN representados:
     <bpmn:startEvent id="StartEvent_1" name="Inicio">
       <bpmn:outgoing>Flow_1</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Guía de remisión (artefacto de datos)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Guía de remisión" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1" />
     <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="Task_2" />
-    <bpmn:task id="Task_4" name="Registrar merchandising por unidad, sin pallet/factor (opcional)">
+    <bpmn:task id="Task_4" name="Registrar unidades de merchandising">
       <bpmn:incoming>Flow_5_unidad</bpmn:incoming>
       <bpmn:outgoing>Flow_7</bpmn:outgoing>
     </bpmn:task>
@@ -51,7 +51,7 @@ Elementos BPMN representados:
       <bpmn:outgoing>Flow_4_caja</bpmn:outgoing>
       <bpmn:outgoing>Flow_5_unidad</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="Task_2" name="Registrar pedido de ingreso: datos de transporte (placa, chofer, brevete, usuario, fecha/hora)">
+    <bpmn:task id="Task_2" name="Registrar pedido de ingreso">
       <bpmn:incoming>Flow_2</bpmn:incoming>
       <bpmn:outgoing>Flow_3</bpmn:outgoing>
       <bpmn:property id="Property_1c0pskq" name="__targetRef_placeholder" />
@@ -67,14 +67,14 @@ Elementos BPMN representados:
     <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_2" targetRef="Gateway_1" />
     <bpmn:sequenceFlow id="Flow_1bbrqo1" sourceRef="Gateway_1ki3svm" targetRef="Task_5" />
     <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_5" targetRef="EndEvent_1" />
-    <bpmn:task id="Task_5" name="Firmar pedido de ingreso (analista, chofer, almacén)">
+    <bpmn:task id="Task_5" name="Firmar pedido de ingreso">
       <bpmn:incoming>Flow_1bbrqo1</bpmn:incoming>
       <bpmn:outgoing>Flow_8</bpmn:outgoing>
     </bpmn:task>
     <bpmn:endEvent id="EndEvent_1" name="Fin Procedimiento 1 (continúa en P2: Verificación)">
       <bpmn:incoming>Flow_8</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Task_3" name="Registrar pallet, factor y suma de cajas (cajas = pallets × factor)">
+    <bpmn:task id="Task_3" name="Registrar pallets y cajas">
       <bpmn:incoming>Flow_4_caja</bpmn:incoming>
       <bpmn:outgoing>Flow_02xvfxq</bpmn:outgoing>
     </bpmn:task>

@@ -33,22 +33,22 @@ Nota: procedimiento enteramente físico, sin paso de sistema (la propia fuente d
       <bpmn:incoming>Flow_1</bpmn:incoming>
       <bpmn:outgoing>Flow_2</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_2" name="Proveer paleta estándar de exportación, fumigada o certificada (si aplica)">
+    <bpmn:task id="Task_2" name="Proveer paleta de exportación">
       <bpmn:incoming>Flow_2</bpmn:incoming>
       <bpmn:outgoing>Flow_3</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_3" name="Trasladar mercadería caja por caja a la nueva paleta">
+    <bpmn:task id="Task_3" name="Trasladar mercadería a nueva paleta">
       <bpmn:incoming>Flow_3</bpmn:incoming>
       <bpmn:outgoing>Flow_4</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_4" name="Elaborar reporte manual: código, descripción, cantidad, paletas y tarifa">
+    <bpmn:task id="Task_4" name="Elaborar reporte de repaletizado">
       <bpmn:incoming>Flow_4</bpmn:incoming>
       <bpmn:outgoing>Flow_5</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte manual de repaletizado (sin soporte en el sistema)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de repaletizado" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_5</bpmn:incoming>

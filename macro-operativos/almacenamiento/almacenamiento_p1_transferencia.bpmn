@@ -35,7 +35,7 @@ Elementos BPMN representados:
       <bpmn:incoming>Flow_1</bpmn:incoming>
       <bpmn:outgoing>Flow_2</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_2" name="Consultar fechas de vencimiento disponibles del código">
+    <bpmn:task id="Task_2" name="Consultar fechas de vencimiento">
       <bpmn:incoming>Flow_2</bpmn:incoming>
       <bpmn:outgoing>Flow_3</bpmn:outgoing>
     </bpmn:task>
@@ -48,7 +48,7 @@ Elementos BPMN representados:
       <bpmn:incoming>Flow_4_todo</bpmn:incoming>
       <bpmn:outgoing>Flow_6</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_4" name="Seleccionar una fecha de vencimiento específica">
+    <bpmn:task id="Task_4" name="Seleccionar fecha de vencimiento">
       <bpmn:incoming>Flow_5_fecha</bpmn:incoming>
       <bpmn:outgoing>Flow_7</bpmn:outgoing>
     </bpmn:task>
@@ -79,7 +79,7 @@ Elementos BPMN representados:
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_9</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de movimientos (artefacto de datos)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Reporte de movimientos" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_5" targetRef="Task_6" />
     <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_6" targetRef="EndEvent_1" />

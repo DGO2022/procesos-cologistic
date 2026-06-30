@@ -56,21 +56,21 @@ Nota: misma estructura que Recepción P2; cambia únicamente la nomenclatura del
     <bpmn:endEvent id="EndEvent_1" name="Fin">
       <bpmn:incoming>Flow_7</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Task_4" name="Imprimir y engrampar P.S. + guía de remisión">
+    <bpmn:task id="Task_4" name="Imprimir y engrampar pedido de salida">
       <bpmn:incoming>Flow_0awxjmr</bpmn:incoming>
       <bpmn:outgoing>Flow_7</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn:targetRef>DataObjectReference_1</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_1" name="Pedido de salida (P.S.) + guía de remisión (archivado)" dataObjectRef="DataObject_1" />
+    <bpmn:dataObjectReference id="DataObjectReference_1" name="Pedido de salida archivado" dataObjectRef="DataObject_1" />
     <bpmn:dataObject id="DataObject_1" />
     <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_4" targetRef="EndEvent_1" />
     <bpmn:task id="Task_2" name="Aprobar pedido y despachar">
       <bpmn:incoming>Flow_3_si</bpmn:incoming>
       <bpmn:outgoing>Flow_5</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:task id="Task_3" name="Modificar pedido: cantidad, lote, FV, zona/ubicación o reempaque">
+    <bpmn:task id="Task_3" name="Modificar pedido">
       <bpmn:incoming>Flow_4_no</bpmn:incoming>
       <bpmn:outgoing>Flow_18v4dnr</bpmn:outgoing>
     </bpmn:task>
